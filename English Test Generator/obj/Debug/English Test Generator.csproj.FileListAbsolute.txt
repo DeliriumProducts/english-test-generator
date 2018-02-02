@@ -1,0 +1,10 @@
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\bin\Debug\English Test Generator.exe.config
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\bin\Debug\English Test Generator.exe
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\bin\Debug\English Test Generator.pdb
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English_Test_Generator.Form1.resources
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English_Test_Generator.Properties.Resources.resources
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English Test Generator.csproj.GenerateResource.Cache
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English Test Generator.csproj.CoreCompileInputs.cache
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English Test Generator.exe
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English Test Generator.pdb
