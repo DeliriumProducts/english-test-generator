@@ -51,6 +51,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GetAPIResponse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -80,8 +81,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="redPrinter.png" />
-    <Content Include="greyPrinter.png" />
     <None Include="Resources\sort-arrows-couple-pointing-up-and-down.png" />
     <None Include="Resources\3d-dictionary %281%29.png" />
     <None Include="Resources\down-arrow %282%29.png" />

@@ -8,3 +8,12 @@ D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debu
 D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English Test Generator.csproj.CoreCompileInputs.cache
 D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English Test Generator.exe
 D:\Projects\Visual Studio\English Test Generator\English Test Generator\obj\Debug\English Test Generator.pdb
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe.config
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.pdb
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.pdb
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Form1.resources
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Properties.Resources.resources
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csproj.GenerateResource.Cache

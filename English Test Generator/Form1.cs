@@ -7,20 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using GetAPIResponse;
 namespace English_Test_Generator
 {
     public partial class Form1 : Form
     {
         string app_Id = "f930a9d7"; // API ID duuh..
         string app_Key = "ec116568011054d2efef549e5625959d"; // API Key duuh..
-        bool isENGtoBG = true; // Translator's default setting
+        bool isENGtoBG = true; // Google Translator's default setting
         public Form1()
         {
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+            
             panel1.BringToFront();
             button1.BackColor = Color.FromArgb(255, 217, 66, 53);
             button2.BackColor = Color.FromArgb(255, 20, 20, 20);
