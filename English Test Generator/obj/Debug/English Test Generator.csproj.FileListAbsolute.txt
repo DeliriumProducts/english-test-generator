@@ -17,3 +17,15 @@ D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Form1.resources
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Properties.Resources.resources
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csproj.GenerateResource.Cache
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Form1.resources
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Properties.Resources.resources
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csproj.GenerateResource.Cache
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csproj.CoreCompileInputs.cache
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.pdb
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe.config
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.pdb
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.dll
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.xml

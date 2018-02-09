@@ -6,51 +6,12 @@ using System.Threading.Tasks;
 
 namespace GetAPIResponse
 {
-    enum LexicalCategory
+    class Definitions
     {
-        Verb, Noun, Adjective
+      
     }
-
-    
-   class Definitions
+    class Examples
     {
-        public static void get(LexicalCategory category, string word)
-        {
-            if(category == LexicalCategory.Verb)
-            {
-                
-            }
-        }
 
-        public static void get(string category, string word)
-        {
-            get(map.FirstOrDefault(x => x.Value == category).Key,word);
-        }
-
-        public static string categoryString(LexicalCategory category)
-        {
-            return map[category];
-        }
-
-        public static LexicalCategory categoryFromString(string category)
-        {
-            return map.FirstOrDefault(x => x.Value == category).Key;
-        }
-
-        static Dictionary<LexicalCategory, string> map =
-            new Dictionary<LexicalCategory, string>
-            {
-                { LexicalCategory.Verb, "Verb"},
-                { LexicalCategory.Noun, "Noun"},
-                { LexicalCategory.Adjective, "Adjective" }
-            };
-    }
-   class Examples
-    {
-        public void Test()
-        {
-            Definitions.get(Definitions.map.FirstOrDefault(x => x.Value == "Verb").Key, "sheer");
-           
-        }
     }
 }
