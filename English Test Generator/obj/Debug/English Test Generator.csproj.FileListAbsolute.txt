@@ -29,3 +29,5 @@ C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\D
 C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.pdb
 C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.dll
 C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\Visual Studio\English Test Generator\English Test Generator\bin\Debug\Newtonsoft.Json.xml

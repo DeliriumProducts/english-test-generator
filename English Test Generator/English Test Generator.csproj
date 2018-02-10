@@ -97,5 +97,20 @@
     <None Include="Resources\printer %289%29.png" />
     <None Include="Resources\printer %287%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\united-states-of-america.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\united-kingdom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\united-states-of-america %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\united-kingdom %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rotation.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
