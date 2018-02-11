@@ -4,7 +4,7 @@ namespace JSON_lib
 
     using Newtonsoft.Json;
 
-    public partial class Welcome
+    public partial class GetResponse
     {
         [JsonProperty("metadata")]
         public Metadata Metadata { get; set; }
