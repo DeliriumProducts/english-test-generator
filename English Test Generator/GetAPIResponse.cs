@@ -10,7 +10,7 @@ namespace GetAPIResponse
     class Definitions
     {
         HttpResponseMessage response;
-       
+        //https://stackoverflow.com/questions/8251951/call-a-method-dynamically-based-on-some-other-variable
     }
     class Examples
     {

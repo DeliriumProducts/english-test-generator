@@ -12,12 +12,9 @@ namespace English_Test_Generator
 {
     class SearchWord
     {
-
-        public static string GetCorrectWord(string word_id)
+        public static string GetCorrectWord(string word_id, string language)
         {
-            word_id = Form1.word_id;
-            
-            String url = "https://od-api.oxforddictionaries.com:443/api/v1/search/en" +  "?q=" + word_id + "&prefix=false";
+            String url = "https://od-api.oxforddictionaries.com:443/api/v1/search/" + language + "?q=" + word_id + "&prefix=false";
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response; // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
@@ -32,15 +29,15 @@ namespace English_Test_Generator
                 word_id = (result.Results == null || result.Results.Length == 0) ? "Word not found" : result.Results.First().Word; // gets the first entry of the searched word    
                 if (word_id != Form1.word_id && word_id != "Word not found" && result.Results.Length>1)
                 {
-                    
+                    Form1.b5ClickedOnce = true;
                     MessageBox.Show("Multiple results found! Please select one from the dropdown menu!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Form1.comboBox3.Visible = true;
+                    Form1.fr.comboBox3.Visible = true;
                     for (int i = 0; i < result.Results.Length; i++)
                     {
-                       Form1.comboBox3.Items.Add(result.Results[i].Word);
+                        Form1.fr.comboBox3.Items.Add(result.Results[i].Word);
                     }
                     return null; // returns null so that the textbox is empty
-                }              
+                }
                 return word_id; // returns it
             }
             else

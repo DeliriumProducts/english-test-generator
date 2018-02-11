@@ -58,5 +58,17 @@ namespace English_Test_Generator.Properties {
                 this["userEditor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("en")]
+        public string transToLanguage {
+            get {
+                return ((string)(this["transToLanguage"]));
+            }
+            set {
+                this["transToLanguage"] = value;
+            }
+        }
     }
 }
