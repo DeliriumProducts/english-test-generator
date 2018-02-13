@@ -122,10 +122,11 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.Font = new System.Drawing.Font("Segoe UI", 16.75F);
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(195, 103);
+            this.comboBox3.Location = new System.Drawing.Point(195, 108);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(229, 48);
+            this.comboBox3.Size = new System.Drawing.Size(229, 38);
             this.comboBox3.TabIndex = 7;
             this.comboBox3.Visible = false;
             this.comboBox3.SelectionChangeCommitted += new System.EventHandler(this.comboBox3_SelectionChangeCommitted);
@@ -172,7 +173,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label2.Location = new System.Drawing.Point(427, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 40);
+            this.label2.Size = new System.Drawing.Size(78, 40);
             this.label2.TabIndex = 3;
             this.label2.Text = "Type";
             // 
@@ -182,7 +183,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label1.Location = new System.Drawing.Point(25, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 40);
+            this.label1.Size = new System.Drawing.Size(183, 40);
             this.label1.TabIndex = 2;
             this.label1.Text = "Word/Phrase";
             // 
@@ -229,7 +230,7 @@
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label7.Location = new System.Drawing.Point(223, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 25);
+            this.label7.Size = new System.Drawing.Size(121, 25);
             this.label7.TabIndex = 4;
             this.label7.Text = "Finished Test";
             // 
@@ -240,7 +241,7 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label6.Location = new System.Drawing.Point(223, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 25);
+            this.label6.Size = new System.Drawing.Size(139, 25);
             this.label6.TabIndex = 3;
             this.label6.Text = "Words/Phrases";
             this.label6.Visible = false;
@@ -311,7 +312,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 52);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "Test Name";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -533,7 +534,7 @@
             this.radioButton8.Font = new System.Drawing.Font("Segoe UI", 16.75F);
             this.radioButton8.Location = new System.Drawing.Point(179, 96);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(125, 35);
+            this.radioButton8.Size = new System.Drawing.Size(127, 35);
             this.radioButton8.TabIndex = 3;
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "WordPad";
@@ -546,7 +547,7 @@
             this.radioButton7.Font = new System.Drawing.Font("Segoe UI", 16.75F);
             this.radioButton7.Location = new System.Drawing.Point(179, 42);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(126, 35);
+            this.radioButton7.Size = new System.Drawing.Size(127, 35);
             this.radioButton7.TabIndex = 2;
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "MS Word";

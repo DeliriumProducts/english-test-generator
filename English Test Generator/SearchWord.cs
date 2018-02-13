@@ -14,7 +14,7 @@ namespace English_Test_Generator
     {
         public static string GetCorrectWord(string word_id, string language)
         {
-            String url = "https://od-api.oxforddictionaries.com:443/api/v1/search/" + language + "?q=" + word_id + "&prefix=false";
+            String url = "https://od-api.oxforddictionaries.com:443/api/v1/search/en"  + "?q=" + word_id + "&prefix=false";
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response; // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
@@ -36,8 +36,12 @@ namespace English_Test_Generator
                     {
                         Form1.fr.comboBox3.Items.Add(result.Results[i].Word);
                     }
+
                     return null; // returns null so that the textbox is empty
                 }
+              
+                Form1.b5ClickedOnce = true;
+                
                 return word_id; // returns it
             }
             else

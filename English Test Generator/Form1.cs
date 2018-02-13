@@ -115,7 +115,7 @@ namespace English_Test_Generator
             button4.BackColor = Color.FromArgb(255, 217, 66, 53);
         }
         //-----DICTIONARY-----
-        private void button5_Click(object sender, EventArgs e)
+         void button5_Click(object sender, EventArgs e)
         {
             if (!b5ClickedOnce) // checks wheter button5 has been pressed more than once to prevent infinite searches
             {
@@ -124,9 +124,10 @@ namespace English_Test_Generator
                 textBox1.Text = word_id;
             }
             else // get definitions
-            {
+            {        
                 b5ClickedOnce = false;
                 word_type = comboBox1.Text;
+                Definitions.get(word_type, word_id);
                 //richTextBox1.Text = GetAPIResponse
             }
         }
