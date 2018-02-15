@@ -122,11 +122,11 @@
             // 
             // comboBox3
             // 
-            this.comboBox3.Font = new System.Drawing.Font("Segoe UI", 16.75F);
+            this.comboBox3.Font = new System.Drawing.Font("Segoe UI", 17.75F);
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(195, 108);
+            this.comboBox3.Location = new System.Drawing.Point(195, 107);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(229, 38);
+            this.comboBox3.Size = new System.Drawing.Size(229, 40);
             this.comboBox3.TabIndex = 7;
             this.comboBox3.Visible = false;
             this.comboBox3.SelectionChangeCommitted += new System.EventHandler(this.comboBox3_SelectionChangeCommitted);
@@ -642,7 +642,7 @@
             this.groupBox5.Size = new System.Drawing.Size(315, 325);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Language";
+            this.groupBox5.Text = "Region";
             // 
             // label10
             // 
@@ -786,8 +786,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(684, 611);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -796,6 +794,8 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.Color.Purple;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -840,7 +840,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -887,6 +886,7 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.ProgressBar progressBar1;
         public System.Windows.Forms.ComboBox comboBox3;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }
 

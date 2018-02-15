@@ -2,8 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="English_Test_Generator.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="userLanguage" Type="System.String" Scope="User">
-      <Value Profile="(Default)">en</Value>
+    <Setting Name="userRegion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">gb</Value>
     </Setting>
     <Setting Name="autoUpdate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

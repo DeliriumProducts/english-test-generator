@@ -18,7 +18,8 @@ namespace English_Test_Generator
         public static string app_Key = "ec116568011054d2efef549e5625959d"; // API Key duuh..
         public static string word_id = "";
         public static string word_type = "";
-        public static string language = Properties.Settings.Default.userLanguage;
+        public static string word_prev = "";
+        public static string region = Properties.Settings.Default.userRegion;
         public static bool b5ClickedOnce = false; // used to check wheter button5 has been pressed atleast once       
         public static Form1 fr; // used to change controls from different class
         //-----FORM CONSTRUCTOR-----
@@ -45,9 +46,9 @@ namespace English_Test_Generator
                 radioButton6.Visible = false;
                 radioButton8.Location = new Point(17, 96);
             }            
-            switch (Properties.Settings.Default.userLanguage) // change borders to user preference
+            switch (Properties.Settings.Default.userRegion) // change borders to user preference
             {
-                case "en":
+                case "gb":
                     button9.FlatAppearance.BorderSize = 1; 
                     button10.FlatAppearance.BorderSize = 0;
                     break;
@@ -117,19 +118,20 @@ namespace English_Test_Generator
         //-----DICTIONARY-----
          void button5_Click(object sender, EventArgs e)
         {
-            if (!b5ClickedOnce) // checks wheter button5 has been pressed more than once to prevent infinite searches
-            {
+                comboBox3.Visible = false;
+                comboBox3.Items.Clear();
                 word_id = textBox1.Text;
-                word_id = SearchWord.GetCorrectWord(word_id, language);
-                textBox1.Text = word_id;
-            }
-            else // get definitions
-            {        
-                b5ClickedOnce = false;
-                word_type = comboBox1.Text;
+                word_id = SearchWord.GetCorrectWord(word_id, region);
+                if (word_id != textBox1.Text)
+                {
+                    word_prev = textBox1.Text;
+                    return;
+                }
+                textBox1.Text = word_id;                                   
+                word_type = comboBox1.Text;                
                 Definitions.get(word_type, word_id);
                 //richTextBox1.Text = GetAPIResponse
-            }
+            
         }
         private void comboBox3_SelectionChangeCommitted(object sender, EventArgs e) //a combobox will appear if there are more than 1 results for the correct word
         {
@@ -189,14 +191,14 @@ namespace English_Test_Generator
         //-----USER LANGUAGE SETTINGS-----
         private void button9_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.userLanguage = "en"; // changes default language to british english (used for API requests)
+            Properties.Settings.Default.userRegion = "gb"; // changes default language to british english (used for API requests)
             button9.FlatAppearance.BorderSize = 1; // change borders to user preference
             button10.FlatAppearance.BorderSize = 0;
             Properties.Settings.Default.Save();
         }
         private void button10_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.userLanguage = "us"; // changes default language to american english (used for API requests)
+            Properties.Settings.Default.userRegion = "us"; // changes default language to american english (used for API requests)
             button9.FlatAppearance.BorderSize = 0; // change borders to user preference
             button10.FlatAppearance.BorderSize = 1;
             Properties.Settings.Default.Save();
