@@ -12,9 +12,9 @@ namespace English_Test_Generator
 {
     class SearchWord
     {
-        public static string GetCorrectWord(string word_id, string language)
+        public static string GetCorrectWord(string word_id, string region)
         { 
-            String url = "https://od-api.oxforddictionaries.com:443/api/v1/search/en"  + "?q=" + word_id + "&prefix=false&regions="+Properties.Settings.Default.userRegion;
+            String url = "https://od-api.oxforddictionaries.com:443/api/v1/search/en"  + "?q=" + word_id + "&prefix=false&regions="+region;
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response; // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
@@ -23,7 +23,7 @@ namespace English_Test_Generator
             if (Form1.word_prev == word_id) return Form1.word_id; // exits the method if the entered word by the user mathes the previous word so no unnecessary requests are made
             response = client.GetAsync(url).Result; // gets the respone headers
             if (response.IsSuccessStatusCode)
-            {               
+            {     
                 string content = response.Content.ReadAsStringAsync().Result; // receives the API response              
                 var result = JsonConvert.DeserializeObject<GetResponse>(content); // Converts the API response to the format that the program can understand
                 word_id = (result.Results == null || result.Results.Length == 0) ? "Word not found" : result.Results.First().Word; // gets the first entry of the searched word    

@@ -19,8 +19,8 @@ namespace English_Test_Generator
         public static string word_id = "";
         public static string word_type = "";
         public static string word_prev = "";
-        public static string region = Properties.Settings.Default.userRegion;
-        public static bool b5ClickedOnce = false; // used to check wheter button5 has been pressed atleast once       
+        public static string result = "";
+        public static string region = Properties.Settings.Default.userRegion;        
         public static Form1 fr; // used to change controls from different class
         //-----FORM CONSTRUCTOR-----
         public Form1()
@@ -39,6 +39,7 @@ namespace English_Test_Generator
             textBox1.AutoSize = false; // disable autosize because windows forms are bad
             textBox1.Height = comboBox1.Height; // set the height so that it matches with the combobox            
             ActiveControl = textBox1; // focus on textBox1
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center; // centers the text on richTextBox1
             comboBox1.SelectedIndex = 0; // select first value
             checkBox1.Checked = Properties.Settings.Default.autoUpdate; // changes checkBox1 value to match user preference
             if (!IsApplicationInstalled.Check("Notepad++"))// check if notepad++ is installed
@@ -118,9 +119,10 @@ namespace English_Test_Generator
         //-----DICTIONARY-----
          void button5_Click(object sender, EventArgs e)
         {
+                
                 comboBox3.Visible = false;
                 comboBox3.Items.Clear();
-                word_id = textBox1.Text;
+                word_id = textBox1.Text.ToLower();
                 word_id = SearchWord.GetCorrectWord(word_id, region);
                 if (word_id != textBox1.Text)
                 {
@@ -128,9 +130,9 @@ namespace English_Test_Generator
                     return;
                 }
                 textBox1.Text = word_id;                                   
-                word_type = comboBox1.Text;                
-                Definitions.get(word_type, word_id);
-                //richTextBox1.Text = GetAPIResponse
+                word_type = comboBox1.Text.ToLower();                
+                result =  Definitions.get(word_type, word_id);
+                richTextBox1.Text = result;
             
         }
         private void comboBox3_SelectionChangeCommitted(object sender, EventArgs e) //a combobox will appear if there are more than 1 results for the correct word
@@ -170,7 +172,7 @@ namespace English_Test_Generator
         //-----ABOUT-----
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("2ma murzeli");
+            MessageBox.Show("2ma murzeli");         
         }
         //-----TRANSLATOR SETTINGS-----
         private void button8_Click(object sender, EventArgs e)

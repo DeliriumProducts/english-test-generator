@@ -194,13 +194,19 @@ namespace JSON_lib
         public string[] Registers { get; set; }
 
         [JsonProperty("subsenses")]
-        public Metadata[] Subsenses { get; set; }
+        public Subsense[] Subsenses { get; set; }
 
         [JsonProperty("translations")]
         public Translation[] Translations { get; set; }
 
         [JsonProperty("variantForms")]
         public VariantForm[] VariantForms { get; set; }
+    }
+
+    public partial class Subsense
+    {
+        [JsonProperty("definitions")]
+        public string[] Definitions { get; set; }
     }
 
     public partial class Example
