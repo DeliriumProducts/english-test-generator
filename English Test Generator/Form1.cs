@@ -14,35 +14,35 @@ namespace English_Test_Generator
     public partial class Form1 : Form
     {
         //-----GLOBAL VARIABLES-----
-        public static string app_Id = "f930a9d7"; // API ID duuh..
-        public static string app_Key = "ec116568011054d2efef549e5625959d"; // API Key duuh..
-        public static string word_id = "";
-        public static string word_type = "";
-        public static string word_prev = "";
-        public static string result = "";
-        public static string region = Properties.Settings.Default.userRegion;        
-        public static Form1 fr; // used to change controls from different class
+        public static string app_Id = "f930a9d7"; // API ID 
+        public static string app_Key = "ec116568011054d2efef549e5625959d"; // API Key 
+        public static string word_id = ""; // used for storing the current word in the dictionary
+        public static string word_type = ""; // used for the current lexical category of a certain word
+        public static string word_prev = ""; // used to store previous (user's) word in the dictionary panel
+        public static string result = ""; // result from the dictionary
+        public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English)        
+        public static Form1 fr; // used to change controls from different classes
         //-----FORM CONSTRUCTOR-----
         public Form1()
         {
             InitializeComponent();
-            fr = this;
+            fr = this; // makes a reference to this form so it can be accessed from different classes
         }
         //-----FORM LOAD SETTINGS-----
         private void Form1_Load(object sender, EventArgs e)
         {          
-            panel1.BringToFront();
-            button1.BackColor = Color.FromArgb(255, 217, 66, 53);
-            button2.BackColor = Color.FromArgb(255, 20, 20, 20);
-            button3.BackColor = Color.FromArgb(255, 20, 20, 20);
-            button4.BackColor = Color.FromArgb(255, 20, 20, 20);
+            panel1.BringToFront(); // brings the dictionary panel to the front
+            button1.BackColor = Color.FromArgb(255, 217, 66, 53); // changes color of the button
+            button2.BackColor = Color.FromArgb(255, 20, 20, 20); // changes color of the button
+            button3.BackColor = Color.FromArgb(255, 20, 20, 20); // changes color of the button
+            button4.BackColor = Color.FromArgb(255, 20, 20, 20); // changes color of the button
             textBox1.AutoSize = false; // disable autosize because windows forms are bad
             textBox1.Height = comboBox1.Height; // set the height so that it matches with the combobox            
             ActiveControl = textBox1; // focus on textBox1
             richTextBox1.SelectionAlignment = HorizontalAlignment.Center; // centers the text on richTextBox1
             comboBox1.SelectedIndex = 0; // select first value
             checkBox1.Checked = Properties.Settings.Default.autoUpdate; // changes checkBox1 value to match user preference
-            if (!IsApplicationInstalled.Check("Notepad++"))// check if notepad++ is installed
+            if (!IsApplicationInstalled.Check("Notepad++"))// check if notepad++ is installed and if it's not - removes the radiobutton
             {              
                 radioButton6.Visible = false;
                 radioButton8.Location = new Point(17, 96);
@@ -73,7 +73,7 @@ namespace English_Test_Generator
                     radioButton8.Checked = true;
                     break;
             }
-            switch (Properties.Settings.Default.transToLanguage)
+            switch (Properties.Settings.Default.transToLanguage) // changes the label to match the current transToLanguage
             {
                 case "en":
                     label8.Text = "Bulgarian to English";
@@ -118,12 +118,11 @@ namespace English_Test_Generator
         }
         //-----DICTIONARY-----
          void button5_Click(object sender, EventArgs e)
-        {
-                
-                comboBox3.Visible = false;
-                comboBox3.Items.Clear();
-                word_id = textBox1.Text.ToLower();
-                word_id = SearchWord.GetCorrectWord(word_id, region);
+        {                
+                comboBox3.Visible = false; // hides comboBox3 (used in the case if there is more than one result of a given search
+                comboBox3.Items.Clear(); // clears comboBox3's previous items
+                word_id = textBox1.Text.ToLower(); // gets the word from textBox1 and makes it lowercase, as the API request is case-sensitive
+                word_id = SearchWord.GetCorrectWord(word_id, region); // searches the user's word
                 if (word_id != textBox1.Text)
                 {
                     word_prev = textBox1.Text;
@@ -132,10 +131,9 @@ namespace English_Test_Generator
                 textBox1.Text = word_id;                                   
                 word_type = comboBox1.Text.ToLower();                
                 result =  Definitions.get(word_type, word_id);
-                richTextBox1.Text = result;
-            
+                richTextBox1.Text = result;            
         }
-        private void comboBox3_SelectionChangeCommitted(object sender, EventArgs e) //a combobox will appear if there are more than 1 results for the correct word
+        private void comboBox3_SelectionChangeCommitted(object sender, EventArgs e) // a combobox will appear if there are more than 1 results for the correct word
         {
             DialogResult dg = MessageBox.Show("Is " + comboBox3.GetItemText(comboBox3.SelectedItem) + " the correct word?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dg == DialogResult.Yes) { word_id = comboBox3.GetItemText(comboBox3.SelectedItem); textBox1.Text = word_id; comboBox3.Visible = false; }
