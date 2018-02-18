@@ -70,5 +70,29 @@ namespace English_Test_Generator.Properties {
                 this["transToLanguage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int userRate {
+            get {
+                return ((int)(this["userRate"]));
+            }
+            set {
+                this["userRate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int userVolume {
+            get {
+                return ((int)(this["userVolume"]));
+            }
+            set {
+                this["userVolume"] = value;
+            }
+        }
     }
 }

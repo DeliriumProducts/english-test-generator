@@ -28,13 +28,18 @@ namespace English_Test_Generator
                 var result = JsonConvert.DeserializeObject<GetResponse>(content); // Converts the API response to the format that the program can understand
                 word_id = (result.Results == null || result.Results.Length == 0) ? "Word not found" : result.Results.First().Word; // gets the first entry of the searched word    
                 if (word_id != Form1.word_id && word_id != "Word not found" && result.Results.Length>=1)
-                {                  
-                    MessageBox.Show("Multiple results found! Please select one from the dropdown menu!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Form1.fr.comboBox3.Visible = true;
+                {                                      
+                    
                     for (int i = 0; i < result.Results.Length; i++)
-                    {               
+                    {
+                        if (Form1.word_id.ToLower()==result.Results[i].Word)
+                        {                          
+                            return Form1.word_id;
+                        }
                         Form1.fr.comboBox3.Items.Add(result.Results[i].Word);
                     }
+                    Form1.fr.comboBox3.Visible = true;
+                    MessageBox.Show("Multiple results found! Please select one from the dropdown menu!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);                 
                     return null; // returns null so that the textbox is empty
                 }                    
                 return word_id; // returns it

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GetAPIResponse;
 using JSON_lib;
+using System.Speech.Synthesis;
 namespace English_Test_Generator
 {
     public partial class Form1 : Form
@@ -20,7 +21,9 @@ namespace English_Test_Generator
         public static string word_type = ""; // used for the current lexical category of a certain word
         public static string word_prev = ""; // used to store previous (user's) word in the dictionary panel
         public static string result = ""; // result from the dictionary
-        public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English)        
+        public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English)      
+        public static int rate = Properties.Settings.Default.userRate+10;
+        public static int volume = Properties.Settings.Default.userVolume;
         public static Form1 fr; // used to change controls from different classes
         //-----FORM CONSTRUCTOR-----
         public Form1()
@@ -30,7 +33,7 @@ namespace English_Test_Generator
         }
         //-----FORM LOAD SETTINGS-----
         private void Form1_Load(object sender, EventArgs e)
-        {          
+        {      
             panel1.BringToFront(); // brings the dictionary panel to the front
             button1.BackColor = Color.FromArgb(255, 217, 66, 53); // changes color of the button
             button2.BackColor = Color.FromArgb(255, 20, 20, 20); // changes color of the button
@@ -42,6 +45,10 @@ namespace English_Test_Generator
             richTextBox1.SelectionAlignment = HorizontalAlignment.Center; // centers the text on richTextBox1
             comboBox1.SelectedIndex = 0; // select first value
             checkBox1.Checked = Properties.Settings.Default.autoUpdate; // changes checkBox1 value to match user preference
+            monoFlat_TrackBar1.Value = volume;
+            monoFlat_TrackBar2.Value = rate;
+            label16.Text = "Volume: " + monoFlat_TrackBar1.Value;
+            label17.Text = "Speed: " +  monoFlat_TrackBar2.Value;
             if (!IsApplicationInstalled.Check("Notepad++"))// check if notepad++ is installed and if it's not - removes the radiobutton
             {              
                 radioButton6.Visible = false;
@@ -121,7 +128,7 @@ namespace English_Test_Generator
         {                
                 comboBox3.Visible = false; // hides comboBox3 (used in the case if there is more than one result of a given search
                 comboBox3.Items.Clear(); // clears comboBox3's previous items
-                word_id = textBox1.Text.ToLower(); // gets the word from textBox1 and makes it lowercase, as the API request is case-sensitive
+                word_id = textBox1.Text; // gets the word from textBox1
                 word_id = SearchWord.GetCorrectWord(word_id, region); // searches the user's word
                 if (word_id != textBox1.Text)
                 {
@@ -137,6 +144,7 @@ namespace English_Test_Generator
         {
             DialogResult dg = MessageBox.Show("Is " + comboBox3.GetItemText(comboBox3.SelectedItem) + " the correct word?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dg == DialogResult.Yes) { word_id = comboBox3.GetItemText(comboBox3.SelectedItem); textBox1.Text = word_id; comboBox3.Visible = false; }
+            
         }
         //-----TEST MAKER-----
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -239,6 +247,14 @@ namespace English_Test_Generator
             Properties.Settings.Default.userEditor = "wordpad.exe";
             Properties.Settings.Default.Save();
         }
+        //-----SPEAK BUTTON-----
+        private void button12_Click(object sender, EventArgs e)
+        {
+            SpeechSynthesizer synthesizer = new SpeechSynthesizer();
+            synthesizer.Rate = rate;
+            synthesizer.Volume = volume;            
+            synthesizer.Speak(textBox1.Text);            
+        }
         //-----MISCELLANEOUS-----
         private void label5_Click(object sender, EventArgs e)
         {
@@ -263,6 +279,45 @@ namespace English_Test_Generator
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
-        }      
+        }
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void richTextBox1_MouseEnter(object sender, EventArgs e)
+        {           
+            if (richTextBox1.Text != string.Empty)
+            {
+                richTextBox1.Location = new Point(32, 9);
+                richTextBox1.Size = new Size(620, 294);
+            }           
+        }
+        private void richTextBox1_MouseLeave(object sender, EventArgs e)
+        {
+            richTextBox1.Location = new Point(32, 155);
+            richTextBox1.Size = new Size(620, 148);
+        }
+        private void button16_Click(object sender, EventArgs e)
+        {
+            panel4.BringToFront();
+        }
+        private void button14_Click(object sender, EventArgs e)
+        {
+            panel5.BringToFront();
+        }
+        private void monoFlat_TrackBar2_ValueChanged()
+        {
+            rate = monoFlat_TrackBar2.Value-10;
+            label17.Text = "Speed: " + monoFlat_TrackBar2.Value;
+            Properties.Settings.Default.userRate = rate;
+            Properties.Settings.Default.Save();
+        }
+        private void monoFlat_TrackBar1_ValueChanged()
+        {
+            volume = monoFlat_TrackBar1.Value;
+            label16.Text = "Volume: " + monoFlat_TrackBar1.Value;            
+            Properties.Settings.Default.userVolume = volume;
+            Properties.Settings.Default.Save();
+        }
     }
 }

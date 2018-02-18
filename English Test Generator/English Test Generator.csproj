@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlatUI.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +112,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\united-kingdom %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\speaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-chevron %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-chevron.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\microphone.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rotation.png" />

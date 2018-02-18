@@ -37,9 +37,10 @@ namespace GetAPIResponse
                     for (int j = 0; j < result.Results.First().LexicalEntries[i].Entries.Length ; j++) // j = all senses from the API response
                     {                        
                         for (int k = 0; k < result.Results.First().LexicalEntries[i].Entries[j].Senses.Length; k++) // k = all definitions from the API response 
-                        {
-                            definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper()+"] "
-                            + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.First() + "\n"; // adds the definition to the variable
+                        {                                                
+                           definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + "] "
+                           + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.First() + "\n"; // adds the definition to the variable                         
+                           
                             if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses !=null) // checks if there is atleast one subsense in the current sense 
                             {
                                 for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses.Length; l++) // l = all subsense definitions from the API response
@@ -55,7 +56,7 @@ namespace GetAPIResponse
             }
             else
             {                
-                return "Couldn't establish connection to the server ASDF. Status: " + response.StatusCode; // error while trying to access the API 
+                return "Couldn't found "+ word+ " sorry for that. Status: " + response.StatusCode; // error while trying to access the API 
             }           
         }
         public static string get(LexicalCategory category, string word)

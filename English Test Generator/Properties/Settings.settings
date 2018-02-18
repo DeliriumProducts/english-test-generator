@@ -14,5 +14,11 @@
     <Setting Name="transToLanguage" Type="System.String" Scope="User">
       <Value Profile="(Default)">en</Value>
     </Setting>
+    <Setting Name="userRate" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="userVolume" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

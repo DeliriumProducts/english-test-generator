@@ -31,10 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button12 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button5 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -65,6 +66,9 @@
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
@@ -84,8 +88,19 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
+            this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -99,26 +114,57 @@
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel5.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.panel1.Controls.Add(this.richTextBox1);
+            this.panel1.Controls.Add(this.button12);
             this.panel1.Controls.Add(this.comboBox3);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.richTextBox1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel1.Location = new System.Drawing.Point(0, 151);
+            this.panel1.Location = new System.Drawing.Point(1, 151);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(684, 325);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 12.75F);
+            this.richTextBox1.Location = new System.Drawing.Point(32, 155);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(620, 148);
+            this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.MouseEnter += new System.EventHandler(this.richTextBox1_MouseEnter);
+            this.richTextBox1.MouseLeave += new System.EventHandler(this.richTextBox1_MouseLeave);
+            // 
+            // button12
+            // 
+            this.button12.BackgroundImage = global::English_Test_Generator.Properties.Resources.speaker;
+            this.button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button12.FlatAppearance.BorderSize = 0;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button12.Location = new System.Drawing.Point(546, 102);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(50, 50);
+            this.button12.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.button12, "Listen the word.");
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // comboBox3
             // 
@@ -129,6 +175,7 @@
             this.comboBox3.Size = new System.Drawing.Size(229, 40);
             this.comboBox3.TabIndex = 7;
             this.comboBox3.Visible = false;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             this.comboBox3.SelectionChangeCommitted += new System.EventHandler(this.comboBox3_SelectionChangeCommitted);
             // 
             // button5
@@ -139,10 +186,11 @@
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button5.Location = new System.Drawing.Point(567, 104);
+            this.button5.Location = new System.Drawing.Point(602, 102);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(84, 46);
+            this.button5.Size = new System.Drawing.Size(50, 50);
             this.button5.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.button5, "Get definition.");
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -156,16 +204,6 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Definition/s";
             this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Font = new System.Drawing.Font("Segoe UI", 12.75F);
-            this.richTextBox1.Location = new System.Drawing.Point(32, 155);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(620, 148);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
             // 
             // label2
             // 
@@ -504,6 +542,9 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.panel4.Controls.Add(this.label12);
+            this.panel4.Controls.Add(this.button14);
+            this.panel4.Controls.Add(this.button13);
             this.panel4.Controls.Add(this.groupBox7);
             this.panel4.Controls.Add(this.groupBox6);
             this.panel4.Controls.Add(this.groupBox5);
@@ -514,6 +555,43 @@
             this.panel4.Size = new System.Drawing.Size(684, 325);
             this.panel4.TabIndex = 2;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.label12.Location = new System.Drawing.Point(471, 284);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 28);
+            this.label12.TabIndex = 5;
+            this.label12.Text = "Page 1";
+            // 
+            // button14
+            // 
+            this.button14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button14.BackgroundImage")));
+            this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button14.FlatAppearance.BorderSize = 0;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button14.Location = new System.Drawing.Point(545, 284);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(32, 32);
+            this.button14.TabIndex = 4;
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button13
+            // 
+            this.button13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button13.BackgroundImage")));
+            this.button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button13.FlatAppearance.BorderSize = 0;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Location = new System.Drawing.Point(436, 284);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(32, 32);
+            this.button13.TabIndex = 3;
+            this.button13.UseVisualStyleBackColor = true;
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.radioButton8);
@@ -521,9 +599,9 @@
             this.groupBox7.Controls.Add(this.radioButton6);
             this.groupBox7.Controls.Add(this.radioButton5);
             this.groupBox7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.groupBox7.Location = new System.Drawing.Point(350, 154);
+            this.groupBox7.Location = new System.Drawing.Point(350, 135);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(315, 160);
+            this.groupBox7.Size = new System.Drawing.Size(315, 143);
             this.groupBox7.TabIndex = 2;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Text Editor";
@@ -531,10 +609,10 @@
             // radioButton8
             // 
             this.radioButton8.AutoSize = true;
-            this.radioButton8.Font = new System.Drawing.Font("Segoe UI", 16.75F);
-            this.radioButton8.Location = new System.Drawing.Point(179, 96);
+            this.radioButton8.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.radioButton8.Location = new System.Drawing.Point(179, 90);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(127, 35);
+            this.radioButton8.Size = new System.Drawing.Size(113, 32);
             this.radioButton8.TabIndex = 3;
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "WordPad";
@@ -544,10 +622,10 @@
             // radioButton7
             // 
             this.radioButton7.AutoSize = true;
-            this.radioButton7.Font = new System.Drawing.Font("Segoe UI", 16.75F);
+            this.radioButton7.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton7.Location = new System.Drawing.Point(179, 42);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(127, 35);
+            this.radioButton7.Size = new System.Drawing.Size(114, 32);
             this.radioButton7.TabIndex = 2;
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "MS Word";
@@ -557,10 +635,10 @@
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Font = new System.Drawing.Font("Segoe UI", 16.75F);
-            this.radioButton6.Location = new System.Drawing.Point(17, 96);
+            this.radioButton6.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.radioButton6.Location = new System.Drawing.Point(17, 90);
             this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(154, 35);
+            this.radioButton6.Size = new System.Drawing.Size(136, 32);
             this.radioButton6.TabIndex = 1;
             this.radioButton6.TabStop = true;
             this.radioButton6.Text = "Notepad++";
@@ -570,10 +648,10 @@
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Font = new System.Drawing.Font("Segoe UI", 16.75F);
+            this.radioButton5.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton5.Location = new System.Drawing.Point(17, 42);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(122, 35);
+            this.radioButton5.Size = new System.Drawing.Size(108, 32);
             this.radioButton5.TabIndex = 0;
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Notepad";
@@ -586,9 +664,9 @@
             this.groupBox6.Controls.Add(this.button11);
             this.groupBox6.Controls.Add(this.checkBox1);
             this.groupBox6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.groupBox6.Location = new System.Drawing.Point(350, -11);
+            this.groupBox6.Location = new System.Drawing.Point(350, -9);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(315, 160);
+            this.groupBox6.Size = new System.Drawing.Size(315, 143);
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Updates";
@@ -598,7 +676,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 14.75F);
-            this.label11.Location = new System.Drawing.Point(6, 112);
+            this.label11.Location = new System.Drawing.Point(6, 91);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(257, 28);
             this.label11.TabIndex = 2;
@@ -611,7 +689,7 @@
             this.button11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button11.FlatAppearance.BorderSize = 0;
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Location = new System.Drawing.Point(267, 112);
+            this.button11.Location = new System.Drawing.Point(267, 91);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(32, 32);
             this.button11.TabIndex = 1;
@@ -637,7 +715,7 @@
             this.groupBox5.Controls.Add(this.button10);
             this.groupBox5.Controls.Add(this.button9);
             this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.groupBox5.Location = new System.Drawing.Point(20, -11);
+            this.groupBox5.Location = new System.Drawing.Point(20, -9);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(315, 325);
             this.groupBox5.TabIndex = 0;
@@ -648,7 +726,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 14.75F);
-            this.label10.Location = new System.Drawing.Point(152, 228);
+            this.label10.Location = new System.Drawing.Point(147, 235);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(161, 28);
             this.label10.TabIndex = 3;
@@ -658,7 +736,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 14.75F);
-            this.label9.Location = new System.Drawing.Point(152, 91);
+            this.label9.Location = new System.Drawing.Point(147, 91);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(133, 28);
             this.label9.TabIndex = 2;
@@ -671,9 +749,9 @@
             this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button10.FlatAppearance.BorderSize = 0;
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Location = new System.Drawing.Point(11, 180);
+            this.button10.Location = new System.Drawing.Point(11, 184);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(140, 128);
+            this.button10.Size = new System.Drawing.Size(128, 128);
             this.button10.TabIndex = 1;
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
@@ -685,9 +763,9 @@
             this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button9.FlatAppearance.BorderSize = 0;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Location = new System.Drawing.Point(11, 45);
+            this.button9.Location = new System.Drawing.Point(11, 42);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(140, 128);
+            this.button9.Size = new System.Drawing.Size(128, 128);
             this.button9.TabIndex = 0;
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
@@ -761,6 +839,14 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(5, 476);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(675, 14);
+            this.progressBar1.TabIndex = 6;
+            this.progressBar1.Visible = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -773,12 +859,146 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // progressBar1
+            // panel5
             // 
-            this.progressBar1.Location = new System.Drawing.Point(5, 476);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(675, 14);
-            this.progressBar1.TabIndex = 6;
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.panel5.Controls.Add(this.groupBox8);
+            this.panel5.Controls.Add(this.label13);
+            this.panel5.Controls.Add(this.button15);
+            this.panel5.Controls.Add(this.button16);
+            this.panel5.Font = new System.Drawing.Font("Segoe UI", 21.75F);
+            this.panel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.panel5.Location = new System.Drawing.Point(0, 151);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(684, 325);
+            this.panel5.TabIndex = 6;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label17);
+            this.groupBox8.Controls.Add(this.label16);
+            this.groupBox8.Controls.Add(this.label15);
+            this.groupBox8.Controls.Add(this.monoFlat_TrackBar2);
+            this.groupBox8.Controls.Add(this.label14);
+            this.groupBox8.Controls.Add(this.monoFlat_TrackBar1);
+            this.groupBox8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.groupBox8.Location = new System.Drawing.Point(20, -9);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(315, 325);
+            this.groupBox8.TabIndex = 4;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Text To Speech";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.label13.Location = new System.Drawing.Point(471, 284);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(71, 28);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Page 2";
+            // 
+            // button15
+            // 
+            this.button15.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button15.BackgroundImage")));
+            this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button15.Enabled = false;
+            this.button15.FlatAppearance.BorderSize = 0;
+            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button15.Location = new System.Drawing.Point(545, 284);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(32, 32);
+            this.button15.TabIndex = 8;
+            this.button15.UseVisualStyleBackColor = true;
+            // 
+            // button16
+            // 
+            this.button16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button16.BackgroundImage")));
+            this.button16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button16.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button16.FlatAppearance.BorderSize = 0;
+            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button16.Location = new System.Drawing.Point(436, 284);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(32, 32);
+            this.button16.TabIndex = 7;
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.label14.Location = new System.Drawing.Point(123, 71);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(79, 28);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Volume";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.label15.Location = new System.Drawing.Point(99, 204);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(120, 28);
+            this.label15.TabIndex = 3;
+            this.label15.Text = "Voice Speed";
+            // 
+            // monoFlat_TrackBar2
+            // 
+            this.monoFlat_TrackBar2.JumpToMouse = false;
+            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 245);
+            this.monoFlat_TrackBar2.Maximum = 20;
+            this.monoFlat_TrackBar2.Minimum = 0;
+            this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar2.Name = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar2.TabIndex = 0;
+            this.monoFlat_TrackBar2.Text = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Value = 10;
+            this.monoFlat_TrackBar2.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar2.ValueToSet = 10F;
+            this.monoFlat_TrackBar2.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar2_ValueChanged);
+            // 
+            // monoFlat_TrackBar1
+            // 
+            this.monoFlat_TrackBar1.JumpToMouse = false;
+            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 109);
+            this.monoFlat_TrackBar1.Maximum = 100;
+            this.monoFlat_TrackBar1.Minimum = 0;
+            this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar1.Name = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar1.TabIndex = 0;
+            this.monoFlat_TrackBar1.Text = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Value = 30;
+            this.monoFlat_TrackBar1.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar1.ValueToSet = 30F;
+            this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12.75F);
+            this.label16.Location = new System.Drawing.Point(112, 130);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(96, 23);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "Volume: 30";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 12.75F);
+            this.label17.Location = new System.Drawing.Point(124, 270);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(75, 23);
+            this.label17.TabIndex = 5;
+            this.label17.Text = "Speed: 0";
             // 
             // Form1
             // 
@@ -794,9 +1014,10 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
-            this.ForeColor = System.Drawing.Color.Purple;
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -818,6 +1039,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -825,6 +1047,10 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -887,6 +1113,21 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         public System.Windows.Forms.ComboBox comboBox3;
         public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label label15;
+        private MonoFlat.MonoFlat_TrackBar monoFlat_TrackBar2;
+        private System.Windows.Forms.Label label14;
+        private MonoFlat.MonoFlat_TrackBar monoFlat_TrackBar1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
     }
 }
 

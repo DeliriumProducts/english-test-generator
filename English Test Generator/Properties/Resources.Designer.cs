@@ -113,6 +113,26 @@ namespace English_Test_Generator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap right_chevron {
+            get {
+                object obj = ResourceManager.GetObject("right_chevron", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_chevron__1_ {
+            get {
+                object obj = ResourceManager.GetObject("right_chevron__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rotation {
             get {
                 object obj = ResourceManager.GetObject("rotation", resourceCulture);
@@ -146,6 +166,16 @@ namespace English_Test_Generator.Properties {
         internal static System.Drawing.Bitmap sort_arrows_couple_pointing_up_and_down {
             get {
                 object obj = ResourceManager.GetObject("sort_arrows_couple_pointing_up_and_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap speaker {
+            get {
+                object obj = ResourceManager.GetObject("speaker", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

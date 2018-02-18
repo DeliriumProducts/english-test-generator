@@ -17,7 +17,6 @@ D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Form1.resources
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Properties.Resources.resources
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csproj.GenerateResource.Cache
-C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
 C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Form1.resources
 C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Properties.Resources.resources
 C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csproj.GenerateResource.Cache
@@ -31,3 +30,4 @@ C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\D
 C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.xml
 D:\Projects\Visual Studio\English Test Generator\English Test Generator\bin\Debug\Newtonsoft.Json.dll
 D:\Projects\Visual Studio\English Test Generator\English Test Generator\bin\Debug\Newtonsoft.Json.xml
+C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
