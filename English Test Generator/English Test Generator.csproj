@@ -123,10 +123,10 @@
     <None Include="Resources\right-chevron.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\microphone.png" />
+    <None Include="Resources\rotation.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\rotation.png" />
+    <None Include="Resources\microphone.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

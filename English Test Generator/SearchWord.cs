@@ -38,6 +38,7 @@ namespace English_Test_Generator
                         Form1.fr.comboBox3.Items.Add(result.Results[i].Word); // starts filling comboBox3's items with the results
                     }
                     Form1.fr.comboBox3.Visible = true; // makes comboBox3 visible
+                    Form1.fr.comboBox3.Text = "";
                     MessageBox.Show("Multiple results found! Please select one from the dropdown menu!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information); // Alerts the user that there's more than one result                
                     return null; // returns null so that the textbox is empty
                 }                    

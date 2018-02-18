@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using GetAPIResponse;
 using JSON_lib;
 using System.Speech.Synthesis;
+using System.Speech.Recognition;
+
 namespace English_Test_Generator
 {
     public partial class Form1 : Form
@@ -45,6 +47,7 @@ namespace English_Test_Generator
             richTextBox1.SelectionAlignment = HorizontalAlignment.Center; // centers the text on richTextBox1
             comboBox1.SelectedIndex = 0; // select first value
             checkBox1.Checked = Properties.Settings.Default.autoUpdate; // changes checkBox1 value to match user preference
+            checkBox2.Checked = Properties.Settings.Default.autoSearch; // changes checkBox2 value to match user preference
             monoFlat_TrackBar1.Value = volume; // changes trackbar1 value to match user preference
             monoFlat_TrackBar2.Value = rate; // changes trackbar2 value to match user preference
             label16.Text = "Volume: " + monoFlat_TrackBar1.Value; // changes label16 value to match user preference
@@ -114,6 +117,7 @@ namespace English_Test_Generator
             button2.BackColor = Color.FromArgb(255, 20, 20, 20);
             button3.BackColor = Color.FromArgb(255, 217, 66, 53);
             button4.BackColor = Color.FromArgb(255, 20, 20, 20);
+            timer1.Start(); // Timer used for translating
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -145,7 +149,14 @@ namespace English_Test_Generator
             DialogResult dg = MessageBox.Show("Is " + comboBox3.GetItemText(comboBox3.SelectedItem) + " the correct word?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question); 
             if (dg == DialogResult.Yes) { word_id = comboBox3.GetItemText(comboBox3.SelectedItem); textBox1.Text = word_id; comboBox3.Visible = false; }            
         }
-        private void richTextBox1_MouseEnter(object sender, EventArgs e) // if the user moves the cursor inside richtTextBox1, it will become larger so they can read out the result 
+        private void richTextBox1_MouseLeave(object sender, EventArgs e) // if the user moves the cursor outside richtTextBox1, it will become smaller
+        {
+            richTextBox1.Location = new Point(32, 155);
+            richTextBox1.Size = new Size(620, 148);
+            richTextBox1.SelectionStart = 0;
+            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
+        }
+        private void richTextBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (richTextBox1.Text != string.Empty)
             {
@@ -153,13 +164,6 @@ namespace English_Test_Generator
                 richTextBox1.Size = new Size(620, 294);
                 richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
             }
-        }
-        private void richTextBox1_MouseLeave(object sender, EventArgs e) // if the user moves the cursor outside richtTextBox1, it will become smaller
-        {
-            richTextBox1.Location = new Point(32, 155);
-            richTextBox1.Size = new Size(620, 148);
-            richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
-            richTextBox1.SelectionStart = 0;
         }
         //-----TEST MAKER-----
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -203,13 +207,19 @@ namespace English_Test_Generator
                 label8.Text = "English to Bulgarian";
                 Properties.Settings.Default.transToLanguage = "bg";
                 Properties.Settings.Default.Save(); // saves the user's settings
+                webBrowser1.Navigate("https://translate.google.com/#en/bg/"); // Changes the webBrowser's URL based on user's preference
             }
             else 
             {
                 label8.Text = "Bulgarian to English";
                 Properties.Settings.Default.transToLanguage = "en";
                 Properties.Settings.Default.Save(); // saves the user's settings
+                webBrowser1.Navigate("https://translate.google.com/#bg/en/"); //Changes the webBrowser's URL based on user's preference
             }
+            // The following code swaps the text from the Rich text boxes
+            string textToTranslate = richTextBox4.Text; 
+            richTextBox4.Text = richTextBox5.Text;
+            richTextBox5.Text = textToTranslate;
         }
         //-----USER LANGUAGE SETTINGS-----
         private void button9_Click(object sender, EventArgs e)
@@ -276,18 +286,20 @@ namespace English_Test_Generator
             Properties.Settings.Default.userVolume = volume;
             Properties.Settings.Default.Save();
         }
+        //-----USER SPEECH TO TEXT SETTINGS------
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.autoSearch = checkBox2.Checked;
+            Properties.Settings.Default.Save();
+        } 
         //----SETTINGS PAGES-----
         private void button16_Click(object sender, EventArgs e) // p1 -> p2
         {
-            panel4.BringToFront();
-            button16.Enabled = false;
-            button14.Enabled = true;
+            panel4.BringToFront();          
         }
         private void button14_Click(object sender, EventArgs e) // p2 -> p1
         {
-            panel5.BringToFront();
-            button14.Enabled = false;
-            button16.Enabled = true;
+            panel5.BringToFront();           
         }
         //-----SPEAK BUTTON-----
         private void button12_Click(object sender, EventArgs e)
@@ -296,6 +308,29 @@ namespace English_Test_Generator
             synthesizer.Rate = rate; // sets the tts' speech speed
             synthesizer.Volume = volume; // sets the tts' speech volume            
             synthesizer.Speak(textBox1.Text); // speaks out the user's word            
+        }
+        //-----LISTEN BUTTON-----
+        private void button17_Click(object sender, EventArgs e)
+        {
+            SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine(); // Creates a new Recognizer for voice commands
+            Grammar dictationGrammar = new DictationGrammar();
+            recognizer.LoadGrammar(dictationGrammar); //Loads default grammar
+            try
+            {
+                textBox1.Text = "Listening...";
+                recognizer.SetInputToDefaultAudioDevice(); //Sets the input device to the user's default input device
+                RecognitionResult result = recognizer.Recognize(); // Used to capture the result
+                textBox1.Text = result.Text; // Sets the result to the search box(textBox1)
+            }
+            catch (InvalidOperationException exception)
+            {
+                button1.Text = String.Format("Could not recognize input from default aduio device. Is a microphone or sound card available?\r\n{0} - {1}.", exception.Source, exception.Message); // throws an error if something goes wrong
+            }
+            finally
+            {
+                if (Properties.Settings.Default.autoSearch) button5.PerformClick(); //Checks if the user wants automatic search after the word is captured
+                recognizer.UnloadAllGrammars();    
+            }
         }
         //-----MISCELLANEOUS-----
         private void label5_Click(object sender, EventArgs e)
@@ -325,6 +360,35 @@ namespace English_Test_Generator
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        private void button15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (button3.BackColor != Color.FromArgb(255, 217, 66, 53)) timer1.Stop();
+            if (Properties.Settings.Default.transToLanguage== "en")
+            {
+                if (webBrowser1.ReadyState == WebBrowserReadyState.Complete)
+                {
+                    webBrowser1.Document.GetElementById("source").InnerText = richTextBox4.Text;
+                    string result = webBrowser1.Document.GetElementById("gt-res-dir-ctr").InnerText;
+                    richTextBox5.Text = result;
+                }
+            }
+
+            if (Properties.Settings.Default.transToLanguage == "bg")
+            {
+
+                if (webBrowser1.ReadyState == WebBrowserReadyState.Complete)
+                {
+                    webBrowser1.Document.GetElementById("source").InnerText = richTextBox4.Text;
+                    string result = webBrowser1.Document.GetElementById("gt-res-dir-ctr").InnerText;
+                    richTextBox5.Text = result;
+                }
+            }
         }
     }
 }

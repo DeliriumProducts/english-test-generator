@@ -94,5 +94,17 @@ namespace English_Test_Generator.Properties {
                 this["userVolume"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool autoSearch {
+            get {
+                return ((bool)(this["autoSearch"]));
+            }
+            set {
+                this["autoSearch"] = value;
+            }
+        }
     }
 }

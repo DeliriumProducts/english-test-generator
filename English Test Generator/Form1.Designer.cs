@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button17 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -89,8 +90,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -99,6 +101,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
             this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
             this.panel1.SuspendLayout();
@@ -113,15 +118,17 @@
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.panel1.Controls.Add(this.richTextBox1);
+            this.panel1.Controls.Add(this.button17);
             this.panel1.Controls.Add(this.button12);
             this.panel1.Controls.Add(this.comboBox3);
             this.panel1.Controls.Add(this.button5);
@@ -144,12 +151,27 @@
             this.richTextBox1.Location = new System.Drawing.Point(32, 155);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.richTextBox1.Size = new System.Drawing.Size(620, 148);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
-            this.richTextBox1.MouseEnter += new System.EventHandler(this.richTextBox1_MouseEnter);
+            this.richTextBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.richTextBox1_MouseDoubleClick);
             this.richTextBox1.MouseLeave += new System.EventHandler(this.richTextBox1_MouseLeave);
+            // 
+            // button17
+            // 
+            this.button17.BackgroundImage = global::English_Test_Generator.Properties.Resources.microphone;
+            this.button17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button17.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button17.FlatAppearance.BorderSize = 0;
+            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button17.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button17.Location = new System.Drawing.Point(434, 102);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(50, 50);
+            this.button17.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.button17, "Speak for direct word input.");
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button12
             // 
@@ -159,7 +181,7 @@
             this.button12.FlatAppearance.BorderSize = 0;
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button12.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button12.Location = new System.Drawing.Point(546, 102);
+            this.button12.Location = new System.Drawing.Point(518, 102);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(50, 50);
             this.button12.TabIndex = 8;
@@ -212,7 +234,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label2.Location = new System.Drawing.Point(427, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 40);
+            this.label2.Size = new System.Drawing.Size(78, 40);
             this.label2.TabIndex = 3;
             this.label2.Text = "Type";
             // 
@@ -222,7 +244,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label1.Location = new System.Drawing.Point(25, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 40);
+            this.label1.Size = new System.Drawing.Size(183, 40);
             this.label1.TabIndex = 2;
             this.label1.Text = "Word/Phrase";
             // 
@@ -269,7 +291,7 @@
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label7.Location = new System.Drawing.Point(223, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 25);
+            this.label7.Size = new System.Drawing.Size(121, 25);
             this.label7.TabIndex = 4;
             this.label7.Text = "Finished Test";
             // 
@@ -280,7 +302,7 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label6.Location = new System.Drawing.Point(223, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 25);
+            this.label6.Size = new System.Drawing.Size(139, 25);
             this.label6.TabIndex = 3;
             this.label6.Text = "Words/Phrases";
             this.label6.Visible = false;
@@ -351,7 +373,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 52);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "Test Name";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -490,6 +512,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.panel3.Controls.Add(this.webBrowser1);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.button8);
             this.panel3.Controls.Add(this.richTextBox5);
@@ -528,6 +551,7 @@
             // 
             this.richTextBox5.Location = new System.Drawing.Point(32, 184);
             this.richTextBox5.Name = "richTextBox5";
+            this.richTextBox5.ReadOnly = true;
             this.richTextBox5.Size = new System.Drawing.Size(620, 130);
             this.richTextBox5.TabIndex = 1;
             this.richTextBox5.Text = "";
@@ -562,7 +586,7 @@
             this.label12.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label12.Location = new System.Drawing.Point(471, 284);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(70, 28);
+            this.label12.Size = new System.Drawing.Size(71, 28);
             this.label12.TabIndex = 5;
             this.label12.Text = "Page 1";
             // 
@@ -614,7 +638,7 @@
             this.radioButton8.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton8.Location = new System.Drawing.Point(179, 90);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(111, 32);
+            this.radioButton8.Size = new System.Drawing.Size(113, 32);
             this.radioButton8.TabIndex = 3;
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "WordPad";
@@ -627,7 +651,7 @@
             this.radioButton7.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton7.Location = new System.Drawing.Point(179, 42);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(113, 32);
+            this.radioButton7.Size = new System.Drawing.Size(114, 32);
             this.radioButton7.TabIndex = 2;
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "MS Word";
@@ -849,21 +873,10 @@
             this.progressBar1.TabIndex = 6;
             this.progressBar1.Visible = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 491);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(684, 120);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.panel5.Controls.Add(this.groupBox9);
             this.panel5.Controls.Add(this.groupBox8);
             this.panel5.Controls.Add(this.label13);
             this.panel5.Controls.Add(this.button15);
@@ -874,6 +887,30 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(684, 325);
             this.panel5.TabIndex = 6;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.checkBox2);
+            this.groupBox9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.groupBox9.Location = new System.Drawing.Point(350, -9);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(315, 105);
+            this.groupBox9.TabIndex = 10;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Speech Recognition";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.checkBox2.Location = new System.Drawing.Point(6, 51);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(295, 32);
+            this.checkBox2.TabIndex = 0;
+            this.checkBox2.Text = "Automatically search the word";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // groupBox8
             // 
@@ -907,7 +944,7 @@
             this.label16.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.label16.Location = new System.Drawing.Point(112, 130);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(95, 23);
+            this.label16.Size = new System.Drawing.Size(96, 23);
             this.label16.TabIndex = 4;
             this.label16.Text = "Volume: 30";
             // 
@@ -917,7 +954,7 @@
             this.label15.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label15.Location = new System.Drawing.Point(99, 204);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(119, 28);
+            this.label15.Size = new System.Drawing.Size(120, 28);
             this.label15.TabIndex = 3;
             this.label15.Text = "Voice Speed";
             // 
@@ -927,7 +964,7 @@
             this.label14.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label14.Location = new System.Drawing.Point(123, 71);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(78, 28);
+            this.label14.Size = new System.Drawing.Size(79, 28);
             this.label14.TabIndex = 1;
             this.label14.Text = "Volume";
             // 
@@ -938,7 +975,7 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label13.Location = new System.Drawing.Point(471, 284);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 28);
+            this.label13.Size = new System.Drawing.Size(71, 28);
             this.label13.TabIndex = 9;
             this.label13.Text = "Page 2";
             // 
@@ -955,6 +992,7 @@
             this.button15.Size = new System.Drawing.Size(32, 32);
             this.button15.TabIndex = 8;
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // button16
             // 
@@ -969,6 +1007,32 @@
             this.button16.TabIndex = 7;
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 491);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(684, 120);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Location = new System.Drawing.Point(633, 142);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(20, 38);
+            this.webBrowser1.TabIndex = 4;
+            this.webBrowser1.Url = new System.Uri("https://translate.google.com/#en/bg", System.UriKind.Absolute);
+            this.webBrowser1.Visible = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // monoFlat_TrackBar2
             // 
@@ -1008,13 +1072,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(684, 611);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -1048,11 +1112,13 @@
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1130,6 +1196,11 @@
         private MonoFlat.MonoFlat_TrackBar monoFlat_TrackBar1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
