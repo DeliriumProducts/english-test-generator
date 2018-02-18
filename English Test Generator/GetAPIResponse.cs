@@ -12,23 +12,21 @@ namespace GetAPIResponse
     enum LexicalCategory
     {
         AllTypes, Adjective, Adverb, Noun, Idiomatic, Verb
-    }
-                  
-
+    }                  
     class Definitions
     {
         public static string Request(string lexicalCategory, string word)
         {
-            string filter = (lexicalCategory=="") ? "noun,adjective,verb,adverb,idiomatic" : lexicalCategory; // de
+            string filter = (lexicalCategory=="") ? "noun,adjective,verb,adverb,idiomatic" : lexicalCategory; // filter used to determine lexicalCategory for the request
             string definitions = ""; // variable to store the result
-            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/lexicalCategory=" + filter +";definitions;regions=" + Form1.region; // defines the URL for the request 
+            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/lexicalCategory=" + filter +";definitions;regions=" + Form1.region; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response; // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
             client.DefaultRequestHeaders.Add("app_id", Form1.app_Id); // adds the id to the headers
             client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
             response = client.GetAsync(url).Result; // gets the response
-            if (response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode) // checks if the response code is equal to 200
             {
                 string content = response.Content.ReadAsStringAsync().Result; // receives the API response              
                 var result = JsonConvert.DeserializeObject<GetResponse>(content); // Converts the API response to the format that the program can understand
@@ -52,11 +50,11 @@ namespace GetAPIResponse
                         }                    
                     }
                 }
-                return definitions;
+                return definitions; // returns the result 
             }
-            else
+            else // if the response code is different than 200
             {                
-                return "Couldn't found "+ word+ " sorry for that. Status: " + response.StatusCode; // error while trying to access the API 
+                return "Couldn't find \" "+ word + "\" sorry for that. Status: " + response.StatusCode; // error while trying to access the API 
             }           
         }
         public static string get(LexicalCategory category, string word)
@@ -81,9 +79,9 @@ namespace GetAPIResponse
         }
         public static string get(string category, string word)
         {
-           return get(map.FirstOrDefault(x => x.Value == category).Key, word); 
+           return get(map.FirstOrDefault(x => x.Value == category).Key, word); // uses the map to call the get method with the proper arguments
         }                               
-        public static Dictionary<LexicalCategory, string> map =
+        public static Dictionary<LexicalCategory, string> map = // dictionary used as a "map" for each type
             new Dictionary<LexicalCategory, string>
             {
                 { LexicalCategory.AllTypes, "All Types"},

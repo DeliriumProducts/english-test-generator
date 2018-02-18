@@ -22,8 +22,8 @@ namespace English_Test_Generator
         public static string word_prev = ""; // used to store previous (user's) word in the dictionary panel
         public static string result = ""; // result from the dictionary
         public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English)      
-        public static int rate = Properties.Settings.Default.userRate+10;
-        public static int volume = Properties.Settings.Default.userVolume;
+        public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
+        public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
         public static Form1 fr; // used to change controls from different classes
         //-----FORM CONSTRUCTOR-----
         public Form1()
@@ -45,11 +45,11 @@ namespace English_Test_Generator
             richTextBox1.SelectionAlignment = HorizontalAlignment.Center; // centers the text on richTextBox1
             comboBox1.SelectedIndex = 0; // select first value
             checkBox1.Checked = Properties.Settings.Default.autoUpdate; // changes checkBox1 value to match user preference
-            monoFlat_TrackBar1.Value = volume;
-            monoFlat_TrackBar2.Value = rate;
-            label16.Text = "Volume: " + monoFlat_TrackBar1.Value;
-            label17.Text = "Speed: " +  monoFlat_TrackBar2.Value;
-            if (!IsApplicationInstalled.Check("Notepad++"))// check if notepad++ is installed and if it's not - removes the radiobutton
+            monoFlat_TrackBar1.Value = volume; // changes trackbar1 value to match user preference
+            monoFlat_TrackBar2.Value = rate; // changes trackbar2 value to match user preference
+            label16.Text = "Volume: " + monoFlat_TrackBar1.Value; // changes label16 value to match user preference
+            label17.Text = "Speed: " + monoFlat_TrackBar2.Value; // changes label17 value to match user preference
+            if (!IsApplicationInstalled.Check("Notepad++")) // check if notepad++ is installed and if it's not - removes radiobutton6
             {              
                 radioButton6.Visible = false;
                 radioButton8.Location = new Point(17, 96);
@@ -124,27 +124,42 @@ namespace English_Test_Generator
             button4.BackColor = Color.FromArgb(255, 217, 66, 53);
         }
         //-----DICTIONARY-----
-         void button5_Click(object sender, EventArgs e)
+        void button5_Click(object sender, EventArgs e)
         {                
                 comboBox3.Visible = false; // hides comboBox3 (used in the case if there is more than one result of a given search
                 comboBox3.Items.Clear(); // clears comboBox3's previous items
                 word_id = textBox1.Text; // gets the word from textBox1
-                word_id = SearchWord.GetCorrectWord(word_id, region); // searches the user's word
-                if (word_id != textBox1.Text)
+                word_id = SearchWord.GetCorrectWord(word_id, region); // calls the GetCorretWord method from the class SearchWord to serach the user's word
+                if (word_id != textBox1.Text) // checks if the returned word doesn't match textBox1
                 {
-                    word_prev = textBox1.Text;
-                    return;
+                    word_prev = textBox1.Text; // sets word_prev to match textBox1
+                    return; // ends the method
                 }
-                textBox1.Text = word_id;                                   
-                word_type = comboBox1.Text.ToLower();                
-                result =  Definitions.get(word_type, word_id);
-                richTextBox1.Text = result;            
+                textBox1.Text = word_id; // sets textBox1 to match word_id                                  
+                word_type = comboBox1.Text.ToLower(); // gets the type from comboBox1 and makes it lowercase                
+                result =  Definitions.get(word_type, word_id); // calls the get method from the Definitions class to get the definition of the user's word
+                richTextBox1.Text = result; // prints out the result in richTextBox1           
         }
         private void comboBox3_SelectionChangeCommitted(object sender, EventArgs e) // a combobox will appear if there are more than 1 results for the correct word
         {
-            DialogResult dg = MessageBox.Show("Is " + comboBox3.GetItemText(comboBox3.SelectedItem) + " the correct word?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dg == DialogResult.Yes) { word_id = comboBox3.GetItemText(comboBox3.SelectedItem); textBox1.Text = word_id; comboBox3.Visible = false; }
-            
+            DialogResult dg = MessageBox.Show("Is " + comboBox3.GetItemText(comboBox3.SelectedItem) + " the correct word?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question); 
+            if (dg == DialogResult.Yes) { word_id = comboBox3.GetItemText(comboBox3.SelectedItem); textBox1.Text = word_id; comboBox3.Visible = false; }            
+        }
+        private void richTextBox1_MouseEnter(object sender, EventArgs e) // if the user moves the cursor inside richtTextBox1, it will become larger so they can read out the result 
+        {
+            if (richTextBox1.Text != string.Empty)
+            {
+                richTextBox1.Location = new Point(32, 9);
+                richTextBox1.Size = new Size(620, 294);
+                richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
+            }
+        }
+        private void richTextBox1_MouseLeave(object sender, EventArgs e) // if the user moves the cursor outside richtTextBox1, it will become smaller
+        {
+            richTextBox1.Location = new Point(32, 155);
+            richTextBox1.Size = new Size(620, 148);
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
+            richTextBox1.SelectionStart = 0;
         }
         //-----TEST MAKER-----
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -187,13 +202,13 @@ namespace English_Test_Generator
             {
                 label8.Text = "English to Bulgarian";
                 Properties.Settings.Default.transToLanguage = "bg";
-                Properties.Settings.Default.Save();
+                Properties.Settings.Default.Save(); // saves the user's settings
             }
             else 
             {
                 label8.Text = "Bulgarian to English";
                 Properties.Settings.Default.transToLanguage = "en";
-                Properties.Settings.Default.Save();
+                Properties.Settings.Default.Save(); // saves the user's settings
             }
         }
         //-----USER LANGUAGE SETTINGS-----
@@ -202,29 +217,28 @@ namespace English_Test_Generator
             Properties.Settings.Default.userRegion = "gb"; // changes default language to british english (used for API requests)
             button9.FlatAppearance.BorderSize = 1; // change borders to user preference
             button10.FlatAppearance.BorderSize = 0;
-            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Save(); // saves the user's settings
         }
         private void button10_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.userRegion = "us"; // changes default language to american english (used for API requests)
             button9.FlatAppearance.BorderSize = 0; // change borders to user preference
             button10.FlatAppearance.BorderSize = 1;
-            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Save(); // saves the user's settings
         }
         //-----USER AUTO UPDATE SETTINGS-----
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked == true)
+            if (checkBox1.Checked == true) 
             {              
                 Properties.Settings.Default.autoUpdate = true;
-                Properties.Settings.Default.Save();
+                Properties.Settings.Default.Save(); // saves the user's settings
             }
             else 
             {
                 Properties.Settings.Default.autoUpdate = false;
-                Properties.Settings.Default.Save();
-            }
-            
+                Properties.Settings.Default.Save(); // saves the user's settings
+            }            
         }
         //-----USER TEXT EDITOR SETTINGS-----
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
@@ -247,13 +261,41 @@ namespace English_Test_Generator
             Properties.Settings.Default.userEditor = "wordpad.exe";
             Properties.Settings.Default.Save();
         }
+        //-----USER TEXT TO SPEECH SETTINGS------
+        private void monoFlat_TrackBar2_ValueChanged()
+        {
+            rate = monoFlat_TrackBar2.Value - 10; 
+            label17.Text = "Speed: " + monoFlat_TrackBar2.Value;
+            Properties.Settings.Default.userRate = rate;
+            Properties.Settings.Default.Save();
+        }
+        private void monoFlat_TrackBar1_ValueChanged()
+        {
+            volume = monoFlat_TrackBar1.Value;
+            label16.Text = "Volume: " + monoFlat_TrackBar1.Value;
+            Properties.Settings.Default.userVolume = volume;
+            Properties.Settings.Default.Save();
+        }
+        //----SETTINGS PAGES-----
+        private void button16_Click(object sender, EventArgs e) // p1 -> p2
+        {
+            panel4.BringToFront();
+            button16.Enabled = false;
+            button14.Enabled = true;
+        }
+        private void button14_Click(object sender, EventArgs e) // p2 -> p1
+        {
+            panel5.BringToFront();
+            button14.Enabled = false;
+            button16.Enabled = true;
+        }
         //-----SPEAK BUTTON-----
         private void button12_Click(object sender, EventArgs e)
         {
-            SpeechSynthesizer synthesizer = new SpeechSynthesizer();
-            synthesizer.Rate = rate;
-            synthesizer.Volume = volume;            
-            synthesizer.Speak(textBox1.Text);            
+            SpeechSynthesizer synthesizer = new SpeechSynthesizer(); // object for text to speech
+            synthesizer.Rate = rate; // sets the tts' speech speed
+            synthesizer.Volume = volume; // sets the tts' speech volume            
+            synthesizer.Speak(textBox1.Text); // speaks out the user's word            
         }
         //-----MISCELLANEOUS-----
         private void label5_Click(object sender, EventArgs e)
@@ -283,41 +325,6 @@ namespace English_Test_Generator
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-        private void richTextBox1_MouseEnter(object sender, EventArgs e)
-        {           
-            if (richTextBox1.Text != string.Empty)
-            {
-                richTextBox1.Location = new Point(32, 9);
-                richTextBox1.Size = new Size(620, 294);
-            }           
-        }
-        private void richTextBox1_MouseLeave(object sender, EventArgs e)
-        {
-            richTextBox1.Location = new Point(32, 155);
-            richTextBox1.Size = new Size(620, 148);
-        }
-        private void button16_Click(object sender, EventArgs e)
-        {
-            panel4.BringToFront();
-        }
-        private void button14_Click(object sender, EventArgs e)
-        {
-            panel5.BringToFront();
-        }
-        private void monoFlat_TrackBar2_ValueChanged()
-        {
-            rate = monoFlat_TrackBar2.Value-10;
-            label17.Text = "Speed: " + monoFlat_TrackBar2.Value;
-            Properties.Settings.Default.userRate = rate;
-            Properties.Settings.Default.Save();
-        }
-        private void monoFlat_TrackBar1_ValueChanged()
-        {
-            volume = monoFlat_TrackBar1.Value;
-            label16.Text = "Volume: " + monoFlat_TrackBar1.Value;            
-            Properties.Settings.Default.userVolume = volume;
-            Properties.Settings.Default.Save();
         }
     }
 }

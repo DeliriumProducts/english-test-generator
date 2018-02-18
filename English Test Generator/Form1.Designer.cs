@@ -92,15 +92,15 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
             this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -144,6 +144,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(32, 155);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             this.richTextBox1.Size = new System.Drawing.Size(620, 148);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
@@ -211,7 +212,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label2.Location = new System.Drawing.Point(427, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 40);
+            this.label2.Size = new System.Drawing.Size(76, 40);
             this.label2.TabIndex = 3;
             this.label2.Text = "Type";
             // 
@@ -221,7 +222,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label1.Location = new System.Drawing.Point(25, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(183, 40);
+            this.label1.Size = new System.Drawing.Size(182, 40);
             this.label1.TabIndex = 2;
             this.label1.Text = "Word/Phrase";
             // 
@@ -268,7 +269,7 @@
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label7.Location = new System.Drawing.Point(223, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 25);
+            this.label7.Size = new System.Drawing.Size(119, 25);
             this.label7.TabIndex = 4;
             this.label7.Text = "Finished Test";
             // 
@@ -279,7 +280,7 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label6.Location = new System.Drawing.Point(223, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 25);
+            this.label6.Size = new System.Drawing.Size(138, 25);
             this.label6.TabIndex = 3;
             this.label6.Text = "Words/Phrases";
             this.label6.Visible = false;
@@ -350,7 +351,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 52);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "Test Name";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -561,7 +562,7 @@
             this.label12.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label12.Location = new System.Drawing.Point(471, 284);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 28);
+            this.label12.Size = new System.Drawing.Size(70, 28);
             this.label12.TabIndex = 5;
             this.label12.Text = "Page 1";
             // 
@@ -584,6 +585,7 @@
             this.button13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button13.BackgroundImage")));
             this.button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button13.Enabled = false;
             this.button13.FlatAppearance.BorderSize = 0;
             this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button13.Location = new System.Drawing.Point(436, 284);
@@ -612,7 +614,7 @@
             this.radioButton8.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton8.Location = new System.Drawing.Point(179, 90);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(113, 32);
+            this.radioButton8.Size = new System.Drawing.Size(111, 32);
             this.radioButton8.TabIndex = 3;
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "WordPad";
@@ -625,7 +627,7 @@
             this.radioButton7.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton7.Location = new System.Drawing.Point(179, 42);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(114, 32);
+            this.radioButton7.Size = new System.Drawing.Size(113, 32);
             this.radioButton7.TabIndex = 2;
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "MS Word";
@@ -889,6 +891,46 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Text To Speech";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 12.75F);
+            this.label17.Location = new System.Drawing.Point(124, 270);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(75, 23);
+            this.label17.TabIndex = 5;
+            this.label17.Text = "Speed: 0";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12.75F);
+            this.label16.Location = new System.Drawing.Point(112, 130);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(95, 23);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "Volume: 30";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.label15.Location = new System.Drawing.Point(99, 204);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(119, 28);
+            this.label15.TabIndex = 3;
+            this.label15.Text = "Voice Speed";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.label14.Location = new System.Drawing.Point(123, 71);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(78, 28);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Volume";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -896,7 +938,7 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label13.Location = new System.Drawing.Point(471, 284);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 28);
+            this.label13.Size = new System.Drawing.Size(70, 28);
             this.label13.TabIndex = 9;
             this.label13.Text = "Page 2";
             // 
@@ -927,26 +969,6 @@
             this.button16.TabIndex = 7;
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 14.75F);
-            this.label14.Location = new System.Drawing.Point(123, 71);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(79, 28);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Volume";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 14.75F);
-            this.label15.Location = new System.Drawing.Point(99, 204);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(120, 28);
-            this.label15.TabIndex = 3;
-            this.label15.Text = "Voice Speed";
             // 
             // monoFlat_TrackBar2
             // 
@@ -980,43 +1002,23 @@
             this.monoFlat_TrackBar1.ValueToSet = 30F;
             this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 12.75F);
-            this.label16.Location = new System.Drawing.Point(112, 130);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(96, 23);
-            this.label16.TabIndex = 4;
-            this.label16.Text = "Volume: 30";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 12.75F);
-            this.label17.Location = new System.Drawing.Point(124, 270);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(75, 23);
-            this.label17.TabIndex = 5;
-            this.label17.Text = "Speed: 0";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(684, 611);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel5);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
