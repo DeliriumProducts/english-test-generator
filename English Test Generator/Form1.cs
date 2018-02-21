@@ -195,7 +195,8 @@ namespace English_Test_Generator
         //-----ABOUT-----
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("2ma murzeli");         
+            MessageBox.Show("2ma murzeli");
+            richTextBox1.Text = Examples.Request("sheer");
         }
         //-----TRANSLATOR SETTINGS-----
         private void button8_Click(object sender, EventArgs e)

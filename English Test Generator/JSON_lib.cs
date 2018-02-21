@@ -207,6 +207,9 @@ namespace JSON_lib
     {
         [JsonProperty("definitions")]
         public string[] Definitions { get; set; }
+
+        [JsonProperty("examples")]
+        public Example[] Examples { get; set; }
     }
 
     public partial class Example
