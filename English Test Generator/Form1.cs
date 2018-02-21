@@ -153,8 +153,7 @@ namespace English_Test_Generator
         {
             richTextBox1.Location = new Point(32, 155);
             richTextBox1.Size = new Size(620, 148);
-            richTextBox1.SelectionStart = 0;
-            richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
         }
         private void richTextBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -162,7 +161,6 @@ namespace English_Test_Generator
             {
                 richTextBox1.Location = new Point(32, 9);
                 richTextBox1.Size = new Size(620, 294);
-                richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
             }
         }
         //-----TEST MAKER-----
@@ -365,7 +363,6 @@ namespace English_Test_Generator
         {
 
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (button3.BackColor != Color.FromArgb(255, 217, 66, 53)) timer1.Stop();
