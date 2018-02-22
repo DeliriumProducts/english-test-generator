@@ -17,9 +17,13 @@ namespace GetAPIResponse
     {
         public static string Request(string lexicalCategory, string word)
         {
-            string filter = (lexicalCategory=="") ? "noun,adjective,verb,adverb,idiomatic" : lexicalCategory; // filter used to determine lexicalCategory for the request
+            string cache = "";
+            if (CacheWord.Check(word, "Definitions"))
+            {
+                return CacheWord.Read(word, "Definitions", lexicalCategory);
+            }
             string definitions = ""; // variable to store the result
-            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/lexicalCategory=" + filter +";definitions;regions=" + Form1.region; // URL for the request 
+            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/definitions;regions=" + Form1.region; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response; // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
@@ -35,21 +39,31 @@ namespace GetAPIResponse
                     for (int j = 0; j < result.Results.First().LexicalEntries[i].Entries.Length ; j++) // j = all senses from the API response
                     {                        
                         for (int k = 0; k < result.Results.First().LexicalEntries[i].Entries[j].Senses.Length; k++) // k = all definitions from the API response 
-                        {                                                
-                           definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + "] "
-                           + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.First() + "\n"; // adds the definition to the variable                         
-                           
+                        {
+                            if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "")
+                            {
+                                definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
+                                + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.First() + "\n"; // adds the definition to the variable                               
+                            }
+                            cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
+                                + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.First() + "\n";
                             if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses !=null) // checks if there is at least one subsense in the current sense 
                             {
                                 for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses.Length; l++) // l = all subsense definitions from the API response
                                 {
-                                    definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + "] "
-                                    + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First() + "\n"; // adds the definition to the variable
+                                    if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "")
+                                    {
+                                        definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
+                                        + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First() + "\n"; // adds the definition to the variable
+                                    }
+                                    cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
+                                        + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First() + "\n";
                                 }
                             }
                         }                    
                     }
                 }
+                CacheWord.Write(word, "Definitions", cache);
                 return definitions; // returns the result 
             }
             else // if the response code is different than 200
@@ -94,8 +108,13 @@ namespace GetAPIResponse
     }
     class Examples
     {
-        public static string Request(string word)
+        public static string Request(string lexicalCategory, string word)
         {
+            string cache = ""; 
+            if (CacheWord.Check(word, "Examples"))
+            {
+                return CacheWord.Read(word, "Examples", lexicalCategory);
+            }
             string examples = "";
             string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/examples;regions=" + Form1.region; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
@@ -116,7 +135,13 @@ namespace GetAPIResponse
                         {
                             for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples.Length; l++) // l = all text in the current example from the API response
                             {
-                                examples += result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text + "\n"; // adds the example to the variable   
+                                if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "")
+                                {
+                                    examples += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
+                                        + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text + "\n"; // adds the example to the variable
+                                }
+                                cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
+                                        + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text + "\n";
                             }
                             if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses != null) // checks if there is at least one subsense in the current sense 
                             {
@@ -124,13 +149,20 @@ namespace GetAPIResponse
                                 {
                                     for (int m = 0; m < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples.Length;  m++) // m = all text in the current example from the API response
                                     {
-                                        examples += result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text + "\n"; // adds the example to the variable   
+                                        if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "")
+                                        {
+                                            examples += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
+                                                + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text + "\n"; // adds the example to the variable 
+                                        }
+                                        cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
+                                                + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text + "\n";
                                     }
                                 }
                             }
                         }
                     }
                 }
+                CacheWord.Write(word, "Examples", cache);
                 return examples;
             }
             else // if the response code is different than 200

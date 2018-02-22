@@ -24,8 +24,7 @@ namespace English_Test_Generator
         public static string word_type = ""; // used for the current lexical category of a certain word
         public static string word_prev = ""; // used to store previous (user's) word in the dictionary panel
         public static string result = ""; // result from the dictionary
-        public static string path = ""; // path for cache
-        public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English)      
+        public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English)  
         public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
         public static Form1 fr; // used to change controls from different classes
@@ -54,7 +53,8 @@ namespace English_Test_Generator
             monoFlat_TrackBar2.Value = rate; // changes trackbar2 value to match user preference
             label16.Text = "Volume: " + monoFlat_TrackBar1.Value; // changes label16 value to match user preference
             label17.Text = "Speed: " + monoFlat_TrackBar2.Value; // changes label17 value to match user preference
-            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ETGCachedData")); // create directory in MyDocuments for cache
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Examples")); // create directory in MyDocuments for cache
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Definitions")); // create directory in MyDocuments for cache
             if (!IsApplicationInstalled.Check("Notepad++")) // check if notepad++ is installed and if it's not - removes radiobutton6
             {              
                 radioButton6.Visible = false;
@@ -198,8 +198,7 @@ namespace English_Test_Generator
         //-----ABOUT-----
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("2ma murzeli");
-            richTextBox1.Text = Examples.Request("sheer");
+            MessageBox.Show("2ma murzeli");            
         }
         //-----TRANSLATOR SETTINGS-----
         private void button8_Click(object sender, EventArgs e)
