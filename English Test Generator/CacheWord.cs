@@ -34,7 +34,7 @@ namespace English_Test_Generator
                 {
                     if (lexicalCategory == "")
                     {
-                        cache = sr.ReadToEnd();
+                        cache = currentLine + "\n" + sr.ReadToEnd();
                         break;
                     }
                     if (containsLexicalCategory) // will
