@@ -155,9 +155,8 @@ namespace English_Test_Generator
         private void richTextBox1_MouseLeave(object sender, EventArgs e) // if the user moves the cursor outside richtTextBox1, it will become smaller
         {
             richTextBox1.Location = new Point(32, 155);
-            richTextBox1.Size = new Size(620, 148);
-            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
-        }
+            richTextBox1.Size = new Size(620, 148);          
+       }
         private void richTextBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (richTextBox1.Text != string.Empty)

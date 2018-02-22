@@ -13,7 +13,11 @@ namespace English_Test_Generator
     class SearchWord
     {
         public static string GetCorrectWord(string word_id, string region)
-        { 
+        {
+            if (CacheWord.Check(word_id, "Definitions") || CacheWord.Check(word_id, "Examples"))
+            {
+                return word_id;
+            }
             String url = "https://od-api.oxforddictionaries.com:443/api/v1/search/en"  + "?q=" + word_id + "&prefix=false&regions="+region; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response; // used to get the API Response            

@@ -40,7 +40,7 @@ namespace GetAPIResponse
                     {                        
                         for (int k = 0; k < result.Results.First().LexicalEntries[i].Entries[j].Senses.Length; k++) // k = all definitions from the API response 
                         {
-                            if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "")
+                            if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                             {
                                 definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
                                 + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.First() + "\n"; // adds the definition to the variable                               
@@ -51,7 +51,7 @@ namespace GetAPIResponse
                             {
                                 for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses.Length; l++) // l = all subsense definitions from the API response
                                 {
-                                    if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "")
+                                    if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                     {
                                         definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
                                         + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First() + "\n"; // adds the definition to the variable
@@ -135,7 +135,7 @@ namespace GetAPIResponse
                         {
                             for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples.Length; l++) // l = all text in the current example from the API response
                             {
-                                if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "")
+                                if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                 {
                                     examples += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
                                         + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text + "\n"; // adds the example to the variable
@@ -149,7 +149,7 @@ namespace GetAPIResponse
                                 {
                                     for (int m = 0; m < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples.Length;  m++) // m = all text in the current example from the API response
                                     {
-                                        if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "")
+                                        if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                         {
                                             examples += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
                                                 + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text + "\n"; // adds the example to the variable 
