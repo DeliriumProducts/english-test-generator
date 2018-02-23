@@ -98,14 +98,14 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
             this.label14 = new System.Windows.Forms.Label();
+            this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
             this.label13 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
-            this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -449,6 +449,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Definition Based";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButton4
             // 
@@ -459,6 +460,7 @@
             this.radioButton4.TabIndex = 3;
             this.radioButton4.Text = "Example Based";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // groupBox2
             // 
@@ -981,6 +983,22 @@
             this.label15.TabIndex = 3;
             this.label15.Text = "Voice Speed";
             // 
+            // monoFlat_TrackBar2
+            // 
+            this.monoFlat_TrackBar2.JumpToMouse = false;
+            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 245);
+            this.monoFlat_TrackBar2.Maximum = 20;
+            this.monoFlat_TrackBar2.Minimum = 0;
+            this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar2.Name = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar2.TabIndex = 0;
+            this.monoFlat_TrackBar2.Text = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Value = 10;
+            this.monoFlat_TrackBar2.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar2.ValueToSet = 10F;
+            this.monoFlat_TrackBar2.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar2_ValueChanged);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -990,6 +1008,22 @@
             this.label14.Size = new System.Drawing.Size(78, 28);
             this.label14.TabIndex = 1;
             this.label14.Text = "Volume";
+            // 
+            // monoFlat_TrackBar1
+            // 
+            this.monoFlat_TrackBar1.JumpToMouse = false;
+            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 109);
+            this.monoFlat_TrackBar1.Maximum = 100;
+            this.monoFlat_TrackBar1.Minimum = 0;
+            this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar1.Name = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar1.TabIndex = 0;
+            this.monoFlat_TrackBar1.Text = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Value = 30;
+            this.monoFlat_TrackBar1.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar1.ValueToSet = 30F;
+            this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
             // 
             // label13
             // 
@@ -1047,38 +1081,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // monoFlat_TrackBar2
-            // 
-            this.monoFlat_TrackBar2.JumpToMouse = false;
-            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 245);
-            this.monoFlat_TrackBar2.Maximum = 20;
-            this.monoFlat_TrackBar2.Minimum = 0;
-            this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
-            this.monoFlat_TrackBar2.Name = "monoFlat_TrackBar2";
-            this.monoFlat_TrackBar2.Size = new System.Drawing.Size(283, 22);
-            this.monoFlat_TrackBar2.TabIndex = 0;
-            this.monoFlat_TrackBar2.Text = "monoFlat_TrackBar2";
-            this.monoFlat_TrackBar2.Value = 10;
-            this.monoFlat_TrackBar2.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
-            this.monoFlat_TrackBar2.ValueToSet = 10F;
-            this.monoFlat_TrackBar2.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar2_ValueChanged);
-            // 
-            // monoFlat_TrackBar1
-            // 
-            this.monoFlat_TrackBar1.JumpToMouse = false;
-            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 109);
-            this.monoFlat_TrackBar1.Maximum = 100;
-            this.monoFlat_TrackBar1.Minimum = 0;
-            this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
-            this.monoFlat_TrackBar1.Name = "monoFlat_TrackBar1";
-            this.monoFlat_TrackBar1.Size = new System.Drawing.Size(283, 22);
-            this.monoFlat_TrackBar1.TabIndex = 0;
-            this.monoFlat_TrackBar1.Text = "monoFlat_TrackBar1";
-            this.monoFlat_TrackBar1.Value = 30;
-            this.monoFlat_TrackBar1.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
-            this.monoFlat_TrackBar1.ValueToSet = 30F;
-            this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1091,11 +1093,11 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel5);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1164,7 +1166,6 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox2;
@@ -1214,6 +1215,7 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.ComboBox comboBox2;
     }
 }
 

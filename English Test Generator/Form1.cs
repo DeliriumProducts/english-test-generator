@@ -22,11 +22,17 @@ namespace English_Test_Generator
         public static string app_Key = "ec116568011054d2efef549e5625959d"; // API Key 
         public static string word_id = ""; // used for storing the current word in the dictionary
         public static string word_type = ""; // used for the current lexical category of a certain word
-        public static string word_prev = ""; // used to store previous (user's) word in the dictionary panel
-        public static string result = ""; // result from the dictionary
+        public static string word_prev = ""; // used to store the previous (user's "original") word in the dictionary panel
+        public static string result = ""; // result from the dictionary / test
         public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English)  
+        public static string testType = "Definitions"; // type of the test (example based / definition based)
+        public static string testSourceType = "Units"; // method of sourcing the words for the test (from user / from units)
+        public static string testName = ""; // name of the test
+        public static string testWords = ""; // words that are going to be used in the making of the test
+        public static string pastebinUnits = ""; // will download all of the pastebin units on Form1_Load
         public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
+        public static int testExcerciseAmount = 0; // amount of excercises for the test
         public static Form1 fr; // used to change controls from different classes
         //-----FORM CONSTRUCTOR-----
         public Form1()
@@ -55,6 +61,7 @@ namespace English_Test_Generator
             label17.Text = "Speed: " + monoFlat_TrackBar2.Value; // changes label17 value to match user preference
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Examples")); // create directory in MyDocuments for cache
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Definitions")); // create directory in MyDocuments for cache
+            pastebinUnits = Pastebin.GetUnits();
             if (!IsApplicationInstalled.Check("Notepad++")) // check if notepad++ is installed and if it's not - removes radiobutton6
             {              
                 radioButton6.Visible = false;
@@ -168,6 +175,7 @@ namespace English_Test_Generator
         //-----TEST MAKER-----
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            testSourceType = "User";
             comboBox2.Enabled = false;
             richTextBox2.Visible = true;
             richTextBox3.Location = new Point(367, 29);
@@ -177,6 +185,7 @@ namespace English_Test_Generator
         }
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            testSourceType = "Units";
             comboBox2.Enabled = true;
             richTextBox2.Visible = false;
             richTextBox3.Location = new Point(228, 29);
@@ -184,8 +193,17 @@ namespace English_Test_Generator
             label6.Visible = false;
             label7.Location = new Point(223, 3);
         }
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            testType = "Definitions";
+        }
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            testType = "Examples";
+        }
         private void button6_Click(object sender, EventArgs e)
         {
+            testName = textBox2.Text; // sets the name of the test
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
         }
