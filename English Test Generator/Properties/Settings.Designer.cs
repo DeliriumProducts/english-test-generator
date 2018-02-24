@@ -25,7 +25,7 @@ namespace English_Test_Generator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("gb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("us")]
         public string userRegion {
             get {
                 return ((string)(this["userRegion"]));

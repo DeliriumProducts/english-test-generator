@@ -25,18 +25,19 @@ namespace English_Test_Generator
         public static string word_id = ""; // used for storing the current word in the dictionary
         public static string word_type = ""; // used for the current lexical category of a certain word
         public static string word_prev = ""; // used to store the previous (user's "original") word in the dictionary panel
-        public static string dictionaryResult = ""; // result from the dictionary 
-        public static string testResult = "";
+        public static string dictionary_Result = ""; // result from the dictionary 
+        public static string test_Result = ""; // result from the test maker 
         public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English) 
         public static string transToLanguage = Properties.Settings.Default.transToLanguage;
         public static string userTheme = Properties.Settings.Default.userTheme;
         public static string userEditor = Properties.Settings.Default.userEditor;
-        public static string testType = "Definitions"; // type of the test (example based / definition based)
-        public static string testName = ""; // name of the test
-        public static string testWords; // words and lexicalCategories that are going to be used in the making of the test
+        public static string test_Type = "Definitions"; // type of the test (example based / definition based)
+        public static string test_Name = ""; // name of the test
+        public static string test_Words; // words and lexicalCategories that are going to be used in the making of the test
+        public static Dictionary<string, string> test_WordsAndTypes = new Dictionary<string, string>(); 
         public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
-        public static int testExcerciseAmount = 0; // amount of excercises for the test
+        public static int test_ExcerciseAmount = 0; // amount of excercises for the test
         public static Form1 fr; // used to change controls from different classes
         //-----FORM CONSTRUCTOR-----
         public Form1()
@@ -66,8 +67,8 @@ namespace English_Test_Generator
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Examples")); // creates directory in MyDocuments for cache
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Definitions")); // creates directory in MyDocuments for cache
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Pastebin")); // creates directory in MyDocuments for cache
-            testWords = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
-            Pastebin.LoadUnits(testWords);
+            test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
+            Pastebin.LoadUnits(test_Words);
             if (Properties.Settings.Default.autoUpdate)
             {
                 Program.Update();
@@ -202,8 +203,8 @@ namespace English_Test_Generator
                 }
                 textBox1.Text = word_id; // sets textBox1 to match word_id                                  
                 word_type = comboBox1.Text.ToLower(); // gets the type from comboBox1 and makes it lowercase                
-                dictionaryResult =  Definitions.get(word_type, word_id); // calls the get method from the Definitions class to get the definition of the user's word
-                richTextBox1.Text = dictionaryResult; // prints out the result in richTextBox1           
+                dictionary_Result = Definitions.get(word_type, word_id); // calls the get method from the Definitions class to get the definition of the user's word
+                richTextBox1.Text = dictionary_Result; // prints out the result in richTextBox1           
         }
         private void comboBox3_SelectionChangeCommitted(object sender, EventArgs e) // a combobox will appear if there are more than 1 results for the correct word
         {
@@ -226,17 +227,16 @@ namespace English_Test_Generator
         //-----TEST MAKER-----
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            //testSourceType = "User";
             comboBox2.Enabled = false;
             richTextBox2.Visible = true;
             richTextBox3.Location = new Point(367, 29);
             richTextBox3.Size = new Size(305, 274);
             label6.Visible = true;
             label7.Location = new Point(362, 3);
+            richTextBox2.Clear();
         }
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            //testSourceType = "Units";
             comboBox2.Enabled = true;
             richTextBox2.Visible = false;
             richTextBox3.Location = new Point(228, 29);
@@ -246,38 +246,44 @@ namespace English_Test_Generator
         }
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            testType = "Definitions";
+            test_Type = "Definitions";
         }
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            testType = "Examples";
-        }
-        private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
+            test_Type = "Examples";
+        } 
+        private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e) // gets the words only for the specified unit
         {
-            using (StringReader stringReader = new StringReader(testWords))
+            using (StringReader sr = new StringReader(test_Words)) 
             {
-                testWords = "";
+                test_Words = "";
                 string s = "";
-                while ((s = stringReader.ReadLine()) != null)
+                while ((s = sr.ReadLine()) != null)
                 {
                     if (s.Contains("%%%" + comboBox2.GetItemText(comboBox2.SelectedItem)))
                     {
-                        while(!(s = stringReader.ReadLine()).Contains("%%%") && s != null)
+                        while(!(s = sr.ReadLine()).Contains("%%%") && s != null)
                         {
-                            testWords = testWords + s + "\n";
+                            test_Words = test_Words + s + "\n";
+                            if (sr.ReadLine() == null)
+                            {
+                                break;
+                            }
                         }
                     }
                 }
             }
-            richTextBox2.Text = testWords;
+            richTextBox2.Text = test_Words;
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            testName = textBox2.Text; // sets the name of the test
-            testExcerciseAmount = int.Parse(numericUpDown1.Text); // sets the excercise amount for the test
-            testWords = richTextBox2.Text; // sets the words andtypes of the test from richTextBox2
-            testResult = Test.Create(testType, testExcerciseAmount, testName, testWords);
-            richTextBox3.Text = testResult;
+            test_Name = textBox2.Text; // sets the name of the test
+            test_ExcerciseAmount = int.Parse(numericUpDown1.Text); // sets the excercise amount for the test
+            test_Words = richTextBox2.Text.Trim(); // sets the words andtypes of the test from richTextBox2
+            test_WordsAndTypes.Clear();
+            Test.FillDictionary(test_Words);
+            test_Result = Test.Generate(test_Type, test_ExcerciseAmount, test_Name, test_WordsAndTypes, region);
+            richTextBox3.Text = test_Result;
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
         }
@@ -317,6 +323,7 @@ namespace English_Test_Generator
         private void button9_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.userRegion = "gb"; // changes default language to british english (used for API requests)
+            region = "gb";
             button9.FlatAppearance.BorderSize = 1; // change borders to user preference
             button10.FlatAppearance.BorderSize = 0;
             Properties.Settings.Default.Save(); // saves the user's settings
@@ -324,6 +331,7 @@ namespace English_Test_Generator
         private void button10_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.userRegion = "us"; // changes default language to american english (used for API requests)
+            region = "us";
             button9.FlatAppearance.BorderSize = 0; // change borders to user preference
             button10.FlatAppearance.BorderSize = 1;
             Properties.Settings.Default.Save(); // saves the user's settings

@@ -67,7 +67,7 @@ namespace GetAPIResponse
                     }
                 }
                 CacheWord.Write(word, "Definitions", cache);
-                return definitions; // returns the result 
+                return definitions.Trim(); // returns the result 
             }
             else // if the response code is different than 200
             {                
@@ -166,12 +166,46 @@ namespace GetAPIResponse
                     }
                 }
                 CacheWord.Write(word, "Examples", cache);
-                return examples;
+                return examples.Trim();
             }
             else // if the response code is different than 200
             {
                 return "Couldn't find " + word + " sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
             }
-        }       
+        }
+        public static string get(LexicalCategory category, string word)
+        {
+            switch (category) // requests the method for the corresponding category
+            {
+                case LexicalCategory.AllTypes:
+                    return Request("", word);
+                case LexicalCategory.Adjective:
+                    return Request("adjective", word);
+                case LexicalCategory.Adverb:
+                    return Request("adverb", word);
+                case LexicalCategory.Noun:
+                    return Request("noun", word);
+                case LexicalCategory.Idiomatic:
+                    return Request("idiomatic", word);
+                case LexicalCategory.Verb:
+                    return Request("verb", word);
+                default:
+                    return "Couldn't find the specified lexical category!";
+            }
+        }
+        public static string get(string category, string word)
+        {
+            return get(map.FirstOrDefault(x => x.Value == category).Key, word); // uses the map to call the get method with the proper arguments
+        }
+        public static Dictionary<LexicalCategory, string> map = // dictionary used as a "map" for each type
+            new Dictionary<LexicalCategory, string>
+            {
+                { LexicalCategory.AllTypes, "All Types"},
+                { LexicalCategory.Adjective, "adjective"},
+                { LexicalCategory.Adverb, "adverb"},
+                { LexicalCategory.Noun, "noun"},
+                { LexicalCategory.Idiomatic, "idiomatic"},
+                { LexicalCategory.Verb, "verb"},
+            };
     }
 }

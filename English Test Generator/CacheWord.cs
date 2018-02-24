@@ -19,7 +19,7 @@ namespace English_Test_Generator
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/" + typeOfRequest + @"/" + word + " - " + typeOfRequest.ToLower() + ".etg"); // sets the path to the word
             using (StreamWriter sw = File.CreateText(path)) // creates object to write text files with and creates the file for caching
             {
-                sw.WriteLine(cache); // writes the cache to the file
+                sw.WriteLine(cache.Trim()); // writes the cache to the file
             }
         }
         public static string Read(string word, string typeOfRequest, string lexicalCategory)
@@ -51,7 +51,7 @@ namespace English_Test_Generator
                         containsLexicalCategory = false; // resets the variable to prevent conflicts
                     }
                 }
-                return cache;
+                return cache.Trim();
             }
         }
     }
