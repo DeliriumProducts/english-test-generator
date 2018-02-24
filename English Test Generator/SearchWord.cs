@@ -26,6 +26,7 @@ namespace English_Test_Generator
             client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
             if (Form1.word_prev == word_id) return Form1.word_id; // exits the method if the entered word by the user mathes the previous word so no unnecessary requests are made
             response = client.GetAsync(url).Result; // gets the respone headers
+
             if (response.IsSuccessStatusCode) // checks if the response code is equal to 200
             {     
                 string content = response.Content.ReadAsStringAsync().Result; // receives the API response              
@@ -35,7 +36,7 @@ namespace English_Test_Generator
                 {                                                          
                     for (int i = 0; i < result.Results.Length; i++) // starts going through each result
                     {
-                        if (Form1.word_id.ToLower()==result.Results[i].Word) // check if the current result matches the user's word
+                        if (Form1.word_id.ToLower() == result.Results[i].Word) // check if the current result matches the user's word
                         {                          
                             return Form1.word_id; // returns the user's word
                         }

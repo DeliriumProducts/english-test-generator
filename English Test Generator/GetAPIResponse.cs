@@ -68,7 +68,7 @@ namespace GetAPIResponse
             }
             else // if the response code is different than 200
             {                
-                return "Couldn't find \" "+ word + "\" sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
+                return "Couldn't find " + word + " sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
             }           
         }
         public static string get(LexicalCategory category, string word)
@@ -167,7 +167,7 @@ namespace GetAPIResponse
             }
             else // if the response code is different than 200
             {
-                return "Couldn't find \" " + word + "\" sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
+                return "Couldn't find " + word + " sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
             }
         }       
     }

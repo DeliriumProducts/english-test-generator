@@ -30,10 +30,8 @@ namespace English_Test_Generator
         public static string userTheme = Properties.Settings.Default.userTheme;
         public static string userEditor = Properties.Settings.Default.userEditor;
         public static string testType = "Definitions"; // type of the test (example based / definition based)
-      //public static string testSourceType = "Units"; // method of sourcing the words for the test (from user / from units) (probs wont be needed, but kept just in case)
         public static string testName = ""; // name of the test
         public static string testWords; // words and lexicalCategories that are going to be used in the making of the test
-        public static string pastebinUnits = ""; // will download all of the pastebin units on Form1_Load
         public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
         public static int testExcerciseAmount = 0; // amount of excercises for the test
@@ -65,7 +63,7 @@ namespace English_Test_Generator
             label17.Text = "Speed: " + monoFlat_TrackBar2.Value; // changes label17 value to match user preference
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Examples")); // create directory in MyDocuments for cache
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Definitions")); // create directory in MyDocuments for cache
-            pastebinUnits = Pastebin.GetUnits();
+            testWords = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q");
             if (!IsApplicationInstalled.Check("Notepad++")) // check if notepad++ is installed and if it's not - removes radiobutton6
             {              
                 radioButton6.Visible = false;
@@ -248,14 +246,15 @@ namespace English_Test_Generator
         }
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //richTextBox2.Text = "";
+            
+            richTextBox2.Text = testWords;
         }
         private void button6_Click(object sender, EventArgs e)
         {
             testName = textBox2.Text; // sets the name of the test
             testExcerciseAmount = int.Parse(numericUpDown1.Text); // sets the excercise amount for the test
             testWords = richTextBox2.Text; // sets the words andtypes of the test from richTextBox2
-            testResult = TestMaker.Create(testType, testExcerciseAmount, testName, testWords);
+            testResult = Test.Create(testType, testExcerciseAmount, testName, testWords);
             richTextBox3.Text = testResult;
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;

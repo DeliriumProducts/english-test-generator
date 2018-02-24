@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace English_Test_Generator
 {
-    class TestMaker
+    class Test
     {
         public static string GetWordsAndTypes(string testWords)
         {
