@@ -98,14 +98,17 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
             this.label14 = new System.Windows.Forms.Label();
-            this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
             this.label13 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.radioButton10 = new System.Windows.Forms.RadioButton();
+            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
+            this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -122,6 +125,7 @@
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -393,13 +397,19 @@
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.textBox2.Location = new System.Drawing.Point(101, 49);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(77, 22);
+            this.textBox2.Size = new System.Drawing.Size(77, 15);
             this.textBox2.TabIndex = 6;
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.numericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.numericUpDown1.Location = new System.Drawing.Point(101, 21);
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
@@ -407,7 +417,7 @@
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(77, 22);
+            this.numericUpDown1.Size = new System.Drawing.Size(77, 18);
             this.numericUpDown1.TabIndex = 4;
             this.numericUpDown1.Value = new decimal(new int[] {
             5,
@@ -477,11 +487,15 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(101, 43);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(77, 21);
             this.comboBox2.TabIndex = 2;
+            this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
             // 
             // radioButton1
             // 
@@ -509,6 +523,10 @@
             // 
             // richTextBox3
             // 
+            this.richTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox3.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.richTextBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.richTextBox3.Location = new System.Drawing.Point(228, 29);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(444, 274);
@@ -517,6 +535,10 @@
             // 
             // richTextBox2
             // 
+            this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox2.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.richTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.richTextBox2.Location = new System.Drawing.Point(226, 29);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(135, 274);
@@ -574,6 +596,9 @@
             // 
             // richTextBox5
             // 
+            this.richTextBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.richTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.richTextBox5.Location = new System.Drawing.Point(32, 184);
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.ReadOnly = true;
@@ -583,6 +608,9 @@
             // 
             // richTextBox4
             // 
+            this.richTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.richTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.richTextBox4.Location = new System.Drawing.Point(32, 7);
             this.richTextBox4.Name = "richTextBox4";
             this.richTextBox4.Size = new System.Drawing.Size(620, 130);
@@ -901,6 +929,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.panel5.Controls.Add(this.groupBox10);
             this.panel5.Controls.Add(this.groupBox9);
             this.panel5.Controls.Add(this.groupBox8);
             this.panel5.Controls.Add(this.label13);
@@ -983,22 +1012,6 @@
             this.label15.TabIndex = 3;
             this.label15.Text = "Voice Speed";
             // 
-            // monoFlat_TrackBar2
-            // 
-            this.monoFlat_TrackBar2.JumpToMouse = false;
-            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 245);
-            this.monoFlat_TrackBar2.Maximum = 20;
-            this.monoFlat_TrackBar2.Minimum = 0;
-            this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
-            this.monoFlat_TrackBar2.Name = "monoFlat_TrackBar2";
-            this.monoFlat_TrackBar2.Size = new System.Drawing.Size(283, 22);
-            this.monoFlat_TrackBar2.TabIndex = 0;
-            this.monoFlat_TrackBar2.Text = "monoFlat_TrackBar2";
-            this.monoFlat_TrackBar2.Value = 10;
-            this.monoFlat_TrackBar2.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
-            this.monoFlat_TrackBar2.ValueToSet = 10F;
-            this.monoFlat_TrackBar2.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar2_ValueChanged);
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -1008,22 +1021,6 @@
             this.label14.Size = new System.Drawing.Size(78, 28);
             this.label14.TabIndex = 1;
             this.label14.Text = "Volume";
-            // 
-            // monoFlat_TrackBar1
-            // 
-            this.monoFlat_TrackBar1.JumpToMouse = false;
-            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 109);
-            this.monoFlat_TrackBar1.Maximum = 100;
-            this.monoFlat_TrackBar1.Minimum = 0;
-            this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
-            this.monoFlat_TrackBar1.Name = "monoFlat_TrackBar1";
-            this.monoFlat_TrackBar1.Size = new System.Drawing.Size(283, 22);
-            this.monoFlat_TrackBar1.TabIndex = 0;
-            this.monoFlat_TrackBar1.Text = "monoFlat_TrackBar1";
-            this.monoFlat_TrackBar1.Value = 30;
-            this.monoFlat_TrackBar1.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
-            this.monoFlat_TrackBar1.ValueToSet = 30F;
-            this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
             // 
             // label13
             // 
@@ -1081,6 +1078,76 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // radioButton10
+            // 
+            this.radioButton10.AutoSize = true;
+            this.radioButton10.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.radioButton10.Location = new System.Drawing.Point(172, 50);
+            this.radioButton10.Name = "radioButton10";
+            this.radioButton10.Size = new System.Drawing.Size(131, 32);
+            this.radioButton10.TabIndex = 2;
+            this.radioButton10.Text = "Light Mode";
+            this.radioButton10.UseVisualStyleBackColor = true;
+            this.radioButton10.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged_1);
+            // 
+            // radioButton9
+            // 
+            this.radioButton9.AutoSize = true;
+            this.radioButton9.Checked = true;
+            this.radioButton9.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.radioButton9.Location = new System.Drawing.Point(17, 50);
+            this.radioButton9.Name = "radioButton9";
+            this.radioButton9.Size = new System.Drawing.Size(128, 32);
+            this.radioButton9.TabIndex = 3;
+            this.radioButton9.TabStop = true;
+            this.radioButton9.Text = "Dark Mode\r\n";
+            this.radioButton9.UseVisualStyleBackColor = true;
+            this.radioButton9.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.radioButton9);
+            this.groupBox10.Controls.Add(this.radioButton10);
+            this.groupBox10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.groupBox10.Location = new System.Drawing.Point(350, 98);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(315, 105);
+            this.groupBox10.TabIndex = 3;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Theme";
+            // 
+            // monoFlat_TrackBar2
+            // 
+            this.monoFlat_TrackBar2.JumpToMouse = false;
+            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 245);
+            this.monoFlat_TrackBar2.Maximum = 20;
+            this.monoFlat_TrackBar2.Minimum = 0;
+            this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar2.Name = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar2.TabIndex = 0;
+            this.monoFlat_TrackBar2.Text = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Value = 10;
+            this.monoFlat_TrackBar2.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar2.ValueToSet = 10F;
+            this.monoFlat_TrackBar2.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar2_ValueChanged);
+            // 
+            // monoFlat_TrackBar1
+            // 
+            this.monoFlat_TrackBar1.JumpToMouse = false;
+            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 109);
+            this.monoFlat_TrackBar1.Maximum = 100;
+            this.monoFlat_TrackBar1.Minimum = 0;
+            this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar1.Name = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar1.TabIndex = 0;
+            this.monoFlat_TrackBar1.Text = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Value = 30;
+            this.monoFlat_TrackBar1.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar1.ValueToSet = 30F;
+            this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1134,6 +1201,8 @@
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1216,6 +1285,9 @@
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Timer timer1;
         public System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.RadioButton radioButton9;
+        private System.Windows.Forms.RadioButton radioButton10;
     }
 }
 

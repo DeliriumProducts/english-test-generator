@@ -23,12 +23,16 @@ namespace English_Test_Generator
         public static string word_id = ""; // used for storing the current word in the dictionary
         public static string word_type = ""; // used for the current lexical category of a certain word
         public static string word_prev = ""; // used to store the previous (user's "original") word in the dictionary panel
-        public static string result = ""; // result from the dictionary / test
-        public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English)  
+        public static string dictionaryResult = ""; // result from the dictionary 
+        public static string testResult = "";
+        public static string region = Properties.Settings.Default.userRegion; // user defined region (American / British English) 
+        public static string transToLanguage = Properties.Settings.Default.transToLanguage;
+        public static string userTheme = Properties.Settings.Default.userTheme;
+        public static string userEditor = Properties.Settings.Default.userEditor;
         public static string testType = "Definitions"; // type of the test (example based / definition based)
-        public static string testSourceType = "Units"; // method of sourcing the words for the test (from user / from units)
+      //public static string testSourceType = "Units"; // method of sourcing the words for the test (from user / from units) (probs wont be needed, but kept just in case)
         public static string testName = ""; // name of the test
-        public static string testWords = ""; // words that are going to be used in the making of the test
+        public static string testWords; // words and lexicalCategories that are going to be used in the making of the test
         public static string pastebinUnits = ""; // will download all of the pastebin units on Form1_Load
         public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
@@ -67,7 +71,7 @@ namespace English_Test_Generator
                 radioButton6.Visible = false;
                 radioButton8.Location = new Point(17, 96);
             }            
-            switch (Properties.Settings.Default.userRegion) // change borders to user preference
+            switch (region) // change borders to user preference
             {
                 case "gb":
                     button9.FlatAppearance.BorderSize = 1; 
@@ -78,28 +82,69 @@ namespace English_Test_Generator
                     button10.FlatAppearance.BorderSize = 1;
                     break;
             }
-            switch (Properties.Settings.Default.userEditor) // changes radiobuttons in settings to user preference
+            switch (userEditor) // changes radiobuttons in settings to user preference
             {
                 case "notepad.exe":
+                    transToLanguage = "notepad.exe";
                     radioButton5.Checked = true;
                     break;
                 case "notepad++.exe":
+                    transToLanguage = "notepad++.exe";
                     radioButton6.Checked = true;
                     break;
                 case "MS Word":
+                    transToLanguage = "MS Word";
                     radioButton7.Checked = true;
                     break;
                 case "wordpad.exe":
+                    transToLanguage = "wordpad.exe";
                     radioButton8.Checked = true;
                     break;
             }
-            switch (Properties.Settings.Default.transToLanguage) // changes the label to match the current transToLanguage
+            switch (transToLanguage) // changes the label to match the current transToLanguage
             {
                 case "en":
                     label8.Text = "Bulgarian to English";
                     break;
                 case "bg":
                     label8.Text = "English to Bulgarian";
+                    break;
+            }
+            switch (userTheme)
+            {
+                case "Dark":
+                    foreach (Control panelOrGroupBox in Controls) // check each panel or groupbox...
+                    {
+                        if (panelOrGroupBox is Panel || panelOrGroupBox is GroupBox)
+                        {
+                            foreach (Control c in panelOrGroupBox.Controls) 
+                            {
+                                if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ...for each textBox, richTextBox, comboBox and numericUpDown in them
+                                {
+                                    c.ForeColor = Color.FromArgb(255, 235, 235, 235); // change the color
+                                    c.BackColor = Color.FromArgb(255, 29, 29, 29);
+                                }
+                            }
+                        }                       
+                    }
+                    radioButton9.Checked = true;
+                    break;
+                case "Light":
+                    foreach (Control panelOrGroupBox in Controls) // check each panel or groupbox...
+                    {
+                        if (panelOrGroupBox is Panel || panelOrGroupBox is GroupBox)
+                        {
+                            foreach (Control c in panelOrGroupBox.Controls)
+                            {
+                                if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ...for each textBox, richTextBox, comboBox and numericUpDown in them
+                                { 
+                                    c.ForeColor = Color.FromName("WindowText"); // change the color
+                                    c.BackColor = Color.FromName("Window");
+                                }
+                            }
+                        }
+                    }
+                    radioButton10.Checked = true;
                     break;
             }
         }
@@ -138,7 +183,7 @@ namespace English_Test_Generator
             button4.BackColor = Color.FromArgb(255, 217, 66, 53);
         }
         //-----DICTIONARY-----
-        void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {                
                 comboBox3.Visible = false; // hides comboBox3 (used in the case if there is more than one result of a given search
                 comboBox3.Items.Clear(); // clears comboBox3's previous items
@@ -151,8 +196,8 @@ namespace English_Test_Generator
                 }
                 textBox1.Text = word_id; // sets textBox1 to match word_id                                  
                 word_type = comboBox1.Text.ToLower(); // gets the type from comboBox1 and makes it lowercase                
-                result =  Definitions.get(word_type, word_id); // calls the get method from the Definitions class to get the definition of the user's word
-                richTextBox1.Text = result; // prints out the result in richTextBox1           
+                dictionaryResult =  Definitions.get(word_type, word_id); // calls the get method from the Definitions class to get the definition of the user's word
+                richTextBox1.Text = dictionaryResult; // prints out the result in richTextBox1           
         }
         private void comboBox3_SelectionChangeCommitted(object sender, EventArgs e) // a combobox will appear if there are more than 1 results for the correct word
         {
@@ -175,7 +220,7 @@ namespace English_Test_Generator
         //-----TEST MAKER-----
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            testSourceType = "User";
+            //testSourceType = "User";
             comboBox2.Enabled = false;
             richTextBox2.Visible = true;
             richTextBox3.Location = new Point(367, 29);
@@ -185,7 +230,7 @@ namespace English_Test_Generator
         }
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            testSourceType = "Units";
+            //testSourceType = "Units";
             comboBox2.Enabled = true;
             richTextBox2.Visible = false;
             richTextBox3.Location = new Point(228, 29);
@@ -201,9 +246,17 @@ namespace English_Test_Generator
         {
             testType = "Examples";
         }
+        private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            //richTextBox2.Text = "";
+        }
         private void button6_Click(object sender, EventArgs e)
         {
             testName = textBox2.Text; // sets the name of the test
+            testExcerciseAmount = int.Parse(numericUpDown1.Text); // sets the excercise amount for the test
+            testWords = richTextBox2.Text; // sets the words andtypes of the test from richTextBox2
+            testResult = TestMaker.Create(testType, testExcerciseAmount, testName, testWords);
+            richTextBox3.Text = testResult;
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
         }
@@ -253,6 +306,45 @@ namespace English_Test_Generator
             button9.FlatAppearance.BorderSize = 0; // change borders to user preference
             button10.FlatAppearance.BorderSize = 1;
             Properties.Settings.Default.Save(); // saves the user's settings
+        }
+        //-----USER THEME SETTINGS-----
+        private void radioButton9_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.userTheme = "Dark";            
+            foreach (Control panelOrGroupBox in Controls) // check each panel or groupbox...
+            {
+                if (panelOrGroupBox is Panel || panelOrGroupBox is GroupBox)
+                {
+                    foreach (Control c in panelOrGroupBox.Controls)
+                    {
+                        if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ...for each textBox, richTextBox, comboBox and numericUpDown in them
+                        {
+                            c.ForeColor = Color.FromArgb(255, 235, 235, 235); // change the color
+                            c.BackColor = Color.FromArgb(255, 29, 29, 29);
+                        }
+                    }
+                }
+            }    
+            Properties.Settings.Default.Save();
+        }
+        private void radioButton10_CheckedChanged_1(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.userTheme = "Light";
+            foreach (Control panelOrGroupBox in Controls) // check each panel or groupbox...
+            {
+                if (panelOrGroupBox is Panel || panelOrGroupBox is GroupBox)
+                {
+                    foreach (Control c in panelOrGroupBox.Controls)
+                    {
+                        if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ...for each textBox, richTextBox, comboBox and numericUpDown in them
+                        {
+                            c.ForeColor = Color.FromName("WindowText"); // change the color
+                            c.BackColor = Color.FromName("Window");
+                        }
+                    }
+                }
+            }
+            Properties.Settings.Default.Save();
         }
         //-----USER AUTO UPDATE SETTINGS-----
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -405,6 +497,6 @@ namespace English_Test_Generator
                     richTextBox5.Text = result;
                 }
             }
-        }
+        }       
     }
 }
