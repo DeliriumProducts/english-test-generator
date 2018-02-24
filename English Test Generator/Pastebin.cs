@@ -11,10 +11,10 @@ namespace English_Test_Generator
 {
     class Pastebin
     {
-        public static string Get(string url) // downloads a certain pastebin, checks if it exists locally, if not - it downloads the latest one
+        public static string Get(string url, string name) // downloads a certain pastebin, checks if it exists locally, if not - it downloads the latest one
         {
             string pastebin = "";
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/pastebin.etg");
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Pastebin/" + name + @".etg");
             if (!File.Exists(path)) // checks wheter the file exists or not (has been downloaded or not)
             {
                 try // try to download the string and if there isn't an internet connection, warn the user
@@ -57,7 +57,6 @@ namespace English_Test_Generator
                     }
                 }               
             }
-            LoadUnits(pastebin);
             return pastebin;
         }
         public static void LoadUnits(string units)
@@ -73,6 +72,11 @@ namespace English_Test_Generator
                     }
                 }
             }
+        }
+        public static bool CheckForUpdate()
+        {
+            if (Get("https://pastebin.com/raw/6aupTvgs", "version") != Properties.Settings.Default.userVersion) return true;
+            return false;
         }
     }
 }

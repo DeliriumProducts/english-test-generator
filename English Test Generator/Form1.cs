@@ -12,6 +12,8 @@ using JSON_lib;
 using System.Speech.Synthesis;
 using System.Speech.Recognition;
 using System.IO;
+using System.Net;
+using System.Diagnostics;
 
 namespace English_Test_Generator
 {
@@ -61,9 +63,15 @@ namespace English_Test_Generator
             monoFlat_TrackBar2.Value = rate; // changes trackbar2 value to match user preference
             label16.Text = "Volume: " + monoFlat_TrackBar1.Value; // changes label16 value to match user preference
             label17.Text = "Speed: " + monoFlat_TrackBar2.Value; // changes label17 value to match user preference
-            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Examples")); // create directory in MyDocuments for cache
-            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Definitions")); // create directory in MyDocuments for cache
-            testWords = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q");
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Examples")); // creates directory in MyDocuments for cache
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Definitions")); // creates directory in MyDocuments for cache
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Pastebin")); // creates directory in MyDocuments for cache
+            testWords = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
+            Pastebin.LoadUnits(testWords);
+            if(Properties.Settings.Default.autoUpdate)
+            {
+                Program.Update();
+            }
             if (!IsApplicationInstalled.Check("Notepad++")) // check if notepad++ is installed and if it's not - removes radiobutton6
             {              
                 radioButton6.Visible = false;
@@ -496,6 +504,10 @@ namespace English_Test_Generator
                     richTextBox5.Text = result;
                 }
             }
-        }       
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Program.Update();
+        }
     }
 }

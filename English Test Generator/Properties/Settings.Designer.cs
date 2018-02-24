@@ -118,5 +118,17 @@ namespace English_Test_Generator.Properties {
                 this["userTheme"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
+        public string userVersion {
+            get {
+                return ((string)(this["userVersion"]));
+            }
+            set {
+                this["userVersion"] = value;
+            }
+        }
     }
 }
