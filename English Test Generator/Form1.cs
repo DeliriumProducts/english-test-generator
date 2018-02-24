@@ -254,7 +254,6 @@ namespace English_Test_Generator
         }
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            MessageBox.Show(comboBox2.GetItemText(comboBox2.SelectedItem));
             using (StringReader stringReader = new StringReader(testWords))
             {
                 testWords = "";
@@ -271,7 +270,6 @@ namespace English_Test_Generator
                 }
             }
             richTextBox2.Text = testWords;
-            MessageBox.Show(richTextBox2.Text);
         }
         private void button6_Click(object sender, EventArgs e)
         {
