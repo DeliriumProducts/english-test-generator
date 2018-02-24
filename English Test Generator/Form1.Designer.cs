@@ -268,6 +268,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(392, 39);
             this.textBox1.TabIndex = 1;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown_1);
             // 
             // comboBox1
             // 
@@ -525,7 +526,7 @@
             // 
             this.richTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox3.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.richTextBox3.Font = new System.Drawing.Font("Segoe UI", 11.75F);
             this.richTextBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.richTextBox3.Location = new System.Drawing.Point(228, 29);
             this.richTextBox3.Name = "richTextBox3";
@@ -537,7 +538,7 @@
             // 
             this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox2.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.richTextBox2.Font = new System.Drawing.Font("Segoe UI", 11.75F);
             this.richTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.richTextBox2.Location = new System.Drawing.Point(226, 29);
             this.richTextBox2.Name = "richTextBox2";
@@ -1160,11 +1161,11 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -68,7 +68,7 @@ namespace English_Test_Generator
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Pastebin")); // creates directory in MyDocuments for cache
             testWords = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
             Pastebin.LoadUnits(testWords);
-            if(Properties.Settings.Default.autoUpdate)
+            if (Properties.Settings.Default.autoUpdate)
             {
                 Program.Update();
             }
@@ -254,8 +254,24 @@ namespace English_Test_Generator
         }
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            
+            MessageBox.Show(comboBox2.GetItemText(comboBox2.SelectedItem));
+            using (StringReader stringReader = new StringReader(testWords))
+            {
+                testWords = "";
+                string s = "";
+                while ((s = stringReader.ReadLine()) != null)
+                {
+                    if (s.Contains("%%%" + comboBox2.GetItemText(comboBox2.SelectedItem)))
+                    {
+                        while(!(s = stringReader.ReadLine()).Contains("%%%") && s != null)
+                        {
+                            testWords = testWords + s + "\n";
+                        }
+                    }
+                }
+            }
             richTextBox2.Text = testWords;
+            MessageBox.Show(richTextBox2.Text);
         }
         private void button6_Click(object sender, EventArgs e)
         {
@@ -508,6 +524,13 @@ namespace English_Test_Generator
         private void button11_Click(object sender, EventArgs e)
         {
             Program.Update();
+        }
+        private void textBox1_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Enter)
+            {
+                button5.PerformClick();
+            }
         }
     }
 }
