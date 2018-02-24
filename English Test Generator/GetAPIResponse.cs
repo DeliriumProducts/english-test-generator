@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using English_Test_Generator;
 using Newtonsoft.Json;
 using JSON_lib;
+using System.Windows.Forms;
+
 namespace GetAPIResponse
 {
     enum LexicalCategory
@@ -25,11 +27,12 @@ namespace GetAPIResponse
             string definitions = ""; // variable to store the result
             string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/definitions;regions=" + Form1.region; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
-            HttpResponseMessage response; // used to get the API Response            
+            HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
             client.DefaultRequestHeaders.Add("app_id", Form1.app_Id); // adds the id to the headers
             client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
-            response = client.GetAsync(url).Result; // gets the response
+            try { response = client.GetAsync(url).Result; }// gets the respone headers   
+            catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);}
             if (response.IsSuccessStatusCode) // checks if the response code is equal to 200
             {
                 string content = response.Content.ReadAsStringAsync().Result; // receives the API response              

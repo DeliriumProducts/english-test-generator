@@ -20,13 +20,13 @@ namespace English_Test_Generator
             }
             String url = "https://od-api.oxforddictionaries.com:443/api/v1/search/en"  + "?q=" + word_id + "&prefix=false&regions="+region; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
-            HttpResponseMessage response; // used to get the API Response            
+            HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
             client.DefaultRequestHeaders.Add("app_id", Form1.app_Id); // adds the id to the headers
             client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
             if (Form1.word_prev == word_id) return Form1.word_id; // exits the method if the entered word by the user mathes the previous word so no unnecessary requests are made
-            response = client.GetAsync(url).Result; // gets the respone headers
-
+            try {response = client.GetAsync(url).Result;}// gets the respone headers   
+            catch (Exception) {MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);}              
             if (response.IsSuccessStatusCode) // checks if the response code is equal to 200
             {     
                 string content = response.Content.ReadAsStringAsync().Result; // receives the API response              
