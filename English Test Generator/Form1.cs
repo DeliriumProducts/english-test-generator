@@ -21,7 +21,7 @@ namespace English_Test_Generator
     {
         //-----GLOBAL VARIABLES-----
         public static string app_Id = "f930a9d7"; // API ID 
-        public static string app_Key = "ec116568011054d2efef549e5625959d"; // API Key 
+        public static string app_Key = "c2f940117b50aad32774269c8c08ae40"; // API Key 
         public static string word_id = ""; // used for storing the current word in the dictionary
         public static string word_type = ""; // used for the current lexical category of a certain word
         public static string word_prev = ""; // used to store the previous (user's "original") word in the dictionary panel

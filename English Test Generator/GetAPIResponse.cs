@@ -8,6 +8,7 @@ using English_Test_Generator;
 using Newtonsoft.Json;
 using JSON_lib;
 using System.Windows.Forms;
+using System.Net;
 
 namespace GetAPIResponse
 {
@@ -19,6 +20,7 @@ namespace GetAPIResponse
     {
         public static string Request(string lexicalCategory, string word)
         {
+            if (!Utility.hasRequestsLeft(Form1.app_Id, Form1.app_Key)) Utility.getNewCredentials();
             string cache = "";
             if (CacheWord.Check(word, "Definitions"))
             {
@@ -113,6 +115,7 @@ namespace GetAPIResponse
     {
         public static string Request(string lexicalCategory, string word)
         {
+            if (!Utility.hasRequestsLeft(Form1.app_Id, Form1.app_Key)) Utility.getNewCredentials();
             string cache = ""; 
             if (CacheWord.Check(word, "Examples"))
             {
@@ -207,5 +210,37 @@ namespace GetAPIResponse
                 { LexicalCategory.Idiomatic, "idiomatic"},
                 { LexicalCategory.Verb, "verb"},
             };
+    }
+    class Utility // illegal stuff
+    {
+        public static bool hasRequestsLeft(string app_Id, string app_Key)
+        {
+            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + "test" + "/definitions;regions=" + Form1.region; // URL for the request 
+            HttpClient client = new HttpClient(); // creates an HTTP Client
+            HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
+            client.BaseAddress = new Uri(url); // sets the client address to the specified url
+            client.DefaultRequestHeaders.Add("app_id", app_Id); // adds the id to the headers
+            client.DefaultRequestHeaders.Add("app_key", app_Key); // adds the key to the headers
+            try { response = client.GetAsync(url).Result; }// gets the respone headers   
+            catch (Exception) { }
+            if (response.StatusCode.ToString() == "Forbidden") { MessageBox.Show("No Requests left"); return false; };
+                return true;
+        }
+        public static void getNewCredentials()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                string apiCredentialsList = wc.DownloadString("https://pastebin.com/raw/Pu4ki8eE");
+                string[] apiCredentials = apiCredentialsList.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                string app_Id = "";
+                string app_Key = "";
+                for (int i = 0; i < apiCredentials.Length; i++)
+                {
+                    app_Id = apiCredentials[i].Split(new[] { ":"}, StringSplitOptions.None)[0];
+                    app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
+                    if(hasRequestsLeft(app_Id,app_Key)) { Form1.app_Id = app_Id; Form1.app_Key = app_Key; }
+                }
+            }
+        }
     }
 }
