@@ -210,11 +210,11 @@ namespace GetAPIResponse
                 { LexicalCategory.Verb, "verb"},
             };
     }
-    class Utility // illegal stuff
+    class Utility
     {
         public static bool hasRequestsLeft(string app_Id, string app_Key)
         {
-            string url = "https://od-api-demo.oxforddictionaries.com:443/api/v1/languages";// URL for the request 
+            string url = "https://od-api.oxforddictionaries.com:443/api/v1/filters";// URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
@@ -222,7 +222,7 @@ namespace GetAPIResponse
             client.DefaultRequestHeaders.Add("app_key", app_Key); // adds the key to the headers
             try { response = client.GetAsync(url).Result; } // gets the respone headers   
             catch (Exception) { }
-            if (response.StatusCode.ToString() == "Forbidden") { MessageBox.Show("No Requests left"); return false; };
+            if (response.StatusCode.ToString() == "Forbidden") { return false; };
                 return true;
         }
         public static void getNewCredentials()
@@ -244,6 +244,7 @@ namespace GetAPIResponse
                         English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
                         English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
                         English_Test_Generator.Properties.Settings.Default.Save();
+                        return;
                     }
                 }
             }
