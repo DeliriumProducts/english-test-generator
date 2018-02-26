@@ -27,14 +27,15 @@ namespace English_Test_Generator
             Form1.fr.progressBar1.Visible = true;
             foreach (KeyValuePair<string, string> entry in test_Words)
             {
-
+                Form1.word_id = entry.Key;
+                Form1.word_type = entry.Value;
                 switch (test_Type)
                 {
-                    case "Definitions":                    
-                        Read(Definitions.get(entry.Value, entry.Key));
+                    case "Definitions":
+                        Read(Definitions.get(Form1.word_type, Form1.word_id));
                         break;
                     case "Examples":
-                        Read(Examples.get(entry.Value, entry.Key));
+                        Read(Examples.get(Form1.word_type, Form1.word_id));
                         break;
                 }
             }

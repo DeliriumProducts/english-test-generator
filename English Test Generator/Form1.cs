@@ -20,8 +20,8 @@ namespace English_Test_Generator
     public partial class Form1 : Form
     {
         //-----GLOBAL VARIABLES-----
-        public static string app_Id = "f930a9d7"; // API ID 
-        public static string app_Key = "c2f940117b50aad32774269c8c08ae40"; // API Key 
+        public static string app_Id = Properties.Settings.Default.app_Id; // API ID 
+        public static string app_Key = Properties.Settings.Default.app_Key; // API Key 
         public static string word_id = ""; // used for storing the current word in the dictionary
         public static string word_type = ""; // used for the current lexical category of a certain word
         public static string word_prev = ""; // used to store the previous (user's "original") word in the dictionary panel

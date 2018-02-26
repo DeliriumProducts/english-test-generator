@@ -130,5 +130,29 @@ namespace English_Test_Generator.Properties {
                 this["userVersion"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("f930a9d7")]
+        public string app_Id {
+            get {
+                return ((string)(this["app_Id"]));
+            }
+            set {
+                this["app_Id"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("c2f940117b50aad32774269c8c08ae40")]
+        public string app_Key {
+            get {
+                return ((string)(this["app_Key"]));
+            }
+            set {
+                this["app_Key"] = value;
+            }
+        }
     }
 }

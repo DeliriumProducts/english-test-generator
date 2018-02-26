@@ -71,7 +71,7 @@ namespace GetAPIResponse
                 return definitions.Trim(); // returns the result 
             }
             else // if the response code is different than 200
-            {                
+            {   if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); get(Form1.word_type, Form1.word_id); }             
                 return "Couldn't find " + word + " sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
             }           
         }
@@ -171,7 +171,8 @@ namespace GetAPIResponse
             }
             else // if the response code is different than 200
             {
-                return "Couldn't find " + word + " sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
+                 if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); get(Form1.word_type, Form1.word_id); }
+                 return "Couldn't find " + word + " sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
             }
         }
         public static string get(LexicalCategory category, string word)
@@ -213,7 +214,7 @@ namespace GetAPIResponse
     {
         public static bool hasRequestsLeft(string app_Id, string app_Key)
         {
-            string url = "https://od-api-demo.oxforddictionaries.com:443/api/v1/languages" // URL for the request 
+            string url = "https://od-api-demo.oxforddictionaries.com:443/api/v1/languages";// URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
@@ -236,7 +237,14 @@ namespace GetAPIResponse
                 {
                     app_Id = apiCredentials[i].Split(new[] { ":"}, StringSplitOptions.None)[0];
                     app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
-                    if(hasRequestsLeft(app_Id,app_Key)) { Form1.app_Id = app_Id; Form1.app_Key = app_Key; }
+                    if(hasRequestsLeft(app_Id,app_Key))
+                    {
+                        Form1.app_Id = app_Id;
+                        Form1.app_Key = app_Key;
+                        English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
+                        English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
+                        English_Test_Generator.Properties.Settings.Default.Save();
+                    }
                 }
             }
         }
