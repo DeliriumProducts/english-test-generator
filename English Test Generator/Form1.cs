@@ -69,6 +69,7 @@ namespace English_Test_Generator
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Pastebin")); // creates directory in MyDocuments for cache
             test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
             Pastebin.LoadUnits(test_Words);
+			if (!Utility.hasRequestsLeft(app_Id, app_Key)) Utility.getNewCredentials();
             if (Properties.Settings.Default.autoUpdate)
             {
                 Program.Update();
