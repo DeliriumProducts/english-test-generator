@@ -64,17 +64,21 @@ namespace GetAPIResponse
                 var result = JsonConvert.DeserializeObject<GetResponse>(content); // Converts the API response to the format that the program can understand
                 for (int i = 0; i < result.Results.First().LexicalEntries.Length; i++) // i = all entries from the API response
                 {                
-                    for (int j = 0; j < result.Results.First().LexicalEntries[i].Entries.Length ; j++) // j = all senses from the API response
-                    {                        
+                    for (int j = 0; j < result.Results.First().LexicalEntries[i].Entries.Length; j++) // j = all senses from the API response
+                    {
                         for (int k = 0; k < result.Results.First().LexicalEntries[i].Entries[j].Senses.Length; k++) // k = all definitions from the API response 
-                        {
-                            if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
+                        { 
+                            for (int l = 0; result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions != null && l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.Length; l++)
                             {
-                                definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.First() + "\n"; // adds the definition to the variable                               
+                                if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
+                                {
+                                    definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
+                                    + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l] + "\n"; // adds the definition to the variable                               
+                                }
+                                cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
+                                    + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l] + "\n";
                             }
-                            cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.First() + "\n";
+                           
                             if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses !=null) // checks if there is at least one subsense in the current sense 
                             {
                                 for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses.Length; l++) // l = all subsense definitions from the API response
@@ -154,14 +158,14 @@ namespace GetAPIResponse
             if (response.IsSuccessStatusCode)
             {
                 string content = response.Content.ReadAsStringAsync().Result; // receives the API response              
-                var result = JsonConvert.DeserializeObject<GetResponse>(content); // Converts the API response to the format that the program can understand
+                var result = JsonConvert.DeserializeObject<GetResponse>(content); // Converts the API response to the format that the program can understand     
                 for (int i = 0; i < result.Results.First().LexicalEntries.Length; i++) // i = all entries from the API response
                 {
                     for (int j = 0; j < result.Results.First().LexicalEntries[i].Entries.Length; j++) // j = all senses from the API response
                     {
                         for (int k = 0; k < result.Results.First().LexicalEntries[i].Entries[j].Senses.Length; k++) // k = all examples from the API response 
                         {
-                            for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples.Length; l++) // l = all text in the current example from the API response
+                            for (int l = 0; result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples != null && l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples.Length ; l++) // l = all text in the current example from the API response
                             {
                                 if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                 {

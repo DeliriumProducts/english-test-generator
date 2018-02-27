@@ -1,4 +1,28 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Test.cs" company="Company">
+//
+// Copyright (C) 2018 {Company}
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the +terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see http://www.gnu.org/licenses/. 
+// </copyright>
+// <summary>
+// This program is used to generate english tests for students / teachers
+// 
+// Email: simo3003@me.com / lyubo_2317@abv.bg
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,8 +39,32 @@ namespace English_Test_Generator
         {
             string[] splitByNewLine = test_Words.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < splitByNewLine.Length; i++)
-            { 
+            {
+                if (!splitByNewLine[i].Contains("*")) // for all types
+                {
+                    splitByNewLine[i] += "*a";
+                }               
                 string[] splitByAsterisk = splitByNewLine[i].Split(new string[] {"*"}, StringSplitOptions.RemoveEmptyEntries);
+                switch (splitByAsterisk[1]) // converts the word type to its full name, which is used for sending requests
+                {
+                    case "n":
+                        splitByAsterisk[1] = "noun";
+                        break;
+                    case "adj":
+                        splitByAsterisk[1] = "adjective";
+                        break;
+                    case "ad":
+                        splitByAsterisk[1] = "adverb";
+                        break;
+                    case "v":
+                        splitByAsterisk[1] = "verb";
+                        break;
+                    case "phr":
+                        splitByAsterisk[1] = "idiomatic";
+                        break;
+                    default:
+                        break;
+                }
                 Form1.test_WordsAndTypes.Add(splitByAsterisk[0], splitByAsterisk[1]);
             }
         }
@@ -35,13 +83,17 @@ namespace English_Test_Generator
                         exercises.Add(Read(Definitions.get(Form1.word_type, Form1.word_id)));
                         break;
                     case "Examples":
-                        exercises.Add(Read(Examples.get(Form1.word_type, Form1.word_id)));
+                        exercises.Add(Read(Examples.get(Form1.word_type, Form1.word_id)).Replace(Form1.word_id, new string('_', Form1.word_id.Length)));
                         break;
                 }
             }
+            foreach (var exercise in exercises)
+            {
+                MessageBox.Show(exercise);
+            }
             return "";
         }
-        public static string Read(string source) // Algorithm for reading the returned string from GetAPIResponse
+        public static string Read(string source) // algorithm for reading the returned string from GetAPIResponse
         {
             string[] lines = source.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             string filteredSource = "";
