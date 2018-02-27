@@ -17,7 +17,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/. 
 // </copyright>
 // <summary>
-// {This program is used to generate english tests}
+// This program is used to generate english tests for students / teachers
 // 
 // Email: simo3003@me.com / lyubo_2317@abv.bg
 // </summary>
@@ -38,6 +38,7 @@ using System.Speech.Recognition;
 using System.IO;
 using System.Net;
 using System.Diagnostics;
+
 namespace English_Test_Generator
 {
     public partial class Form1 : Form
