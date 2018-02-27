@@ -298,17 +298,18 @@ namespace English_Test_Generator
                         }
                     }
                 }
-            }
-            richTextBox2.Text = test_Words;
+            }     
+            richTextBox2.Text = test_Words;            
         }
         private void button6_Click(object sender, EventArgs e)
         {
             test_Name = textBox2.Text; // sets the name of the test
             test_ExcerciseAmount = int.Parse(numericUpDown1.Text); // sets the excercise amount for the test
-            test_Words = richTextBox2.Text.Trim(); // sets the words andtypes of the test from richTextBox2
+            test_Words = richTextBox2.Text.Trim(); // sets the words and types of the test from richTextBox2
             test_WordsAndTypes.Clear();
             Test.FillDictionary(test_Words);
             test_Result = Test.Generate(test_Type, test_ExcerciseAmount, test_Name, test_WordsAndTypes, region);
+            test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
             richTextBox3.Text = test_Result;
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
@@ -498,38 +499,6 @@ namespace English_Test_Generator
             }
         }
         //-----MISCELLANEOUS-----
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void groupBox6_Enter(object sender, EventArgs e)
-        {
-
-        }
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void button15_Click(object sender, EventArgs e)
-        {
-
-        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (button3.BackColor != Color.FromArgb(255, 217, 66, 53)) timer1.Stop();
@@ -563,6 +532,28 @@ namespace English_Test_Generator
             {
                 button5.PerformClick();
             }
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.D1:
+                        button1.PerformClick();
+                        break;
+                    case Keys.D2:
+                        button2.PerformClick();
+                        break;
+                    case Keys.D3:
+                        button3.PerformClick();
+                        break;
+                    case Keys.D4:
+                        button4.PerformClick();
+                        break;
+                }
+            }         
         }
     }
 }

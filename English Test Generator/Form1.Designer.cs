@@ -147,7 +147,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(684, 325);
             this.panel1.TabIndex = 1;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // richTextBox1
             // 
@@ -209,7 +208,6 @@
             this.comboBox3.Size = new System.Drawing.Size(229, 40);
             this.comboBox3.TabIndex = 7;
             this.comboBox3.Visible = false;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             this.comboBox3.SelectionChangeCommitted += new System.EventHandler(this.comboBox3_SelectionChangeCommitted);
             // 
             // button5
@@ -237,7 +235,6 @@
             this.label3.Size = new System.Drawing.Size(164, 40);
             this.label3.TabIndex = 5;
             this.label3.Text = "Definition/s";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -394,7 +391,6 @@
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "Test Name";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // textBox2
             // 
@@ -412,6 +408,11 @@
             this.numericUpDown1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericUpDown1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.numericUpDown1.Location = new System.Drawing.Point(101, 21);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -425,7 +426,6 @@
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label4
             // 
@@ -435,7 +435,6 @@
             this.label4.Size = new System.Drawing.Size(91, 13);
             this.label4.TabIndex = 5;
             this.label4.Text = "Exercise Amount";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // groupBox3
             // 
@@ -750,7 +749,6 @@
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Updates";
-            this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
             // label11
             // 
@@ -1086,7 +1084,6 @@
             this.button15.Size = new System.Drawing.Size(32, 32);
             this.button15.TabIndex = 8;
             this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // button16
             // 
@@ -1170,10 +1167,12 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "English Test Generator";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1227,13 +1226,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.RichTextBox richTextBox3;
-        private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -1290,6 +1287,8 @@
         private System.Windows.Forms.RadioButton radioButton9;
         private System.Windows.Forms.RadioButton radioButton10;
         public System.Windows.Forms.ProgressBar progressBar1;
+        public System.Windows.Forms.RichTextBox richTextBox2;
+        public System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 

@@ -73,17 +73,18 @@ namespace English_Test_Generator
             List<string> exercises = new List<string>();
             string finishedTest = "";
             Form1.fr.progressBar1.Visible = true;
+            Form1.fr.progressBar1.Value = 0;
+            Form1.fr.progressBar1.Maximum = Form1.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
             foreach (KeyValuePair<string, string> entry in test_Words)
             {
-                Form1.word_id = entry.Key;
-                Form1.word_type = entry.Value;
+                Form1.fr.progressBar1.Value++;
                 switch (test_Type)
                 {
                     case "Definitions":
-                        exercises.Add(Read(Definitions.get(Form1.word_type, Form1.word_id)));
+                        exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
                         break;
                     case "Examples":
-                        exercises.Add(Read(Examples.get(Form1.word_type, Form1.word_id)).Replace(Form1.word_id, new string('_', Form1.word_id.Length)));
+                        exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key, new string('_', entry.Key.Length)));
                         break;
                 }
             } 
@@ -100,13 +101,15 @@ namespace English_Test_Generator
             }
             int n = 1;
             Random rndm = new Random();
-            while (n<=test_ExcerciseAmount)
+            finishedTest += test_Name + "\n";
+            while (n <= test_ExcerciseAmount)
             {
-                int randomExercise = rndm.Next(0, exercises.Count()+1);
-                finishedTest += "------------------[Ex №"+ n +"]------------------\n" + exercises[randomExercise] + "\n\n";
+                int randomExercise = rndm.Next(0, exercises.Count());
+                finishedTest += "------------------[Ex №"+ n +"]------------------\n" + exercises[randomExercise] + "\n";
                 exercises.RemoveAt(randomExercise);
                 n++;
             }
+            Form1.fr.progressBar1.Visible = false;
             return finishedTest;
         }
         public static string Read(string source) // algorithm for reading the returned string from GetAPIResponse
