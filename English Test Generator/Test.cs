@@ -41,7 +41,7 @@ namespace English_Test_Generator
             }
             return "";
         }
-        public static string Read(string source)
+        public static string Read(string source) // Algorithm for reading the returned string from GetAPIResponse
         {
             string[] lines = source.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             string filteredSource = "";
