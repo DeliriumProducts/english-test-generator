@@ -100,7 +100,7 @@ namespace GetAPIResponse
             }
             else // if the response code is different than 200
             {   if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); get(Form1.word_type, Form1.word_id); }             
-                return "Couldn't find " + word + " sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
+                return "ERROR \nCouldn't find " + word + " Status: " + response.StatusCode; // error while trying to access the API 
             }           
         }
         public static string get(LexicalCategory category, string word)
@@ -200,7 +200,7 @@ namespace GetAPIResponse
             else // if the response code is different than 200
             {
                  if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); get(Form1.word_type, Form1.word_id); }
-                 return "Couldn't find " + word + " sorry about that. Status: " + response.StatusCode; // error while trying to access the API 
+                 return "ERROR \nCouldn't find " + word + " Status: " + response.StatusCode; // error while trying to access the API 
             }
         }
         public static string get(LexicalCategory category, string word)

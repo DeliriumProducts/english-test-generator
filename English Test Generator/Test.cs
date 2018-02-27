@@ -86,12 +86,28 @@ namespace English_Test_Generator
                         exercises.Add(Read(Examples.get(Form1.word_type, Form1.word_id)).Replace(Form1.word_id, new string('_', Form1.word_id.Length)));
                         break;
                 }
-            }
-            foreach (var exercise in exercises)
+            } 
+            foreach (var exercise in exercises.ToList()) // remove all of the words that were not found in the Oxford Dictionary
             {
-                MessageBox.Show(exercise);
+                if (exercise.StartsWith("Couldn't find "))
+                {
+                    exercises.Remove(exercise);
+                }
+            }    
+            if (exercises.Count() - test_ExcerciseAmount < 0) // if there are not enough words to make a test, lower the exercise amount
+            {
+                test_ExcerciseAmount -= (test_ExcerciseAmount - exercises.Count());
             }
-            return "";
+            int n = 1;
+            Random rndm = new Random();
+            while (n<=test_ExcerciseAmount)
+            {
+                int randomExercise = rndm.Next(0, exercises.Count()+1);
+                finishedTest += "------------------[Ex №"+ n +"]------------------\n" + exercises[randomExercise] + "\n\n";
+                exercises.RemoveAt(randomExercise);
+                n++;
+            }
+            return finishedTest;
         }
         public static string Read(string source) // algorithm for reading the returned string from GetAPIResponse
         {

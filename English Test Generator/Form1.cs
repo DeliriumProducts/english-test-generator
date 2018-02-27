@@ -81,6 +81,7 @@ namespace English_Test_Generator
             textBox1.Height = comboBox1.Height; // set the height so that it matches with the combobox            
             ActiveControl = textBox1; // focus on textBox1
             richTextBox1.SelectionAlignment = HorizontalAlignment.Center; // centers the text on richTextBox1
+            richTextBox3.SelectionAlignment = HorizontalAlignment.Center; // centers the text on richTextBox3
             comboBox1.SelectedIndex = 0; // select first value
             checkBox1.Checked = Properties.Settings.Default.autoUpdate; // changes checkBox1 value to match user preference
             checkBox2.Checked = Properties.Settings.Default.autoSearch; // changes checkBox2 value to match user preference
