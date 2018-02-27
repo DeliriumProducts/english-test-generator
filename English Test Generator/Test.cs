@@ -32,10 +32,10 @@ namespace English_Test_Generator
                 switch (test_Type)
                 {
                     case "Definitions":
-                        Read(Definitions.get(Form1.word_type, Form1.word_id));
+                        exercises.Add(Read(Definitions.get(Form1.word_type, Form1.word_id)));
                         break;
                     case "Examples":
-                        Read(Examples.get(Form1.word_type, Form1.word_id));
+                        exercises.Add(Read(Examples.get(Form1.word_type, Form1.word_id)));
                         break;
                 }
             }
