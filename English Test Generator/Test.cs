@@ -105,7 +105,7 @@ namespace English_Test_Generator
             while (n <= test_ExcerciseAmount)
             {
                 int randomExercise = rndm.Next(0, exercises.Count());
-                finishedTest += "------------------[Ex №"+ n +"]------------------\n" + exercises[randomExercise] + "\n";
+                finishedTest += "------------------[Ex. "+ n +"]------------------\n" + exercises[randomExercise] + "\n";
                 exercises.RemoveAt(randomExercise);
                 n++;
             }

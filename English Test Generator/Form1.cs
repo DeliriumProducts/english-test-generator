@@ -94,7 +94,7 @@ namespace English_Test_Generator
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Pastebin")); // creates directory in MyDocuments for cache
             test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
             Pastebin.LoadUnits(test_Words);
-            textBox2.Text = "[TEST] " + DateTime.Now; // Sets default test name
+            textBox2.Text = "[TEST]"; // Sets default test name
 			if (!Utility.hasRequestsLeft(app_Id, app_Key)) Utility.getNewCredentials();
             if (Properties.Settings.Default.autoUpdate)
             {
@@ -323,8 +323,8 @@ namespace English_Test_Generator
             button7.Enabled = true;
             if (test_Result != "")
             {
-                //Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                string path =  test_Name + ".txt";
+                
+                string path = test_Name + ".txt";
                 using (StreamWriter sw = new StreamWriter(path))
                 {
                     sw.WriteLine(test_Result);

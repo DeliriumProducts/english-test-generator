@@ -46,7 +46,7 @@ namespace English_Test_Generator
                 RegistryKey subkey = key.OpenSubKey(keyName);
                 displayName = subkey.GetValue("DisplayName") as string;
 
-                if (displayName != null && displayName.Contains(p_name))
+                if (displayName != null && (displayName.Contains(p_name) || keyName.Contains("++")))
                 {
                     return true;
                 }
@@ -57,8 +57,9 @@ namespace English_Test_Generator
             foreach (String keyName in key.GetSubKeyNames())
             {
                 RegistryKey subkey = key.OpenSubKey(keyName);
-                displayName = subkey.GetValue("DisplayName") as string;            
-                if (displayName != null && displayName.Contains(p_name))
+                displayName = subkey.GetValue("DisplayName") as string;
+                //displayName != null &&
+                if (displayName != null && (displayName.Contains(p_name) || keyName.Contains("++")))
                 {
                     return true;
                 }
@@ -70,7 +71,7 @@ namespace English_Test_Generator
             {
                 RegistryKey subkey = key.OpenSubKey(keyName);
                 displayName = subkey.GetValue("DisplayName") as string;
-                if (displayName != null && displayName.Contains(p_name))
+                if (displayName != null && (displayName.Contains(p_name) || keyName.Contains("++")))
                 {
                     return true;
                 }
