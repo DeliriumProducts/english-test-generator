@@ -71,7 +71,7 @@ namespace English_Test_Generator
         }
         //-----FORM LOAD SETTINGS-----
         private void Form1_Load(object sender, EventArgs e)
-        {      
+        {
             panel1.BringToFront(); // brings the dictionary panel to the front
             button1.BackColor = Color.FromArgb(255, 217, 66, 53); // changes color of the button
             button2.BackColor = Color.FromArgb(255, 20, 20, 20); // changes color of the button
@@ -327,11 +327,12 @@ namespace English_Test_Generator
                 string path = test_Name + ".txt";
                 using (StreamWriter sw = new StreamWriter(path))
                 {
-                    sw.WriteLine(test_Result);
+                    sw.Write(test_Result);
                 }
                 if (userEditor == "MS Word")
                 {
-                    // do stuff (open Telerik UI)
+                    MSWord msword = new MSWord();
+                    msword.Show();
                 }
                 else
                 {
@@ -457,7 +458,7 @@ namespace English_Test_Generator
         }
         private void radioButton8_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.userEditor = "wordpad.exe";
+            Properties.Settings.Default.userEditor = "wordpad";
             Properties.Settings.Default.Save();
             userEditor = Properties.Settings.Default.userEditor;
         }
