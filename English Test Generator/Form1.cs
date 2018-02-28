@@ -71,7 +71,7 @@ namespace English_Test_Generator
         }
         //-----FORM LOAD SETTINGS-----
         private void Form1_Load(object sender, EventArgs e)
-        {
+        { 
             panel1.BringToFront(); // brings the dictionary panel to the front
             button1.BackColor = Color.FromArgb(255, 217, 66, 53); // changes color of the button
             button2.BackColor = Color.FromArgb(255, 20, 20, 20); // changes color of the button

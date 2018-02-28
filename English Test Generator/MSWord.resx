@@ -120,17 +120,17 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="richTextEditorRibbonBar1.StartButtonImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEkAAAAaCAYAAAD7aXGFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIhSURBVFhH7ZjPahNRFMaz6k4KilIRhIIgFIQ+QBcuBR/A
-        ldCVKxcufQNXxULBlSAIhYLgSuiq0JVPkIUgKC5Eo6gpJmbyd/x9M19CZxxtxlV6e39wObnfOSeZ++Xe
-        TJJGJBKJnAbSNF2ZTCbnPY1gxhXG/fF4vJ8kyRcMKtDv9z+Re8XDe4wVt50dWPxB5kQJjPnc6/W+e1rA
-        hq37KcJHix4MBh9Z+B676Q7jklMz0C4z7lLzQuapRzB/jn7RZeHCQrdY75KnJ0LtMj07nU7np4zC4A8Y
-        dcPpyHEwZhWzdOxSGcb8llORMjpyMqrdbv8ibFiOlMGoZzJKd0HC2bv7zQtGvZRRxF1L4cH61rnl/yBu
-        WiogfTgcvifetFQA/SqjzRAL//WAazzMLzWHN3ffqWqo2cxLZxSM0jyXZ1QayQvtKEk8sLSwcKNZazab
-        I11vq9XqM7/m1J+QfKBCweKyzxaTGaGYT6vzx0FbYre9UZLnvW55YWE9T3StxC1L1VBTOGaKahR/M831
-        lUeKnqdZdZo+tLTQ8Ka+9cN6sMC5jlcV7KDb7jm0FCalHZTtKKdOBJMuqIfd9s1SeEwNmh5Bx1pGdbvd
-        I/XAsqVwKBmUfeYo1jWKc/5O9eyqVUvhEE2ak5JR/3XckiT5qh5MCvdvlKlRU+oYhDHn1KN/BiyFC8Y8
-        rmuQoGVDfaPR6LWlsGGtlb/T/gWmbssk4iNLp5xG4zctIgwnzMhqbAAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAAEkAAAAaCAYAAAD7aXGFAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAiFJREFUWEftmM9qE1EUxrPqTgqKUhGEgiAUhD5AFy4FH8CV0JUrFy59A1fFQsGV
+        IAiFguBK6KrQlU+QhSAoLkSjqCkmZvJ3/H0zX0JnHG3GVXp7f3A5ud85J5n75d5MkkYkEomcBtI0XZlM
+        Juc9jWDGFcb98Xi8nyTJFwwq0O/3P5F7xcN7jBW3nR1Y/EHmRAmM+dzr9b57WsCGrfspwkeLHgwGH1n4
+        HrvpDuOSUzPQLjPuUvNC5qlHMH+OftFl4cJCt1jvkqcnQu0yPTudTuenjMLgDxh1w+nIcTBmFbN07FIZ
+        xvyWU5EyOnIyqt1u/yJsWI6UwahnMkp3QcLZu/vNC0a9lFHEXUvhwfrWueX/IG5aKiB9OBy+J960VAD9
+        KqPNEAv/9YBrPMwvNYc3d9+paqjZzEtnFIzSPJdnVBrJC+0oSTywtLBwo1lrNpsjXW+r1eozv+bUn5B8
+        oELB4rLPFpMZoZhPq/PHQVtit71Rkue9bnlhYT1PdK3ELUvVUFM4ZopqFH8zzfWVR4qep1l1mj60tNDw
+        pr71w3qwwLmOVxXsoNvuObQUJqUdlO0op04Eky6oh932zVJ4TA2aHkHHWkZ1u90j9cCypXAoGZR95ijW
+        NYpz/k717KpVS+EQTZqTklH/ddySJPmqHkwK92+UqVFT6hiEMefUo38GLIULxjyua5CgZUN9o9HotaWw
+        Ya2Vv9P+BaZuyyTiI0unnEbjNy0iDCfMyGpsAAAAAElFTkSuQmCC
 </value>
   </data>
   <metadata name="radThemeManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

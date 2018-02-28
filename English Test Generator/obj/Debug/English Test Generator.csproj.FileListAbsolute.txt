@@ -67,3 +67,5 @@ C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.licenses
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.RichTextEditor.dll
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.RichTextEditor.xml
+C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\ProgressBarEx.dll
+C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\ProgressBarEx.pdb

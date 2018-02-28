@@ -79,6 +79,7 @@
             this.richTextEditorRibbonBar1.AssociatedRichTextEditor = this.radRichTextEditor1;
             this.richTextEditorRibbonBar1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.richTextEditorRibbonBar1.BuiltInStylesVersion = Telerik.WinForms.Documents.Model.Styles.BuiltInStylesVersion.Office2013;
+            this.richTextEditorRibbonBar1.EnableKeyMap = false;
             // 
             // 
             // 
