@@ -26,6 +26,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -46,7 +47,7 @@ namespace English_Test_Generator
                 RegistryKey subkey = key.OpenSubKey(keyName);
                 displayName = subkey.GetValue("DisplayName") as string;
 
-                if (displayName != null && (displayName.Contains(p_name) || keyName.Contains("++")))
+                if (displayName != null && displayName.Contains(p_name))
                 {
                     return true;
                 }
@@ -59,7 +60,7 @@ namespace English_Test_Generator
                 RegistryKey subkey = key.OpenSubKey(keyName);
                 displayName = subkey.GetValue("DisplayName") as string;
                 //displayName != null &&
-                if (displayName != null && (displayName.Contains(p_name) || keyName.Contains("++")))
+                if (displayName != null && displayName.Contains(p_name))
                 {
                     return true;
                 }
@@ -71,9 +72,29 @@ namespace English_Test_Generator
             {
                 RegistryKey subkey = key.OpenSubKey(keyName);
                 displayName = subkey.GetValue("DisplayName") as string;
-                if (displayName != null && (displayName.Contains(p_name) || keyName.Contains("++")))
+                if (displayName != null && displayName.Contains(p_name))
                 {
                     return true;
+                }
+            }
+            // For 64 bit Programs
+            object displayName64;
+            string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+            using (var baseKey = Microsoft.Win32.RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
+            {
+                using (var keys = baseKey.OpenSubKey(registry_key))
+                {
+                    foreach (string subkey_name in keys.GetSubKeyNames())
+                    {
+                        using (var subKey = keys.OpenSubKey(subkey_name))
+                        {
+                            displayName64 = subKey.GetValue("DisplayName");
+                            if (displayName64 != null && displayName64.ToString().Contains(p_name))
+                            {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
 
