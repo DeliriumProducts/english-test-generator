@@ -129,8 +129,8 @@ namespace English_Test_Generator
                     transToLanguage = "MS Word";
                     radioButton7.Checked = true;
                     break;
-                case "wordpad.exe":
-                    transToLanguage = "wordpad.exe";
+                case "wordpad":
+                    transToLanguage = "wordpad";
                     radioButton8.Checked = true;
                     break;
             }
@@ -303,11 +303,13 @@ namespace English_Test_Generator
         }
         private void button6_Click(object sender, EventArgs e)
         {
+            button7.BackgroundImage = Properties.Resources.greyPrinter;
+            button7.Enabled = false;
             test_Name = textBox2.Text; // sets the name of the test
             test_ExcerciseAmount = int.Parse(numericUpDown1.Text); // sets the excercise amount for the test
-            test_Words = richTextBox2.Text.Trim(); // sets the words and types of the test from richTextBox2
-            test_WordsAndTypes.Clear();
-            Test.FillDictionary(test_Words);
+            test_Words = richTextBox2.Text.Trim(); // gets the words and types of the test from richTextBox2
+            test_WordsAndTypes.Clear(); 
+            Test.FillDictionary(test_Words); // makes the words and types into a dictionary
             test_Result = Test.Generate(test_Type, test_ExcerciseAmount, test_Name, test_WordsAndTypes, region);
             test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
             richTextBox3.Text = test_Result;
@@ -316,8 +318,24 @@ namespace English_Test_Generator
         }
         private void button7_Click(object sender, EventArgs e)
         {
-            button7.BackgroundImage = Properties.Resources.greyPrinter;
-            button7.Enabled = false;
+            button7.BackgroundImage = Properties.Resources.redPrinter;
+            button7.Enabled = true;
+            if (test_Result != "")
+            {
+                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), test_Name + ".txt");
+                using (StreamWriter sw = new StreamWriter(path))
+                {
+                    sw.WriteLine(test_Result);
+                }
+                if (userEditor == "MS Word")
+                {
+                    // do stuff (open Telerik UI)
+                }
+                else
+                {
+                    Process.Start(userEditor, path);
+                }
+            }
         }
         //-----ABOUT-----
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -421,21 +439,25 @@ namespace English_Test_Generator
         {
             Properties.Settings.Default.userEditor = "notepad.exe";
             Properties.Settings.Default.Save();
+            userEditor = Properties.Settings.Default.userEditor;
         }
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.userEditor = "notepad++.exe";
             Properties.Settings.Default.Save();
+            userEditor = Properties.Settings.Default.userEditor;
         }
         private void radioButton7_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.userEditor = "MS Word";
             Properties.Settings.Default.Save();
+            userEditor = Properties.Settings.Default.userEditor;
         }
         private void radioButton8_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.userEditor = "wordpad.exe";
+            Properties.Settings.Default.userEditor = "wordpad";
             Properties.Settings.Default.Save();
+            userEditor = Properties.Settings.Default.userEditor;
         }
         //-----USER TEXT TO SPEECH SETTINGS------
         private void monoFlat_TrackBar2_ValueChanged()

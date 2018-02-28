@@ -101,7 +101,7 @@ namespace English_Test_Generator
             }
             int n = 1;
             Random rndm = new Random();
-            finishedTest += test_Name + "\n";
+            finishedTest += "~~~~~" + test_Name + "~~~~~\n";
             while (n <= test_ExcerciseAmount)
             {
                 int randomExercise = rndm.Next(0, exercises.Count());
