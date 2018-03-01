@@ -24,7 +24,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace JSON_lib
 {
-
     using Newtonsoft.Json;
 
     public partial class GetResponse

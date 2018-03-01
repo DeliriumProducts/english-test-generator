@@ -45,8 +45,6 @@ C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe.config
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.pdb
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.dll
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.xml
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Form1.resources
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Properties.Resources.resources
@@ -66,15 +64,7 @@ D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.licenses
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe.manifest
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.application
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\ProgressBarEx.dll
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.dll
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.RichTextEditor.dll
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.Themes.Office2013Light.dll
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.UI.dll
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\TelerikCommon.dll
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.xml
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.RichTextEditor.xml
-D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.UI.xml
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.TrustInfo.xml
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.manifest
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.application
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.AboutForm.resources

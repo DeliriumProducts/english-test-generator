@@ -343,7 +343,8 @@ namespace English_Test_Generator
         //-----ABOUT-----
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("2ma murzeli");            
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.Show();
         }
         //-----TRANSLATOR SETTINGS-----
         private void button8_Click(object sender, EventArgs e)
