@@ -73,3 +73,19 @@ C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.xml
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.RichTextEditor.xml
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.UI.xml
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.MSWord.resources
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.licenses
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe.manifest
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.application
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\ProgressBarEx.dll
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.dll
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.RichTextEditor.dll
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.Themes.Office2013Light.dll
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.UI.dll
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\TelerikCommon.dll
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.xml
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.RichTextEditor.xml
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.UI.xml
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.TrustInfo.xml
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.manifest
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.application
