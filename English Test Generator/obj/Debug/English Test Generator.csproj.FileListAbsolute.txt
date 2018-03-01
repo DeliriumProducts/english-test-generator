@@ -36,7 +36,6 @@ D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe.config
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.pdb
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Form1.resources
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Properties.Resources.resources
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csproj.GenerateResource.Cache
@@ -62,3 +61,4 @@ C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.TrustInfo.xml
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.manifest
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.application
+C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
