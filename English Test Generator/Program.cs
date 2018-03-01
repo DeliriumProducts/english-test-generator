@@ -1,7 +1,7 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="Company">
+// <copyright file="Program.cs" company="Delirium Products">
 //
-// Copyright (C) 2018 {Company}
+// Copyright (C) 2018 Delirium Products
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the +terms of the GNU General Public License as published by
