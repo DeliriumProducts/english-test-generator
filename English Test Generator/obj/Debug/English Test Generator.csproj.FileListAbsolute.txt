@@ -62,17 +62,6 @@ C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.manifest
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.application
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\ProgressBarEx.dll
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.dll
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.RichTextEditor.dll
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.Themes.Office2013Light.dll
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.UI.dll
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\TelerikCommon.dll
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.xml
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.RichTextEditor.xml
-C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\Telerik.WinControls.UI.xml
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.MSWord.resources
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.licenses
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe.manifest
