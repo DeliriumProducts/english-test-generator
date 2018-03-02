@@ -38,6 +38,7 @@ using System.Speech.Recognition;
 using System.IO;
 using System.Net;
 using System.Diagnostics;
+using System.Threading;
 
 namespace English_Test_Generator
 {
@@ -63,6 +64,7 @@ namespace English_Test_Generator
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
         public static int test_ExcerciseAmount = 0; // amount of excercises for the test
         public static Form1 fr; // used to change controls from different classes
+
         //-----FORM CONSTRUCTOR-----
         public Form1()
         {
@@ -223,9 +225,10 @@ namespace English_Test_Generator
                 comboBox3.Items.Clear(); // clears comboBox3's previous items
                 word_id = textBox1.Text; // gets the word from textBox1
                 word_id = SearchWord.GetCorrectWord(word_id, region); // calls the GetCorretWord method from the class SearchWord to serach the user's word
+                
                 if (word_id != textBox1.Text) // checks if the returned word doesn't match textBox1
                 {
-                    word_prev = textBox1.Text; // sets word_prev to match textBox1
+                    word_prev = textBox1.Text;// sets word_prev to match textBox1
                     return; // ends the method
                 }
                 textBox1.Text = word_id; // sets textBox1 to match word_id                                  
@@ -504,25 +507,9 @@ namespace English_Test_Generator
         //-----LISTEN BUTTON-----
         private void button17_Click(object sender, EventArgs e)
         {
-            SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine(); // Creates a new Recognizer for voice commands
-            Grammar dictationGrammar = new DictationGrammar();
-            recognizer.LoadGrammar(dictationGrammar); //Loads default grammar
-            try
-            {
-                textBox1.Text = "Listening...";
-                recognizer.SetInputToDefaultAudioDevice(); //Sets the input device to the user's default input device
-                RecognitionResult result = recognizer.Recognize(); // Used to capture the result
-                textBox1.Text = result.Text; // Sets the result to the search box(textBox1)
-            }
-            catch (InvalidOperationException exception)
-            {
-                button1.Text = String.Format("Could not recognize input from default aduio device. Is a microphone or sound card available?\r\n{0} - {1}.", exception.Source, exception.Message); // throws an error if something goes wrong
-            }
-            finally
-            {
-                if (Properties.Settings.Default.autoSearch) button5.PerformClick(); //Checks if the user wants automatic search after the word is captured
-                recognizer.UnloadAllGrammars();    
-            }
+            SpeechRecognition sr = new SpeechRecognition();
+            Thread thr = new Thread(new ThreadStart(sr.Recognize));
+            thr.Start();
         }
         //-----MISCELLANEOUS-----
         private void timer1_Tick(object sender, EventArgs e)
@@ -580,6 +567,6 @@ namespace English_Test_Generator
                         break;
                 }
             }         
-        }
+        }      
     }
 }

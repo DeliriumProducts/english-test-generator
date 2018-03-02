@@ -1231,7 +1231,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1283,7 +1282,6 @@
         private MonoFlat.MonoFlat_TrackBar monoFlat_TrackBar1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button button17;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.WebBrowser webBrowser1;
@@ -1296,6 +1294,8 @@
         public System.Windows.Forms.NumericUpDown numericUpDown1;
         public ProgressBarEx.ProgressBarEx progressBar1;
         private System.Windows.Forms.Panel panel5;
+        public System.Windows.Forms.Button button5;
+        public System.Windows.Forms.Button button17;
     }
 }
 
