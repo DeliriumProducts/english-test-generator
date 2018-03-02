@@ -73,10 +73,11 @@ namespace GetAPIResponse
                                 if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                 {
                                     definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                    + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l] + "\n"; // adds the definition to the variable                               
+                                    + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l][0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l].Substring(1) + " - \n"; // adds the definition to the variable                               
                                 }
+                                
                                 cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                    + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l] + "\n";
+                                    + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l][0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l].Substring(1) + " - \n";
                             }
                            
                             if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses !=null) // checks if there is at least one subsense in the current sense 
@@ -86,10 +87,10 @@ namespace GetAPIResponse
                                     if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                     {
                                         definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                        + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First() + "\n"; // adds the definition to the variable
+                                        + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First()[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First().Substring(1) + " - \n"; // adds the definition to the variable
                                     }
                                     cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                        + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First() + "\n";
+                                        + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First()[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First().Substring(1) + " - \n";
                                 }
                             }
                         }                    
@@ -170,10 +171,10 @@ namespace GetAPIResponse
                                 if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                 {
                                     examples += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
-                                        + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text + "\n"; // adds the example to the variable
+                                        + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text.Substring(1) + ".\n"; // adds the example to the variable
                                 }
                                 cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
-                                        + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text + "\n";
+                                        + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples[l].Text.Substring(1) + ".\n";
                             }
                             if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses != null) // checks if there is at least one subsense in the current sense 
                             {
@@ -184,10 +185,11 @@ namespace GetAPIResponse
                                         if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                         {
                                             examples += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
-                                                + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text + "\n"; // adds the example to the variable 
+                                                + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text.Substring(1) + ".\n"; // adds the example to the variable 
                                         }
+                                        // char.ToUpper(labelName[0]) + labelName.Substring(1);
                                         cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
-                                                + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text + "\n";
+                                                + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text.Substring(1) + ".\n";
                                     }
                                 }
                             }
