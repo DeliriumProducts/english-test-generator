@@ -1,0 +1,161 @@
+absorb*v 
+accompany*v 
+appetite*n 
+aubergine*n 
+avocado*n 
+baked (pp) 
+beat*v 
+beef*n 
+bitter*adj 
+boast*v 
+boiled (pp) 
+bolognaise*n 
+bubbling*adj 
+cauliflower*n 
+chillies*n 
+chipped (pp) 
+chop*v 
+clove*n 
+cod*n 
+coffin*n 
+coleslaw*n 
+compensate*v 
+courteous*adj 
+cracker*n 
+croissant*n 
+cutlery*n 
+décor*n 
+dip*n 
+donate*v 
+doughnut*n 
+drain*v 
+dried fruit*phr 
+eggplant*n 
+elevate*v 
+energy boost*n 
+equivalent*adj 
+evaluate*v 
+extinguish*v 
+factual*adj 
+fat free*phr 
+fibre*n 
+flakes*n 
+flexible*adj 
+forbid*v 
+fried (pp) 
+gang*n 
+gate*n 
+ginger*n 
+gradually*ad 
+grain*n 
+grapes*n 
+grate*v 
+grater*n 
+gravy*n 
+grilled (pp) 
+ground meat*phr 
+hang*v 
+hectic*adj 
+immense*adj 
+ingredient*n 
+interval*n 
+jelly*n 
+judgment*n 
+junk food*phr 
+kiwi*n 
+lamb*n 
+lean*adj 
+leek*n 
+lentil*n 
+lobster*n 
+master*n 
+meat grinder*phr 
+melon*n 
+melt*v 
+metabolism*n 
+mixture*n 
+mushroom*n 
+mussel*n 
+nap*n 
+napkin*n 
+nod off*v 
+notice*v 
+nugget*n 
+octopus*n 
+olives*n 
+on the rise*phr 
+overcooked (pp) 
+oysters*n 
+packaging*n 
+pale*adj 
+pan*n 
+parsley*n 
+paste*n 
+peach*n 
+pear*n 
+pea*n 
+peel*v 
+peeler*n 
+pickled (pp) 
+pinch*n 
+pineapple*n 
+pint*n 
+pity*n 
+plain*adj 
+poach*v 
+portion*n 
+postpone*v 
+pot*n 
+poultry*n 
+poverty*n 
+pricey*adj 
+protein*n 
+pudding*n 
+quiche*n 
+raw*adj 
+reflex*n 
+refrain*v 
+remind*v 
+reunite*v 
+roasted (pp) 
+rolling pin*phr 
+rye bread*phr 
+salmon*n 
+sauce*n 
+schedule*n 
+shabby*adj 
+shrimps*n 
+sieve*n 
+skimmed*adj 
+skip*v 
+smoked*adj 
+snail*n 
+soft drink*phr 
+sour*adj 
+spirit*n 
+squid*n 
+starve*v 
+steamed (pp) 
+stick*n 
+still*adj 
+stir*v 
+stock up*v 
+stuffed (pp) 
+tablecloth*n 
+takeaway*n 
+taskmaster*n 
+tender*adj 
+threaten*v 
+tough*adj 
+tray*n 
+trout*n 
+tuna*n 
+underworld*n 
+unprocessed*adj 
+upbeat*adj 
+veal*n 
+vital*adj 
+warn*v 
+whisk*n 
+yogurt*n 
+zucchini*n 

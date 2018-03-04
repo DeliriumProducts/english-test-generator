@@ -1,0 +1,119 @@
+ambient advertising*phr 
+award*n 
+baggy*adj 
+balance*n 
+bank*n 
+bar*n 
+barber*n 
+bear in mind*phr 
+bleach*n 
+boss*n 
+brand*n 
+bunch*n 
+button*n 
+canal*n 
+cater for*v 
+chatter*v 
+checked*adj 
+cheque*n 
+clue*n 
+collectibles*n 
+commonplace*adj 
+counter*n 
+dedicated*adj 
+deli*n 
+delicacy*n 
+delicatessen*n 
+denim*n 
+deodorant*n 
+diverse*adj 
+empty-handed*adj 
+enhance*v 
+envelope*n 
+expose*v 
+fabric*n 
+faithful*adj 
+floating*adj 
+flowery*adj 
+food court*phr 
+fragrance*n 
+frame*n 
+freshly ground*phr 
+furnishing*n 
+genuinely*ad 
+glassware*n 
+guarantee*v 
+hammer*n 
+hand in*v 
+handicrafts*n 
+hardware*n 
+hawk*v 
+house*v 
+hustle and bustle*phr 
+hype*n 
+import*v 
+interest*n 
+job-oriented*adj 
+lamb chop*phr 
+laundrette*n 
+leggings*n 
+line*v 
+liquid*n 
+loose*adj 
+loose stitching*phr 
+mango*n 
+memento*n 
+merchant*n 
+nail*n 
+nylon*adj 
+object*v 
+obsessed*adj 
+obsession*n 
+open-minded*adj 
+optimistic*adj 
+ornament*n 
+outing*n 
+pamper*v 
+passion*n 
+pasta*n 
+pave*v 
+pinstriped*adj 
+polish*n 
+polka-dot*adj 
+project*v 
+prone*adj 
+rash*n 
+refund*n 
+roll*v 
+rule*v 
+scratched*adj 
+screwdriver*n 
+shopping spree*phr 
+sleeve*n 
+speciality*n 
+spice*n 
+stained*adj 
+stall*n 
+stationery*n 
+striped*adj 
+suede*adj 
+superstore*n 
+tableware*n 
+taste*n 
+temptation*n 
+thermometer*n 
+tight*adj 
+tight budget*phr 
+tights*n 
+tin*n 
+toiletries*n 
+torn lining*phr 
+trader*n 
+trend*n 
+unwrap*v 
+utensil*n 
+wacky*adj 
+washing powder*phr 
+water*v 
+well mannered*phr 
+zip*n 

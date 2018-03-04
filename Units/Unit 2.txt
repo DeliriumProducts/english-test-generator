@@ -1,0 +1,192 @@
+abruptly*ad 
+absorbed in*phr 
+achieve*v 
+allow*v 
+anatomy*n 
+announce*v 
+announcement*n 
+arched*adj 
+avid*adj 
+balance*v 
+banner*n 
+bark*v 
+barrel*n 
+basement*n 
+best seller*phr 
+Board of Education*noun
+brace*v 
+break in*v 
+bring up*v 
+broad*adj 
+broad-shouldered*adj 
+build*n 
+bump*v 
+bushy*adj 
+bustling*adj 
+candy-scrape*n 
+capable of*phr 
+centre parting*phr 
+chap*n 
+charge with*v 
+chat room*phr 
+cheek*n 
+cheer*v 
+cheerful*adj 
+chilly*adj 
+cling*v 
+comment on*phr 
+concentrate on*phr 
+congregate*v 
+cope with*phr 
+crash*v 
+criticise*v 
+crooked*adj 
+crowd*n 
+curl*n 
+damsel*n 
+deaf*adj 
+deafening*adj 
+declare*v 
+dedicate to*phr 
+depend on*phr 
+determined*adj 
+devoted*adj 
+diary*n 
+dimple*n 
+disappointed*adj 
+dismiss from*phr 
+divorce*n 
+do-or-die expression*adj 
+doubtful*adj 
+driving licence*phr 
+eagerness*n 
+ecstatic*adj 
+electrical wire*phr 
+emoticon*n 
+encourage*v 
+engagement*n 
+excited*adj 
+executive*adj 
+experience*n 
+experiment*n 
+expressive*adj 
+feast*n 
+field*n 
+finances*n 
+financial security*phr 
+financially*ad 
+finishing line*phr 
+fire brigade*phr 
+first-rate*adj 
+folk*n 
+forehead*n 
+forgive*v 
+freckle*n 
+frizzy*adj 
+frustrated*adj 
+furious*adj 
+generation*n 
+give up*v 
+gloomy*adj 
+goal*n 
+good-natured*adj 
+graduate*v 
+graduation*n 
+grin*n 
+Guess what!*phr 
+handsomely*ad 
+have an early night*phr 
+highly-paid*adj 
+hug*v 
+in store*phr 
+inaudible*adj 
+increase*n 
+influence*v 
+injury*n 
+iron rod*phr 
+irritated*adj 
+join the army*phr 
+lad*n 
+lick*v 
+living conditions*phr 
+lose hearing*phr 
+majority*n 
+marriage*n 
+message notification*phr 
+mischievous*adj 
+molasses*n 
+motivated*adj 
+moving house*phr 
+mute*adj 
+nickname*n 
+overjoyed*adj 
+patent office*phr 
+path*n 
+pinnacle*n 
+pleased*adj 
+pointed chin*phr 
+qualify for*v 
+reflect*v 
+register*v 
+repose*v 
+responsibility*n 
+resume*v 
+retirement*n 
+run out of*v 
+scared*adj 
+scornful*adj 
+seem*v 
+senior citizen*phr 
+set off*v 
+shake*v 
+shield*n 
+sideburn*n 
+siren wailing*phr 
+slyly*ad 
+snub*adj 
+solemn*adj 
+sound transmitter*phr 
+sparkle*v 
+spectator*n 
+speech problem*phr 
+spiky*adj 
+splash*v 
+spoil*v 
+sports field*phr 
+spread*v 
+sprint*v 
+spin*v 
+state*v 
+stick out*v 
+subscription*n 
+subside*v 
+survey*n 
+survive*v 
+tearful*adj 
+telegraphy*n 
+That’s a pity.*phr
+thrilled*adj 
+thunder*n 
+timid*adj 
+tippet*n 
+tiptop*n 
+toddler*n 
+transmit*v 
+trembler*n 
+tribe*n 
+turn of the  century*phr 
+unanimity*n 
+unbearable*adj 
+vibration*n 
+voice transmitter*phr 
+wage*n 
+waste of time*phr 
+wave*v 
+white plague*phr 
+whiz*v 
+winner’s certificate*phr 
+wire*n 
+workshop*n 
+worldwide*ad 
+worried*adj 
+wrinkle*n 

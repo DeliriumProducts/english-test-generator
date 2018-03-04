@@ -1,0 +1,189 @@
+acre*n 
+adventure*n 
+alike*ad 
+appreciate*v 
+archery*n 
+aspect*n 
+aspiring*adj 
+assign*v 
+award-winning*adj 
+bargain*n 
+boiling hot*phr 
+bothered*adj 
+break*n 
+broaden*v 
+brochure*n 
+cable*n 
+cancel*v 
+chalk*n 
+changeable*adj 
+chief*n 
+claim*v 
+clue*n 
+coastline*n 
+cobbled*adj 
+colony*n 
+compact*adj 
+conference*n 
+confirm*v 
+consulate*n 
+continent*n 
+continental*adj 
+convenience*n 
+court*n 
+craft*n 
+credit card*phr 
+cruise*n 
+cuisine*n 
+date back*v 
+decade*n 
+deer*n 
+defend*v 
+deposit*n 
+destination*n 
+dine*v 
+discount*n 
+drop sb a line*phr 
+due to (prep) 
+dye-filled*adj 
+eager*adj 
+elegant*adj 
+elk*n 
+embassy*n 
+emergency*n 
+enthusiastic*adj 
+establish*v 
+exceptional*adj 
+facility*n 
+fair*adj 
+fall*n 
+familiar*adj 
+fans*n 
+feel a bit under the weather (idm) 
+feel up to sth*v 
+fiesta*n 
+fir*n 
+first aid kit*phr 
+flat*adj 
+float*v 
+fortune*n 
+fossil*n 
+four-poster*adj 
+freeze*v 
+freight*n 
+fully equipped*phr 
+gather*v 
+get a move on*phr 
+glamorous*adj 
+glimpse*n 
+goat*n 
+goggle*n 
+gourmet*adj 
+guard*n 
+guidebook*n 
+hamper*v 
+handmade*adj 
+hatchback*n 
+health spa*phr 
+heated*adj 
+hot spot*phr 
+in advance*phr 
+in the nick of time*phr 
+insect repellent*phr 
+insurance*n 
+interior*n 
+invasion*n 
+journey*n 
+lantern*n 
+legendary*adj 
+leisurely*adj 
+lifetime*n 
+live out of a suitcase (idm) 
+log fire*phr 
+loom*v 
+make ends meet (idm)
+medieval*adj 
+mild*adj 
+mislabel*v 
+mist*n 
+money belt*phr 
+moor*n 
+moss*n 
+mugger*n 
+non-refundable*adj 
+orbit*n 
+outer*adj 
+outline*n 
+overcharge*v 
+package holiday*phr 
+palm-fringed*adj 
+pastime*n 
+peak*n 
+pickpocket*n 
+pin ~on pine*phr 
+power cut*phr 
+preliminary*adj 
+proposed*adj 
+public*adj 
+put my feet up (idm) 
+race*n 
+railroad route*phr 
+range*n 
+restore*v 
+reusable*adj 
+ridge*n 
+roam*v 
+roar*v 
+rucksack*n 
+rugged*adj 
+ruins*n 
+sample*v 
+sandy*adj 
+scenery*n 
+scenic*adj 
+seafood*n 
+secluded*adj 
+self-contained*adj 
+settler*n 
+shipping lane*phr 
+shipwreck*n 
+short of*phr 
+site*n 
+ski lift pass*phr 
+slope*n 
+snorkel*v 
+soaked*adj 
+spectacular*adj 
+squirrel*n 
+stained glass*phr 
+stone’s throw*phr 
+stopover*n 
+strategic*adj 
+stretch*v 
+stroll*n 
+stun*v 
+stylish*adj 
+sunscreen*n 
+touch*n 
+tour*n 
+tower*v 
+track*n 
+travel*n 
+trendy*adj 
+trip*n 
+tyre*n 
+ultimate*adj 
+unspoiled*adj 
+upscale*v 
+vacancy*n 
+volunteer*n 
+wander*v 
+waterfront*n 
+weather forecast*phr 
+white-water rafting*phr 
+wild game*phr 
+wildlife*n 
+wind*n 
+wintry*adj 
+with regard to*phr 
+woodland*n 

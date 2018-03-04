@@ -1,0 +1,162 @@
+access*n 
+affair*n 
+answering machine*phr 
+apparatus*n 
+approve*v 
+arsonist*n 
+ATM*n 
+automatically*ad 
+aware of*adj 
+bare*adj 
+be in the mood*phr 
+birth certificate*phr 
+call direct*phr 
+capture*v 
+carjack*n 
+cheat*v 
+clay*n 
+closed circuit*phr 
+commit crimes*phr 
+company*n 
+computer graphics*phr 
+contact*n 
+contain*v 
+couch potato (idm) 
+courtroom*n 
+courtyard*n 
+data*n 
+defence*n 
+devote*v 
+diary entry*phr 
+discourage*v 
+disruptive*adj 
+dozen*n 
+drop off*v 
+DVD*n
+elaborate*adj 
+enamel*adj 
+enforce*v 
+estimate*v 
+face charge*phr 
+face recognition*n 
+fine*n 
+finger scanning*phr 
+fingerprinting*n 
+flame*n 
+floppy disk*phr 
+footstep identification*phr 
+force*v 
+forefinger*n 
+forger*n 
+forth*ad 
+framework*n 
+fraud*n 
+hacker*n
+hard drive*phr 
+hijacker*n 
+ID card*phr 
+identification*n 
+identify*v 
+illuminate*v 
+imitate*v 
+in profile*phr 
+incredible*adj 
+indistinct*adj 
+install*v 
+judge*n 
+keep in touch with*phr 
+keep track of*phr 
+keyboard*n 
+keypad*n 
+kidnapper*n 
+laptop*n 
+lean*v 
+lever*n 
+line up*v 
+liquidise*v 
+locate*v 
+log off*v 
+log on*v 
+mailbox*n 
+maintain*v 
+mankind*n 
+mantel*n 
+microwave oven*phr 
+miniature*n 
+mishap*n 
+mistake sb for*v 
+monitor*v 
+mouse*n 
+MP3*n 
+mugging*n 
+name after*v 
+network*n 
+notorious*adj 
+occur*v 
+odd*adj 
+on the alert*phr 
+operate*v 
+opposed to*adj 
+password*n 
+pause*n 
+PIN*n 
+plead not guilty*phr 
+plug in*v 
+preserve*v 
+printer*n 
+privacy*n 
+proof*n 
+property*n 
+quack*n 
+radar*n 
+rag*n 
+ransom*n 
+recapture*v 
+record*n 
+refrain from*v 
+release*v 
+remote control*phr 
+rental*n 
+request*n 
+restate*v 
+reverse*v 
+robot-pet*n 
+run one’s life*phr 
+satellite*n 
+scatter*v 
+scheme*n 
+security*n 
+security guard*phr 
+sentence to*v 
+set fire*phr 
+shoplift*n 
+skid*v 
+smash*v 
+smoke detector*phr 
+smuggle*v 
+soak*v 
+sociologist*n 
+software*n 
+sparkling*adj 
+speed*n 
+statement*n 
+store*v 
+surveillance*n 
+suspect*v 
+swing*v 
+technophile*n 
+technophobe*n 
+tone*n 
+trial*n 
+trickery*n 
+try sb*v 
+twinkling*adj 
+up to date*phr 
+vacant*adj 
+vanish*v 
+via (prep) 
+viewpoint*n 
+website*n 
+willing*adj 
+withdraw*v 
+witness*n

@@ -1,0 +1,131 @@
+acid rain*phr 
+address*n 
+afar*ad 
+alternative*adj 
+ant*n 
+armour*n 
+array*n 
+ballad*n 
+ban*v 
+budget*n 
+can’t help*phr 
+can’t stand*phr 
+car pool*phr 
+centipede*n 
+circumference*n 
+clad*adj 
+clover*n 
+coal*n 
+community*n 
+consequence*n 
+conservation*n 
+crimson*adj 
+daisy tree*phr 
+deceive*v 
+deforestation*n 
+demand*v 
+diameter*n 
+drawback*n 
+drift*v 
+emit*v 
+endangered species*phr 
+energy use*phr 
+epic*adj 
+face*v 
+fairy land*phr 
+filter*n 
+fluorescent*adj 
+fossil fuel*phr 
+fragile*adj 
+frozen*adj 
+gadget*n 
+gas mask*n 
+generate*v 
+global warming*phr 
+grainmill*n 
+grateful*adj 
+greenhouse gases*phr 
+hold still*phr 
+hue*n 
+hum*v 
+humming fly*phr 
+hydropower*n 
+imagery*n 
+industrial*adj 
+inspire*v 
+insulate*v 
+Inuit*n 
+knob*n 
+lack*n 
+layer*n 
+lizard*n 
+logger*n 
+lose heart*phr 
+lyric*n 
+mahogany*n 
+mammal*n 
+mend*v 
+nuclear*adj 
+objection*n 
+off limits*phr 
+offshore*ad 
+ozone layer*phr 
+pedestrian*n 
+percentage*n 
+perch*v 
+permafrost*n 
+pied*adj 
+poisonous*adj 
+pole*n 
+power*v 
+pump*v 
+push*n 
+quotation*n 
+radiation*n 
+rare*adj 
+recycle*v 
+reindeer*n 
+rely on*v 
+renewable*adj 
+reserve*v 
+resource*n 
+rhetorical*adj 
+rhyme*n 
+rhythm*n 
+rotor blade*phr 
+rubbish dump*phr 
+run*v 
+safeguard*v 
+sanctuary*n 
+sawmill*n 
+seed*n 
+set up*v 
+share*v 
+shortage*n 
+shower*n 
+significant*adj 
+sleepy-head*n 
+solar*adj 
+sorrel*n 
+sow*v 
+stitch*n 
+storm*n 
+swallow*n 
+swift*adj 
+take advantage of*phr 
+take for granted*phr 
+tear*n 
+timber*n 
+treasure*n 
+treeless*adj 
+tuck*v 
+tundra*n 
+turbine*n 
+ultraviolet*adj 
+unoccupied*adj 
+urban sprawl*phr 
+verse*n 
+vote*v 
+waste*n 
+wing*n 
+wipe out*v 

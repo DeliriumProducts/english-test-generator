@@ -1,0 +1,158 @@
+accident prone*phr 
+ache*v 
+acidic*adj 
+acne*n 
+alert*adj
+alkaline*adj 
+allergic*adj 
+annual*adj 
+antacid*adj 
+arrogant*adj 
+arthritis*n 
+asthma*n 
+average*n 
+awaken*v 
+aware*adj 
+bacteria*n 
+blemish*n 
+bloated*adj 
+bloodstream*n 
+brain*n 
+break the ice*phr 
+bubble*n 
+carbohydrate*n 
+cast*n 
+cave*n 
+cereal*n 
+check-up*n 
+circulate*v 
+clumsy*adj 
+conductor*n 
+construct*v 
+crack of dawn*phr 
+cramp*n 
+crater*n 
+cure*n 
+decline*v 
+depressed*adj 
+deprive of*v 
+determine*v 
+diarrhoea*n 
+digestive system*phr 
+dizziness*n 
+dose*n 
+early bird*phr 
+endorphin*n 
+enquiry*n 
+erect*v 
+evolution*n 
+existence*n 
+fatigue*n 
+feathered*adj 
+feel it in my bones*phr 
+fever*n 
+flu*n 
+fluid*n 
+food poisoning*phr 
+found*v 
+gene*n 
+get that off my chest*phr 
+geyser*n 
+glucose*n 
+harmony*n 
+have itchy feet*phr 
+heart attack*phr 
+heart disease*phr 
+heat stroke*phr 
+hit the jackpot (idm) 
+hormone*n 
+hot spring*phr 
+humid*adj 
+hypothalamus*n 
+identical*adj 
+immune*adj 
+in tune with*phr 
+indicate*v 
+insomnia*n 
+limestone*n 
+lump*n 
+mechanism*n 
+miner*n 
+mineral*adj 
+moody*adj 
+motivate*v 
+mud*n 
+muscle contraction*phr 
+muscular*adj 
+native*adj 
+nausea*n 
+neuralgia*n 
+night owl*phr 
+nine-to-fiver*phr 
+nocturnal*adj 
+nose bleed*phr 
+outsmart*v 
+owl*n 
+patient*adj 
+perfectionist*n 
+physical*adj 
+pill*n 
+pneumonia*n 
+pollen*n 
+practical*adj 
+predictable*adj 
+prescribe*v 
+priest*n 
+prospector*n 
+psychological*adj 
+put my finger on (idm) 
+put words into my mouth (idm) 
+queue*n 
+random*adj 
+rat race (idm) 
+regulate*v 
+reliable*adj 
+relieving*adj 
+revolution*n 
+rheumatism*n 
+runny nose*phr 
+scar*n 
+sentimental*adj 
+serotonin*n 
+shift work*phr 
+side effect*phr 
+sleep pattern*phr 
+sling*v 
+slow-paced*adj 
+sneeze*v 
+sociable*adj 
+sore eyes*phr 
+spa*n 
+splitting*adj 
+spot*n 
+sprain*v 
+steam*n 
+stethoscope*n 
+streaming*adj 
+strict*adj 
+stroke*n 
+stomach*n 
+surface*n 
+sweet tooth (idm) 
+synchronise*v 
+tablet*n 
+tempo*n 
+tick*v 
+traffic jam*phr 
+travel sickness*phr 
+treatment*n 
+ulcer*n 
+viral infection*phr 
+virus*n 
+volcano*n 
+wakeful*adj 
+weightlifting*n 
+wellbeing*n 
+wheeze*v 
+wildlife reserve*phr 
+yawn*v 

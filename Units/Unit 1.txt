@@ -1,0 +1,115 @@
+abandon*v 
+absent*adj 
+accuse of*v 
+accustomed*adj 
+active*adj 
+adventurous*adj 
+airy*adj 
+apologise*v 
+appeal to*v 
+appliance*n 
+apply*v 
+approve*v 
+attic*n 
+badly fitting*phr 
+barrack*n 
+basement*n 
+battlements*n 
+become short of*phr 
+beg*v 
+bird-watcher*n 
+brand-new*adj 
+built-in*adj 
+caterer*n 
+cellar*n 
+centrally located*phr 
+chimney*n 
+choke*v 
+confident*adj 
+conservative*adj 
+convert*v 
+convince*v 
+cramped*adj 
+creative*adj 
+decay*v 
+depressed*adj 
+detached*adj 
+draughts*n 
+drawbridge*n 
+driveway*n 
+druid*n 
+dwelling*n 
+electrocution*n 
+eloquent*adj 
+evict*v 
+experience*v 
+extension*n 
+feature*n 
+fence*n 
+fibreglass*n 
+fitted*adj 
+fortress*n 
+from scratch*phr 
+fuel bill*phr 
+fully furnished*phr 
+guard rail*phr 
+harsh*adj 
+hay fever*phr 
+humidifier*n 
+hut*n 
+impractical*adj 
+in authority*phr 
+indigestion*n 
+intact*adj 
+isolated*adj 
+keep*n 
+landmark*n 
+leaking*adj 
+lodging*n 
+lounge*n 
+memorable*adj 
+moat*n 
+mop*v 
+move out*v 
+mow*v 
+occupy*v 
+outcrop*n 
+outskirts*n 
+peaceful*adj 
+pitched*adj 
+prevent*v 
+rear patio*phr 
+rename*v 
+rental details*phr 
+residential area*phr 
+resist*v 
+rubber mat*phr 
+safety catches*phr 
+safety cover*phr 
+safety gate*phr 
+scalding*adj 
+sculpture*n 
+set up*v 
+setting*n 
+shadow*n 
+sheer cliff*phr 
+sliding*adj 
+spacious*adj 
+spare room*phr 
+spiral*adj 
+spruce*n 
+stable*n 
+stand out*v 
+stilt*n 
+storehouse*n 
+storey*n 
+suburb*n 
+suitable for*phr 
+terraced*adj 
+thatched*adj 
+tiled*adj 
+tiny*adj 
+watch group*phr 
+well-maintained*adj 
+winding*adj 
+withdrawn*adj 
