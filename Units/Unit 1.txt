@@ -6,23 +6,21 @@ active*adj
 adventurous*adj 
 airy*adj 
 apologise*v 
-appeal to*v 
+appeal to*phr 
 appliance*n 
 apply*v 
 approve*v 
 attic*n 
-badly fitting*phr 
 barrack*n 
 basement*n 
 battlements*n 
-become short of*phr 
+short of*phr 
 beg*v 
-bird-watcher*n 
-brand-new*adj 
+birdwatcher*n 
+brand new*adj 
 built-in*adj 
 caterer*n 
 cellar*n 
-centrally located*phr 
 chimney*n 
 choke*v 
 confident*adj 
@@ -49,16 +47,13 @@ fence*n
 fibreglass*n 
 fitted*adj 
 fortress*n 
-from scratch*phr 
-fuel bill*phr 
-fully furnished*phr 
-guard rail*phr 
+from scratch*phr  
+guard rail*noun 
 harsh*adj 
-hay fever*phr 
+hay fever*noun 
 humidifier*n 
 hut*n 
 impractical*adj 
-in authority*phr 
 indigestion*n 
 intact*adj 
 isolated*adj 
@@ -78,24 +73,17 @@ outskirts*n
 peaceful*adj 
 pitched*adj 
 prevent*v 
-rear patio*phr 
 rename*v 
-rental details*phr 
-residential area*phr 
+residential*phr 
 resist*v 
-rubber mat*phr 
-safety catches*phr 
-safety cover*phr 
-safety gate*phr 
+mat*n 
 scalding*adj 
 sculpture*n 
-set up*v 
+set-up*v 
 setting*n 
 shadow*n 
-sheer cliff*phr 
 sliding*adj 
-spacious*adj 
-spare room*phr 
+spacious*adj  
 spiral*adj 
 spruce*n 
 stable*n 
@@ -104,12 +92,11 @@ stilt*n
 storehouse*n 
 storey*n 
 suburb*n 
-suitable for*phr 
+suitable*phr 
 terraced*adj 
 thatched*adj 
-tiled*adj 
+tiled*n 
 tiny*adj 
-watch group*phr 
-well-maintained*adj 
+well maintained*adj 
 winding*adj 
 withdrawn*adj 
