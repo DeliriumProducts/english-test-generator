@@ -238,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\ProgressBarEx.dll" />
+    <None Include="Resources\info.png" />
     <None Include="Resources\Dtafalonso-Android-Lollipop-Dictionary.ico" />
     <None Include="Resources\Icon.ico" />
     <None Include="Resources\Icon1.ico" />

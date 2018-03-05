@@ -59,6 +59,7 @@ namespace English_Test_Generator
         public static string test_Type = "Definitions"; // type of the test (example based / definition based)
         public static string test_Name = ""; // name of the test
         public static string test_Words; // words and lexicalCategories that are going to be used in the making of the test
+        public static string generatingSpeed = Properties.Settings.Default.generatingSpeed;
         public static Dictionary<string, string> test_WordsAndTypes = new Dictionary<string, string>(); 
         public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
@@ -181,6 +182,12 @@ namespace English_Test_Generator
                         }
                     }
                     radioButton10.Checked = true;
+                    break;
+            }
+            switch (generatingSpeed)
+            {
+                case "Fast":
+                    radioButton12.Checked = true;
                     break;
             }
         }
@@ -312,7 +319,7 @@ namespace English_Test_Generator
             test_Name = textBox2.Text; // sets the name of the test
             test_ExcerciseAmount = int.Parse(numericUpDown1.Text); // sets the excercise amount for the test
             test_Words = richTextBox2.Text.Trim(); // gets the words and types of the test from richTextBox2
-            test_WordsAndTypes.Clear(); 
+            test_WordsAndTypes.Clear();
             Test.FillDictionary(test_Words); // makes the words and types into a dictionary
             test_Result = Test.Generate(test_Type, test_ExcerciseAmount, test_Name, test_WordsAndTypes, region);
             test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
@@ -567,6 +574,25 @@ namespace English_Test_Generator
                         break;
                 }
             }         
-        }      
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Compared to \"Normal\" Test Generating, this option generates tests much faster, but with the lack of progress indication.\nFast Test Generating is achieved by using more of your Computer Resources.", "Info", MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+        private void radioButton11_CheckedChanged(object sender, EventArgs e)
+        {
+            generatingSpeed = "Normal";
+            Properties.Settings.Default.generatingSpeed = generatingSpeed;
+            Properties.Settings.Default.Save();
+        }
+
+        private void radioButton12_CheckedChanged(object sender, EventArgs e)
+        {
+            generatingSpeed = "Fast";
+            Properties.Settings.Default.generatingSpeed = generatingSpeed;
+            Properties.Settings.Default.Save();
+        }
     }
 }

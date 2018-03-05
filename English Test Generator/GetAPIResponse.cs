@@ -57,17 +57,17 @@ namespace GetAPIResponse
             client.DefaultRequestHeaders.Add("app_id", Form1.app_Id); // adds the id to the headers
             client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
             try { response = client.GetAsync(url).Result; }// gets the respone headers   
-            catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);}
+            catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }      
             if (response.IsSuccessStatusCode) // checks if the response code is equal to 200
-            {
+                {
                 string content = response.Content.ReadAsStringAsync().Result; // receives the API response              
                 var result = JsonConvert.DeserializeObject<GetResponse>(content); // Converts the API response to the format that the program can understand
                 for (int i = 0; i < result.Results.First().LexicalEntries.Length; i++) // i = all entries from the API response
-                {                
+                {
                     for (int j = 0; j < result.Results.First().LexicalEntries[i].Entries.Length; j++) // j = all senses from the API response
                     {
                         for (int k = 0; k < result.Results.First().LexicalEntries[i].Entries[j].Senses.Length; k++) // k = all definitions from the API response 
-                        { 
+                        {
                             for (int l = 0; result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions != null && l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions.Length; l++)
                             {
                                 if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
@@ -75,12 +75,10 @@ namespace GetAPIResponse
                                     definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
                                     + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l][0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l].Substring(1) + " - \n"; // adds the definition to the variable                               
                                 }
-                                
                                 cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
                                     + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l][0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l].Substring(1) + " - \n";
                             }
-                           
-                            if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses !=null) // checks if there is at least one subsense in the current sense 
+                            if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses != null) // checks if there is at least one subsense in the current sense 
                             {
                                 for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses.Length; l++) // l = all subsense definitions from the API response
                                 {
@@ -93,7 +91,7 @@ namespace GetAPIResponse
                                         + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First()[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First().Substring(1) + " - \n";
                                 }
                             }
-                        }                    
+                        }
                     }
                 }
                 CacheWord.Write(word, "Definitions", cache);
@@ -105,11 +103,11 @@ namespace GetAPIResponse
             }           
         }
         public static string get(LexicalCategory category, string word)
-        {          
+        {                    
             switch (category) // requests the method for the corresponding category
             {
                 case LexicalCategory.AllTypes:
-                    return Request("",word);                  
+                    return Request("", word);
                 case LexicalCategory.Adjective:
                     return Request("adjective", word);                                    
                 case LexicalCategory.Adverb:
@@ -126,7 +124,7 @@ namespace GetAPIResponse
         }
         public static string get(string category, string word)
         {
-           return get(map.FirstOrDefault(x => x.Value == category).Key, word); // uses the map to call the get method with the proper arguments
+            return get(map.FirstOrDefault(x => x.Value == category).Key, word); // uses the map to call the get method with the proper arguments
         }                               
         public static Dictionary<LexicalCategory, string> map = // dictionary used as a "map" for each type
             new Dictionary<LexicalCategory, string>
@@ -151,11 +149,12 @@ namespace GetAPIResponse
             string examples = "";
             string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/examples;regions=" + Form1.region; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
-            HttpResponseMessage response; // used to get the API Response            
+            HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
             client.DefaultRequestHeaders.Add("app_id", Form1.app_Id); // adds the id to the headers
             client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
-            response = client.GetAsync(url).Result; // gets the response
+            try { response = client.GetAsync(url).Result; }// gets the respone headers   
+            catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             if (response.IsSuccessStatusCode)
             {
                 string content = response.Content.ReadAsStringAsync().Result; // receives the API response              
@@ -187,7 +186,6 @@ namespace GetAPIResponse
                                             examples += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
                                                 + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text.Substring(1) + ".\n"; // adds the example to the variable 
                                         }
-                                        // char.ToUpper(labelName[0]) + labelName.Substring(1);
                                         cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - EXAMPLES]\n"
                                                 + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples[m].Text.Substring(1) + ".\n";
                                     }
@@ -196,8 +194,8 @@ namespace GetAPIResponse
                         }
                     }
                 }
-                CacheWord.Write(word, "Examples", cache);
-                return examples.Trim();
+                 CacheWord.Write(word, "Examples", cache);
+                 return examples.Trim();
             }
             else // if the response code is different than 200
             {

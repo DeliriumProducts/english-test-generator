@@ -91,6 +91,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.button18 = new System.Windows.Forms.Button();
+            this.radioButton11 = new System.Windows.Forms.RadioButton();
+            this.radioButton12 = new System.Windows.Forms.RadioButton();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.radioButton9 = new System.Windows.Forms.RadioButton();
             this.radioButton10 = new System.Windows.Forms.RadioButton();
@@ -122,6 +126,7 @@
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -920,6 +925,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.panel5.Controls.Add(this.groupBox11);
             this.panel5.Controls.Add(this.groupBox10);
             this.panel5.Controls.Add(this.groupBox9);
             this.panel5.Controls.Add(this.groupBox8);
@@ -933,12 +939,65 @@
             this.panel5.Size = new System.Drawing.Size(684, 325);
             this.panel5.TabIndex = 6;
             // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.button18);
+            this.groupBox11.Controls.Add(this.radioButton11);
+            this.groupBox11.Controls.Add(this.radioButton12);
+            this.groupBox11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.groupBox11.Location = new System.Drawing.Point(20, 232);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(315, 86);
+            this.groupBox11.TabIndex = 11;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Test Generating";
+            // 
+            // button18
+            // 
+            this.button18.BackgroundImage = global::English_Test_Generator.Properties.Resources.info;
+            this.button18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button18.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button18.FlatAppearance.BorderSize = 0;
+            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button18.Location = new System.Drawing.Point(196, 40);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(32, 32);
+            this.button18.TabIndex = 8;
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // radioButton11
+            // 
+            this.radioButton11.AutoSize = true;
+            this.radioButton11.Checked = true;
+            this.radioButton11.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.radioButton11.Location = new System.Drawing.Point(16, 40);
+            this.radioButton11.Name = "radioButton11";
+            this.radioButton11.Size = new System.Drawing.Size(96, 32);
+            this.radioButton11.TabIndex = 3;
+            this.radioButton11.TabStop = true;
+            this.radioButton11.Text = "Normal";
+            this.radioButton11.UseVisualStyleBackColor = true;
+            this.radioButton11.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged);
+            // 
+            // radioButton12
+            // 
+            this.radioButton12.AutoSize = true;
+            this.radioButton12.Font = new System.Drawing.Font("Segoe UI", 14.75F);
+            this.radioButton12.Location = new System.Drawing.Point(235, 40);
+            this.radioButton12.Name = "radioButton12";
+            this.radioButton12.Size = new System.Drawing.Size(64, 32);
+            this.radioButton12.TabIndex = 2;
+            this.radioButton12.Text = "Fast";
+            this.radioButton12.UseVisualStyleBackColor = true;
+            this.radioButton12.CheckedChanged += new System.EventHandler(this.radioButton12_CheckedChanged);
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.radioButton9);
             this.groupBox10.Controls.Add(this.radioButton10);
             this.groupBox10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.groupBox10.Location = new System.Drawing.Point(350, 98);
+            this.groupBox10.Location = new System.Drawing.Point(350, 128);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(315, 105);
             this.groupBox10.TabIndex = 3;
@@ -1006,7 +1065,7 @@
             this.groupBox8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.groupBox8.Location = new System.Drawing.Point(20, -9);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(315, 325);
+            this.groupBox8.Size = new System.Drawing.Size(315, 242);
             this.groupBox8.TabIndex = 4;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Text To Speech";
@@ -1015,7 +1074,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 12.75F);
-            this.label17.Location = new System.Drawing.Point(124, 270);
+            this.label17.Location = new System.Drawing.Point(124, 205);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(75, 23);
             this.label17.TabIndex = 5;
@@ -1025,7 +1084,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 12.75F);
-            this.label16.Location = new System.Drawing.Point(112, 130);
+            this.label16.Location = new System.Drawing.Point(112, 103);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(95, 23);
             this.label16.TabIndex = 4;
@@ -1035,7 +1094,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Segoe UI", 14.75F);
-            this.label15.Location = new System.Drawing.Point(99, 204);
+            this.label15.Location = new System.Drawing.Point(99, 143);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(119, 28);
             this.label15.TabIndex = 3;
@@ -1044,7 +1103,7 @@
             // monoFlat_TrackBar2
             // 
             this.monoFlat_TrackBar2.JumpToMouse = false;
-            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 245);
+            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 180);
             this.monoFlat_TrackBar2.Maximum = 20;
             this.monoFlat_TrackBar2.Minimum = 0;
             this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
@@ -1061,7 +1120,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 14.75F);
-            this.label14.Location = new System.Drawing.Point(123, 71);
+            this.label14.Location = new System.Drawing.Point(123, 48);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(78, 28);
             this.label14.TabIndex = 1;
@@ -1070,7 +1129,7 @@
             // monoFlat_TrackBar1
             // 
             this.monoFlat_TrackBar1.JumpToMouse = false;
-            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 109);
+            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 82);
             this.monoFlat_TrackBar1.Maximum = 100;
             this.monoFlat_TrackBar1.Minimum = 0;
             this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
@@ -1166,11 +1225,11 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1204,6 +1263,8 @@
             this.groupBox5.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -1296,6 +1357,10 @@
         private System.Windows.Forms.Panel panel5;
         public System.Windows.Forms.Button button5;
         public System.Windows.Forms.Button button17;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.RadioButton radioButton11;
+        private System.Windows.Forms.RadioButton radioButton12;
+        private System.Windows.Forms.Button button18;
     }
 }
 

@@ -24,9 +24,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GetAPIResponse;
@@ -71,23 +73,44 @@ namespace English_Test_Generator
         public static string Generate(string test_Type, int test_ExcerciseAmount, string test_Name, Dictionary<string, string> test_Words, string region)
         {
             List<string> exercises = new List<string>();
+            ConcurrentBag<string> bagOfExercises = new ConcurrentBag<string>(); // used when using multiple threads
             string finishedTest = "";
             Form1.fr.progressBar1.Visible = true;
             Form1.fr.progressBar1.Value = 0;
             Form1.fr.progressBar1.Maximum = Form1.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
-            foreach (KeyValuePair<string, string> entry in test_Words)
+            switch (Form1.generatingSpeed)
             {
-                Form1.fr.progressBar1.Value++;
-                switch (test_Type)
-                {
-                    case "Definitions":
-                        exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
-                        break;
-                    case "Examples":
-                        exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key, new string('_', entry.Key.Length)));
-                        break;
-                }
-            } 
+                case "Normal":
+                    foreach (KeyValuePair<string, string> entry in test_Words)
+                    {
+                        Form1.fr.progressBar1.Value++;
+                        switch (test_Type)
+                        {
+                           case "Definitions":
+                               exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
+                               break;
+                           case "Examples":
+                               exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key, new string('_', entry.Key.Length)));
+                               break;
+                        }                       
+                    }
+                    break;
+                case "Fast":
+                    Parallel.ForEach(test_Words, entry =>
+                    {
+                        switch (test_Type)
+                        {
+                            case "Definitions":
+                                bagOfExercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
+                                break;
+                            case "Examples":
+                                bagOfExercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key, new string('_', entry.Key.Length)));
+                                break;
+                        }
+                    });
+                    exercises = bagOfExercises.ToList(); // Converts the bagOfExercises variable to List and sets it to exercises variable
+                    break;
+            }                  
             foreach (var exercise in exercises.ToList()) // remove all of the words that were not found in the Oxford Dictionary
             {
                 if (exercise.StartsWith("Couldn't find "))
@@ -110,7 +133,7 @@ namespace English_Test_Generator
                 n++;
             }
             Form1.fr.progressBar1.Visible = false;
-            return finishedTest;
+            return finishedTest;          
         }
         public static string Read(string source) // algorithm for reading the returned string from GetAPIResponse
         {

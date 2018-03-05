@@ -35,5 +35,8 @@
     <Setting Name="app_Key" Type="System.String" Scope="User">
       <Value Profile="(Default)">c2f940117b50aad32774269c8c08ae40</Value>
     </Setting>
+    <Setting Name="generatingSpeed" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

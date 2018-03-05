@@ -154,5 +154,17 @@ namespace English_Test_Generator.Properties {
                 this["app_Key"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public string generatingSpeed {
+            get {
+                return ((string)(this["generatingSpeed"]));
+            }
+            set {
+                this["generatingSpeed"] = value;
+            }
+        }
     }
 }
