@@ -1,5 +1,4 @@
 abruptly*ad 
-absorbed in*phr 
 achieve*v 
 allow*v 
 anatomy*n 
@@ -13,7 +12,7 @@ bark*v
 barrel*n 
 basement*n 
 best seller*phr 
-Board of Education*noun
+Board of Education*n
 brace*v 
 break in*v 
 bring up*v 
@@ -23,21 +22,20 @@ build*n
 bump*v 
 bushy*adj 
 bustling*adj 
-candy-scrape*n 
 capable of*phr 
-centre parting*phr 
+centre parting*n
 chap*n 
 charge with*v 
-chat room*phr 
+chat room*n
 cheek*n 
 cheer*v 
 cheerful*adj 
 chilly*adj 
 cling*v 
-comment on*phr 
-concentrate on*phr 
+comment on*v
+concentrate on*v 
 congregate*v 
-cope with*phr 
+cope with*v
 crash*v 
 criticise*v 
 crooked*adj 
@@ -47,21 +45,21 @@ damsel*n
 deaf*adj 
 deafening*adj 
 declare*v 
-dedicate to*phr 
-depend on*phr 
+dedicate to*v
+depend on*v 
 determined*adj 
 devoted*adj 
 diary*n 
 dimple*n 
 disappointed*adj 
-dismiss from*phr 
+dismiss from*v
 divorce*n 
-do-or-die expression*adj 
+do-or-die*adj 
 doubtful*adj 
-driving licence*phr 
+driving licence*n 
 eagerness*n 
 ecstatic*adj 
-electrical wire*phr 
+wire*n
 emoticon*n 
 encourage*v 
 engagement*n 
