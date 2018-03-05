@@ -143,7 +143,7 @@ namespace English_Test_Generator
             {
                 for (int i = 1; i <= lines.Length; i += 2)
                 {
-                    filteredSource += lines[i] + "\n";
+                    filteredSource += (lines[i - 1].Contains("EXAMPLES")) ? lines[i] + " \n" : lines[i] + " - \n";
                 }
             }
             return filteredSource;

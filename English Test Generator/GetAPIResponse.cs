@@ -56,7 +56,7 @@ namespace GetAPIResponse
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
             client.DefaultRequestHeaders.Add("app_id", Form1.app_Id); // adds the id to the headers
             client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
-            try { response = client.GetAsync(url).Result; }// gets the respone headers   
+            try { response = client.GetAsync(url).Result; } // gets the respone headers   
             catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }      
             if (response.IsSuccessStatusCode) // checks if the response code is equal to 200
                 {
@@ -73,10 +73,10 @@ namespace GetAPIResponse
                                 if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                 {
                                     definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                    + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l][0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l].Substring(1) + " - \n"; // adds the definition to the variable                               
+                                    + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l][0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l].Substring(1) + " \n"; // adds the definition to the variable                               
                                 }
                                 cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                    + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l][0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l].Substring(1) + " - \n";
+                                    + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l][0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Definitions[l].Substring(1) + " \n";
                             }
                             if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses != null) // checks if there is at least one subsense in the current sense 
                             {
@@ -85,10 +85,10 @@ namespace GetAPIResponse
                                     if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                     {
                                         definitions += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                        + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First()[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First().Substring(1) + " - \n"; // adds the definition to the variable
+                                        + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First()[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First().Substring(1) + " \n"; // adds the definition to the variable
                                     }
                                     cache += "[" + result.Results.First().LexicalEntries[i].LexicalCategory.ToUpper() + " - DEFINITIONS]\n"
-                                        + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First()[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First().Substring(1) + " - \n";
+                                        + char.ToUpper(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First()[0]) + result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Definitions.First().Substring(1) + " \n";
                                 }
                             }
                         }

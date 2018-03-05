@@ -291,6 +291,7 @@ namespace English_Test_Generator
         } 
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e) // gets the words only for the specified unit
         {
+            test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
             using (StringReader sr = new StringReader(test_Words)) 
             {
                 test_Words = "";
@@ -301,11 +302,11 @@ namespace English_Test_Generator
                     {
                         while(!(s = sr.ReadLine()).Contains("%%%") && s != null)
                         {
-                            test_Words = test_Words + s + "\n";
-                            if (sr.ReadLine() == null)
+                            if (s == "--- END OF UNITS ---")
                             {
                                 break;
                             }
+                            test_Words = test_Words + s + "\n";
                         }
                     }
                 }
@@ -322,7 +323,6 @@ namespace English_Test_Generator
             test_WordsAndTypes.Clear();
             Test.FillDictionary(test_Words); // makes the words and types into a dictionary
             test_Result = Test.Generate(test_Type, test_ExcerciseAmount, test_Name, test_WordsAndTypes, region);
-            test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
             richTextBox3.Text = test_Result;
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
