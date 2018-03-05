@@ -7,8 +7,7 @@ aspect*n
 aspiring*adj 
 assign*v 
 award-winning*adj 
-bargain*n 
-boiling hot*phr 
+bargain*n  
 bothered*adj 
 break*n 
 broaden*v 
@@ -32,7 +31,7 @@ continental*adj
 convenience*n 
 court*n 
 craft*n 
-credit card*phr 
+credit card*n
 cruise*n 
 cuisine*n 
 date back*v 
@@ -43,9 +42,8 @@ deposit*n
 destination*n 
 dine*v 
 discount*n 
-drop sb a line*phr 
-due to (prep) 
-dye-filled*adj 
+drop someone a line*phr 
+due to*phr 
 eager*adj 
 elegant*adj 
 elk*n 
@@ -59,19 +57,17 @@ fair*adj
 fall*n 
 familiar*adj 
 fans*n 
-feel a bit under the weather (idm) 
-feel up to sth*v 
+under the weather*phr
 fiesta*n 
 fir*n 
-first aid kit*phr 
+first aid kit*n 
 flat*adj 
 float*v 
 fortune*n 
 fossil*n 
-four-poster*adj 
+four-poster*n
 freeze*v 
 freight*n 
-fully equipped*phr 
 gather*v 
 get a move on*phr 
 glamorous*adj 
@@ -86,10 +82,10 @@ handmade*adj
 hatchback*n 
 health spa*phr 
 heated*adj 
-hot spot*phr 
+hot-spotting*n
 in advance*phr 
 in the nick of time*phr 
-insect repellent*phr 
+insect repellent*n 
 insurance*n 
 interior*n 
 invasion*n 
@@ -98,15 +94,15 @@ lantern*n
 legendary*adj 
 leisurely*adj 
 lifetime*n 
-live out of a suitcase (idm) 
-log fire*phr 
+live out of a suitcase*phr 
+log fire*n 
 loom*v 
-make ends meet (idm)
+make (both) ends meet*phr
 medieval*adj 
 mild*adj 
 mislabel*v 
 mist*n 
-money belt*phr 
+money belt*n
 moor*n 
 moss*n 
 mugger*n 
@@ -115,19 +111,16 @@ orbit*n
 outer*adj 
 outline*n 
 overcharge*v 
-package holiday*phr 
-palm-fringed*adj 
+package holiday*n 
 pastime*n 
 peak*n 
 pickpocket*n 
-pin ~on pine*phr 
 power cut*phr 
 preliminary*adj 
-proposed*adj 
+propose*v
 public*adj 
-put my feet up (idm) 
-race*n 
-railroad route*phr 
+put one's feet up*phr
+race*n  
 range*n 
 restore*v 
 reusable*adj 
@@ -145,7 +138,6 @@ seafood*n
 secluded*adj 
 self-contained*adj 
 settler*n 
-shipping lane*phr 
 shipwreck*n 
 short of*phr 
 site*n 
@@ -155,7 +147,7 @@ snorkel*v
 soaked*adj 
 spectacular*adj 
 squirrel*n 
-stained glass*phr 
+stained glass*n
 stone’s throw*phr 
 stopover*n 
 strategic*adj 
@@ -179,11 +171,10 @@ vacancy*n
 volunteer*n 
 wander*v 
 waterfront*n 
-weather forecast*phr 
-white-water rafting*phr 
-wild game*phr 
+weather forecast*n 
+white-water rafting*n 
 wildlife*n 
 wind*n 
 wintry*adj 
-with regard to*phr 
+with (or in or having) regard to*phr 
 woodland*n 
