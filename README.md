@@ -16,7 +16,7 @@
 	~ With the built in translator, you can quickly translate any word or sentence from Bulgarian to English and vice-versa!
 
 # Requirements
-- [NET Framework 4.7.1](https://www.microsoft.com/net/download/dotnet-framework-runtime)
+- [.NET Framework 4.7.1](https://www.microsoft.com/net/download/dotnet-framework-runtime)
 - Microphone for Speech-Recognition functionality
 - Headphones / Speakers for Text-To-Speech functionality
 - [Visual Studio 2015 / 2017](https://www.visualstudio.com/downloads/) (2017 is recommended) for editing and compiling the code
