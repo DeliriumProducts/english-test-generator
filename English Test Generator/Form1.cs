@@ -64,8 +64,7 @@ namespace English_Test_Generator
         public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
         public static int test_ExcerciseAmount = 0; // amount of excercises for the test
-        public static Form1 fr; // used to change controls from different classes
-
+        public static Form1 fr; // used to change controls from different classes    
         //-----FORM CONSTRUCTOR-----
         public Form1()
         {

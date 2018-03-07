@@ -38,7 +38,7 @@ namespace GetAPIResponse
 {
     enum LexicalCategory
     {
-        AllTypes, Adjective, Adverb, Noun, Idiomatic, Verb
+        AllTypes, Adjective, Adverb, Noun, Idiomatic, Verb, Residual
     }                  
     class Definitions
     {
@@ -118,6 +118,8 @@ namespace GetAPIResponse
                     return Request("idiomatic", word);
                 case LexicalCategory.Verb:
                     return  Request("verb", word);
+                case LexicalCategory.Residual:
+                    return Request("residual", word);
                 default:
                     return "Couldn't find the specified lexical category!";
             }          
@@ -135,6 +137,7 @@ namespace GetAPIResponse
                 { LexicalCategory.Noun, "noun"},
                 { LexicalCategory.Idiomatic, "idiomatic"},
                 { LexicalCategory.Verb, "verb"},
+                { LexicalCategory.Residual, "residual"}
             };
     }
     class Examples

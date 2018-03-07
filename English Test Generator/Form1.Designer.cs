@@ -104,15 +104,15 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
             this.label14 = new System.Windows.Forms.Label();
+            this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
             this.label13 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new ProgressBarEx.ProgressBarEx();
-            this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
-            this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -247,7 +247,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label2.Location = new System.Drawing.Point(427, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 40);
+            this.label2.Size = new System.Drawing.Size(78, 40);
             this.label2.TabIndex = 3;
             this.label2.Text = "Type";
             // 
@@ -257,7 +257,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label1.Location = new System.Drawing.Point(25, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 40);
+            this.label1.Size = new System.Drawing.Size(183, 40);
             this.label1.TabIndex = 2;
             this.label1.Text = "Word/Phrase";
             // 
@@ -284,7 +284,8 @@
             "Adverb",
             "Noun",
             "Idiomatic",
-            "Verb"});
+            "Verb",
+            "Residual"});
             this.comboBox1.Location = new System.Drawing.Point(434, 52);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(218, 48);
@@ -311,7 +312,7 @@
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label7.Location = new System.Drawing.Point(223, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 25);
+            this.label7.Size = new System.Drawing.Size(121, 25);
             this.label7.TabIndex = 4;
             this.label7.Text = "Finished Test";
             // 
@@ -322,7 +323,7 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label6.Location = new System.Drawing.Point(223, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 25);
+            this.label6.Size = new System.Drawing.Size(139, 25);
             this.label6.TabIndex = 3;
             this.label6.Text = "Words/Phrases";
             this.label6.Visible = false;
@@ -392,7 +393,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 52);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "Test Name";
             // 
@@ -643,7 +644,7 @@
             this.label12.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label12.Location = new System.Drawing.Point(471, 284);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(70, 28);
+            this.label12.Size = new System.Drawing.Size(71, 28);
             this.label12.TabIndex = 5;
             this.label12.Text = "Page 1";
             // 
@@ -695,7 +696,7 @@
             this.radioButton8.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton8.Location = new System.Drawing.Point(179, 90);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(111, 32);
+            this.radioButton8.Size = new System.Drawing.Size(113, 32);
             this.radioButton8.TabIndex = 3;
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "WordPad";
@@ -708,7 +709,7 @@
             this.radioButton7.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton7.Location = new System.Drawing.Point(179, 42);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(113, 32);
+            this.radioButton7.Size = new System.Drawing.Size(114, 32);
             this.radioButton7.TabIndex = 2;
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "MS Word";
@@ -986,7 +987,7 @@
             this.radioButton12.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton12.Location = new System.Drawing.Point(235, 40);
             this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(64, 32);
+            this.radioButton12.Size = new System.Drawing.Size(65, 32);
             this.radioButton12.TabIndex = 2;
             this.radioButton12.Text = "Fast";
             this.radioButton12.UseVisualStyleBackColor = true;
@@ -1086,7 +1087,7 @@
             this.label16.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.label16.Location = new System.Drawing.Point(112, 103);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(95, 23);
+            this.label16.Size = new System.Drawing.Size(96, 23);
             this.label16.TabIndex = 4;
             this.label16.Text = "Volume: 30";
             // 
@@ -1096,9 +1097,25 @@
             this.label15.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label15.Location = new System.Drawing.Point(99, 143);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(119, 28);
+            this.label15.Size = new System.Drawing.Size(120, 28);
             this.label15.TabIndex = 3;
             this.label15.Text = "Voice Speed";
+            // 
+            // monoFlat_TrackBar2
+            // 
+            this.monoFlat_TrackBar2.JumpToMouse = false;
+            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 180);
+            this.monoFlat_TrackBar2.Maximum = 20;
+            this.monoFlat_TrackBar2.Minimum = 0;
+            this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar2.Name = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar2.TabIndex = 0;
+            this.monoFlat_TrackBar2.Text = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Value = 10;
+            this.monoFlat_TrackBar2.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar2.ValueToSet = 10F;
+            this.monoFlat_TrackBar2.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar2_ValueChanged);
             // 
             // label14
             // 
@@ -1106,9 +1123,25 @@
             this.label14.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label14.Location = new System.Drawing.Point(123, 48);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(78, 28);
+            this.label14.Size = new System.Drawing.Size(79, 28);
             this.label14.TabIndex = 1;
             this.label14.Text = "Volume";
+            // 
+            // monoFlat_TrackBar1
+            // 
+            this.monoFlat_TrackBar1.JumpToMouse = false;
+            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 82);
+            this.monoFlat_TrackBar1.Maximum = 100;
+            this.monoFlat_TrackBar1.Minimum = 0;
+            this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar1.Name = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar1.TabIndex = 0;
+            this.monoFlat_TrackBar1.Text = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Value = 30;
+            this.monoFlat_TrackBar1.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar1.ValueToSet = 30F;
+            this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
             // 
             // label13
             // 
@@ -1117,7 +1150,7 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label13.Location = new System.Drawing.Point(471, 284);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 28);
+            this.label13.Size = new System.Drawing.Size(71, 28);
             this.label13.TabIndex = 9;
             this.label13.Text = "Page 2";
             // 
@@ -1181,53 +1214,21 @@
             this.progressBar1.Text = "progressBarEx1";
             this.progressBar1.Visible = false;
             // 
-            // monoFlat_TrackBar2
-            // 
-            this.monoFlat_TrackBar2.JumpToMouse = false;
-            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 180);
-            this.monoFlat_TrackBar2.Maximum = 20;
-            this.monoFlat_TrackBar2.Minimum = 0;
-            this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
-            this.monoFlat_TrackBar2.Name = "monoFlat_TrackBar2";
-            this.monoFlat_TrackBar2.Size = new System.Drawing.Size(283, 22);
-            this.monoFlat_TrackBar2.TabIndex = 0;
-            this.monoFlat_TrackBar2.Text = "monoFlat_TrackBar2";
-            this.monoFlat_TrackBar2.Value = 10;
-            this.monoFlat_TrackBar2.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
-            this.monoFlat_TrackBar2.ValueToSet = 10F;
-            this.monoFlat_TrackBar2.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar2_ValueChanged);
-            // 
-            // monoFlat_TrackBar1
-            // 
-            this.monoFlat_TrackBar1.JumpToMouse = false;
-            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 82);
-            this.monoFlat_TrackBar1.Maximum = 100;
-            this.monoFlat_TrackBar1.Minimum = 0;
-            this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
-            this.monoFlat_TrackBar1.Name = "monoFlat_TrackBar1";
-            this.monoFlat_TrackBar1.Size = new System.Drawing.Size(283, 22);
-            this.monoFlat_TrackBar1.TabIndex = 0;
-            this.monoFlat_TrackBar1.Text = "monoFlat_TrackBar1";
-            this.monoFlat_TrackBar1.Value = 30;
-            this.monoFlat_TrackBar1.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
-            this.monoFlat_TrackBar1.ValueToSet = 30F;
-            this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(684, 611);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.ForeColor = System.Drawing.SystemColors.ControlText;

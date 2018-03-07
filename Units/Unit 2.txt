@@ -11,7 +11,7 @@ banner*n
 bark*v 
 barrel*n 
 basement*n 
-best seller*phr 
+bestseller*n 
 Board of Education*n
 brace*v 
 break in*v 

@@ -64,6 +64,9 @@ namespace English_Test_Generator
                     case "phr":
                         splitByAsterisk[1] = "idiomatic";
                         break;
+                    case "r":
+                        splitByAsterisk[1] = "residual";
+                        break;
                     default:
                         break;
                 }

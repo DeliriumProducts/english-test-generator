@@ -31,8 +31,6 @@ C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\bin\D
 D:\Projects\Visual Studio\English Test Generator\English Test Generator\bin\Debug\Newtonsoft.Json.dll
 D:\Projects\Visual Studio\English Test Generator\English Test Generator\bin\Debug\Newtonsoft.Json.xml
 C:\Users\любо\source\repos\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
-D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.dll
-D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe.config
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.pdb
@@ -87,3 +85,11 @@ C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\English Test Generat
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.application
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.pdb
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.exe.manifest
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\bin\Debug\English Test Generator.application
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.AboutForm.resources
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.MSWord.resources
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.licenses
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.TrustInfo.xml
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.manifest
+D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.application
