@@ -6,6 +6,7 @@
 	Unlike the conventional way of creating tests using MS Word, the program saves the teacher a lot of time by skipping the whole process of manually composing unique tests. 
 	The software gives the user the option to automatically download all of the words from a given unit or a whole textbook and obtains their definitions from an online dictionary. After that process is done the program generates random and unique tasks/exercises for each test.
 	The application is suitable for usage by both teachers and students, giving the students the option to prepare themselves for an upcoming test or just to practice what has been last learned, and for the teachers – a quick and easy way to create authentic tests.
+	
 # Features
  - Dictionary
 	~ Easily gather the definition of a certain word by typing it or using the built in speech recognition! Not sure how to pronounce a certain word? Just use the Text-To-Speech button!
@@ -14,13 +15,32 @@
  - Built-in Translator
 	~ With the built in translator, you can quickly translate any word or sentence from Bulgarian to English and vice-versa!
 
+# Requirements
+- [NET Framework 4.7.1](https://www.microsoft.com/net/download/dotnet-framework-runtime)
+- Microphone for Speech-Recognition functionality
+- Headphones / Speakers for Text-To-Speech functionality
+- [Visual Studio 2015 / 2017](https://www.visualstudio.com/downloads/) (2017 is recommended) for editing and compiling the code
+
+
+# Getting started
+- Clone the repository using git bash
+
+```shell
+git clone https://gitlab.com/simo3003/EnglishTestGenerator.git
+```
+
+ - Run the .sln file from the main folder of the repository using Visual Studio 2015 / 2017. 
+ - Compile and run.
+
+# Contribute
+
+If you have any ideas for helping / supporting / improving the project, you can contribute via the Merge Requests to this repository. We'd gladly take a look at each and every one and reply to them.
+
 # Contact us 
 
-Lyubo Lyubchev - [Facebook](https://www.facebook.com/lyubo.ivailov.3) [GitLab](https://gitlab.com/IMPZERO) E-mail - lyubo_2317@abv.bg
-
-Simo Aleksandrov - [Facebook](https://www.facebook.com/simo.aleksandrov) [GitLab](https://gitlab.com/simo3003) [YouTube](https://www.youtube.com/channel/UCXudfqkZnDPm8Kg8gijrAlA) E-mail - simo3003@me.com	
-
-[Website](http://etgproject.tk/)
+- Lyubo Lyubchev - [Facebook](https://www.facebook.com/lyubo.ivailov.3) [GitLab](https://gitlab.com/IMPZERO) E-mail - lyubo_2317@abv.bg
+- Simo Aleksandrov - [Facebook](https://www.facebook.com/simo.aleksandrov) [GitLab](https://gitlab.com/simo3003) [YouTube](https://www.youtube.com/channel/UCXudfqkZnDPm8Kg8gijrAlA) E-mail - simo3003@me.com	
+- [Website](http://etgproject.tk/)
 
 # License 
 
