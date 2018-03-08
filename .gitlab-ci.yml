@@ -1,61 +1,41 @@
-    ##variables:
-## increase indentation carefully, one space per cascade level.
-## THIS IS YAML. NEVER USE TABS.
+variables:
+  Solution:  English Test Generator.sln
+
+before_script:
+  - "echo off"
+  - 'call "%VS120COMNTOOLS%\vsvars32.bat"'
+  # output environment variables (usefull for debugging, propably not what you want to do if your ci server is public)
+  - echo.
+  - set
+  - echo.
+
 stages:
-   - build
-   - deploy
+  - build
+  - test
+  - deploy
 
- #BUILD
-# Builds all working branches
-working:
+build:
   stage: build
+  script:
+  - echo building...
+  - 'msbuild.exe "%Solution%"'
   except:
-   - master
-  script:
-   - echo "Build Stage"
-   - echo "Restoring NuGet Packages..."
-   - '"c:\nuget\nuget.exe" restore "SOLUTION PATH"'
-   # - '"c:\nuget\nuget.exe" restore "ANOTHER ABSOLUTE PATH TO YOUR SOLUTION"'
-   - ''
-   - echo "Building Solutions..."
-   - C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "SOLUTION PATH"
+  - tags
 
-# Builds all stable/master pushes
-stable:
-  stage: build
+test:
+  stage: test
+  script:
+  - echo testing...
+  - 'msbuild.exe "%Solution%"'
+  - dir /s /b *.Tests.dll | findstr /r Tests\\*\\bin\\ > testcontainers.txt
+  - 'for /f %%f in (testcontainers.txt) do mstest.exe /testcontainer:"%%f"'
+  except:
+  - tags
+
+deploy:
+  stage: deploy
+  script:
+  - echo deploying...
+  - 'msbuild.exe "%Solution%" /t:publish'
   only:
-   - master
-  script:
-   - echo "Build Stage"
-   - echo "Restoring NuGet Packages..."
-   - '"c:\nuget\nuget.exe" restore "SOLUTION PATH"'
-   # - '"c:\nuget\nuget.exe" restore "ANOTHER ABSOLUTE PATH TO YOUR SOLUTION"'
-   - ''
-   - echo "Building Solutions..."
-   - C:\Windows\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe /consoleloggerparameters:ErrorsOnly /maxcpucount /nologo /property:Configuration=Release /verbosity:quiet "SOLUTION PATH"
-
-
-
-
- #DEPLOY
-
-  stage: deploy
-  only: 
-    - dev
-  script:
-   - echo "Deploy Stage"
-#SEND TO YOUR DEV SERVER
-
-
-  ## deploy latest master to the correct servers
-  stage: deploy
-
-  script:
-  - echo "Deploy Stage"
-  only: 
-   - master
- #SEND TO YOUR PRODUCTION SERVER
-
-  tags:
-   - .NET
-  #put tags here you put on your runners so you can hit the right runners when you push your code.
+  - production
