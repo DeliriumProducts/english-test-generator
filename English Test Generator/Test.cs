@@ -93,7 +93,7 @@ namespace English_Test_Generator
                                exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
                                break;
                            case "Examples":
-                               exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key, new string('_', entry.Key.Length)));
+                               exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('_', entry.Key.Length)));
                                break;
                         }                       
                     }
@@ -107,7 +107,7 @@ namespace English_Test_Generator
                                 bagOfExercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
                                 break;
                             case "Examples":
-                                bagOfExercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key, new string('_', entry.Key.Length)));
+                                bagOfExercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('_', entry.Key.Length)));
                                 break;
                         }
                     });
