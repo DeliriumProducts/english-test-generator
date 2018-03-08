@@ -113,7 +113,7 @@ namespace English_Test_Generator
                                 bagOfExercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('.', entry.Key.Length)));
                                 break;
                             case "Words":
-                                exercises.Add(entry.Key + new string('.', 35) + " (" + entry.Value.TrimEnd() + ")");
+                                bagOfExercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
                                 break;
                         }
                     });

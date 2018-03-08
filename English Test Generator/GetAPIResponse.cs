@@ -258,7 +258,7 @@ namespace GetAPIResponse
         }
         public static void getNewCredentials()
         {
-            string apiCredentialsList = Pastebin.Get("https://pastebin.com/raw/Pu4ki8eE", "Credentials");
+            string apiCredentialsList = Pastebin.Get("https://pastebin.com/raw/Pu4ki8eE", "credentials");
             string[] apiCredentials = apiCredentialsList.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             string app_Id = "";
             string app_Key = "";
