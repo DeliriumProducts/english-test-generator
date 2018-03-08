@@ -230,8 +230,7 @@ namespace English_Test_Generator
                 comboBox3.Visible = false; // hides comboBox3 (used in the case if there is more than one result of a given search
                 comboBox3.Items.Clear(); // clears comboBox3's previous items
                 word_id = textBox1.Text; // gets the word from textBox1
-                word_id = SearchWord.GetCorrectWord(word_id, region); // calls the GetCorretWord method from the class SearchWord to serach the user's word
-                
+                word_id = SearchWord.GetCorrectWord(word_id, region); // calls the GetCorretWord method from the class SearchWord to serach the user's word                
                 if (word_id != textBox1.Text) // checks if the returned word doesn't match textBox1
                 {
                     word_prev = textBox1.Text;// sets word_prev to match textBox1
@@ -287,7 +286,11 @@ namespace English_Test_Generator
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
             test_Type = "Examples";
-        } 
+        }
+        private void radioButton13_CheckedChanged(object sender, EventArgs e)
+        {
+            test_Type = "Words";
+        }
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e) // gets the words only for the specified unit
         {
             test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
@@ -593,5 +596,6 @@ namespace English_Test_Generator
             Properties.Settings.Default.generatingSpeed = generatingSpeed;
             Properties.Settings.Default.Save();
         }
+
     }
 }

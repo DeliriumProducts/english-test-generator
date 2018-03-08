@@ -132,12 +132,12 @@ namespace GetAPIResponse
             new Dictionary<LexicalCategory, string>
             {
                 { LexicalCategory.AllTypes, "All Types"},
-                { LexicalCategory.Adjective, "adjective"},
-                { LexicalCategory.Adverb, "adverb"},
-                { LexicalCategory.Noun, "noun"},
-                { LexicalCategory.Idiomatic, "idiomatic"},
-                { LexicalCategory.Verb, "verb"},
-                { LexicalCategory.Residual, "residual"}
+                { LexicalCategory.Adjective, "Adjective"},
+                { LexicalCategory.Adverb, "Adverb"},
+                { LexicalCategory.Noun, "Noun"},
+                { LexicalCategory.Idiomatic, "Idiomatic"},
+                { LexicalCategory.Verb, "Verb"},
+                { LexicalCategory.Residual, "Residual"}
             };
     }
     class Examples
@@ -245,7 +245,7 @@ namespace GetAPIResponse
     {
         public static bool hasRequestsLeft(string app_Id, string app_Key)
         {
-            string url = "https://od-api.oxforddictionaries.com:443/api/v1/filters";// URL for the request 
+            string url = "https://od-api.oxforddictionaries.com:443/api/v1/filters"; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
@@ -258,25 +258,22 @@ namespace GetAPIResponse
         }
         public static void getNewCredentials()
         {
-            using (WebClient wc = new WebClient())
+            string apiCredentialsList = Pastebin.Get("https://pastebin.com/raw/Pu4ki8eE", "Credentials");
+            string[] apiCredentials = apiCredentialsList.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            string app_Id = "";
+            string app_Key = "";
+            for (int i = 0; i < apiCredentials.Length; i++)
             {
-                string apiCredentialsList = wc.DownloadString("https://pastebin.com/raw/Pu4ki8eE");
-                string[] apiCredentials = apiCredentialsList.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                string app_Id = "";
-                string app_Key = "";
-                for (int i = 0; i < apiCredentials.Length; i++)
+                app_Id = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[0];
+                app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
+                if (hasRequestsLeft(app_Id, app_Key))
                 {
-                    app_Id = apiCredentials[i].Split(new[] { ":"}, StringSplitOptions.None)[0];
-                    app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
-                    if(hasRequestsLeft(app_Id,app_Key))
-                    {
-                        Form1.app_Id = app_Id;
-                        Form1.app_Key = app_Key;
-                        English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
-                        English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
-                        English_Test_Generator.Properties.Settings.Default.Save();
-                        return;
-                    }
+                    Form1.app_Id = app_Id;
+                    Form1.app_Key = app_Key;
+                    English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
+                    English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
+                    English_Test_Generator.Properties.Settings.Default.Save();
+                    return;
                 }
             }
         }

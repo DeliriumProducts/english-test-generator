@@ -44,28 +44,28 @@ namespace English_Test_Generator
             {
                 if (!splitByNewLine[i].Contains("*")) // for all types
                 {
-                    splitByNewLine[i] += "*a";
+                    splitByNewLine[i] += "*All Types";
                 }               
                 string[] splitByAsterisk = splitByNewLine[i].Split(new string[] {"*"}, StringSplitOptions.RemoveEmptyEntries);
-                switch (splitByAsterisk[1]) // converts the word type to its full name, which is used for sending requests
+                switch (splitByAsterisk[1].TrimEnd()) // converts the word type to its full name, which is used for sending requests
                 {
                     case "n":
-                        splitByAsterisk[1] = "noun";
+                        splitByAsterisk[1] = "Noun";
                         break;
                     case "adj":
-                        splitByAsterisk[1] = "adjective";
+                        splitByAsterisk[1] = "Adjective";
                         break;
                     case "ad":
-                        splitByAsterisk[1] = "adverb";
+                        splitByAsterisk[1] = "Adverb";
                         break;
                     case "v":
-                        splitByAsterisk[1] = "verb";
+                        splitByAsterisk[1] = "Verb";
                         break;
                     case "phr":
-                        splitByAsterisk[1] = "idiomatic";
+                        splitByAsterisk[1] = "Idiomatic";
                         break;
                     case "r":
-                        splitByAsterisk[1] = "residual";
+                        splitByAsterisk[1] = "Residual";
                         break;
                     default:
                         break;
@@ -93,8 +93,11 @@ namespace English_Test_Generator
                                exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
                                break;
                            case "Examples":
-                               exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('_', entry.Key.Length)));
+                               exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('.', entry.Key.Length)));
                                break;
+                            case "Words":
+                                exercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")"); 
+                                break;
                         }                       
                     }
                     break;
@@ -107,7 +110,10 @@ namespace English_Test_Generator
                                 bagOfExercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
                                 break;
                             case "Examples":
-                                bagOfExercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('_', entry.Key.Length)));
+                                bagOfExercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('.', entry.Key.Length)));
+                                break;
+                            case "Words":
+                                exercises.Add(entry.Key + new string('.', 35) + " (" + entry.Value.TrimEnd() + ")");
                                 break;
                         }
                     });

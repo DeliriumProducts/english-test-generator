@@ -113,6 +113,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new ProgressBarEx.ProgressBarEx();
+            this.radioButton13 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -247,7 +248,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label2.Location = new System.Drawing.Point(427, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 40);
+            this.label2.Size = new System.Drawing.Size(76, 40);
             this.label2.TabIndex = 3;
             this.label2.Text = "Type";
             // 
@@ -257,7 +258,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label1.Location = new System.Drawing.Point(25, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(183, 40);
+            this.label1.Size = new System.Drawing.Size(182, 40);
             this.label1.TabIndex = 2;
             this.label1.Text = "Word/Phrase";
             // 
@@ -312,7 +313,7 @@
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label7.Location = new System.Drawing.Point(223, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 25);
+            this.label7.Size = new System.Drawing.Size(119, 25);
             this.label7.TabIndex = 4;
             this.label7.Text = "Finished Test";
             // 
@@ -323,7 +324,7 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label6.Location = new System.Drawing.Point(223, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 25);
+            this.label6.Size = new System.Drawing.Size(138, 25);
             this.label6.TabIndex = 3;
             this.label6.Text = "Words/Phrases";
             this.label6.Visible = false;
@@ -393,7 +394,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 52);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "Test Name";
             // 
@@ -443,6 +444,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.radioButton13);
             this.groupBox3.Controls.Add(this.radioButton3);
             this.groupBox3.Controls.Add(this.radioButton4);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
@@ -451,7 +453,7 @@
             this.groupBox3.Size = new System.Drawing.Size(184, 73);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Test Type";
+            this.groupBox3.Text = "Based on:";
             // 
             // radioButton3
             // 
@@ -459,10 +461,10 @@
             this.radioButton3.Checked = true;
             this.radioButton3.Location = new System.Drawing.Point(7, 21);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(111, 17);
+            this.radioButton3.Size = new System.Drawing.Size(82, 17);
             this.radioButton3.TabIndex = 2;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Definition Based";
+            this.radioButton3.Text = "Definitions";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
@@ -471,9 +473,9 @@
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(7, 44);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(101, 17);
+            this.radioButton4.Size = new System.Drawing.Size(72, 17);
             this.radioButton4.TabIndex = 3;
-            this.radioButton4.Text = "Example Based";
+            this.radioButton4.Text = "Examples";
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
@@ -644,7 +646,7 @@
             this.label12.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label12.Location = new System.Drawing.Point(471, 284);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 28);
+            this.label12.Size = new System.Drawing.Size(70, 28);
             this.label12.TabIndex = 5;
             this.label12.Text = "Page 1";
             // 
@@ -696,7 +698,7 @@
             this.radioButton8.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton8.Location = new System.Drawing.Point(179, 90);
             this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(113, 32);
+            this.radioButton8.Size = new System.Drawing.Size(111, 32);
             this.radioButton8.TabIndex = 3;
             this.radioButton8.TabStop = true;
             this.radioButton8.Text = "WordPad";
@@ -709,7 +711,7 @@
             this.radioButton7.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton7.Location = new System.Drawing.Point(179, 42);
             this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(114, 32);
+            this.radioButton7.Size = new System.Drawing.Size(113, 32);
             this.radioButton7.TabIndex = 2;
             this.radioButton7.TabStop = true;
             this.radioButton7.Text = "MS Word";
@@ -987,7 +989,7 @@
             this.radioButton12.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.radioButton12.Location = new System.Drawing.Point(235, 40);
             this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(65, 32);
+            this.radioButton12.Size = new System.Drawing.Size(64, 32);
             this.radioButton12.TabIndex = 2;
             this.radioButton12.Text = "Fast";
             this.radioButton12.UseVisualStyleBackColor = true;
@@ -1087,7 +1089,7 @@
             this.label16.Font = new System.Drawing.Font("Segoe UI", 12.75F);
             this.label16.Location = new System.Drawing.Point(112, 103);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(96, 23);
+            this.label16.Size = new System.Drawing.Size(95, 23);
             this.label16.TabIndex = 4;
             this.label16.Text = "Volume: 30";
             // 
@@ -1097,7 +1099,7 @@
             this.label15.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label15.Location = new System.Drawing.Point(99, 143);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(120, 28);
+            this.label15.Size = new System.Drawing.Size(119, 28);
             this.label15.TabIndex = 3;
             this.label15.Text = "Voice Speed";
             // 
@@ -1123,7 +1125,7 @@
             this.label14.Font = new System.Drawing.Font("Segoe UI", 14.75F);
             this.label14.Location = new System.Drawing.Point(123, 48);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(79, 28);
+            this.label14.Size = new System.Drawing.Size(78, 28);
             this.label14.TabIndex = 1;
             this.label14.Text = "Volume";
             // 
@@ -1150,7 +1152,7 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.label13.Location = new System.Drawing.Point(471, 284);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 28);
+            this.label13.Size = new System.Drawing.Size(70, 28);
             this.label13.TabIndex = 9;
             this.label13.Text = "Page 2";
             // 
@@ -1214,13 +1216,23 @@
             this.progressBar1.Text = "progressBarEx1";
             this.progressBar1.Visible = false;
             // 
+            // radioButton13
+            // 
+            this.radioButton13.AutoSize = true;
+            this.radioButton13.Location = new System.Drawing.Point(100, 21);
+            this.radioButton13.Name = "radioButton13";
+            this.radioButton13.Size = new System.Drawing.Size(59, 17);
+            this.radioButton13.TabIndex = 4;
+            this.radioButton13.Text = "Words";
+            this.radioButton13.UseVisualStyleBackColor = true;
+            this.radioButton13.CheckedChanged += new System.EventHandler(this.radioButton13_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.ClientSize = new System.Drawing.Size(684, 611);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button4);
@@ -1231,6 +1243,7 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1362,6 +1375,7 @@
         private System.Windows.Forms.RadioButton radioButton11;
         private System.Windows.Forms.RadioButton radioButton12;
         private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.RadioButton radioButton13;
     }
 }
 
