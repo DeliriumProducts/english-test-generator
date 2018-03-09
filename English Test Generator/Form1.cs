@@ -99,8 +99,8 @@ namespace English_Test_Generator
             textBox2.Text = "[TEST]"; // Sets default test name
 			if (!Utility.hasRequestsLeft(app_Id, app_Key)) Utility.getNewCredentials();
             if (Properties.Settings.Default.autoUpdate)
-            {
-                Program.Update();
+            {                
+                new Thread(() => { Program.Update(); }).Start();
             }
             if (!IsApplicationInstalled.Check("Notepad++")) // check if notepad++ is installed and if it's not - removes radiobutton6
             {              
@@ -149,16 +149,27 @@ namespace English_Test_Generator
             switch (userTheme)
             {
                 case "Dark":
-                    foreach (Control panelOrGroupBox in Controls) // check each panel or groupbox...
+                    foreach (Control panel in Controls) // check each panel or groupbox...
                     {
-                        if (panelOrGroupBox is Panel || panelOrGroupBox is GroupBox)
+                        if (panel is Panel)
                         {
-                            foreach (Control c in panelOrGroupBox.Controls) 
+                            foreach (Control c in panel.Controls) 
                             {
-                                if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ...for each textBox, richTextBox, comboBox and numericUpDown in them
+                                if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ... and for each textBox, richTextBox, comboBox and numericUpDown in them
                                 {
                                     c.ForeColor = Color.FromArgb(255, 235, 235, 235); // change the color
                                     c.BackColor = Color.FromArgb(255, 29, 29, 29);
+                                }
+                                if (c is GroupBox)
+                                {
+                                    foreach (Control cInGroupBox in c.Controls)
+                                    {
+                                        if (cInGroupBox is TextBox || cInGroupBox is RichTextBox || cInGroupBox is ComboBox || cInGroupBox is NumericUpDown) // ... and for each textBox, richTextBox, comboBox and numericUpDown in them
+                                        {
+                                            cInGroupBox.ForeColor = Color.FromArgb(255, 235, 235, 235); // change the color
+                                            cInGroupBox.BackColor = Color.FromArgb(255, 29, 29, 29);
+                                        }
+                                    }                                   
                                 }
                             }
                         }                       
@@ -166,16 +177,27 @@ namespace English_Test_Generator
                     radioButton9.Checked = true;
                     break;
                 case "Light":
-                    foreach (Control panelOrGroupBox in Controls) // check each panel or groupbox...
+                    foreach (Control panel in Controls) // check each panel or groupbox...
                     {
-                        if (panelOrGroupBox is Panel || panelOrGroupBox is GroupBox)
+                        if (panel is Panel)
                         {
-                            foreach (Control c in panelOrGroupBox.Controls)
+                            foreach (Control c in panel.Controls)
                             {
-                                if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ...for each textBox, richTextBox, comboBox and numericUpDown in them
+                                if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ... and for each textBox, richTextBox, comboBox and numericUpDown in them
                                 { 
                                     c.ForeColor = Color.FromName("WindowText"); // change the color
                                     c.BackColor = Color.FromName("Window");
+                                }
+                                if (c is GroupBox)
+                                {
+                                    foreach (Control cInGroupBox in c.Controls)
+                                    {
+                                        if (cInGroupBox is TextBox || cInGroupBox is RichTextBox || cInGroupBox is ComboBox || cInGroupBox is NumericUpDown) // ... and for each textBox, richTextBox, comboBox and numericUpDown in them
+                                        {
+                                            cInGroupBox.ForeColor = Color.FromName("WindowText"); // change the color
+                                            cInGroupBox.BackColor = Color.FromName("Window");
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -400,36 +422,58 @@ namespace English_Test_Generator
         //-----USER THEME SETTINGS-----
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.userTheme = "Dark";            
-            foreach (Control panelOrGroupBox in Controls) // check each panel or groupbox...
+            Properties.Settings.Default.userTheme = "Dark";
+            foreach (Control panel in Controls) // check each panel or groupbox...
             {
-                if (panelOrGroupBox is Panel || panelOrGroupBox is GroupBox)
+                if (panel is Panel)
                 {
-                    foreach (Control c in panelOrGroupBox.Controls)
+                    foreach (Control c in panel.Controls)
                     {
-                        if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ...for each textBox, richTextBox, comboBox and numericUpDown in them
+                        if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ... and for each textBox, richTextBox, comboBox and numericUpDown in them
                         {
                             c.ForeColor = Color.FromArgb(255, 235, 235, 235); // change the color
                             c.BackColor = Color.FromArgb(255, 29, 29, 29);
                         }
+                        if (c is GroupBox)
+                        {
+                            foreach (Control cInGroupBox in c.Controls)
+                            {
+                                if (cInGroupBox is TextBox || cInGroupBox is RichTextBox || cInGroupBox is ComboBox || cInGroupBox is NumericUpDown) // ... and for each textBox, richTextBox, comboBox and numericUpDown in them
+                                {
+                                    cInGroupBox.ForeColor = Color.FromArgb(255, 235, 235, 235); // change the color
+                                    cInGroupBox.BackColor = Color.FromArgb(255, 29, 29, 29);
+                                }
+                            }
+                        }
                     }
                 }
-            }    
+            }
             Properties.Settings.Default.Save();
         }
         private void radioButton10_CheckedChanged_1(object sender, EventArgs e)
         {
             Properties.Settings.Default.userTheme = "Light";
-            foreach (Control panelOrGroupBox in Controls) // check each panel or groupbox...
+            foreach (Control panel in Controls) // check each panel or groupbox...
             {
-                if (panelOrGroupBox is Panel || panelOrGroupBox is GroupBox)
+                if (panel is Panel)
                 {
-                    foreach (Control c in panelOrGroupBox.Controls)
+                    foreach (Control c in panel.Controls)
                     {
-                        if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ...for each textBox, richTextBox, comboBox and numericUpDown in them
+                        if (c is TextBox || c is RichTextBox || c is ComboBox || c is NumericUpDown) // ... and for each textBox, richTextBox, comboBox and numericUpDown in them
                         {
                             c.ForeColor = Color.FromName("WindowText"); // change the color
                             c.BackColor = Color.FromName("Window");
+                        }
+                        if (c is GroupBox)
+                        {
+                            foreach (Control cInGroupBox in c.Controls)
+                            {
+                                if (cInGroupBox is TextBox || cInGroupBox is RichTextBox || cInGroupBox is ComboBox || cInGroupBox is NumericUpDown) // ... and for each textBox, richTextBox, comboBox and numericUpDown in them
+                                {
+                                    cInGroupBox.ForeColor = Color.FromName("WindowText"); // change the color
+                                    cInGroupBox.BackColor = Color.FromName("Window");
+                                }
+                            }
                         }
                     }
                 }

@@ -49,7 +49,7 @@ namespace English_Test_Generator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("notepad.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("wordpad")]
         public string userEditor {
             get {
                 return ((string)(this["userEditor"]));

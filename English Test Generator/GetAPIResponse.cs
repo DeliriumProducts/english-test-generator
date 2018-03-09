@@ -38,7 +38,7 @@ namespace GetAPIResponse
 {
     enum LexicalCategory
     {
-        AllTypes, Adjective, Adverb, Noun, Idiomatic, Verb, Residual
+        AllTypes, Adjective, Adverb, Noun, Idiomatic, Verb, Residual, Interjection
     }                  
     class Definitions
     {
@@ -117,9 +117,11 @@ namespace GetAPIResponse
                 case LexicalCategory.Idiomatic:
                     return Request("idiomatic", word);
                 case LexicalCategory.Verb:
-                    return  Request("verb", word);
+                    return Request("verb", word);
                 case LexicalCategory.Residual:
                     return Request("residual", word);
+                case LexicalCategory.Interjection:
+                    return Request("interjection", word);
                 default:
                     return "Couldn't find the specified lexical category!";
             }          
@@ -127,17 +129,18 @@ namespace GetAPIResponse
         public static string get(string category, string word)
         {
             return get(map.FirstOrDefault(x => x.Value == category).Key, word); // uses the map to call the get method with the proper arguments
-        }                               
+        }
         public static Dictionary<LexicalCategory, string> map = // dictionary used as a "map" for each type
             new Dictionary<LexicalCategory, string>
             {
                 { LexicalCategory.AllTypes, "All Types"},
-                { LexicalCategory.Adjective, "Adjective"},
-                { LexicalCategory.Adverb, "Adverb"},
-                { LexicalCategory.Noun, "Noun"},
-                { LexicalCategory.Idiomatic, "Idiomatic"},
-                { LexicalCategory.Verb, "Verb"},
-                { LexicalCategory.Residual, "Residual"}
+                { LexicalCategory.Adjective, "adjective"},
+                { LexicalCategory.Adverb, "adverb"},
+                { LexicalCategory.Noun, "noun"},
+                { LexicalCategory.Idiomatic, "idiomatic"},
+                { LexicalCategory.Verb, "verb"},
+                { LexicalCategory.Residual, "residual"},
+                { LexicalCategory.Interjection, "interjection" }
             };
     }
     class Examples
@@ -222,6 +225,10 @@ namespace GetAPIResponse
                     return Request("idiomatic", word);
                 case LexicalCategory.Verb:
                     return Request("verb", word);
+                case LexicalCategory.Residual:
+                    return Request("residual", word);
+                case LexicalCategory.Interjection:
+                    return Request("interjection", word);
                 default:
                     return "Couldn't find the specified lexical category!";
             }
@@ -239,6 +246,8 @@ namespace GetAPIResponse
                 { LexicalCategory.Noun, "noun"},
                 { LexicalCategory.Idiomatic, "idiomatic"},
                 { LexicalCategory.Verb, "verb"},
+                { LexicalCategory.Residual, "residual"},
+                { LexicalCategory.Interjection, "interjection" }
             };
     }
     class Utility

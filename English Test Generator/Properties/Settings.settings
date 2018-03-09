@@ -9,7 +9,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="userEditor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">notepad.exe</Value>
+      <Value Profile="(Default)">wordpad</Value>
     </Setting>
     <Setting Name="transToLanguage" Type="System.String" Scope="User">
       <Value Profile="(Default)">en</Value>

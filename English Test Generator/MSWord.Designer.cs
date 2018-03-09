@@ -35,7 +35,6 @@
             this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
             ((System.ComponentModel.ISupportInitialize)(this.radRichTextEditor1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRichTextEditorRuler1)).BeginInit();
-            this.radRichTextEditorRuler1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.richTextEditorRibbonBar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,7 +77,7 @@
             this.richTextEditorRibbonBar1.ApplicationMenuStyle = Telerik.WinControls.UI.ApplicationMenuStyle.BackstageView;
             this.richTextEditorRibbonBar1.AssociatedRichTextEditor = this.radRichTextEditor1;
             this.richTextEditorRibbonBar1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.richTextEditorRibbonBar1.BuiltInStylesVersion = Telerik.WinForms.Documents.Model.Styles.BuiltInStylesVersion.Office2013;
+            this.richTextEditorRibbonBar1.BuiltInStylesVersion = Telerik.WinForms.Documents.Model.Styles.BuiltInStylesVersion.Office2010;
             this.richTextEditorRibbonBar1.EnableKeyMap = false;
             // 
             // 
@@ -126,7 +125,6 @@
             this.Load += new System.EventHandler(this.MSWord_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radRichTextEditor1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radRichTextEditorRuler1)).EndInit();
-            this.radRichTextEditorRuler1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.richTextEditorRibbonBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
