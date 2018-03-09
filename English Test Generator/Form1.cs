@@ -640,6 +640,5 @@ namespace English_Test_Generator
             Properties.Settings.Default.generatingSpeed = generatingSpeed;
             Properties.Settings.Default.Save();
         }
-
     }
 }

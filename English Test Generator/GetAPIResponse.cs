@@ -122,6 +122,7 @@ namespace GetAPIResponse
                     return Request("residual", word);
                 case LexicalCategory.Interjection:
                     return Request("interjection", word);
+
                 default:
                     return "Couldn't find the specified lexical category!";
             }          

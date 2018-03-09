@@ -32,6 +32,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GetAPIResponse;
+using System.Text.RegularExpressions;
 
 namespace English_Test_Generator
 {
@@ -76,11 +77,14 @@ namespace English_Test_Generator
         public static string Generate(string test_Type, int test_ExcerciseAmount, string test_Name, Dictionary<string, string> test_Words, string region)
         {
             List<string> exercises = new List<string>();
+            List<string> answers = new List<string>();
+            ConcurrentBag<string> bagOfAnswers = new ConcurrentBag<string>();
             ConcurrentBag<string> bagOfExercises = new ConcurrentBag<string>(); // used when using multiple threads
-            string finishedTest = "";
             Form1.fr.progressBar1.Visible = true;
             Form1.fr.progressBar1.Value = 0;
             Form1.fr.progressBar1.Maximum = Form1.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
+            string finishedTest = "";
+            string suggestedAnswerKey = "";
             switch (Form1.generatingSpeed)
             {
                 case "Normal":
@@ -90,15 +94,17 @@ namespace English_Test_Generator
                         switch (test_Type)
                         {
                            case "Definitions":
-                               exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
+                                exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
+                                answers.Add(entry.Key);
                                break;
                            case "Examples":
-                               exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('_', entry.Key.Length)));
-                               break;
-                            case "Words":
-                                exercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")"); 
+                                exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
+                                answers.Add(entry.Key);
                                 break;
-                        }                       
+                            case "Words":
+                                exercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
+                                break;
+                        }
                     }
                     break;
                 case "Fast":
@@ -108,9 +114,11 @@ namespace English_Test_Generator
                         {
                             case "Definitions":
                                 bagOfExercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
+                                bagOfAnswers.Add(entry.Key);
                                 break;
                             case "Examples":
-                                bagOfExercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('_', entry.Key.Length)));
+                                bagOfExercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
+                                bagOfAnswers.Add(entry.Key);
                                 break;
                             case "Words":
                                 bagOfExercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
@@ -118,29 +126,35 @@ namespace English_Test_Generator
                         }
                     });
                     exercises = bagOfExercises.ToList(); // Converts the bagOfExercises variable to List and sets it to exercises variable
+                    answers = bagOfAnswers.ToList();
                     break;
             }                  
             foreach (var exercise in exercises.ToList()) // remove all of the words that were not found in the Oxford Dictionary
             {
-                if (exercise.StartsWith("Couldn't find "))
+                if (exercise.StartsWith("Couldn't find ") && answers.Any())
                 {
+                    answers.RemoveAt(exercises.IndexOf(exercise));
                     exercises.Remove(exercise);
                 }
             }    
-            if (exercises.Count() - test_ExcerciseAmount < 0) // if there are not enough words to make a test, lower the exercise amount
+            if (exercises.Count - test_ExcerciseAmount < 0) // if there are not enough words to make a test, lower the exercise amount
             {
-                test_ExcerciseAmount -= (test_ExcerciseAmount - exercises.Count());
+                test_ExcerciseAmount -= (test_ExcerciseAmount - exercises.Count);
             }
             int n = 1;
             Random rndm = new Random();
             finishedTest += "~~~~~" + test_Name + "~~~~~\n";
+            suggestedAnswerKey += (answers.Any()) ? "~~~~~ Suggested Answer Key ~~~~~\n" : string.Empty;
             while (n <= test_ExcerciseAmount)
             {
-                int randomExercise = rndm.Next(0, exercises.Count());
+                int randomExercise = rndm.Next(0, exercises.Count);
                 finishedTest += "------------------[Ex. "+ n +"]------------------\n" + exercises[randomExercise] + "\n";
+                suggestedAnswerKey += (answers.Any()) ? "[Ex. " + n + "] - " + answers[randomExercise] + "\n" : string.Empty;
                 exercises.RemoveAt(randomExercise);
+                if (answers.Any()) answers.RemoveAt(randomExercise);               
                 n++;
             }
+            finishedTest += "\n" + suggestedAnswerKey;
             Form1.fr.progressBar1.Visible = false;
             return finishedTest;          
         }
