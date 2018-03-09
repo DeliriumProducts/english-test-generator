@@ -258,24 +258,29 @@ namespace GetAPIResponse
         }
         public static void getNewCredentials()
         {
-            string apiCredentialsList = Pastebin.Get("https://pastebin.com/raw/Pu4ki8eE", "credentials");
-            string[] apiCredentials = apiCredentialsList.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            string app_Id = "";
-            string app_Key = "";
-            for (int i = 0; i < apiCredentials.Length; i++)
-            {
-                app_Id = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[0];
-                app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
-                if (hasRequestsLeft(app_Id, app_Key))
+            string apiCredentialsList = "";
+            using (WebClient wc = new WebClient())
+            {                
+                try {apiCredentialsList = wc.DownloadString("https://pastebin.com/raw/Pu4ki8eE");}
+                catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                string[] apiCredentials = apiCredentialsList.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                string app_Id = "";
+                string app_Key = "";
+                for (int i = 0; i < apiCredentials.Length; i++)
                 {
-                    Form1.app_Id = app_Id;
-                    Form1.app_Key = app_Key;
-                    English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
-                    English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
-                    English_Test_Generator.Properties.Settings.Default.Save();
-                    return;
+                    app_Id = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[0];
+                    app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
+                    if (hasRequestsLeft(app_Id, app_Key))
+                    {
+                        Form1.app_Id = app_Id;
+                        Form1.app_Key = app_Key;
+                        English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
+                        English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
+                        English_Test_Generator.Properties.Settings.Default.Save();
+                        return;
+                    }
                 }
-            }
+            }         
         }
     }
 }

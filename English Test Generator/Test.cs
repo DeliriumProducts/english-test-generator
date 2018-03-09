@@ -93,7 +93,7 @@ namespace English_Test_Generator
                                exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
                                break;
                            case "Examples":
-                               exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('.', entry.Key.Length)));
+                               exercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('_', entry.Key.Length)));
                                break;
                             case "Words":
                                 exercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")"); 
@@ -110,7 +110,7 @@ namespace English_Test_Generator
                                 bagOfExercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
                                 break;
                             case "Examples":
-                                bagOfExercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('.', entry.Key.Length)));
+                                bagOfExercises.Add(Read(Examples.get(entry.Value, entry.Key)).Replace(entry.Key.ToLower(), new string('_', entry.Key.Length)));
                                 break;
                             case "Words":
                                 bagOfExercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
