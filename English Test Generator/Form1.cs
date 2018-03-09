@@ -121,19 +121,15 @@ namespace English_Test_Generator
             switch (userEditor) // changes radiobuttons in settings to user preference
             {
                 case "notepad.exe":
-                    transToLanguage = "notepad.exe";
                     radioButton5.Checked = true;
                     break;
                 case "notepad++.exe":
-                    transToLanguage = "notepad++.exe";
                     radioButton6.Checked = true;
                     break;
                 case "MS Word":
-                    transToLanguage = "MS Word";
                     radioButton7.Checked = true;
                     break;
                 case "wordpad":
-                    transToLanguage = "wordpad";
                     radioButton8.Checked = true;
                     break;
             }
@@ -141,9 +137,11 @@ namespace English_Test_Generator
             {
                 case "en":
                     label8.Text = "Bulgarian to English";
+                    webBrowser1.Navigate("https://translate.google.com/#bg/en/");
                     break;
                 case "bg":
                     label8.Text = "English to Bulgarian";
+                    webBrowser1.Navigate("https://translate.google.com/#en/bg/");
                     break;
             }
             switch (userTheme)
@@ -335,7 +333,7 @@ namespace English_Test_Generator
                     }
                 }
             }     
-            richTextBox2.Text = test_Words;            
+           richTextBox2.Text = test_Words;            
         }
         private void button6_Click(object sender, EventArgs e)
         {
@@ -356,8 +354,7 @@ namespace English_Test_Generator
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
             if (test_Result != "")
-            {
-                
+            {                
                 string path = test_Name + ".txt";
                 using (StreamWriter sw = new StreamWriter(path))
                 {
@@ -383,7 +380,7 @@ namespace English_Test_Generator
         //-----TRANSLATOR SETTINGS-----
         private void button8_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.transToLanguage == "en") //if current setting is set to "en" (bg -> en), set it to "bg" (en -> bg)
+            if (transToLanguage == "en") //if current setting is set to "en" (bg -> en), set it to "bg" (en -> bg)
             {
                 label8.Text = "English to Bulgarian";
                 Properties.Settings.Default.transToLanguage = "bg";
@@ -395,12 +392,12 @@ namespace English_Test_Generator
                 label8.Text = "Bulgarian to English";
                 Properties.Settings.Default.transToLanguage = "en";
                 Properties.Settings.Default.Save(); // saves the user's settings
-                webBrowser1.Navigate("https://translate.google.com/#bg/en/"); //Changes the webBrowser's URL based on user's preference
+                webBrowser1.Navigate("https://translate.google.com/#bg/en/"); // Changes the webBrowser's URL based on user's preference
             }
             // The following code swaps the text from the Rich text boxes
-            string textToTranslate = richTextBox4.Text; 
             richTextBox4.Text = richTextBox5.Text;
-            richTextBox5.Text = textToTranslate;
+            richTextBox5.Text = "";
+            transToLanguage = Properties.Settings.Default.transToLanguage;
         }
         //-----USER LANGUAGE SETTINGS-----
         private void button9_Click(object sender, EventArgs e)
@@ -568,7 +565,7 @@ namespace English_Test_Generator
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (button3.BackColor != Color.FromArgb(255, 217, 66, 53)) timer1.Stop();
-            if (Properties.Settings.Default.transToLanguage== "en")
+            if (transToLanguage == "en")
             {
                 if (webBrowser1.ReadyState == WebBrowserReadyState.Complete)
                 {
@@ -577,9 +574,8 @@ namespace English_Test_Generator
                     richTextBox5.Text = result;
                 }
             }
-            if (Properties.Settings.Default.transToLanguage == "bg")
+            if (transToLanguage == "bg")
             {
-
                 if (webBrowser1.ReadyState == WebBrowserReadyState.Complete)
                 {
                     webBrowser1.Document.GetElementById("source").InnerText = richTextBox4.Text;
