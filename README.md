@@ -21,7 +21,6 @@
 - Headphones / Speakers for Text-To-Speech functionality
 - [Visual Studio 2015 / 2017](https://www.visualstudio.com/downloads/) (2017 is recommended) for editing and compiling the code
 
-
 # Getting started
 - Clone the repository using git bash
 
