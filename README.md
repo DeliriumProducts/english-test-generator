@@ -34,7 +34,7 @@ git clone https://github.com/simo3003/EnglishTestGenerator
 
 # Contribute
 
-If you have any ideas for helping / supporting and or improving the project, you can contribute via the Merge Requests to this repository. We'd gladly take a look at each and every one and reply to them.
+If you have any ideas for helping / supporting and or improving the project, you can contribute via the Pull Requests to this repository. We'd gladly take a look at each and every one and reply to them.
 
 # Contact us 
 
