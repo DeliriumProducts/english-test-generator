@@ -18,7 +18,7 @@ title:       "English Test Generator"
 keywords:    "english, test, learning, making, generating-tests, english-learning, school, cirriculum, english test generator, delirium products"
 description: ""
 source_link: "https://github.com/DeliriumProducts/EnglishTestGenerator"
-favicon:     "img/Dtafalonso-Android-Lollipop-Dictionary.ico"
+## favicon:     "img/Dtafalonso-Android-Lollipop-Dictionary.ico"
 touch_icon:  "img/Dtafalonso-Android-Lollipop-Dictionary.ico"
 google_analytics_key: "IEl7cVObCvKmwzXzoHcuU-m_"
 
