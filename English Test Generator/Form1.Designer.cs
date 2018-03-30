@@ -104,15 +104,15 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
             this.label14 = new System.Windows.Forms.Label();
+            this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
             this.label13 = new System.Windows.Forms.Label();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new ProgressBarEx.ProgressBarEx();
-            this.monoFlat_TrackBar2 = new MonoFlat.MonoFlat_TrackBar();
-            this.monoFlat_TrackBar1 = new MonoFlat.MonoFlat_TrackBar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -580,7 +580,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.label8.Location = new System.Drawing.Point(112, 140);
+            this.label8.Location = new System.Drawing.Point(112, 141);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(270, 40);
             this.label8.TabIndex = 3;
@@ -593,7 +593,7 @@
             this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button8.FlatAppearance.BorderSize = 0;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(32, 143);
+            this.button8.Location = new System.Drawing.Point(32, 144);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 35);
             this.button8.TabIndex = 2;
@@ -605,7 +605,7 @@
             this.richTextBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
             this.richTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.richTextBox5.Location = new System.Drawing.Point(32, 184);
+            this.richTextBox5.Location = new System.Drawing.Point(32, 187);
             this.richTextBox5.Name = "richTextBox5";
             this.richTextBox5.ReadOnly = true;
             this.richTextBox5.Size = new System.Drawing.Size(620, 130);
@@ -1102,6 +1102,22 @@
             this.label15.TabIndex = 3;
             this.label15.Text = "Voice Speed";
             // 
+            // monoFlat_TrackBar2
+            // 
+            this.monoFlat_TrackBar2.JumpToMouse = false;
+            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 180);
+            this.monoFlat_TrackBar2.Maximum = 20;
+            this.monoFlat_TrackBar2.Minimum = 0;
+            this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar2.Name = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar2.TabIndex = 0;
+            this.monoFlat_TrackBar2.Text = "monoFlat_TrackBar2";
+            this.monoFlat_TrackBar2.Value = 10;
+            this.monoFlat_TrackBar2.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar2.ValueToSet = 10F;
+            this.monoFlat_TrackBar2.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar2_ValueChanged);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -1111,6 +1127,22 @@
             this.label14.Size = new System.Drawing.Size(78, 28);
             this.label14.TabIndex = 1;
             this.label14.Text = "Volume";
+            // 
+            // monoFlat_TrackBar1
+            // 
+            this.monoFlat_TrackBar1.JumpToMouse = false;
+            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 82);
+            this.monoFlat_TrackBar1.Maximum = 100;
+            this.monoFlat_TrackBar1.Minimum = 0;
+            this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
+            this.monoFlat_TrackBar1.Name = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Size = new System.Drawing.Size(283, 22);
+            this.monoFlat_TrackBar1.TabIndex = 0;
+            this.monoFlat_TrackBar1.Text = "monoFlat_TrackBar1";
+            this.monoFlat_TrackBar1.Value = 30;
+            this.monoFlat_TrackBar1.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
+            this.monoFlat_TrackBar1.ValueToSet = 30F;
+            this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
             // 
             // label13
             // 
@@ -1183,38 +1215,6 @@
             this.progressBar1.Text = "progressBarEx1";
             this.progressBar1.Visible = false;
             // 
-            // monoFlat_TrackBar2
-            // 
-            this.monoFlat_TrackBar2.JumpToMouse = false;
-            this.monoFlat_TrackBar2.Location = new System.Drawing.Point(16, 180);
-            this.monoFlat_TrackBar2.Maximum = 20;
-            this.monoFlat_TrackBar2.Minimum = 0;
-            this.monoFlat_TrackBar2.MinimumSize = new System.Drawing.Size(47, 22);
-            this.monoFlat_TrackBar2.Name = "monoFlat_TrackBar2";
-            this.monoFlat_TrackBar2.Size = new System.Drawing.Size(283, 22);
-            this.monoFlat_TrackBar2.TabIndex = 0;
-            this.monoFlat_TrackBar2.Text = "monoFlat_TrackBar2";
-            this.monoFlat_TrackBar2.Value = 10;
-            this.monoFlat_TrackBar2.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
-            this.monoFlat_TrackBar2.ValueToSet = 10F;
-            this.monoFlat_TrackBar2.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar2_ValueChanged);
-            // 
-            // monoFlat_TrackBar1
-            // 
-            this.monoFlat_TrackBar1.JumpToMouse = false;
-            this.monoFlat_TrackBar1.Location = new System.Drawing.Point(16, 82);
-            this.monoFlat_TrackBar1.Maximum = 100;
-            this.monoFlat_TrackBar1.Minimum = 0;
-            this.monoFlat_TrackBar1.MinimumSize = new System.Drawing.Size(47, 22);
-            this.monoFlat_TrackBar1.Name = "monoFlat_TrackBar1";
-            this.monoFlat_TrackBar1.Size = new System.Drawing.Size(283, 22);
-            this.monoFlat_TrackBar1.TabIndex = 0;
-            this.monoFlat_TrackBar1.Text = "monoFlat_TrackBar1";
-            this.monoFlat_TrackBar1.Value = 30;
-            this.monoFlat_TrackBar1.ValueDivison = MonoFlat.MonoFlat_TrackBar.ValueDivisor.By1;
-            this.monoFlat_TrackBar1.ValueToSet = 30F;
-            this.monoFlat_TrackBar1.ValueChanged += new MonoFlat.MonoFlat_TrackBar.ValueChangedEventHandler(this.monoFlat_TrackBar1_ValueChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1227,11 +1227,11 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1240,6 +1240,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "English Test Generator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.panel1.ResumeLayout(false);

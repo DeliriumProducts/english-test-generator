@@ -93,3 +93,4 @@ D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.TrustInfo.xml
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe.manifest
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.application
+D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Launcher.resources

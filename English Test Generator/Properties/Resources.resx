@@ -175,4 +175,16 @@
   <data name="info" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dplogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dplogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dplogoasdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dplogoasdf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="englishtestsbanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\englishtestsbanner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="englishtestsbannera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\englishtestsbannera.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -91,12 +91,52 @@ namespace English_Test_Generator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dplogo {
+            get {
+                object obj = ResourceManager.GetObject("dplogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dplogoasdf {
+            get {
+                object obj = ResourceManager.GetObject("dplogoasdf", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon Dtafalonso_Android_Lollipop_Dictionary {
             get {
                 object obj = ResourceManager.GetObject("Dtafalonso_Android_Lollipop_Dictionary", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap englishtestsbanner {
+            get {
+                object obj = ResourceManager.GetObject("englishtestsbanner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap englishtestsbannera {
+            get {
+                object obj = ResourceManager.GetObject("englishtestsbannera", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

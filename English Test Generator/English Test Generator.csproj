@@ -143,6 +143,12 @@
     <Compile Include="GetAPIResponse.cs" />
     <Compile Include="IsApplicationInstalled.cs" />
     <Compile Include="JSON_lib.cs" />
+    <Compile Include="Launcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Launcher.Designer.cs">
+      <DependentUpon>Launcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="MSWord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Launcher.resx">
+      <DependentUpon>Launcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MSWord.resx">
       <DependentUpon>MSWord.cs</DependentUpon>
@@ -247,6 +256,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\ProgressBarEx.dll" />
+    <None Include="Resources\englishtestsbannera.png" />
+    <None Include="Resources\englishtestsbanner.png" />
+    <None Include="Resources\dplogo.png" />
+    <None Include="Resources\dplogoasdf.png" />
     <None Include="Resources\info.png" />
     <None Include="Resources\Dtafalonso-Android-Lollipop-Dictionary.ico" />
     <None Include="Resources\Icon.ico" />
