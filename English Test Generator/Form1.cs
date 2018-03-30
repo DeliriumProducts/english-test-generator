@@ -64,7 +64,7 @@ namespace English_Test_Generator
         public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
         public static int test_ExcerciseAmount = 0; // amount of excercises for the test
-        public static Form1 fr; // used to change controls from different classes    
+        public static Form1 fr = new Form1(); // used to change controls from different classes    
         //-----FORM CONSTRUCTOR-----
         public Form1()
         {
@@ -209,6 +209,7 @@ namespace English_Test_Generator
                     radioButton12.Checked = true;
                     break;
             }
+            Launcher.l.Hide();
         }
         //-----TABS / PANELS-----
         private void button1_Click(object sender, EventArgs e)
@@ -639,7 +640,14 @@ namespace English_Test_Generator
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-           Launcher.l.Close();
+            e.Cancel = true ;
+            Launcher.l.Show();
+            Hide();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

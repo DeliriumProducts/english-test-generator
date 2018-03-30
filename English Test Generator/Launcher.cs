@@ -23,17 +23,14 @@ namespace English_Test_Generator
         {
             Process.Start(@"http://deliriumproducts.tk");
         }
-
-        private void Launcher_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void monoFlat_Button1_Click(object sender, EventArgs e)
         {
-            Form1 fr = new Form1();
-            fr.Show();
+            Form1.fr.Show();              
+        }
 
+        private void monoFlat_Button2_Click(object sender, EventArgs e)
+        {
+           TestChecker.tc.Show();                       
         }
     }
 }

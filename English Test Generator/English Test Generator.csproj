@@ -161,6 +161,12 @@
     <Compile Include="SearchWord.cs" />
     <Compile Include="SpeechRecognition.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="TestChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestChecker.Designer.cs">
+      <DependentUpon>TestChecker.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +190,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestChecker.resx">
+      <DependentUpon>TestChecker.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="English Test Generator_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
@@ -256,6 +265,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\ProgressBarEx.dll" />
+    <None Include="Resources\checked %281%29.png" />
+    <None Include="Resources\success %281%29.png" />
+    <None Include="Resources\checked.png" />
+    <None Include="Resources\success.png" />
+    <None Include="Resources\tick.png" />
     <None Include="Resources\englishtestsbannera.png" />
     <None Include="Resources\englishtestsbanner.png" />
     <None Include="Resources\dplogo.png" />
