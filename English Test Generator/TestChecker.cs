@@ -61,5 +61,10 @@ namespace English_Test_Generator
             g.Flush();
             bmp.Save("hui.bmp");
         }
+
+        private void TestChecker_Load(object sender, EventArgs e)
+        {
+            Launcher.l.Hide();
+        }
     }
 }
