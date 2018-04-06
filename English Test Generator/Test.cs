@@ -33,6 +33,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GetAPIResponse;
 using System.Text.RegularExpressions;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace English_Test_Generator
 {
@@ -170,6 +172,63 @@ namespace English_Test_Generator
                 }
             }
             return filteredSource;
+        }
+        public static void GenerateAnswerSheet(string test_Name, int test_ExerciseAmount, int test_GroupsAmount, int test_possibleAnswersAmount)
+        {
+            Bitmap bmp = new Bitmap(720, 1280);
+            Rectangle innerBorder = new Rectangle(70, 70, 580, 1140);
+            Rectangle studentData = new Rectangle(70, 0, 580, 70);
+            Graphics g = Graphics.FromImage(bmp);
+            StringFormat sf = new StringFormat();
+            Font fn = new Font("Calibri", 20);
+            Brush br = Brushes.Black;
+            Pen pn = Pens.Black;
+            sf.Alignment = StringAlignment.Center;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            g.DrawRectangle(Pens.Black, innerBorder);
+            g.DrawRectangle(Pens.Black, studentData);
+            g.DrawString($"{test_Name}; Test Group:", fn, br, studentData, sf);
+            sf.Alignment = StringAlignment.Near;
+            g.DrawString("\nName and Class Number: ", fn, br, studentData, sf);
+            g.DrawString(getPossibleAnswers(test_possibleAnswersAmount), fn, br, 115, 75);
+            int offsetY = 0, offsetRecX = 0, offsetRecY = 0, baseX = 75, baseRecX = 110; ; // offsetY - the offset for drawing the current Exercise number, offsetRecX/Y - the offset for drawing the rectangles
+            for (int i = 1; i <= test_ExerciseAmount; i++)
+            {
+                if (i > 44)
+                {
+                    if (i == 45) g.DrawString(getPossibleAnswers(test_possibleAnswersAmount), fn, br, 395, 75);
+
+                    baseX = 355;
+                    baseRecX = 390;
+                }
+                g.DrawString(i.ToString(), fn, br, baseX, 100 + offsetY);
+                for (int j = 0; j < test_possibleAnswersAmount; j++)
+                {
+                    g.DrawRectangle(pn, baseRecX + offsetRecX, 105 + offsetRecY, 30, 20);
+                    offsetRecX += 45;
+                }
+                offsetRecX = 0;
+                offsetY = (i == 44) ? 0 : offsetY + 25;
+                offsetRecY = (i == 44) ? 0 : offsetRecY + 25;
+            }
+            // END DRAWING ANSWER SHEET
+            g.Flush();
+            bmp.Save("hui.bmp");
+        }
+        public static string getPossibleAnswers(int num) 
+        {
+            int i = 0;
+            char currentChar = 'A';
+            string possibleAnswers = "";
+            while (i<num && currentChar <= 90)
+            {
+                possibleAnswers += currentChar + "     ";
+                currentChar++;
+                i++;
+            }
+            return possibleAnswers;
         }
     }
 }

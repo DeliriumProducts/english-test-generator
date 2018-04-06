@@ -128,7 +128,7 @@
             this.numericUpDown3.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.numericUpDown3.Location = new System.Drawing.Point(335, 206);
             this.numericUpDown3.Maximum = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
