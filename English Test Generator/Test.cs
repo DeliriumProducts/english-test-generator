@@ -207,7 +207,7 @@ namespace English_Test_Generator
                 for (int j = 0; j < test_possibleAnswersAmount; j++)
                 {
                     g.DrawRectangle(pn, baseRecX + offsetRecX, 105 + offsetRecY, 30, 20);
-                    offsetRecX += 45;
+                    offsetRecX += 39;
                 }
                 offsetRecX = 0;
                 offsetY = (i == 44) ? 0 : offsetY + 25;
@@ -215,7 +215,7 @@ namespace English_Test_Generator
             }
             // END DRAWING ANSWER SHEET
             g.Flush();
-            bmp.Save("hui.bmp");
+            bmp.Save("answerSheet.bmp");
         }
         public static string GetPossibleAnswers(int num) 
         {
@@ -224,7 +224,7 @@ namespace English_Test_Generator
             string possibleAnswers = "";
             while (i<num && currentChar <= 90)
             {
-                possibleAnswers += currentChar + "     ";
+                possibleAnswers += currentChar + "    ";
                 currentChar++;
                 i++;
             }
