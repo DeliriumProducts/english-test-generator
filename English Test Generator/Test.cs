@@ -183,6 +183,7 @@ namespace English_Test_Generator
             Font fn = new Font("Calibri", 20);
             Brush br = Brushes.Black;
             Pen pn = Pens.Black;
+            String possibleAnswers = GetPossibleAnswers(test_possibleAnswersAmount);
             sf.Alignment = StringAlignment.Center;
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -192,14 +193,13 @@ namespace English_Test_Generator
             g.DrawString($"{test_Name}; Test Group:", fn, br, studentData, sf);
             sf.Alignment = StringAlignment.Near;
             g.DrawString("\nName and Class Number: ", fn, br, studentData, sf);
-            g.DrawString(getPossibleAnswers(test_possibleAnswersAmount), fn, br, 115, 75);
+            g.DrawString(possibleAnswers, fn, br, 115, 75);
             int offsetY = 0, offsetRecX = 0, offsetRecY = 0, baseX = 75, baseRecX = 110; ; // offsetY - the offset for drawing the current Exercise number, offsetRecX/Y - the offset for drawing the rectangles
             for (int i = 1; i <= test_ExerciseAmount; i++)
             {
                 if (i > 44)
                 {
-                    if (i == 45) g.DrawString(getPossibleAnswers(test_possibleAnswersAmount), fn, br, 395, 75);
-
+                    if (i == 45) g.DrawString(possibleAnswers, fn, br, 395, 75);
                     baseX = 355;
                     baseRecX = 390;
                 }
@@ -217,7 +217,7 @@ namespace English_Test_Generator
             g.Flush();
             bmp.Save("hui.bmp");
         }
-        public static string getPossibleAnswers(int num) 
+        public static string GetPossibleAnswers(int num) 
         {
             int i = 0;
             char currentChar = 'A';
