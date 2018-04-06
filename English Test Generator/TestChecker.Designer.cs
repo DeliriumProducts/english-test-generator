@@ -117,7 +117,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.label4.Location = new System.Drawing.Point(39, 213);
+            this.label4.Location = new System.Drawing.Point(39, 208);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(177, 20);
             this.label4.TabIndex = 5;
@@ -126,9 +126,14 @@
             // numericUpDown3
             // 
             this.numericUpDown3.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown3.Location = new System.Drawing.Point(335, 211);
+            this.numericUpDown3.Location = new System.Drawing.Point(335, 206);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numericUpDown3.Minimum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -136,7 +141,7 @@
             this.numericUpDown3.Size = new System.Drawing.Size(100, 27);
             this.numericUpDown3.TabIndex = 4;
             this.numericUpDown3.Value = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -146,7 +151,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.label3.Location = new System.Drawing.Point(39, 169);
+            this.label3.Location = new System.Drawing.Point(39, 164);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 20);
             this.label3.TabIndex = 3;
@@ -157,7 +162,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.label2.Location = new System.Drawing.Point(39, 124);
+            this.label2.Location = new System.Drawing.Point(39, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 20);
             this.label2.TabIndex = 3;
@@ -168,7 +173,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.label1.Location = new System.Drawing.Point(39, 83);
+            this.label1.Location = new System.Drawing.Point(39, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 3;
@@ -177,16 +182,16 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.textBox1.Location = new System.Drawing.Point(173, 80);
+            this.textBox1.Location = new System.Drawing.Point(173, 75);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(262, 27);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Surprise mada faka";
+            this.textBox1.Text = "Default";
             // 
             // numericUpDown2
             // 
             this.numericUpDown2.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown2.Location = new System.Drawing.Point(335, 167);
+            this.numericUpDown2.Location = new System.Drawing.Point(335, 162);
             this.numericUpDown2.Minimum = new decimal(new int[] {
             1,
             0,
@@ -204,7 +209,12 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.numericUpDown1.Location = new System.Drawing.Point(335, 122);
+            this.numericUpDown1.Location = new System.Drawing.Point(335, 117);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            88,
+            0,
+            0,
+            0});
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -225,7 +235,7 @@
             this.monoFlat_Button1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.monoFlat_Button1.Image = null;
             this.monoFlat_Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.monoFlat_Button1.Location = new System.Drawing.Point(285, 294);
+            this.monoFlat_Button1.Location = new System.Drawing.Point(284, 294);
             this.monoFlat_Button1.Name = "monoFlat_Button1";
             this.monoFlat_Button1.Size = new System.Drawing.Size(175, 41);
             this.monoFlat_Button1.TabIndex = 0;

@@ -95,3 +95,5 @@ D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator
 D:\MyDoc\9V\NA SIMO I LYUBO RABOTITE\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.application
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Launcher.resources
 D:\Projects\Visual Studio\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.TestChecker.resources
+C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.Launcher.resources
+C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.TestChecker.resources
