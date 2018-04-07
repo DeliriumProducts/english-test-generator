@@ -178,6 +178,7 @@ namespace English_Test_Generator
             Bitmap bmp = new Bitmap(720, 1280);
             Rectangle innerBorder = new Rectangle(70, 70, 580, 1140);
             Rectangle studentData = new Rectangle(70, 0, 580, 70);
+            Rectangle testID = new Rectangle(70, 1210, 580, 70);
             Graphics g = Graphics.FromImage(bmp);
             StringFormat sf = new StringFormat();
             Font fn = new Font("Calibri", 20);
@@ -185,11 +186,12 @@ namespace English_Test_Generator
             Pen pn = Pens.Black;
             String possibleAnswers = GetPossibleAnswers(test_possibleAnswersAmount);
             sf.Alignment = StringAlignment.Center;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+           // g.SmoothingMode = SmoothingMode.AntiAlias;
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             g.DrawRectangle(Pens.Black, innerBorder);
             g.DrawRectangle(Pens.Black, studentData);
+            g.DrawRectangle(Pens.Black, testID);
             g.DrawString($"{test_Name}; Test Group:", fn, br, studentData, sf);
             sf.Alignment = StringAlignment.Near;
             g.DrawString("\nName and Class Number: ", fn, br, studentData, sf);
@@ -213,6 +215,8 @@ namespace English_Test_Generator
                 offsetY = (i == 44) ? 0 : offsetY + 25;
                 offsetRecY = (i == 44) ? 0 : offsetRecY + 25;
             }
+            sf.Alignment = StringAlignment.Far;
+            g.DrawString($"Test ID: {test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}", fn, br, testID,sf);
             // END DRAWING ANSWER SHEET
             g.Flush();
             bmp.Save("answerSheet.bmp");
