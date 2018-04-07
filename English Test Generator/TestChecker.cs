@@ -18,7 +18,7 @@ namespace English_Test_Generator
         public static int exerciseAmount;
         public static int testGroupsAmount;
         public static int possibleAnswersAmount;
-
+        public static string testID;
         public TestChecker()
         {
             InitializeComponent();
@@ -81,5 +81,13 @@ namespace English_Test_Generator
             g.Flush();
         }
 
+        private void monoFlat_Button2_Click(object sender, EventArgs e)
+        {
+            exerciseAmount = Convert.ToInt32(textBox4.Text);
+            possibleAnswersAmount = Convert.ToInt32(textBox3.Text);
+            testGroupsAmount = Convert.ToInt32(textBox2.Text);
+            testID = $"{exerciseAmount}/{possibleAnswersAmount}/{testGroupsAmount}";
+           // TO DO: Test.Check(testID)
+        }
     }
 }
