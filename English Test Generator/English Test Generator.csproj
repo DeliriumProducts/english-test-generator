@@ -265,6 +265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\ProgressBarEx.dll" />
+    <None Include="Resources\folder.png" />
     <None Include="Resources\checked %281%29.png" />
     <None Include="Resources\success %281%29.png" />
     <None Include="Resources\checked.png" />

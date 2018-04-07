@@ -59,10 +59,27 @@ namespace English_Test_Generator
         {
             Launcher.l.Hide();
         }
-        
-        //bool hasSpaceAvailable(int x, int y)
-        //{
-        //    return (x > 575 || y > 1205) ? false : true;
-        //}
+       
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp;
+            string filePath;
+            OpenFileDialog newDialog = new OpenFileDialog();
+            newDialog.Title = "Open Answer Sheet";
+            newDialog.InitialDirectory = @"C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug";
+            if(newDialog.ShowDialog()==DialogResult.OK)
+            {
+                textBox5.Text = newDialog.FileName;
+                filePath = newDialog.FileName;
+            }
+            // TEMP CODE LOCATION
+            bmp = new Bitmap(newDialog.FileName); // bmp - stores the loaded image which will be used later on to recognize human marks
+            Bitmap box = new Bitmap(29, 19);
+            Graphics g = Graphics.FromImage(box);
+            box = bmp.Clone(new Rectangle(110,105,29,19),box.PixelFormat);
+            box.Save("shittingAround.bmp");
+            g.Flush();
+        }
+
     }
 }
