@@ -1,4 +1,6 @@
-<div style="text-align:center"><img src="res/topPanel.png" class="center"></div>
+<p align="center">
+  <img width="700" height="120" src="res/topPanel.png">
+</p>
 
 # English Test Generator 
 „English Test Generator“ is a program, which was created with the purpose of making the process of creating tests and exercises easier. 
