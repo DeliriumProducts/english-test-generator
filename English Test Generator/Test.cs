@@ -35,6 +35,7 @@ using GetAPIResponse;
 using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace English_Test_Generator
 {
@@ -234,37 +235,109 @@ namespace English_Test_Generator
             }
             return possibleAnswers;
         }
-        public static void Check(Bitmap bmp, string testID, Dictionary<char,char> answerKey)
+        public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey)
         {
+            bmp = GrayScale(bmp);
+            bmp.Save("pishhsdhsdhshdsajdsad.bmp");
+            Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
             Bitmap box = new Bitmap(29, 19);
             Graphics g = Graphics.FromImage(box);
             Color pixel;
-            int offsetRecX = 0, offsetRecY = 0,baseRecX = 110;
+            int offsetRecX = 0, offsetRecY = 0, baseRecX = 110;
             box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);
             // SCANNING FOR ANY MARKS ON THE BOX
             int foundMarks = 0;
-            Action searchForMarks = delegate
+            bool searchForMarks()
             {
                 for (int x = 0; x < box.Width; x++)
                 {
                     for (int y = 0; y < box.Height; y++)
                     {
                         pixel = box.GetPixel(x, y);
-                        if (pixel.R <= 20 && pixel.G <= 20 && pixel.B <= 20)
+                        if (pixel.R <= 200)
                         {
                             foundMarks++;
-                            if (foundMarks >= 10)
+                            if (foundMarks >= 20)
                             {
                                 foundMarks = 0;
-                                return;
-                            } 
+                                return true;
+                            }
                         }
                     }
                 }
+                return false;
             };
-            searchForMarks();
-            box.Save("shittingAround.bmp");
+            int test_ExerciseAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[0]);
+            int test_possibleAnswersAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[1]);
+            for (int i = 1; i <= test_ExerciseAmount; i++)
+            {
+                if (i > 44)
+                {
+                    if (i == 45)
+                        baseRecX = 390;
+                }
+                bool studentHasAnswered = false;
+                for (int j = 1; j <= test_possibleAnswersAmount; j++)
+                {
+                    if (searchForMarks())
+                    {
+                        studentAnswers.Add(i, (char)(j + 64));
+                        offsetRecX = 0;
+                        studentHasAnswered = true;
+                        break;
+                    }
+                    offsetRecX += 39;
+                    box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);
+                }
+                if (!studentHasAnswered)
+                {
+                    studentAnswers.Add(i, '-');
+                }
+                offsetRecX = 0;
+                offsetRecY = (i == 44) ? 0 : offsetRecY + 25;
+                box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);
+            }
+            int correctAnswers = 0;
+            foreach (var key in answerKey.Keys)
+            {
+                if (answerKey[key].Equals(studentAnswers[key])) correctAnswers++;
+            }
             g.Flush();
+            return correctAnswers;
+        }
+        public static Bitmap GrayScale(Bitmap original)
+        {
+            //create a blank bitmap the same size as original
+            Bitmap newBitmap = new Bitmap(original.Width, original.Height);
+
+            //get a graphics object from the new image
+            Graphics g = Graphics.FromImage(newBitmap);
+
+            //create the grayscale ColorMatrix
+            ColorMatrix colorMatrix = new ColorMatrix(
+               new float[][]
+               {
+         new float[] {.3f, .3f, .3f, 0, 0},
+         new float[] {.59f, .59f, .59f, 0, 0},
+         new float[] {.11f, .11f, .11f, 0, 0},
+         new float[] {0, 0, 0, 1, 0},
+         new float[] {0, 0, 0, 0, 1}
+               });
+
+            //create some image attributes
+            ImageAttributes attributes = new ImageAttributes();
+
+            //set the color matrix attribute
+            attributes.SetColorMatrix(colorMatrix);
+
+            //draw the original image on the new image
+            //using the grayscale color matrix
+            g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
+               0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
+
+            //dispose the Graphics object
+            g.Dispose();
+            return newBitmap;
         }
     }
 }

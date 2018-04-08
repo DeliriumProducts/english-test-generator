@@ -79,16 +79,17 @@ namespace English_Test_Generator
 
         private void monoFlat_Button2_Click(object sender, EventArgs e)
         {
-            Dictionary<char, char> answerKey = new Dictionary<char, char>();
+            Dictionary<int, char> answerKey = new Dictionary<int, char>();
             string[] lines = richTextBox1.Text.Split(
      new[] { "\r\n", "\r", "\n" },
      StringSplitOptions.None
  );
-            char key, value;
+            int key;
+            char value;
             for (int i = 0; i < lines.Length; i++)
             {
                 string[] keyPair = lines[i].Split(new[] { "-" }, StringSplitOptions.None);
-                key = keyPair[0][0];
+                key = Convert.ToInt32(keyPair[0][0]);
                 value = keyPair[1][0];
                 answerKey.Add(key, value);
             }
@@ -98,7 +99,7 @@ namespace English_Test_Generator
             testID = $"{exerciseAmount}/{possibleAnswersAmount}/{testGroupsAmount}";
             // TO DO: Test.Check(bmp, testID)
             bmp = new Bitmap(newDialog.FileName); // bmp - stores the loaded image which will be used later on to recognize human marks
-            Test.Check(bmp, testID, answerKey);
+            MessageBox.Show(Test.Check(bmp, testID, answerKey).ToString());
         }
     }
 }

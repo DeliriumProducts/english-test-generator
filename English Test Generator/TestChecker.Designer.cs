@@ -318,7 +318,7 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = global::English_Test_Generator.Properties.Resources.folder;
-            this.button3.Location = new System.Drawing.Point(441, 141);
+            this.button3.Location = new System.Drawing.Point(408, 142);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(27, 27);
             this.button3.TabIndex = 13;
@@ -331,7 +331,7 @@
             this.textBox5.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.textBox5.Location = new System.Drawing.Point(182, 141);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(253, 27);
+            this.textBox5.Size = new System.Drawing.Size(220, 27);
             this.textBox5.TabIndex = 12;
             // 
             // label8
