@@ -44,6 +44,8 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.monoFlat_Button1 = new MonoFlat.MonoFlat_Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.monoFlat_Button2 = new MonoFlat.MonoFlat_Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -55,8 +57,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label9 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -278,6 +278,25 @@
             this.panel2.Size = new System.Drawing.Size(484, 358);
             this.panel2.TabIndex = 8;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(347, 195);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(88, 68);
+            this.richTextBox1.TabIndex = 16;
+            this.richTextBox1.Text = "1-A\n2-A\n3-D\n4-C\n5-D\n6-B\n7-A\n8-A";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.label9.Location = new System.Drawing.Point(39, 197);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(85, 20);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Answer Key";
+            // 
             // monoFlat_Button2
             // 
             this.monoFlat_Button2.BackColor = System.Drawing.Color.Transparent;
@@ -382,25 +401,6 @@
             this.label5.Size = new System.Drawing.Size(54, 20);
             this.label5.TabIndex = 4;
             this.label5.Text = "Test ID";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.label9.Location = new System.Drawing.Point(39, 197);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 20);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Answer Key";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(347, 195);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(88, 68);
-            this.richTextBox1.TabIndex = 16;
-            this.richTextBox1.Text = "1-A\n2-A\n3-D\n4-C\n5-D\n6-B\n7-A\n8-A";
             // 
             // TestChecker
             // 

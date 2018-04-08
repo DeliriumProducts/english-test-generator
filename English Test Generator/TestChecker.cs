@@ -19,6 +19,10 @@ namespace English_Test_Generator
         public static int testGroupsAmount;
         public static int possibleAnswersAmount;
         public static string testID;
+        public static string filePath;
+        public static Bitmap bmp;
+        public static OpenFileDialog newDialog;
+
         public TestChecker()
         {
             InitializeComponent();
@@ -62,9 +66,8 @@ namespace English_Test_Generator
        
         private void button3_Click(object sender, EventArgs e)
         {
-            Bitmap bmp;
-            string filePath;
-            OpenFileDialog newDialog = new OpenFileDialog();
+            
+            newDialog = new OpenFileDialog();
             newDialog.Title = "Open Answer Sheet";
             newDialog.InitialDirectory = @"C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug";
             if(newDialog.ShowDialog()==DialogResult.OK)
@@ -72,22 +75,30 @@ namespace English_Test_Generator
                 textBox5.Text = newDialog.FileName;
                 filePath = newDialog.FileName;
             }
-            // TEMP CODE LOCATION
-            bmp = new Bitmap(newDialog.FileName); // bmp - stores the loaded image which will be used later on to recognize human marks
-            Bitmap box = new Bitmap(29, 19);
-            Graphics g = Graphics.FromImage(box);
-            box = bmp.Clone(new Rectangle(110,105,29,19),box.PixelFormat);
-            box.Save("shittingAround.bmp");
-            g.Flush();
         }
 
         private void monoFlat_Button2_Click(object sender, EventArgs e)
         {
+            Dictionary<char, char> answerKey = new Dictionary<char, char>();
+            string[] lines = richTextBox1.Text.Split(
+     new[] { "\r\n", "\r", "\n" },
+     StringSplitOptions.None
+ );
+            char key, value;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string[] keyPair = lines[i].Split(new[] { "-" }, StringSplitOptions.None);
+                key = keyPair[0][0];
+                value = keyPair[1][0];
+                answerKey.Add(key, value);
+            }
             exerciseAmount = Convert.ToInt32(textBox4.Text);
             possibleAnswersAmount = Convert.ToInt32(textBox3.Text);
             testGroupsAmount = Convert.ToInt32(textBox2.Text);
             testID = $"{exerciseAmount}/{possibleAnswersAmount}/{testGroupsAmount}";
-           // TO DO: Test.Check(testID)
+            // TO DO: Test.Check(bmp, testID)
+            bmp = new Bitmap(newDialog.FileName); // bmp - stores the loaded image which will be used later on to recognize human marks
+            Test.Check(bmp, testID, answerKey);
         }
     }
 }

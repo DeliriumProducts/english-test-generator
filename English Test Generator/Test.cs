@@ -196,7 +196,7 @@ namespace English_Test_Generator
             sf.Alignment = StringAlignment.Near;
             g.DrawString("\nName and Class Number: ", fn, br, studentData, sf);
             g.DrawString(possibleAnswers, fn, br, 115, 75);
-            int offsetY = 0, offsetRecX = 0, offsetRecY = 0, baseX = 75, baseRecX = 110; ; // offsetY - the offset for drawing the current Exercise number, offsetRecX/Y - the offset for drawing the rectangles
+            int offsetY = 0, offsetRecX = 0, offsetRecY = 0, baseX = 75, baseRecX = 110; // offsetY - the offset for drawing the current Exercise number, offsetRecX/Y - the offset for drawing the rectangles
             for (int i = 1; i <= test_ExerciseAmount; i++)
             {
                 if (i > 44)
@@ -233,6 +233,38 @@ namespace English_Test_Generator
                 i++;
             }
             return possibleAnswers;
+        }
+        public static void Check(Bitmap bmp, string testID, Dictionary<char,char> answerKey)
+        {
+            Bitmap box = new Bitmap(29, 19);
+            Graphics g = Graphics.FromImage(box);
+            Color pixel;
+            int offsetRecX = 0, offsetRecY = 0,baseRecX = 110;
+            box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);
+            // SCANNING FOR ANY MARKS ON THE BOX
+            int foundMarks = 0;
+            Action searchForMarks = delegate
+            {
+                for (int x = 0; x < box.Width; x++)
+                {
+                    for (int y = 0; y < box.Height; y++)
+                    {
+                        pixel = box.GetPixel(x, y);
+                        if (pixel.R <= 20 && pixel.G <= 20 && pixel.B <= 20)
+                        {
+                            foundMarks++;
+                            if (foundMarks >= 10)
+                            {
+                                foundMarks = 0;
+                                return;
+                            } 
+                        }
+                    }
+                }
+            };
+            searchForMarks();
+            box.Save("shittingAround.bmp");
+            g.Flush();
         }
     }
 }
