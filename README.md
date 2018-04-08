@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="700" height="120" src="res/topPanel.png">
+  <img width="700" height="120" src="English Test Generator/Resources/bottomPanel.png">
 </p>
 
 # English Test Generator 
