@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="700" height="120" src="res/topPanel.png">
+</p>
+
 # English Test Generator 
 „English Test Generator“ is a program, which was created with the purpose of making the process of creating tests and exercises easier. 
 	The main idea of the project is through connection to the Oxford Dictionary to extract the definition of a word, thus creating a type of an English dictionary which generates tests.
