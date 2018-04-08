@@ -298,9 +298,12 @@ namespace English_Test_Generator
                 box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);
             }
             int correctAnswers = 0;
-            foreach (var key in answerKey.Keys)
+            for (int i = 1; i <= answerKey.Count; i++)
             {
-                if (answerKey[key].Equals(studentAnswers[key])) correctAnswers++;
+                if (answerKey[i] == studentAnswers[i])
+                {
+                    correctAnswers++;
+                }
             }
             g.Flush();
             return correctAnswers;

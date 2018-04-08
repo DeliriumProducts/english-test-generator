@@ -62,6 +62,9 @@ namespace English_Test_Generator
         private void TestChecker_Load(object sender, EventArgs e)
         {
             Launcher.l.Hide();
+            button1.BackColor = Color.FromArgb(255, 217, 66, 53);
+            button2.BackColor = Color.FromArgb(255, 20, 20, 20);
+            panel1.BringToFront();
         }
        
         private void button3_Click(object sender, EventArgs e)
@@ -84,14 +87,12 @@ namespace English_Test_Generator
      new[] { "\r\n", "\r", "\n" },
      StringSplitOptions.None
  );
-            int key;
             char value;
-            for (int i = 0; i < lines.Length; i++)
+            for (int i = 1; i <= lines.Length; i++)
             {
-                string[] keyPair = lines[i].Split(new[] { "-" }, StringSplitOptions.None);
-                key = Convert.ToInt32(keyPair[0][0]);
+                string[] keyPair = lines[i-1].Split(new[] { "-" }, StringSplitOptions.None);
                 value = keyPair[1][0];
-                answerKey.Add(key, value);
+                answerKey.Add(i, value);
             }
             exerciseAmount = Convert.ToInt32(textBox4.Text);
             possibleAnswersAmount = Convert.ToInt32(textBox3.Text);
