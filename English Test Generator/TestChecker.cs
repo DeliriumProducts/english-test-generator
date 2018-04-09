@@ -82,11 +82,11 @@ namespace English_Test_Generator
 
         private void monoFlat_Button2_Click(object sender, EventArgs e)
         {
+            richTextBox1.Text.Trim();
             Dictionary<int, char> answerKey = new Dictionary<int, char>();
             string[] lines = richTextBox1.Text.Split(
      new[] { "\r\n", "\r", "\n" },
-     StringSplitOptions.None
- );
+     StringSplitOptions.None);
             char value;
             for (int i = 1; i <= lines.Length; i++)
             {
@@ -100,7 +100,7 @@ namespace English_Test_Generator
             testID = $"{exerciseAmount}/{possibleAnswersAmount}/{testGroupsAmount}";
             // TO DO: Test.Check(bmp, testID)
             bmp = new Bitmap(newDialog.FileName); // bmp - stores the loaded image which will be used later on to recognize human marks
-            MessageBox.Show(Test.Check(bmp, testID, answerKey).ToString());
+            MessageBox.Show(Test.Check(bmp, testID, answerKey).ToString()+"/"+answerKey.Count+" points");
         }
     }
 }
