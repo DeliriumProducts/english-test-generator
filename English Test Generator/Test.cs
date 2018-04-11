@@ -36,7 +36,7 @@ using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-
+using ZXing;
 namespace English_Test_Generator
 {
     class Test
@@ -191,10 +191,16 @@ namespace English_Test_Generator
                 // g.SmoothingMode = SmoothingMode.AntiAlias;
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+               
                 g.FillRectangle(Brushes.White, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                var barcodeWriter = new BarcodeWriter();
+                barcodeWriter.Format = BarcodeFormat.QR_CODE;
+                // write text and generate a 2-D barcode as a bitmap
+                Bitmap qrcode = barcodeWriter.Write($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}");
+                g.DrawImage(qrcode, 360 - qrcode.Width / 2, 1195);
+                g.DrawRectangle(Pens.Black, testID);
                 g.DrawRectangle(Pens.Black, innerBorder);
                 g.DrawRectangle(Pens.Black, studentData);
-                g.DrawRectangle(Pens.Black, testID);
                 g.DrawString($"{test_Name}; Test Group:", fn, br, studentData, sf);
                 sf.Alignment = StringAlignment.Near;
                 g.DrawString("\nName and Class Number: ", fn, br, studentData, sf);
@@ -219,7 +225,6 @@ namespace English_Test_Generator
                     offsetRecY = (i == 44) ? 0 : offsetRecY + 25;
                 }
                 sf.Alignment = StringAlignment.Far;
-                g.DrawString($"Test ID: {test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}", fn, br, testID, sf);
                 // END DRAWING ANSWER SHEET
                 g.Flush();
                 bmp.Save("answerSheet.bmp");
@@ -245,31 +250,9 @@ namespace English_Test_Generator
             Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
             Bitmap box = new Bitmap(29, 19);
             Graphics g = Graphics.FromImage(box);
-            Color pixel;
+            Color pixel = Color.White;
             int offsetRecX = 0, offsetRecY = 0, baseRecX = 110;
-            box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);
-            // SCANNING FOR ANY MARKS ON THE BOX
-            bool searchForMarks()
-            {
-                int foundMarks = 0;
-                for (int x = 0; x < box.Width; x++)
-                {
-                    for (int y = 0; y < box.Height; y++)
-                    {
-                        pixel = box.GetPixel(x, y);
-                        if (pixel.R <= 200)
-                        {
-                            foundMarks++;
-                            if (foundMarks >= 20)
-                            {
-                                foundMarks = 0;
-                                return true;
-                            }
-                        }
-                    }
-                }
-                return false;
-            };
+            box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);           
             int test_ExerciseAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[0]);
             int test_possibleAnswersAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[1]);
             for (int i = 1; i <= test_ExerciseAmount; i++)
@@ -282,7 +265,7 @@ namespace English_Test_Generator
                 bool studentHasAnswered = false;
                 for (int j = 1; j <= test_possibleAnswersAmount; j++)
                 {
-                    if (searchForMarks())
+                    if (searchForMarks(box, pixel))
                     {
                         studentAnswers.Add(i, (char)(j + 64));
                         offsetRecX = 0;
@@ -344,6 +327,27 @@ namespace English_Test_Generator
             //dispose the Graphics object
             g.Dispose();
             return newBitmap;
+        }
+        public static bool searchForMarks(Bitmap box, Color pixel)
+        {
+            int foundMarks = 0;
+            for (int x = 0; x < box.Width; x++)
+            {
+                for (int y = 0; y < box.Height; y++)
+                {
+                    pixel = box.GetPixel(x, y);
+                    if (pixel.R <= 200)
+                    {
+                        foundMarks++;
+                        if (foundMarks >= 20)
+                        {
+                            foundMarks = 0;
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
     }
 }
