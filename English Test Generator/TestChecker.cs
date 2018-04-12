@@ -73,7 +73,7 @@ namespace English_Test_Generator
         {
             newDialog = new OpenFileDialog();
             newDialog.Title = "Open Answer Sheet";
-            newDialog.InitialDirectory = @"C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\bin\Debug";
+            newDialog.InitialDirectory = Application.ExecutablePath;
             if(newDialog.ShowDialog()==DialogResult.OK)
             {
                 textBox5.Text = newDialog.FileName;
@@ -95,18 +95,20 @@ namespace English_Test_Generator
                 value = keyPair[1][0];
                 answerKey.Add(i, value);
             }
-            exerciseAmount = Convert.ToInt32(textBox4.Text);
-            possibleAnswersAmount = Convert.ToInt32(textBox3.Text);
-            testGroupsAmount = Convert.ToInt32(textBox2.Text);
+            bmp = new Bitmap(newDialog.FileName);
             BarcodeReader barcodeReader = new BarcodeReader();
-            barcodeReader.Options.TryHarder = true;            
-            // create an in memory bitmap
-            var barcodeBitmap = (Bitmap)Bitmap.FromFile(filePath);
-            // decode the barcode from the in memory bitmap
+            barcodeReader.Options.TryHarder = true;
+            var barcodeBitmap = (Bitmap)bmp;
             Result barcodeResult = barcodeReader.Decode(barcodeBitmap);
             testID = barcodeResult.Text;
-            // TO DO: Test.Check(bmp, testID)
-            bmp = new Bitmap(newDialog.FileName); // bmp - stores the loaded image which will be used later on to recognize human marks
+            float Ax, Ay, Bx, By;
+            Ax = barcodeResult.ResultPoints[0].X;
+            Ay = barcodeResult.ResultPoints[0].Y;
+            Bx = barcodeResult.ResultPoints[1].X;
+            By = barcodeResult.ResultPoints[1].Y;
+            bmp = Utility.RotateBMP(bmp, Ax, Ay, Bx, By);
+            MessageBox.Show(testID);
+            // bmp - stores the loaded image which will be used later on to recognize human marks
             MessageBox.Show(Test.Check(bmp, testID, answerKey).ToString()+"/"+answerKey.Count+" points");
         }
     }

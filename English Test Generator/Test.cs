@@ -179,7 +179,8 @@ namespace English_Test_Generator
             using (Bitmap bmp = new Bitmap(720, 1280))
             {
                 Rectangle innerBorder = new Rectangle(70, 70, 580, 1140);
-                Rectangle studentData = new Rectangle(70, 0, 580, 70);
+                Rectangle outerBorder = new Rectangle(1, 1, 719, 1279);
+                Rectangle studentData = new Rectangle(70, 1, 580, 70);
                 Rectangle testID = new Rectangle(70, 1210, 580, 70);
                 Graphics g = Graphics.FromImage(bmp);
                 StringFormat sf = new StringFormat();
@@ -188,16 +189,14 @@ namespace English_Test_Generator
                 Pen pn = Pens.Black;
                 String possibleAnswers = GetPossibleAnswers(test_possibleAnswersAmount);
                 sf.Alignment = StringAlignment.Center;
-                // g.SmoothingMode = SmoothingMode.AntiAlias;
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-               
                 g.FillRectangle(Brushes.White, new Rectangle(0, 0, bmp.Width, bmp.Height));
                 var barcodeWriter = new BarcodeWriter();
                 barcodeWriter.Format = BarcodeFormat.QR_CODE;
-                // write text and generate a 2-D barcode as a bitmap
-                Bitmap qrcode = barcodeWriter.Write($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}");
-                g.DrawImage(qrcode, 360 - qrcode.Width / 2, 1195);
+                Bitmap qrcode = new Bitmap(barcodeWriter.Write($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}"),83,83);
+                g.DrawImage(qrcode, 0,0);
+                g.DrawRectangle(Pens.Gray, outerBorder);
                 g.DrawRectangle(Pens.Black, testID);
                 g.DrawRectangle(Pens.Black, innerBorder);
                 g.DrawRectangle(Pens.Black, studentData);
@@ -226,6 +225,7 @@ namespace English_Test_Generator
                 }
                 sf.Alignment = StringAlignment.Far;
                 // END DRAWING ANSWER SHEET
+                g.RotateTransform(30);
                 g.Flush();
                 bmp.Save("answerSheet.bmp");
             }
@@ -250,6 +250,7 @@ namespace English_Test_Generator
             Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
             Bitmap box = new Bitmap(29, 19);
             Graphics g = Graphics.FromImage(box);
+            Graphics g2 = Graphics.FromImage(bmp);
             Color pixel = Color.White;
             int offsetRecX = 0, offsetRecY = 0, baseRecX = 110;
             box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);           
@@ -265,6 +266,7 @@ namespace English_Test_Generator
                 bool studentHasAnswered = false;
                 for (int j = 1; j <= test_possibleAnswersAmount; j++)
                 {
+                    g2.DrawRectangle(Pens.Red, new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19));
                     if (searchForMarks(box, pixel))
                     {
                         studentAnswers.Add(i, (char)(j + 64));
@@ -273,7 +275,7 @@ namespace English_Test_Generator
                         break;
                     }
                     offsetRecX += 39;
-                    box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);
+                    box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);                  
                 }
                 if (!studentHasAnswered)
                 {
@@ -291,6 +293,7 @@ namespace English_Test_Generator
                     correctAnswers++;
                 }
             }
+            bmp.Save("asdf.bmp");
             g.Flush();
             return correctAnswers;
         }
@@ -336,7 +339,7 @@ namespace English_Test_Generator
                 for (int y = 0; y < box.Height; y++)
                 {
                     pixel = box.GetPixel(x, y);
-                    if (pixel.R <= 200)
+                    if (pixel.R <= 100)
                     {
                         foundMarks++;
                         if (foundMarks >= 20)

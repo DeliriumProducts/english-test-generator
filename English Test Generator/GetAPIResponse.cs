@@ -39,7 +39,7 @@ namespace GetAPIResponse
     enum LexicalCategory
     {
         AllTypes, Adjective, Adverb, Noun, Idiomatic, Verb, Residual, Interjection
-    }                  
+    }
     class Definitions
     {
         public static string Request(string lexicalCategory, string word)
@@ -57,9 +57,9 @@ namespace GetAPIResponse
             client.DefaultRequestHeaders.Add("app_id", Form1.app_Id); // adds the id to the headers
             client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
             try { response = client.GetAsync(url).Result; } // gets the respone headers   
-            catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }      
+            catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             if (response.IsSuccessStatusCode) // checks if the response code is equal to 200
-                {
+            {
                 string content = response.Content.ReadAsStringAsync().Result; // receives the API response              
                 var result = JsonConvert.DeserializeObject<GetResponse>(content); // Converts the API response to the format that the program can understand
                 for (int i = 0; i < result.Results.First().LexicalEntries.Length; i++) // i = all entries from the API response
@@ -98,22 +98,23 @@ namespace GetAPIResponse
                 return definitions.Trim(); // returns the result 
             }
             else // if the response code is different than 200
-            {   if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); get(lexicalCategory, word); }             
+            {
+                if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); get(lexicalCategory, word); }
                 return "ERROR \nCouldn't find " + word + " Status: " + response.StatusCode; // error while trying to access the API 
-            }           
+            }
         }
         public static string get(LexicalCategory category, string word)
-        {                    
+        {
             switch (category) // requests the method for the corresponding category
             {
                 case LexicalCategory.AllTypes:
                     return Request("", word);
                 case LexicalCategory.Adjective:
-                    return Request("adjective", word);                                    
+                    return Request("adjective", word);
                 case LexicalCategory.Adverb:
-                    return Request("adverb", word);                
+                    return Request("adverb", word);
                 case LexicalCategory.Noun:
-                    return Request("noun", word);                  
+                    return Request("noun", word);
                 case LexicalCategory.Idiomatic:
                     return Request("idiomatic", word);
                 case LexicalCategory.Verb:
@@ -125,7 +126,7 @@ namespace GetAPIResponse
 
                 default:
                     return "Couldn't find the specified lexical category!";
-            }          
+            }
         }
         public static string get(string category, string word)
         {
@@ -148,7 +149,7 @@ namespace GetAPIResponse
     {
         public static string Request(string lexicalCategory, string word)
         {
-            string cache = ""; 
+            string cache = "";
             if (CacheWord.Check(word, "Examples"))
             {
                 return CacheWord.Read(word, "Examples", lexicalCategory);
@@ -172,7 +173,7 @@ namespace GetAPIResponse
                     {
                         for (int k = 0; k < result.Results.First().LexicalEntries[i].Entries[j].Senses.Length; k++) // k = all examples from the API response 
                         {
-                            for (int l = 0; result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples != null && l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples.Length ; l++) // l = all text in the current example from the API response
+                            for (int l = 0; result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples != null && l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Examples.Length; l++) // l = all text in the current example from the API response
                             {
                                 if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                 {
@@ -186,7 +187,7 @@ namespace GetAPIResponse
                             {
                                 for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses.Length; l++) // l = all subsense definitions from the API response
                                 {
-                                    for (int m = 0; m < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples.Length;  m++) // m = all text in the current example from the API response
+                                    for (int m = 0; m < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Examples.Length; m++) // m = all text in the current example from the API response
                                     {
                                         if (result.Results.First().LexicalEntries[i].LexicalCategory.ToLower() == lexicalCategory || lexicalCategory == "") // checks if the current lexicalCategory matches the one designated by the user
                                         {
@@ -201,13 +202,13 @@ namespace GetAPIResponse
                         }
                     }
                 }
-                 CacheWord.Write(word, "Examples", cache);
-                 return examples.Trim();
+                CacheWord.Write(word, "Examples", cache);
+                return examples.Trim();
             }
             else // if the response code is different than 200
             {
-                 if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); get(lexicalCategory, word); }
-                 return "ERROR \nCouldn't find " + word + " Status: " + response.StatusCode; // error while trying to access the API 
+                if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); get(lexicalCategory, word); }
+                return "ERROR \nCouldn't find " + word + " Status: " + response.StatusCode; // error while trying to access the API 
             }
         }
         public static string get(LexicalCategory category, string word)
@@ -250,47 +251,5 @@ namespace GetAPIResponse
                 { LexicalCategory.Residual, "residual"},
                 { LexicalCategory.Interjection, "interjection" }
             };
-    }
-    class Utility
-    {
-        public static bool hasRequestsLeft(string app_Id, string app_Key)
-        {
-            string url = "https://od-api.oxforddictionaries.com:443/api/v1/filters"; // URL for the request 
-            HttpClient client = new HttpClient(); // creates an HTTP Client
-            HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
-            client.BaseAddress = new Uri(url); // sets the client address to the specified url
-            client.DefaultRequestHeaders.Add("app_id", app_Id); // adds the id to the headers
-            client.DefaultRequestHeaders.Add("app_key", app_Key); // adds the key to the headers
-            try { response = client.GetAsync(url).Result; } // gets the respone headers   
-            catch (Exception) { }
-            if (response.StatusCode.ToString() == "Forbidden") { return false; };
-                return true;
-        }
-        public static void getNewCredentials()
-        {
-            string apiCredentialsList = "";
-            using (WebClient wc = new WebClient())
-            {                
-                try {apiCredentialsList = wc.DownloadString("https://pastebin.com/raw/Pu4ki8eE");}
-                catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                string[] apiCredentials = apiCredentialsList.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                string app_Id = "";
-                string app_Key = "";
-                for (int i = 0; i < apiCredentials.Length; i++)
-                {
-                    app_Id = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[0];
-                    app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
-                    if (hasRequestsLeft(app_Id, app_Key))
-                    {
-                        Form1.app_Id = app_Id;
-                        Form1.app_Key = app_Key;
-                        English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
-                        English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
-                        English_Test_Generator.Properties.Settings.Default.Save();
-                        return;
-                    }
-                }
-            }         
-        }
     }
 }

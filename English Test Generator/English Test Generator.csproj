@@ -175,6 +175,7 @@
     <Compile Include="TestChecker.Designer.cs">
       <DependentUpon>TestChecker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utility.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
