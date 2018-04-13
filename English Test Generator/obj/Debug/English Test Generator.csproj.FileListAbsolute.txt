@@ -119,3 +119,23 @@ D:\Projects\Programming\EnglishTestGenerator\English Test Generator\obj\Debug\En
 D:\Projects\Programming\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.application
 D:\Projects\Programming\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.exe
 D:\Projects\Programming\EnglishTestGenerator\English Test Generator\obj\Debug\English Test Generator.pdb
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\bin\Debug\English Test Generator.exe.config
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English Test Generator.exe
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English Test Generator.pdb
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\bin\Debug\English Test Generator.exe.manifest
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\bin\Debug\English Test Generator.application
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\bin\Debug\English Test Generator.exe
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\bin\Debug\English Test Generator.pdb
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English Test Generator.csprojResolveAssemblyReference.cache
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English_Test_Generator.AboutForm.resources
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English_Test_Generator.Form1.resources
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English_Test_Generator.Launcher.resources
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English_Test_Generator.MSWord.resources
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English_Test_Generator.Properties.Resources.resources
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English_Test_Generator.TestChecker.resources
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English Test Generator.csproj.GenerateResource.Cache
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English Test Generator.exe.licenses
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English Test Generator.csproj.CoreCompileInputs.cache
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English Test Generator.TrustInfo.xml
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English Test Generator.exe.manifest
+C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test Generator\obj\Debug\English Test Generator.application

@@ -63,18 +63,22 @@ namespace English_Test_Generator
                 PointF centerOld = new PointF((float)bmp.Width / 2, (float)bmp.Height / 2);
                 Bitmap newBitmap = new Bitmap(bmp.Width, bmp.Height, bmp.PixelFormat);
                 newBitmap.SetResolution(bmp.HorizontalResolution, bmp.VerticalResolution);
+                PointF centerNew = new PointF((float)newBitmap.Width / 2, (float)newBitmap.Height / 2);
+                bool isCentered = false;
+                if (centerOld.X == centerNew.X) isCentered = true;
                 using (Graphics g = Graphics.FromImage(newBitmap))
                 {
                     Matrix matrix = new Matrix();
-                    float angleToRotate = (angle * (float)(180.0 / Math.PI));
-                    matrix.RotateAt(angleToRotate-90.0f, centerOld);
+                    float angleToRotate = (angle * (180.0f / (22.0f/ 7.0f)));
+                    float fractionalPortion = angleToRotate - (float)Math.Truncate(angleToRotate);
+                    float toAdd = (isCentered) ? 0 : fractionalPortion;
+                    matrix.RotateAt(((int)angleToRotate)+toAdd, centerOld);
                     g.Transform = matrix;
-                    g.DrawImage(bmp, new Point());
+                    g.DrawImage(bmp, new PointF());
                     newBitmap.Save("rotatedImage.bmp");
                 }
             }
             return bmp;
-
         }
     }
 }
