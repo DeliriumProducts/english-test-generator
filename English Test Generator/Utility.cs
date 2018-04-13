@@ -57,7 +57,7 @@ namespace English_Test_Generator
         }
         public static Bitmap RotateBMP(Bitmap bmp, float Ax, float Ay, float Bx, float By)
         {
-            if (!(Ay == By))
+            if (!(Ax == Bx || Ay == By))
             {
                 float angle = (float)Math.Atan2(Math.Abs(By - Ay), Math.Abs(Bx - Ax));
                 PointF centerOld = new PointF((float)bmp.Width / 2, (float)bmp.Height / 2);
@@ -66,13 +66,13 @@ namespace English_Test_Generator
                 using (Graphics g = Graphics.FromImage(newBitmap))
                 {
                     Matrix matrix = new Matrix();
-                    matrix.RotateAt(angle, centerOld);
+                    float angleToRotate = (angle * (float)(180.0 / Math.PI));
+                    matrix.RotateAt(angleToRotate-90.0f, centerOld);
                     g.Transform = matrix;
                     g.DrawImage(bmp, new Point());
-                    newBitmap.Save("asdfasdfasdfsadASDFASDFASDFASDFf.bmp");
+                    newBitmap.Save("rotatedImage.bmp");
                 }
             }
-            bmp.Save("Iliikedicks.bmp");
             return bmp;
 
         }

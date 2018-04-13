@@ -99,14 +99,21 @@ namespace English_Test_Generator
             BarcodeReader barcodeReader = new BarcodeReader();
             barcodeReader.Options.TryHarder = true;
             var barcodeBitmap = (Bitmap)bmp;
-            Result barcodeResult = barcodeReader.Decode(barcodeBitmap);
-            testID = barcodeResult.Text;
+            var barcodeResult = barcodeReader.DecodeMultiple(barcodeBitmap);
             float Ax, Ay, Bx, By;
-            Ax = barcodeResult.ResultPoints[0].X;
-            Ay = barcodeResult.ResultPoints[0].Y;
-            Bx = barcodeResult.ResultPoints[1].X;
-            By = barcodeResult.ResultPoints[1].Y;
-            bmp = Utility.RotateBMP(bmp, Ax, Ay, Bx, By);
+            float Ax2, Ay2, Bx2, By2;
+            Ax = barcodeResult[0].ResultPoints[0].X;
+            Ay = barcodeResult[0].ResultPoints[0].Y;
+            Bx = barcodeResult[0].ResultPoints[1].X;
+            By = barcodeResult[0].ResultPoints[1].Y;
+            Graphics g = Graphics.FromImage(bmp);
+            g.DrawLine(Pens.Blue, new PointF(Ax, Ay), new PointF(Bx, By));
+            Ax2 = barcodeResult[1].ResultPoints[0].X;
+            Ay2 = barcodeResult[1].ResultPoints[0].Y;
+            Bx2 = barcodeResult[1].ResultPoints[1].X;
+            By2 = barcodeResult[1].ResultPoints[1].Y;
+            testID = barcodeResult[1].Text;
+            bmp = Utility.RotateBMP(bmp, Ax, Ay, Bx2, By2);
             MessageBox.Show(testID);
             // bmp - stores the loaded image which will be used later on to recognize human marks
             MessageBox.Show(Test.Check(bmp, testID, answerKey).ToString()+"/"+answerKey.Count+" points");

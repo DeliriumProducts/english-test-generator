@@ -196,6 +196,7 @@ namespace English_Test_Generator
                 barcodeWriter.Format = BarcodeFormat.QR_CODE;
                 Bitmap qrcode = new Bitmap(barcodeWriter.Write($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}"),83,83);
                 g.DrawImage(qrcode, 0,0);
+                g.DrawImage(qrcode, 637, 0);
                 g.DrawRectangle(Pens.Gray, outerBorder);
                 g.DrawRectangle(Pens.Black, testID);
                 g.DrawRectangle(Pens.Black, innerBorder);
@@ -246,7 +247,6 @@ namespace English_Test_Generator
         public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey)
         {
             bmp = GrayScale(bmp);
-            bmp.Save("pishhsdhsdhshdsajdsad.bmp");
             Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
             Bitmap box = new Bitmap(29, 19);
             Graphics g = Graphics.FromImage(box);
