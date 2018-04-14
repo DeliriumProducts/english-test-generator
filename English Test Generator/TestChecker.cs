@@ -101,14 +101,17 @@ namespace English_Test_Generator
             var barcodeBitmap = (Bitmap)bmp;
             Result barcodeResult = barcodeReader.Decode(barcodeBitmap);
             float Ax, Ay, Bx, By;
-            Ax = barcodeResult.ResultPoints[1].X;
-            Ay = barcodeResult.ResultPoints[1].Y;
-            Bx = barcodeResult.ResultPoints[2].X;
-            By = barcodeResult.ResultPoints[2].Y;
+            Ax = barcodeResult.ResultPoints[1].X-23;
+            Ay = barcodeResult.ResultPoints[1].Y-23;
+            Bx = bmp.Width / 2;
+            By = bmp.Height / 2;
             Graphics g = Graphics.FromImage(bmp);
-            g.DrawLine(Pens.Red, new PointF(Ax, Ay), new Point(bmp.Width/2,bmp.Height/2));
-            float lineLength = (float)Math.Sqrt(Math.Pow((bmp.Height/2 - Ay), 2) + Math.Pow((bmp.Width/2 - Ax), 2));
-            bmp.Save("BeforeRotation");
+
+            float lineLength = (float)Math.Sqrt(Math.Pow(Ay, 2) + Math.Pow(Ax, 2));
+            g.DrawLine(Pens.Pink, new PointF(bmp.Width/2,bmp.Height/2), new PointF(Ax,Ay));
+
+            MessageBox.Show(lineLength.ToString());
+            bmp.Save("BeforeRotation.bmp");
             /*
              * 
              */

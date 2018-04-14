@@ -57,8 +57,7 @@ namespace English_Test_Generator
         }
         public static Bitmap RotateBMP(Bitmap bmp, float Ax, float Ay, float Bx, float By)
         {
-            if (!(Ax == Bx || Ay == By))
-            {
+            
                 float angle = (float)Math.Atan2(Math.Abs(By - Ay), Math.Abs(Bx - Ax));
                 PointF centerOld = new PointF((float)bmp.Width / 2, (float)bmp.Height / 2);
                 Bitmap newBitmap = new Bitmap(bmp.Width, bmp.Height, bmp.PixelFormat);
@@ -67,16 +66,19 @@ namespace English_Test_Generator
                 using (Graphics g = Graphics.FromImage(newBitmap))
                 {// 27.45457676
                     Matrix matrix = new Matrix();
-                    float angleToRotate = (angle * (180.0f / (22.0f/ 7.0f)));
+                    float angleToRotate = (angle * (180.0f / (float)Math.PI));
                     float fractionalPortion = angleToRotate - (float)Math.Truncate(angleToRotate);
-                    float toAdd = (isCentered) ? 0 : fractionalPortion;
-                    matrix.RotateAt(((int)angleToRotate)+toAdd,centerOld);
+                    float toAdd = fractionalPortion;
+                if (angleToRotate == 45)
+                {
+                    matrix.RotateAt((angleToRotate), centerOld);
+                }
                     g.Transform = matrix;
                     g.DrawImage(bmp, new Point());
                     newBitmap.Save("rotatedImage.bmp");
                     return newBitmap;
+                
                 }
-            }
             return bmp;
         }
            private Bitmap RotateImage(Bitmap bmp, float angle)
