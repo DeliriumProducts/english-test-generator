@@ -216,7 +216,7 @@ namespace English_Test_Generator
                     g.DrawString(i.ToString(), fn, br, baseX, 100 + offsetY);
                     for (int j = 0; j < test_possibleAnswersAmount; j++)
                     {
-                        g.DrawRectangle(pn, baseRecX + offsetRecX, 105 + offsetRecY, 30, 20);
+                        g.DrawRectangle(pn, baseRecX + offsetRecX, 105 + offsetRecY, 34, 17);
                         offsetRecX += 39;
                     }
                     offsetRecX = 0;
@@ -243,16 +243,19 @@ namespace English_Test_Generator
             }
             return possibleAnswers;
         }
-        public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey)
+        public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey, float k)
         {
+            k = (float)(Math.Truncate((Math.Truncate(k)*10))); //
             bmp = GrayScale(bmp);
             Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
-            Bitmap box = new Bitmap(29, 19);
+            Bitmap box = new Bitmap(34, 17);
             Graphics g = Graphics.FromImage(box);
             Graphics g2 = Graphics.FromImage(bmp);
             Color pixel = Color.White;
-            int offsetRecX = 0, offsetRecY = 0, baseRecX = 110;
-            box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);           
+            RectangleF[] rects = new RectangleF[1];
+            float offsetRecX = 0, offsetRecY = 0, baseRecX = 110*k;
+            rects[0] = new RectangleF((baseRecX + offsetRecX), (105*k + offsetRecY) , 33 * k, 16 * k);
+            box = bmp.Clone(rects[0], box.PixelFormat);
             int test_ExerciseAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[0]);
             int test_possibleAnswersAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[1]);
             for (int i = 1; i <= test_ExerciseAmount; i++)
@@ -265,7 +268,8 @@ namespace English_Test_Generator
                 bool studentHasAnswered = false;
                 for (int j = 1; j <= test_possibleAnswersAmount; j++)
                 {
-                    g2.DrawRectangle(Pens.Red, new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19));
+                    rects[0] = new RectangleF((baseRecX + offsetRecX), (105 + offsetRecY), 33 * k, 16 * k);
+                    g2.DrawRectangles(Pens.Red, rects);
                     if (searchForMarks(box, pixel))
                     {
                         studentAnswers.Add(i, (char)(j + 64));
@@ -273,16 +277,18 @@ namespace English_Test_Generator
                         studentHasAnswered = true;
                         break;
                     }
-                    offsetRecX += 39;
-                    box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);                  
+                    offsetRecX += (39*k);
+                    rects[0] = new RectangleF((baseRecX + offsetRecX) , (105 + offsetRecY), 33 * k, 16 * k);
+                    box = bmp.Clone(rects[0], box.PixelFormat);                  
                 }
                 if (!studentHasAnswered)
                 {
                     studentAnswers.Add(i, '-');
                 }
                 offsetRecX = 0;
-                offsetRecY = (i == 44) ? 0 : offsetRecY + 25;
-                box = bmp.Clone(new Rectangle(baseRecX + offsetRecX, 105 + offsetRecY, 29, 19), box.PixelFormat);
+                offsetRecY = (i == 44) ? 0 : offsetRecY + (25*k);
+                rects[0] = new RectangleF((baseRecX + offsetRecX) , (105 + offsetRecY), 33 * k, 16 * k);
+                box = bmp.Clone(rects[0], box.PixelFormat);
             }
             int correctAnswers = 0;
             for (int i = 1; i <= answerKey.Count; i++)
@@ -293,6 +299,8 @@ namespace English_Test_Generator
                 }
             }
             bmp.Save("asdf.bmp");
+            box.Dispose();
+            bmp.Dispose();
             g.Flush();
             return correctAnswers;
         }
@@ -300,35 +308,34 @@ namespace English_Test_Generator
         {
             //create a blank bitmap the same size as original
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);
-
-            //get a graphics object from the new image
-            Graphics g = Graphics.FromImage(newBitmap);
-
-            //create the grayscale ColorMatrix
-            ColorMatrix colorMatrix = new ColorMatrix(
-               new float[][]
-               {
+                //get a graphics object from the new image
+                Graphics g = Graphics.FromImage(newBitmap);
+                //create the grayscale ColorMatrix
+                ColorMatrix colorMatrix = new ColorMatrix(
+                   new float[][]
+                   {
          new float[] {.3f, .3f, .3f, 0, 0},
          new float[] {.59f, .59f, .59f, 0, 0},
          new float[] {.11f, .11f, .11f, 0, 0},
          new float[] {0, 0, 0, 1, 0},
          new float[] {0, 0, 0, 0, 1}
-               });
+                   });
 
-            //create some image attributes
-            ImageAttributes attributes = new ImageAttributes();
+                //create some image attributes
+                ImageAttributes attributes = new ImageAttributes();
 
-            //set the color matrix attribute
-            attributes.SetColorMatrix(colorMatrix);
+                //set the color matrix attribute
+                attributes.SetColorMatrix(colorMatrix);
 
-            //draw the original image on the new image
-            //using the grayscale color matrix
-            g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
-               0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
+                //draw the original image on the new image
+                //using the grayscale color matrix
+                g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
+                   0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
 
-            //dispose the Graphics object
-            g.Dispose();
-            return newBitmap;
+                //dispose the Graphics object
+                g.Dispose();
+                return newBitmap;
+            
         }
         public static bool searchForMarks(Bitmap box, Color pixel)
         {

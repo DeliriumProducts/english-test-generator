@@ -100,25 +100,23 @@ namespace English_Test_Generator
             barcodeReader.Options.TryHarder = true;
             var barcodeBitmap = (Bitmap)bmp;
             Result barcodeResult = barcodeReader.Decode(barcodeBitmap);
-            float Ax, Ay, Bx, By;
-            Ax = barcodeResult.ResultPoints[1].X-23;
-            Ay = barcodeResult.ResultPoints[1].Y-23;
-            Bx = bmp.Width / 2;
-            By = bmp.Height / 2;
+            int Ax, Ay, Bx, By;
+            Ax = (int)barcodeResult.ResultPoints[1].X;
+            Ay = (int)barcodeResult.ResultPoints[1].Y;
+            Bx = (int)barcodeResult.ResultPoints[2].X;
+            By = (int)barcodeResult.ResultPoints[2].Y;
             Graphics g = Graphics.FromImage(bmp);
-
-            float lineLength = (float)Math.Sqrt(Math.Pow(Ay, 2) + Math.Pow(Ax, 2));
-            g.DrawLine(Pens.Pink, new PointF(bmp.Width/2,bmp.Height/2), new PointF(Ax,Ay));
-
-            MessageBox.Show(lineLength.ToString());
+            float k = (Bx - Ax)/34.0f;
+            MessageBox.Show(k.ToString());
+            g.DrawLine(Pens.Pink, new PointF(Bx,By), new PointF(Ax,Ay));
             bmp.Save("BeforeRotation.bmp");
             /*
              * 
              */
-            bmp = Utility.RotateBMP(bmp, Ax, Ay, Bx, By);
+            //bmp = Utility.RotateBMP(bmp, Ax, Ay, Bx, By);
             testID = barcodeResult?.Text;
             // bmp - stores the loaded image which will be used later on to recognize human marks
-            MessageBox.Show(Test.Check(bmp, testID, answerKey).ToString()+"/"+answerKey.Count+" points");
+            MessageBox.Show(Test.Check(bmp, testID, answerKey, k).ToString()+"/"+answerKey.Count+" points");
         }
     }
 }
