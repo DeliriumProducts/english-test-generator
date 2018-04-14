@@ -106,7 +106,9 @@ namespace English_Test_Generator
             Bx = barcodeResult.ResultPoints[2].X;
             By = barcodeResult.ResultPoints[2].Y;
             Graphics g = Graphics.FromImage(bmp);
-            // g.DrawLine(Pens.Red, new PointF(Bx, By), new Point(bmp.Width/2,bmp.Height/2));
+            g.DrawLine(Pens.Red, new PointF(Ax, Ay), new Point(bmp.Width/2,bmp.Height/2));
+            float lineLength = (float)Math.Sqrt(Math.Pow((bmp.Height/2 - Ay), 2) + Math.Pow((bmp.Width/2 - Ax), 2));
+            bmp.Save("BeforeRotation");
             /*
              * 
              */

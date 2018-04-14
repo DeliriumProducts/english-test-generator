@@ -63,22 +63,36 @@ namespace English_Test_Generator
                 PointF centerOld = new PointF((float)bmp.Width / 2, (float)bmp.Height / 2);
                 Bitmap newBitmap = new Bitmap(bmp.Width, bmp.Height, bmp.PixelFormat);
                 newBitmap.SetResolution(bmp.HorizontalResolution, bmp.VerticalResolution);
-                PointF centerNew = new PointF((float)newBitmap.Width / 2, (float)newBitmap.Height / 2);
-                bool isCentered = false;
-                if (centerOld.X == centerNew.X) isCentered = true;
+                bool isCentered = true;
                 using (Graphics g = Graphics.FromImage(newBitmap))
-                {
+                {// 27.45457676
                     Matrix matrix = new Matrix();
                     float angleToRotate = (angle * (180.0f / (22.0f/ 7.0f)));
                     float fractionalPortion = angleToRotate - (float)Math.Truncate(angleToRotate);
                     float toAdd = (isCentered) ? 0 : fractionalPortion;
-                    matrix.RotateAt(((int)angleToRotate)+toAdd, centerOld);
+                    matrix.RotateAt(((int)angleToRotate)+toAdd,centerOld);
                     g.Transform = matrix;
-                    g.DrawImage(bmp, new PointF());
+                    g.DrawImage(bmp, new Point());
                     newBitmap.Save("rotatedImage.bmp");
+                    return newBitmap;
                 }
             }
             return bmp;
         }
+           private Bitmap RotateImage(Bitmap bmp, float angle)
+    {
+            float height = bmp.Height;
+            float width = bmp.Width;
+            int hypotenuse = System.Convert.ToInt32(System.Math.Floor(Math.Sqrt(height * height + width * width)));
+            Bitmap rotatedImage = new Bitmap(hypotenuse, hypotenuse);
+            using (Graphics g = Graphics.FromImage(rotatedImage))
+            {
+                g.TranslateTransform((float)rotatedImage.Width / 2, (float)rotatedImage.Height / 2); //set the rotation point as the center into the matrix
+                g.RotateTransform(angle); //rotate
+                g.TranslateTransform(-(float)rotatedImage.Width / 2, -(float)rotatedImage.Height / 2); //restore rotation point into the matrix
+                g.DrawImage(bmp, (hypotenuse - width) / 2, (hypotenuse - height) / 2, width, height);
+            }
+        return rotatedImage;
+    }
     }
 }
