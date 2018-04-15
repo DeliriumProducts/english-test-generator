@@ -106,7 +106,7 @@ namespace English_Test_Generator
             Bx = (int)barcodeResult.ResultPoints[2].X;
             By = (int)barcodeResult.ResultPoints[2].Y;
             Graphics g = Graphics.FromImage(bmp);
-            float k = (Bx - Ax)/34.0f;
+            float k = bmp.Width/720.0f;
             MessageBox.Show(k.ToString());
             g.DrawLine(Pens.Pink, new PointF(Bx,By), new PointF(Ax,Ay));
             bmp.Save("BeforeRotation.bmp");

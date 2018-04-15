@@ -245,16 +245,14 @@ namespace English_Test_Generator
         }
         public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey, float k)
         {
-            k = (float)(Math.Truncate((Math.Truncate(k)*10))); //
-            bmp = GrayScale(bmp);
             Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
             Bitmap box = new Bitmap(34, 17);
             Graphics g = Graphics.FromImage(box);
             Graphics g2 = Graphics.FromImage(bmp);
             Color pixel = Color.White;
             RectangleF[] rects = new RectangleF[1];
-            float offsetRecX = 0, offsetRecY = 0, baseRecX = 110*k;
-            rects[0] = new RectangleF((baseRecX + offsetRecX), (105*k + offsetRecY) , 33 * k, 16 * k);
+            float offsetRecX = 0, offsetRecY = 0, baseRecX = 110;
+            rects[0] = new RectangleF((baseRecX + offsetRecX)*k, (105 + offsetRecY)*k , 33 * k, 16 * k);
             box = bmp.Clone(rects[0], box.PixelFormat);
             int test_ExerciseAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[0]);
             int test_possibleAnswersAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[1]);
@@ -263,22 +261,22 @@ namespace English_Test_Generator
                 if (i > 44)
                 {
                     if (i == 45)
-                        baseRecX = 390;
+                        baseRecX = 390*k;
                 }
                 bool studentHasAnswered = false;
                 for (int j = 1; j <= test_possibleAnswersAmount; j++)
                 {
-                    rects[0] = new RectangleF((baseRecX + offsetRecX), (105 + offsetRecY), 33 * k, 16 * k);
+                    rects[0] = new RectangleF((baseRecX + offsetRecX)*k, (105 + offsetRecY)*k, 33 * k, 16 * k);
                     g2.DrawRectangles(Pens.Red, rects);
                     if (searchForMarks(box, pixel))
-                    {
+                    {   
                         studentAnswers.Add(i, (char)(j + 64));
                         offsetRecX = 0;
                         studentHasAnswered = true;
                         break;
                     }
-                    offsetRecX += (39*k);
-                    rects[0] = new RectangleF((baseRecX + offsetRecX) , (105 + offsetRecY), 33 * k, 16 * k);
+                    offsetRecX += 39;
+                    rects[0] = new RectangleF((baseRecX + offsetRecX)*k , (105 + offsetRecY)*k, 33 * k, 16 * k);
                     box = bmp.Clone(rects[0], box.PixelFormat);                  
                 }
                 if (!studentHasAnswered)
@@ -286,8 +284,8 @@ namespace English_Test_Generator
                     studentAnswers.Add(i, '-');
                 }
                 offsetRecX = 0;
-                offsetRecY = (i == 44) ? 0 : offsetRecY + (25*k);
-                rects[0] = new RectangleF((baseRecX + offsetRecX) , (105 + offsetRecY), 33 * k, 16 * k);
+                offsetRecY = (i == 44) ? 0 : offsetRecY + 25;
+                rects[0] = new RectangleF((baseRecX + offsetRecX)*k , (105 + offsetRecY)*k, 33 * k, 16 * k);
                 box = bmp.Clone(rects[0], box.PixelFormat);
             }
             int correctAnswers = 0;
