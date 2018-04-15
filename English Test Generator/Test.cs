@@ -268,7 +268,7 @@ namespace English_Test_Generator
                 {
                     rects[0] = new RectangleF((baseRecX + offsetRecX)*k, (105 + offsetRecY)*k, 33 * k, 16 * k);
                     g2.DrawRectangles(Pens.Red, rects);
-                    if (searchForMarks(box, pixel))
+                    if (searchForMarks(box, pixel,k))
                     {   
                         studentAnswers.Add(i, (char)(j + 64));
                         offsetRecX = 0;
@@ -304,38 +304,25 @@ namespace English_Test_Generator
         }
         public static Bitmap GrayScale(Bitmap original)
         {
-            //create a blank bitmap the same size as original
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);
-                //get a graphics object from the new image
                 Graphics g = Graphics.FromImage(newBitmap);
-                //create the grayscale ColorMatrix
                 ColorMatrix colorMatrix = new ColorMatrix(
                    new float[][]
                    {
-         new float[] {.3f, .3f, .3f, 0, 0},
-         new float[] {.59f, .59f, .59f, 0, 0},
-         new float[] {.11f, .11f, .11f, 0, 0},
-         new float[] {0, 0, 0, 1, 0},
-         new float[] {0, 0, 0, 0, 1}
+                     new float[] {.3f, .3f, .3f, 0, 0},
+                     new float[] {.59f, .59f, .59f, 0, 0},
+                     new float[] {.11f, .11f, .11f, 0, 0},
+                     new float[] {0, 0, 0, 1, 0},
+                     new float[] {0, 0, 0, 0, 1}
                    });
-
-                //create some image attributes
                 ImageAttributes attributes = new ImageAttributes();
-
-                //set the color matrix attribute
                 attributes.SetColorMatrix(colorMatrix);
-
-                //draw the original image on the new image
-                //using the grayscale color matrix
                 g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
                    0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
-
-                //dispose the Graphics object
                 g.Dispose();
                 return newBitmap;
-            
         }
-        public static bool searchForMarks(Bitmap box, Color pixel)
+        public static bool searchForMarks(Bitmap box, Color pixel, float k)
         {
             int foundMarks = 0;
             for (int x = 0; x < box.Width; x++)
@@ -346,7 +333,7 @@ namespace English_Test_Generator
                     if (pixel.R <= 100)
                     {
                         foundMarks++;
-                        if (foundMarks >= 20)
+                        if (foundMarks >= 20+(2*(34+17)*k))
                         {
                             foundMarks = 0;
                             return true;
