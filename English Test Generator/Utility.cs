@@ -88,14 +88,7 @@ namespace English_Test_Generator
                 timesRotated++;
                 ReadQRCode(bmp, out result, timesRotated);
             }
-            if (result == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return (result == null) ? false : true;
         }
     }
 }
