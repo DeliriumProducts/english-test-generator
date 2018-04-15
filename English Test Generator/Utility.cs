@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using ZXing;
 
 namespace English_Test_Generator
 {
@@ -75,20 +76,26 @@ namespace English_Test_Generator
                     return newBitmap;
                 }
         }
-           private Bitmap RotateImage(Bitmap bmp, float angle)
-    {
-            float height = bmp.Height;
-            float width = bmp.Width;
-            int hypotenuse = System.Convert.ToInt32(System.Math.Floor(Math.Sqrt(height * height + width * width)));
-            Bitmap rotatedImage = new Bitmap(hypotenuse, hypotenuse);
-            using (Graphics g = Graphics.FromImage(rotatedImage))
+        public static bool ReadQRCode(Bitmap bmp, out ZXing.Result result, int timesRotated)
+        {
+            BarcodeReader barcodeReader = new BarcodeReader();
+            barcodeReader.Options.TryHarder = true;
+            var barcodeBitmap = (Bitmap)bmp;
+            result = barcodeReader.Decode(barcodeBitmap);
+            if(result == null && timesRotated<=3)
             {
-                g.TranslateTransform((float)rotatedImage.Width / 2, (float)rotatedImage.Height / 2); //set the rotation point as the center into the matrix
-                g.RotateTransform(angle); //rotate
-                g.TranslateTransform(-(float)rotatedImage.Width / 2, -(float)rotatedImage.Height / 2); //restore rotation point into the matrix
-                g.DrawImage(bmp, (hypotenuse - width) / 2, (hypotenuse - height) / 2, width, height);
+                bmp.RotateFlip(RotateFlipType.Rotate90FlipY);
+                timesRotated++;
+                ReadQRCode(bmp, out result, timesRotated);
             }
-        return rotatedImage;
-    }
+            if (result == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

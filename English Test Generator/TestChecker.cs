@@ -24,7 +24,6 @@ namespace English_Test_Generator
         public static string filePath;
         public static Bitmap bmp;
         public static OpenFileDialog newDialog;
-
         public TestChecker()
         {
             InitializeComponent();
@@ -83,11 +82,11 @@ namespace English_Test_Generator
 
         private void monoFlat_Button2_Click(object sender, EventArgs e)
         {
+
             richTextBox1.Text.Trim();
             Dictionary<int, char> answerKey = new Dictionary<int, char>();
-            string[] lines = richTextBox1.Text.Split(
-     new[] { "\r\n", "\r", "\n" },
-     StringSplitOptions.None);
+            string[] lines = richTextBox1.Text.Split(new[] { "\r\n", "\r", "\n" },StringSplitOptions.None);
+            int timesRotated = 0;
             char value;
             for (int i = 1; i <= lines.Length; i++)
             {
@@ -96,26 +95,22 @@ namespace English_Test_Generator
                 answerKey.Add(i, value);
             }
             bmp = new Bitmap(newDialog.FileName);
-            BarcodeReader barcodeReader = new BarcodeReader();
-            barcodeReader.Options.TryHarder = true;
-            var barcodeBitmap = (Bitmap)bmp;
-            Result barcodeResult = barcodeReader.Decode(barcodeBitmap);
+            Result barcodeResult;
             int Ax, Ay, Bx, By;
+            if(!Utility.ReadQRCode(bmp, out barcodeResult, timesRotated))
+            {
+                MessageBox.Show("Please adjust the image", "QR Code Could not be found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             Ax = (int)barcodeResult.ResultPoints[1].X;
             Ay = (int)barcodeResult.ResultPoints[1].Y;
             Bx = (int)barcodeResult.ResultPoints[2].X;
             By = (int)barcodeResult.ResultPoints[2].Y;
             Graphics g = Graphics.FromImage(bmp);
             float k = bmp.Width/720.0f;
-            MessageBox.Show(k.ToString());
             g.DrawLine(Pens.Pink, new PointF(Bx,By), new PointF(Ax,Ay));
-            bmp.Save("BeforeRotation.bmp");
-            /*
-             * 
-             */
-            //bmp = Utility.RotateBMP(bmp, Ax, Ay, Bx, By);
+            bmp.Save("BeforeRotation.bmp"); 
             testID = barcodeResult?.Text;
-            // bmp - stores the loaded image which will be used later on to recognize human marks
             MessageBox.Show(Test.Check(bmp, testID, answerKey, k).ToString()+"/"+answerKey.Count+" points");
         }
     }
