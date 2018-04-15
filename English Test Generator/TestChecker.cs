@@ -82,7 +82,6 @@ namespace English_Test_Generator
 
         private void monoFlat_Button2_Click(object sender, EventArgs e)
         {
-
             richTextBox1.Text.Trim();
             Dictionary<int, char> answerKey = new Dictionary<int, char>();
             string[] lines = richTextBox1.Text.Split(new[] { "\r\n", "\r", "\n" },StringSplitOptions.None);
@@ -107,9 +106,14 @@ namespace English_Test_Generator
             Bx = (int)barcodeResult.ResultPoints[2].X;
             By = (int)barcodeResult.ResultPoints[2].Y;
             Graphics g = Graphics.FromImage(bmp);
-            float k = bmp.Width/720.0f;
-            g.DrawLine(Pens.Pink, new PointF(Bx,By), new PointF(Ax,Ay));
-            bmp.Save("BeforeRotation.bmp"); 
+            float k = (Bx-Ax)/ 34.0f;
+            bmp.Save("BeforeRotation.bmp");
+            bmp = Utility.RotateBMP(bmp, Ax, Ay, Bx, By);
+            Utility.ReadQRCode(bmp, out barcodeResult, timesRotated);
+            Ax = (int)barcodeResult.ResultPoints[1].X;
+            Ay = (int)barcodeResult.ResultPoints[1].Y;
+            float BaseX = Ax - 24.0f*k, BaseY = Ay - 24.0f*k;
+            g.DrawLine(Pens.Red, new PointF(BaseX, BaseY), new PointF(bmp.Width / 2, bmp.Height / 2));
             testID = barcodeResult?.Text;
             MessageBox.Show(Test.Check(bmp, testID, answerKey, k).ToString()+"/"+answerKey.Count+" points");
         }

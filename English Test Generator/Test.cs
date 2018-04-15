@@ -252,7 +252,8 @@ namespace English_Test_Generator
             Color pixel = Color.White;
             RectangleF[] rects = new RectangleF[1];
             float offsetRecX = 0, offsetRecY = 0, baseRecX = 110;
-            rects[0] = new RectangleF((baseRecX + offsetRecX)*k, (105 + offsetRecY)*k , 33 * k, 16 * k);
+            int offsetBox = -6;
+            rects[0] = new RectangleF((baseRecX + offsetRecX+offsetBox/2)*k, (105 + offsetRecY + offsetBox/2) *k , (33-offsetBox) * k, (16- offsetBox) * k);
             box = bmp.Clone(rects[0], box.PixelFormat);
             int test_ExerciseAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[0]);
             int test_possibleAnswersAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[1]);
@@ -266,7 +267,7 @@ namespace English_Test_Generator
                 bool studentHasAnswered = false;
                 for (int j = 1; j <= test_possibleAnswersAmount; j++)
                 {
-                    rects[0] = new RectangleF((baseRecX + offsetRecX)*k, (105 + offsetRecY)*k, 33 * k, 16 * k);
+                    rects[0] = new RectangleF((baseRecX + offsetRecX + offsetBox / 2) * k, (105 + offsetRecY + offsetBox / 2) * k, (33 - offsetBox) * k, (16 - offsetBox) * k);
                     g2.DrawRectangles(Pens.Red, rects);
                     if (searchForMarks(box, pixel,k))
                     {   
@@ -276,7 +277,7 @@ namespace English_Test_Generator
                         break;
                     }
                     offsetRecX += 39;
-                    rects[0] = new RectangleF((baseRecX + offsetRecX)*k , (105 + offsetRecY)*k, 33 * k, 16 * k);
+                    rects[0] = new RectangleF((baseRecX + offsetRecX + offsetBox / 2) * k, (105 + offsetRecY + offsetBox / 2) * k, (33 - offsetBox) * k, (16 - offsetBox) * k);
                     box = bmp.Clone(rects[0], box.PixelFormat);                  
                 }
                 if (!studentHasAnswered)
@@ -285,7 +286,7 @@ namespace English_Test_Generator
                 }
                 offsetRecX = 0;
                 offsetRecY = (i == 44) ? 0 : offsetRecY + 25;
-                rects[0] = new RectangleF((baseRecX + offsetRecX)*k , (105 + offsetRecY)*k, 33 * k, 16 * k);
+                rects[0] = new RectangleF((baseRecX + offsetRecX + offsetBox / 2) * k, (105 + offsetRecY + offsetBox / 2) * k, (33 - offsetBox) * k, (16 - offsetBox) * k);
                 box = bmp.Clone(rects[0], box.PixelFormat);
             }
             int correctAnswers = 0;

@@ -69,7 +69,7 @@ namespace English_Test_Generator
                     float angleToRotate = (angle * (180.0f / (float)Math.PI));
                     float fractionalPortion = angleToRotate - (float)Math.Truncate(angleToRotate);
                     float toAdd = fractionalPortion;
-                    matrix.RotateAt((angleToRotate), centerOld);
+                    matrix.RotateAt(angleToRotate, centerOld);
                     g.Transform = matrix;
                     g.DrawImage(bmp, new Point());
                     newBitmap.Save("rotatedImage.bmp");
@@ -84,7 +84,7 @@ namespace English_Test_Generator
             result = barcodeReader.Decode(barcodeBitmap);
             if(result == null && timesRotated<=3)
             {
-                bmp.RotateFlip(RotateFlipType.Rotate90FlipY);
+                bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 timesRotated++;
                 ReadQRCode(bmp, out result, timesRotated);
             }
