@@ -17,6 +17,18 @@ namespace English_Test_Generator
 {
     class Utility
     {
+        private static Random rng = new Random();
+        public static List<T> ShuffleElements<T> (List<T> list)
+        {
+            List<T> shuffledList = new List<T>(); 
+            foreach (var item in list)
+            {
+                int randomNumber = rng.Next(list.Count());
+                shuffledList.Add(list[randomNumber]);
+                list.RemoveAt(randomNumber);
+            }
+            return shuffledList;
+        }
         public static bool hasRequestsLeft(string app_Id, string app_Key)
         {
             string url = "https://od-api.oxforddictionaries.com:443/api/v1/filters"; // URL for the request 
@@ -89,6 +101,17 @@ namespace English_Test_Generator
                 ReadQRCode(bmp, out result, timesRotated);
             }
             return (result == null) ? false : true;
+        }
+        public static string GenerateChoices(List<string> choices)
+        {
+            string result = "";
+            foreach (var choice in choices)
+            {
+                result +=
+                    (char)(choices.IndexOf(choice) + 64) +
+                    choice;
+            }
+            return result;
         }
     }
 }

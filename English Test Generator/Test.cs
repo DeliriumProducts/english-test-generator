@@ -74,7 +74,7 @@ namespace English_Test_Generator
                     default:
                         break;
                 }
-                Form1.test_WordsAndTypes.Add(splitByAsterisk[0], splitByAsterisk[1]);
+                TestGenerator.test_WordsAndTypes.Add(splitByAsterisk[0], splitByAsterisk[1]);
             }
         }
         public static string Generate(string test_Type, int test_ExcerciseAmount, string test_Name, Dictionary<string, string> test_Words, string region)
@@ -83,17 +83,17 @@ namespace English_Test_Generator
             List<string> answers = new List<string>();
             ConcurrentBag<string> bagOfAnswers = new ConcurrentBag<string>();
             ConcurrentBag<string> bagOfExercises = new ConcurrentBag<string>(); // used when using multiple threads
-            Form1.fr.progressBar1.Visible = true;
-            Form1.fr.progressBar1.Value = 0;
-            Form1.fr.progressBar1.Maximum = Form1.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
+            TestGenerator.fr.progressBar1.Visible = true;
+            TestGenerator.fr.progressBar1.Value = 0;
+            TestGenerator.fr.progressBar1.Maximum = TestGenerator.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
             string finishedTest = "";
             string suggestedAnswerKey = "";
-            switch (Form1.generatingSpeed)
+            switch (TestGenerator.generatingSpeed)
             {
                 case "Normal":
                     foreach (KeyValuePair<string, string> entry in test_Words)
                     {
-                        Form1.fr.progressBar1.Value++;
+                        TestGenerator.fr.progressBar1.Value++;
                         switch (test_Type)
                         {
                            case "Definitions":
@@ -106,6 +106,11 @@ namespace English_Test_Generator
                                 break;
                             case "Words":
                                 exercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
+                                break;
+                            case "Multi-Choices":
+                                exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
+                                exercises.Add(Synonyms.Request(entry.Key));
+                                answers.Add(entry.Key);
                                 break;
                         }
                     }
@@ -132,9 +137,14 @@ namespace English_Test_Generator
                     answers = bagOfAnswers.ToList();
                     break;
             }                  
-            foreach (var exercise in exercises.ToList()) // remove all of the words that were not found in the Oxford Dictionary
+            foreach (var exercise in exercises.ToList()) 
             {
-                if (exercise.StartsWith("Couldn't find ") && answers.Any())
+                if (exercise.StartsWith("Couldn't find ") && answers.Any()) // remove all of the words that were not found in the Oxford Dictionary
+                {
+                    answers.RemoveAt(exercises.IndexOf(exercise));
+                    exercises.Remove(exercise);
+                }
+                if (!(exercise.Contains("_")) && answers.Any() && test_Type == "Examples" || test_Type == "Multi-Choices") // remove all of the exercises whose words were not replaced with "_"
                 {
                     answers.RemoveAt(exercises.IndexOf(exercise));
                     exercises.Remove(exercise);
@@ -158,7 +168,7 @@ namespace English_Test_Generator
                 n++;
             }
             finishedTest += "\n" + suggestedAnswerKey;
-            Form1.fr.progressBar1.Visible = false;
+            TestGenerator.fr.progressBar1.Visible = false;
             return finishedTest;          
         }
         public static string Read(string source) // algorithm for reading the returned string from GetAPIResponse

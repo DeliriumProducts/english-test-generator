@@ -46,6 +46,17 @@ namespace English_Test_Generator
                 sw.WriteLine(cache.Trim()); // writes the cache to the file
             }
         }
+        public static void Write(string word, string typeOfRequest, List<string> cache)
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/" + typeOfRequest + @"/" + word + " - " + typeOfRequest.ToLower() + ".etg"); // sets the path to the word
+            using (StreamWriter sw = File.CreateText(path)) // creates object to write text files with and creates the file for caching
+            {
+                foreach (var synonym in cache)
+                {
+                    sw.WriteLine(synonym); // writes the cache to the file
+                }
+            }
+        }
         public static string Read(string word, string typeOfRequest, string lexicalCategory)
         {
             string cache = ""; // temporary cache
@@ -77,6 +88,20 @@ namespace English_Test_Generator
                 }
                 return cache.Trim();
             }
+        }
+        public static string Read(string word, string typeOfRequest)
+        {
+            List<string> cache = new List<string>(); // temporary cache
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/" + typeOfRequest + @"/" + word + " - " + typeOfRequest.ToLower() + ".etg"); // sets the path to the word
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string currentLine = "";
+                while ((currentLine = sr.ReadLine()) != null)
+                {
+                    cache.Add(currentLine);
+                }
+            }
+            return cache;            
         }
     }
 }

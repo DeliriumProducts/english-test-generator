@@ -142,11 +142,11 @@
     </Compile>
     <Compile Include="CacheWord.cs" />
     <Compile Include="FlatUI.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="TestGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TestGenerator.Designer.cs">
+      <DependentUpon>TestGenerator.cs</DependentUpon>
     </Compile>
     <Compile Include="GetAPIResponse.cs" />
     <Compile Include="IsApplicationInstalled.cs" />
@@ -179,8 +179,8 @@
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="TestGenerator.resx">
+      <DependentUpon>TestGenerator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Launcher.resx">
       <DependentUpon>Launcher.cs</DependentUpon>

@@ -252,4 +252,60 @@ namespace GetAPIResponse
                 { LexicalCategory.Interjection, "interjection" }
             };
     }
+    class Synonyms
+    {
+        public static string Request(string word)
+        {
+            List<string> cache = new List<string>{word};
+            if (CacheWord.Check(word, "Synonyms"))
+            {
+                return CacheWord.Read(word, "Synonyms");
+            }
+            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/synonyms"; // URL for the request 
+            HttpClient client = new HttpClient(); // creates an HTTP Client
+            HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
+            client.BaseAddress = new Uri(url); // sets the client address to the specified url
+            client.DefaultRequestHeaders.Add("app_id", TestGenerator.app_Id); // adds the id to the headers
+            client.DefaultRequestHeaders.Add("app_key", TestGenerator.app_Key); // adds the key to the headers
+            try { response = client.GetAsync(url).Result; }// gets the respone headers   
+            catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            if (response.IsSuccessStatusCode)
+            {
+                string content = response.Content.ReadAsStringAsync().Result; // receives the API response              
+                var result = JsonConvert.DeserializeObject<GetResponse>(content); // Converts the API response to the format that the program can understand     
+                for (int i = 0; i < result.Results.First().LexicalEntries.Length; i++) // i = all entries from the API response
+                {
+                    for (int j = 0; j < result.Results.First().LexicalEntries[i].Entries.Length; j++) // j = all senses from the API response
+                    {
+                        for (int k = 0; k < result.Results.First().LexicalEntries[i].Entries[j].Senses.Length; k++) // k = all examples from the API response 
+                        {
+                            for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses.Length; l++)
+                            {
+                                for (int m = 0; m < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Synonyms.Length; m++)
+                                {
+                                    cache.Add(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Synonyms[m].Text);
+                                }
+                            }
+                        }
+                    }
+                }
+                int remove = Math.Max(1, cache.Count() - 3);
+                cache.RemoveRange(1, remove);
+                cache = Utility.ShuffleElements(cache);
+                CacheWord.Write(word, "Synonyms", cache);
+                string asdf = ""
+                foreach (var item in collection)
+                {
+                    asdf = ""
+                }
+                return cache;
+            }            
+            else // if the response code is different than 200
+            {
+                if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials();Request(word);}
+                cache.Add("ERROR \nCouldn't find " + word + " Status: " + response.StatusCode);
+                return cache; // error while trying to access the API 
+            }
+        }
+    }
 }
