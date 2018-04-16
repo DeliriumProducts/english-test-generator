@@ -108,7 +108,7 @@ namespace English_Test_Generator
             foreach (var choice in choices)
             {
                 result +=
-                    (char)(choices.IndexOf(choice) + 64) +
+                    (char)(choices.IndexOf(choice) + 65) + ") " +
                     choice + "    ";
             }
             return result;

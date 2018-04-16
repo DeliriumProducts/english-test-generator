@@ -130,6 +130,10 @@ namespace English_Test_Generator
                             case "Words":
                                 bagOfExercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
                                 break;
+                            case "Multi-Choices":
+                                bagOfExercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key));
+                                bagOfAnswers.Add(entry.Key);
+                                break;
                         }
                     });
                     exercises = bagOfExercises.ToList(); // Converts the bagOfExercises variable to List and sets it to exercises variable
@@ -138,12 +142,9 @@ namespace English_Test_Generator
             }                  
             foreach (var exercise in exercises.ToList()) 
             {
-                if (exercise.StartsWith("Couldn't find ") && answers.Any()) // remove all of the words that were not found in the Oxford Dictionary
-                {
-                    answers.RemoveAt(exercises.IndexOf(exercise));
-                    exercises.Remove(exercise);
-                }
-                if (!(exercise.Contains("_")) && answers.Any() && (test_Type == "Examples" || test_Type == "Multi-Choices")) // remove all of the exercises whose words were not replaced with "_"
+                if (((exercise.Contains("Couldn't find ") && exercise.Contains("ERROR")) && answers.Any()) ||
+                    (!(exercise.Contains("_")) && answers.Any() && (test_Type == "Examples" ||
+                    test_Type == "Multi-Choices"))) // remove all of the words that were not found in the Oxford Dictionary
                 {
                     answers.RemoveAt(exercises.IndexOf(exercise));
                     exercises.Remove(exercise);
