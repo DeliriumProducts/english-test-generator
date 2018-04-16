@@ -107,6 +107,7 @@ namespace English_Test_Generator
             By = (int)barcodeResult.ResultPoints[2].Y;
             Graphics g = Graphics.FromImage(bmp);
             float k = (Bx-Ax)/ 34.0f;
+            //float k = bmp.Width/720.0f;
             bmp.Save("BeforeRotation.bmp");
             bmp = Utility.RotateBMP(bmp, Ax, Ay, Bx, By);
             Utility.ReadQRCode(bmp, out barcodeResult, timesRotated);
@@ -118,4 +119,6 @@ namespace English_Test_Generator
             MessageBox.Show(Test.Check(bmp, testID, answerKey, k).ToString()+"/"+answerKey.Count+" points");
         }
     }
+    
+
 }

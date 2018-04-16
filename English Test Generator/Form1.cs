@@ -300,18 +300,6 @@ namespace English_Test_Generator
             label6.Visible = false;
             label7.Location = new Point(223, 3);
         }
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-            test_Type = "Definitions";
-        }
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-            test_Type = "Examples";
-        }
-        private void radioButton13_CheckedChanged(object sender, EventArgs e)
-        {
-            test_Type = "Words";
-        }
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e) // gets the words only for the specified unit
         {
             test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
@@ -341,6 +329,7 @@ namespace English_Test_Generator
             button7.BackgroundImage = Properties.Resources.greyPrinter;
             button7.Enabled = false;
             test_Name = textBox2.Text; // sets the name of the test
+            test_Type = comboBox4.Text;
             test_ExcerciseAmount = int.Parse(numericUpDown1.Text); // sets the excercise amount for the test
             test_Words = richTextBox2.Text.Trim(); // gets the words and types of the test from richTextBox2
             test_WordsAndTypes.Clear();
