@@ -25,12 +25,12 @@ namespace English_Test_Generator
         }
         private void monoFlat_Button1_Click(object sender, EventArgs e)
         {
-            TestGenerator.fr.Show();              
+            TestGeneratorForm.fr.Show();              
         }
 
         private void monoFlat_Button2_Click(object sender, EventArgs e)
         {
-           TestChecker.tc.Show();                       
+           TestCheckerForm.tc.Show();                       
         }
     }
 }

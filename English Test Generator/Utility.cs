@@ -58,8 +58,8 @@ namespace English_Test_Generator
                     app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
                     if (hasRequestsLeft(app_Id, app_Key))
                     {
-                        TestGenerator.app_Id = app_Id;
-                        TestGenerator.app_Key = app_Key;
+                        TestGeneratorForm.app_Id = app_Id;
+                        TestGeneratorForm.app_Key = app_Key;
                         English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
                         English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
                         English_Test_Generator.Properties.Settings.Default.Save();
@@ -112,6 +112,34 @@ namespace English_Test_Generator
                     choice + "    ";
             }
             return result;
+        }
+        /// <summary>
+        /// Encrypts a given string to base64
+        /// </summary>
+        public static string EncryptString(string input)
+        {
+            string output = "";
+            byte[] b = Encoding.ASCII.GetBytes(input);
+            output = Convert.ToBase64String(b);
+            return output;
+        }
+        /// <summary>
+        ///  Decrypts a given string from base64
+        /// </summary>
+        public static string DecryptString(string input)
+        {
+            string output = "";
+            byte[] b;
+            try
+            {
+                b = Convert.FromBase64String(input);
+                output = Encoding.ASCII.GetString(b);
+            }
+            catch (Exception)
+            {
+                output = "";               
+            }
+            return output;
         }
     }
 }

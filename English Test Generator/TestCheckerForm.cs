@@ -13,9 +13,9 @@ using ZXing;
 
 namespace English_Test_Generator
 {
-    public partial class TestChecker : Form
+    public partial class TestCheckerForm : Form
     {
-        public static TestChecker tc = new TestChecker();
+        public static TestCheckerForm tc = new TestCheckerForm();
         public static string testName;
         public static int exerciseAmount;
         public static int testGroupsAmount;
@@ -24,7 +24,7 @@ namespace English_Test_Generator
         public static string filePath;
         public static Bitmap bmp;
         public static OpenFileDialog newDialog;
-        public TestChecker()
+        public TestCheckerForm()
         {
             InitializeComponent();
             tc = this;
@@ -115,7 +115,8 @@ namespace English_Test_Generator
             Ay = (int)barcodeResult.ResultPoints[1].Y;
             float BaseX = Ax - 24.0f*k, BaseY = Ay - 24.0f*k;
             g.DrawLine(Pens.Red, new PointF(BaseX, BaseY), new PointF(bmp.Width / 2, bmp.Height / 2));
-            testID = barcodeResult?.Text;
+            testID = Utility.DecryptString(barcodeResult?.Text);
+            MessageBox.Show(testID);
             MessageBox.Show(Test.Check(bmp, testID, answerKey, k).ToString()+"/"+answerKey.Count+" points");
         }
     }

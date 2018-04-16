@@ -142,11 +142,11 @@
     </Compile>
     <Compile Include="CacheWord.cs" />
     <Compile Include="FlatUI.cs" />
-    <Compile Include="TestGenerator.cs">
+    <Compile Include="TestGeneratorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestGenerator.Designer.cs">
-      <DependentUpon>TestGenerator.cs</DependentUpon>
+    <Compile Include="TestGeneratorForm.Designer.cs">
+      <DependentUpon>TestGeneratorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GetAPIResponse.cs" />
     <Compile Include="IsApplicationInstalled.cs" />
@@ -169,18 +169,18 @@
     <Compile Include="SearchWord.cs" />
     <Compile Include="SpeechRecognition.cs" />
     <Compile Include="Test.cs" />
-    <Compile Include="TestChecker.cs">
+    <Compile Include="TestCheckerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestChecker.Designer.cs">
-      <DependentUpon>TestChecker.cs</DependentUpon>
+    <Compile Include="TestCheckerForm.Designer.cs">
+      <DependentUpon>TestCheckerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utility.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestGenerator.resx">
-      <DependentUpon>TestGenerator.cs</DependentUpon>
+    <EmbeddedResource Include="TestGeneratorForm.resx">
+      <DependentUpon>TestGeneratorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Launcher.resx">
       <DependentUpon>Launcher.cs</DependentUpon>
@@ -199,8 +199,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TestChecker.resx">
-      <DependentUpon>TestChecker.cs</DependentUpon>
+    <EmbeddedResource Include="TestCheckerForm.resx">
+      <DependentUpon>TestCheckerForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="English Test Generator_TemporaryKey.pfx" />
     <None Include="packages.config" />

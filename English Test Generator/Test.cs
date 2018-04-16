@@ -74,7 +74,7 @@ namespace English_Test_Generator
                     default:
                         break;
                 }
-                TestGenerator.test_WordsAndTypes.Add(splitByAsterisk[0], splitByAsterisk[1]);
+                TestGeneratorForm.test_WordsAndTypes.Add(splitByAsterisk[0], splitByAsterisk[1]);
             }
         }
         public static string Generate(string test_Type, int test_ExcerciseAmount, string test_Name, Dictionary<string, string> test_Words, string region)
@@ -83,17 +83,17 @@ namespace English_Test_Generator
             List<string> answers = new List<string>();
             ConcurrentBag<string> bagOfAnswers = new ConcurrentBag<string>();
             ConcurrentBag<string> bagOfExercises = new ConcurrentBag<string>(); // used when using multiple threads
-            TestGenerator.fr.progressBar1.Visible = true;
-            TestGenerator.fr.progressBar1.Value = 0;
-            TestGenerator.fr.progressBar1.Maximum = TestGenerator.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
+            TestGeneratorForm.fr.progressBar1.Visible = true;
+            TestGeneratorForm.fr.progressBar1.Value = 0;
+            TestGeneratorForm.fr.progressBar1.Maximum = TestGeneratorForm.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
             string finishedTest = "";
             string suggestedAnswerKey = "";
-            switch (TestGenerator.generatingSpeed)
+            switch (TestGeneratorForm.generatingSpeed)
             {
                 case "Normal":
                     foreach (KeyValuePair<string, string> entry in test_Words)
                     {
-                        TestGenerator.fr.progressBar1.Value++;
+                        TestGeneratorForm.fr.progressBar1.Value++;
                         switch (test_Type)
                         {
                            case "Definitions":
@@ -168,7 +168,7 @@ namespace English_Test_Generator
                 n++;
             }
             finishedTest += "\n" + suggestedAnswerKey;
-            TestGenerator.fr.progressBar1.Visible = false;
+            TestGeneratorForm.fr.progressBar1.Visible = false;
             return finishedTest;          
         }
         public static string Read(string source) // algorithm for reading the returned string from GetAPIResponse
@@ -204,7 +204,7 @@ namespace English_Test_Generator
                 g.FillRectangle(Brushes.White, new Rectangle(0, 0, bmp.Width, bmp.Height));
                 var barcodeWriter = new BarcodeWriter();
                 barcodeWriter.Format = BarcodeFormat.QR_CODE;
-                Bitmap qrcode = new Bitmap(barcodeWriter.Write($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}"),83,83);
+                Bitmap qrcode = new Bitmap(barcodeWriter.Write(Utility.EncryptString($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}")),83, 83);
                 g.DrawImage(qrcode, 0,0);
                 g.DrawRectangle(Pens.Gray, outerBorder);
                 g.DrawRectangle(Pens.Black, testID);

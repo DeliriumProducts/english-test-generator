@@ -92,7 +92,7 @@ namespace English_Test_Generator
                 {
                     if (currentLine.Contains("%%%")) // if the current line contains "%%%"
                     {
-                        TestGenerator.fr.comboBox2.Items.Add(currentLine.Substring(3)); // remove the "%%%" and add what's left of the string as a comboBox2 item
+                        TestGeneratorForm.fr.comboBox2.Items.Add(currentLine.Substring(3)); // remove the "%%%" and add what's left of the string as a comboBox2 item
                     }
                 }
             }

@@ -42,7 +42,7 @@ using System.Threading;
 
 namespace English_Test_Generator
 {
-    public partial class TestGenerator : Form
+    public partial class TestGeneratorForm : Form
     {
         //-----GLOBAL VARIABLES-----
         public static string app_Id = Properties.Settings.Default.app_Id; // API ID 
@@ -64,9 +64,9 @@ namespace English_Test_Generator
         public static int rate = Properties.Settings.Default.userRate+10; // user defined speed of tts
         public static int volume = Properties.Settings.Default.userVolume; // user defined volume of tts
         public static int test_ExcerciseAmount = 0; // amount of excercises for the test
-        public static TestGenerator fr = new TestGenerator(); // used to change controls from different classes    
+        public static TestGeneratorForm fr = new TestGeneratorForm(); // used to change controls from different classes    
         //-----FORM CONSTRUCTOR-----
-        public TestGenerator()
+        public TestGeneratorForm()
         {
             InitializeComponent();
             fr = this; // makes a reference to this form so it can be accessed from different classes
