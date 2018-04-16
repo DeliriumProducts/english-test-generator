@@ -259,7 +259,7 @@ namespace GetAPIResponse
             List<string> cache = new List<string>{word};
             if (CacheWord.Check(word, "Synonyms"))
             {
-                return CacheWord.Read(word, "Synonyms");
+                return Utility.GenerateChoices((Utility.ShuffleElements(CacheWord.Read(word, "Synonyms"))));
             }
             string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/synonyms"; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
@@ -279,32 +279,36 @@ namespace GetAPIResponse
                     {
                         for (int k = 0; k < result.Results.First().LexicalEntries[i].Entries[j].Senses.Length; k++) // k = all examples from the API response 
                         {
-                            for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses.Length; l++)
+                            if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Synonyms != null)
                             {
-                                for (int m = 0; m < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Synonyms.Length; m++)
+                                for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Synonyms.Length; l++)
                                 {
-                                    cache.Add(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Synonyms[m].Text);
+                                    cache.Add(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Synonyms[l].Text);
+                                }
+                            }
+                            if (result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses != null) // checks if there is at least one subsense in the current sense 
+                            {
+                                for (int l = 0; l < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses.Length; l++)
+                                {
+                                    for (int m = 0; m < result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Synonyms.Length; m++)
+                                    {
+                                        cache.Add(result.Results.First().LexicalEntries[i].Entries[j].Senses[k].Subsenses[l].Synonyms[m].Text);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                int remove = Math.Max(1, cache.Count() - 3);
+                int remove = Math.Max(1, cache.Count() - 4);
                 cache.RemoveRange(1, remove);
                 cache = Utility.ShuffleElements(cache);
                 CacheWord.Write(word, "Synonyms", cache);
-                string asdf = ""
-                foreach (var item in collection)
-                {
-                    asdf = ""
-                }
-                return cache;
+                return Utility.GenerateChoices(cache);
             }            
             else // if the response code is different than 200
             {
-                if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials();Request(word);}
-                cache.Add("ERROR \nCouldn't find " + word + " Status: " + response.StatusCode);
-                return cache; // error while trying to access the API 
+                if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); Request(word);}
+                return "ERROR \nCouldn't find " + word + " Status: " + response.StatusCode; // error while trying to access the API 
             }
         }
     }

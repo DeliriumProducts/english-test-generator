@@ -21,7 +21,7 @@ namespace English_Test_Generator
         public static List<T> ShuffleElements<T> (List<T> list)
         {
             List<T> shuffledList = new List<T>(); 
-            foreach (var item in list)
+            foreach (var item in list.ToList())
             {
                 int randomNumber = rng.Next(list.Count());
                 shuffledList.Add(list[randomNumber]);
@@ -109,7 +109,7 @@ namespace English_Test_Generator
             {
                 result +=
                     (char)(choices.IndexOf(choice) + 64) +
-                    choice;
+                    choice + "    ";
             }
             return result;
         }

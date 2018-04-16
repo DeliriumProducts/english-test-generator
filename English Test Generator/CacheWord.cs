@@ -89,7 +89,7 @@ namespace English_Test_Generator
                 return cache.Trim();
             }
         }
-        public static string Read(string word, string typeOfRequest)
+        public static List<string> Read(string word, string typeOfRequest)
         {
             List<string> cache = new List<string>(); // temporary cache
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/" + typeOfRequest + @"/" + word + " - " + typeOfRequest.ToLower() + ".etg"); // sets the path to the word

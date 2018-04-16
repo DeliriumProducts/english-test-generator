@@ -108,8 +108,7 @@ namespace English_Test_Generator
                                 exercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
                                 break;
                             case "Multi-Choices":
-                                exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
-                                exercises.Add(Synonyms.Request(entry.Key));
+                                exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key));
                                 answers.Add(entry.Key);
                                 break;
                         }
@@ -144,7 +143,7 @@ namespace English_Test_Generator
                     answers.RemoveAt(exercises.IndexOf(exercise));
                     exercises.Remove(exercise);
                 }
-                if (!(exercise.Contains("_")) && answers.Any() && test_Type == "Examples" || test_Type == "Multi-Choices") // remove all of the exercises whose words were not replaced with "_"
+                if (!(exercise.Contains("_")) && answers.Any() && (test_Type == "Examples" || test_Type == "Multi-Choices")) // remove all of the exercises whose words were not replaced with "_"
                 {
                     answers.RemoveAt(exercises.IndexOf(exercise));
                     exercises.Remove(exercise);

@@ -223,6 +223,9 @@ namespace JSON_lib
 
         [JsonProperty("variantForms")]
         public VariantForm[] VariantForms { get; set; }
+
+        [JsonProperty("synonyms")]
+        public Synonym[] Synonyms { get; set; }
     }
 
     public partial class Subsense
