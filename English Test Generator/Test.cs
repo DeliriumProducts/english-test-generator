@@ -255,6 +255,7 @@ namespace English_Test_Generator
         }
         public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey, float k)
         {
+            bmp = GrayScale(bmp);
             Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
             Bitmap box = new Bitmap(34, 17);
             Graphics g = Graphics.FromImage(box);
