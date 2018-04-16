@@ -63,9 +63,9 @@ namespace English_Test_Generator
         private void TestChecker_Load(object sender, EventArgs e)
         {
             Launcher.l.Hide();
-            button1.BackColor = Color.FromArgb(255, 217, 66, 53);
-            button2.BackColor = Color.FromArgb(255, 20, 20, 20);
-            panel1.BringToFront();
+            button2.BackColor = Color.FromArgb(255, 217, 66, 53);
+            button1.BackColor = Color.FromArgb(255, 20, 20, 20);
+            panel2.BringToFront();
         }
        
         private void button3_Click(object sender, EventArgs e)
@@ -119,6 +119,4 @@ namespace English_Test_Generator
             MessageBox.Show(Test.Check(bmp, testID, answerKey, k).ToString()+"/"+answerKey.Count+" points");
         }
     }
-    
-
 }

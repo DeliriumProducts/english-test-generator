@@ -36,11 +36,11 @@ namespace English_Test_Generator
     {       
         public void SetText(string text) // used when cross-threading to set textBox1's text
         { 
-            Form1.fr.Invoke(new Action(() => { Form1.fr.textBox1.Text = text; }));
+            TestGenerator.fr.Invoke(new Action(() => { TestGenerator.fr.textBox1.Text = text; }));
         }
         private void ClickExecution()
         {            
-            Form1.fr.Invoke(new Action(() => { Form1.fr.button5.PerformClick(); }));
+            TestGenerator.fr.Invoke(new Action(() => { TestGenerator.fr.button5.PerformClick(); }));
         }
         public void Recognize()
         {

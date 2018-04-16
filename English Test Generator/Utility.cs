@@ -46,8 +46,8 @@ namespace English_Test_Generator
                     app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
                     if (hasRequestsLeft(app_Id, app_Key))
                     {
-                        Form1.app_Id = app_Id;
-                        Form1.app_Key = app_Key;
+                        TestGenerator.app_Id = app_Id;
+                        TestGenerator.app_Key = app_Key;
                         English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
                         English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
                         English_Test_Generator.Properties.Settings.Default.Save();

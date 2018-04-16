@@ -25,7 +25,7 @@ namespace English_Test_Generator
         }
         private void monoFlat_Button1_Click(object sender, EventArgs e)
         {
-            Form1.fr.Show();              
+            TestGenerator.fr.Show();              
         }
 
         private void monoFlat_Button2_Click(object sender, EventArgs e)

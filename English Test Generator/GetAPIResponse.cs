@@ -50,12 +50,12 @@ namespace GetAPIResponse
                 return CacheWord.Read(word, "Definitions", lexicalCategory);
             }
             string definitions = ""; // variable to store the result
-            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/definitions;regions=" + Form1.region; // URL for the request 
+            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/definitions;regions=" + TestGenerator.region; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
-            client.DefaultRequestHeaders.Add("app_id", Form1.app_Id); // adds the id to the headers
-            client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
+            client.DefaultRequestHeaders.Add("app_id", TestGenerator.app_Id); // adds the id to the headers
+            client.DefaultRequestHeaders.Add("app_key", TestGenerator.app_Key); // adds the key to the headers
             try { response = client.GetAsync(url).Result; } // gets the respone headers   
             catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             if (response.IsSuccessStatusCode) // checks if the response code is equal to 200
@@ -155,12 +155,12 @@ namespace GetAPIResponse
                 return CacheWord.Read(word, "Examples", lexicalCategory);
             }
             string examples = "";
-            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/examples;regions=" + Form1.region; // URL for the request 
+            string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/examples;regions=" + TestGenerator.region; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
-            client.DefaultRequestHeaders.Add("app_id", Form1.app_Id); // adds the id to the headers
-            client.DefaultRequestHeaders.Add("app_key", Form1.app_Key); // adds the key to the headers
+            client.DefaultRequestHeaders.Add("app_id", TestGenerator.app_Id); // adds the id to the headers
+            client.DefaultRequestHeaders.Add("app_key", TestGenerator.app_Key); // adds the key to the headers
             try { response = client.GetAsync(url).Result; }// gets the respone headers   
             catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             if (response.IsSuccessStatusCode)
