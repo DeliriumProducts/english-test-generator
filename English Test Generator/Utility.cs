@@ -102,11 +102,16 @@ namespace English_Test_Generator
             }
             return (result == null) ? false : true;
         }
-        public static string GenerateChoices(List<string> choices)
+        public static string GenerateChoices(List<string> choices, string word, out char answer)
         {
             string result = "";
+            answer = 'A';
             foreach (var choice in choices)
             {
+                if (choice==word)
+                {
+                    answer = (char)(choices.IndexOf(choice) + 65);
+                }
                 result +=
                     (char)(choices.IndexOf(choice) + 65) + ") " +
                     choice + "    ";
@@ -116,7 +121,7 @@ namespace English_Test_Generator
         /// <summary>
         /// Encrypts a given string to base64
         /// </summary>
-        public static string EncryptString(string input)
+        public static string Encrypt(string input)
         {
             string output = "";
             byte[] b = Encoding.ASCII.GetBytes(input);
@@ -126,7 +131,7 @@ namespace English_Test_Generator
         /// <summary>
         ///  Decrypts a given string from base64
         /// </summary>
-        public static string DecryptString(string input)
+        public static string Decrypt(string input)
         {
             string output = "";
             byte[] b;

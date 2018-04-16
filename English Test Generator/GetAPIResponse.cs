@@ -254,12 +254,14 @@ namespace GetAPIResponse
     }
     class Synonyms
     {
-        public static string Request(string word)
+        
+        public static string Request(string word, out char answer)
         {
             List<string> cache = new List<string>{word};
+            answer = 'A';
             if (CacheWord.Check(word, "Synonyms"))
             {
-                return Utility.GenerateChoices((Utility.ShuffleElements(CacheWord.Read(word, "Synonyms"))));
+                return Utility.GenerateChoices((Utility.ShuffleElements(CacheWord.Read(word, "Synonyms"))), word,out answer);
             }
             string url = "https://od-api.oxforddictionaries.com:443/api/v1/entries/en/" + word + "/synonyms"; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
@@ -303,11 +305,11 @@ namespace GetAPIResponse
                 cache.RemoveRange(1, remove);
                 cache = Utility.ShuffleElements(cache);
                 CacheWord.Write(word, "Synonyms", cache);
-                return Utility.GenerateChoices(cache);
-            }            
+                return Utility.GenerateChoices(cache, word, out answer);
+            }
             else // if the response code is different than 200
             {
-                if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); Request(word);}
+                if (response.StatusCode.ToString() == "Forbidden") { Utility.getNewCredentials(); Request(word,out answer);}
                 return "ERROR \nCouldn't find " + word + " Status: " + response.StatusCode; // error while trying to access the API 
             }
         }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -57,7 +58,21 @@ namespace English_Test_Generator
             exerciseAmount = Convert.ToInt32(numericUpDown1.Value);
             testGroupsAmount = Convert.ToInt32(numericUpDown2.Value);
             possibleAnswersAmount = Convert.ToInt32(numericUpDown3.Value);
-            Test.GenerateAnswerSheet(testName, exerciseAmount, testGroupsAmount, possibleAnswersAmount); // make it a non-void method and return and save / open the finished bitmap
+            richTextBox1.Text.Trim();
+            string answerKey = "";
+            string[] lines = richTextBox1.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            char value;
+            for (int i = 1; i <= lines.Length; i++)
+            {
+                string[] keyPair = lines[i - 1].Trim().Split(new[] { "-" }, StringSplitOptions.None);
+                value = keyPair[1][0];
+                answerKey += i.ToString() + "-" + value + "\n";
+            }
+            Test.GenerateAnswerSheet(testName, exerciseAmount, testGroupsAmount, possibleAnswersAmount, answerKey); // make it a non-void method and return and save / open the finished bitmap
+            if(MessageBox.Show("Answer sheet with name " + testName + " successfully generated! Would you like to open it?","Answer Sheet", MessageBoxButtons.YesNo,MessageBoxIcon.Asterisk) == DialogResult.Yes)
+            {
+                Process.Start(Application.StartupPath+$@"\{testName}.bmp");
+            }
         }
 
         private void TestChecker_Load(object sender, EventArgs e)
@@ -82,23 +97,13 @@ namespace English_Test_Generator
 
         private void monoFlat_Button2_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text.Trim();
-            Dictionary<int, char> answerKey = new Dictionary<int, char>();
-            string[] lines = richTextBox1.Text.Split(new[] { "\r\n", "\r", "\n" },StringSplitOptions.None);
             int timesRotated = 0;
-            char value;
-            for (int i = 1; i <= lines.Length; i++)
-            {
-                string[] keyPair = lines[i-1].Trim().Split(new[] { "-" }, StringSplitOptions.None);
-                value = keyPair[1][0];
-                answerKey.Add(i, value);
-            }
+            Dictionary<int, char> answerKey = new Dictionary<int, char>();
             bmp = new Bitmap(newDialog.FileName);
-            Result barcodeResult;
             int Ax, Ay, Bx, By;
-            if(!Utility.ReadQRCode(bmp, out barcodeResult, timesRotated))
+            if(!Utility.ReadQRCode(bmp, out Result barcodeResult, timesRotated))
             {
-                MessageBox.Show("Please adjust the image", "QR Code Could not be found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please adjust the answer sheet", "QR Code Could not be found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             Ax = (int)barcodeResult.ResultPoints[1].X;
@@ -106,18 +111,19 @@ namespace English_Test_Generator
             Bx = (int)barcodeResult.ResultPoints[2].X;
             By = (int)barcodeResult.ResultPoints[2].Y;
             Graphics g = Graphics.FromImage(bmp);
-            float k = (Bx-Ax)/ 34.0f;
+            float k = bmp.Width/720.0f;
             //float k = bmp.Width/720.0f;
             bmp.Save("BeforeRotation.bmp");
             bmp = Utility.RotateBMP(bmp, Ax, Ay, Bx, By);
-            Utility.ReadQRCode(bmp, out barcodeResult, timesRotated);
-            Ax = (int)barcodeResult.ResultPoints[1].X;
-            Ay = (int)barcodeResult.ResultPoints[1].Y;
-            float BaseX = Ax - 24.0f*k, BaseY = Ay - 24.0f*k;
-            g.DrawLine(Pens.Red, new PointF(BaseX, BaseY), new PointF(bmp.Width / 2, bmp.Height / 2));
-            testID = Utility.DecryptString(barcodeResult?.Text);
-            MessageBox.Show(testID);
-            MessageBox.Show(Test.Check(bmp, testID, answerKey, k).ToString()+"/"+answerKey.Count+" points");
+            testID = Utility.Decrypt(barcodeResult?.Text);
+            testID.TrimEnd();
+            string[] lines = testID.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 1; i <= lines.Length-1; i++)
+            {
+                string[] currentLine = lines[i].Split(new[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
+                answerKey.Add(i, currentLine[1][0]);
+            }
+            MessageBox.Show("Student has scored: " + Test.Check(bmp, testID, answerKey, k).ToString()+"/"+answerKey.Count+" points");
         }
     }
 }

@@ -108,8 +108,9 @@ namespace English_Test_Generator
                                 exercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
                                 break;
                             case "Multi-Choices":
-                                exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key));
-                                answers.Add(entry.Key);
+                                char answer = 'A';
+                                exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
+                                answers.Add(answer.ToString());
                                 break;
                         }
                     }
@@ -131,8 +132,9 @@ namespace English_Test_Generator
                                 bagOfExercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
                                 break;
                             case "Multi-Choices":
-                                bagOfExercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key));
-                                bagOfAnswers.Add(entry.Key);
+                                char answer = 'A';
+                                bagOfExercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
+                                bagOfAnswers.Add(answer.ToString());
                                 break;
                         }
                     });
@@ -158,6 +160,19 @@ namespace English_Test_Generator
             Random rndm = new Random();
             finishedTest += "~~~~~" + test_Name + "~~~~~\n";
             suggestedAnswerKey += (answers.Any()) ? "~~~~~ Suggested Answer Key ~~~~~\n" : string.Empty;
+            if (test_Type == "Multi-Choices")
+            {
+                string answerKey = "";
+                // converts the answers from the list to a string which will be used to generate an answer sheet
+                int i = 1; // the current exercise
+                foreach (var answer in answers)
+                {
+                    answerKey += i.ToString() + "-" + answer + "\n";
+                    i++;
+                }
+                GenerateAnswerSheet(test_Name, test_ExcerciseAmount, 1, 4, answerKey);
+                MessageBox.Show(answerKey);
+            }
             while (n <= test_ExcerciseAmount)
             {
                 int randomExercise = rndm.Next(0, exercises.Count);
@@ -166,7 +181,7 @@ namespace English_Test_Generator
                 exercises.RemoveAt(randomExercise);
                 if (answers.Any()) answers.RemoveAt(randomExercise);               
                 n++;
-            }
+            }           
             finishedTest += "\n" + suggestedAnswerKey;
             TestGeneratorForm.fr.progressBar1.Visible = false;
             return finishedTest;          
@@ -184,7 +199,7 @@ namespace English_Test_Generator
             }
             return filteredSource;
         }
-        public static void GenerateAnswerSheet(string test_Name, int test_ExerciseAmount, int test_GroupsAmount, int test_possibleAnswersAmount)
+        public static void GenerateAnswerSheet(string test_Name, int test_ExerciseAmount, int test_GroupsAmount, int test_possibleAnswersAmount, string test_AnswerKey)
         {
             using (Bitmap bmp = new Bitmap(720, 1280))
             {
@@ -204,8 +219,8 @@ namespace English_Test_Generator
                 g.FillRectangle(Brushes.White, new Rectangle(0, 0, bmp.Width, bmp.Height));
                 var barcodeWriter = new BarcodeWriter();
                 barcodeWriter.Format = BarcodeFormat.QR_CODE;
-                Bitmap qrcode = new Bitmap(barcodeWriter.Write(Utility.EncryptString($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}")),83, 83);
-                g.DrawImage(qrcode, 0,0);
+                Bitmap qrcode = new Bitmap(barcodeWriter.Write(Utility.Encrypt($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}\n{test_AnswerKey}")));
+                g.DrawImage(qrcode, 360 - qrcode.Width / 2, 1195);
                 g.DrawRectangle(Pens.Gray, outerBorder);
                 g.DrawRectangle(Pens.Black, testID);
                 g.DrawRectangle(Pens.Black, innerBorder);
@@ -237,7 +252,7 @@ namespace English_Test_Generator
                 // END DRAWING ANSWER SHEET
                 g.RotateTransform(30);
                 g.Flush();
-                bmp.Save("answerSheet.bmp");
+                bmp.Save($"{test_Name}.bmp");
             }
         }
         public static string GetPossibleAnswers(int num) 
