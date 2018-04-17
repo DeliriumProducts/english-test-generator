@@ -171,7 +171,6 @@ namespace English_Test_Generator
                     i++;
                 }
                 GenerateAnswerSheet(test_Name, test_ExcerciseAmount, 1, 4, answerKey);
-                MessageBox.Show(answerKey);
             }
             while (n <= test_ExcerciseAmount)
             {
