@@ -160,25 +160,23 @@ namespace English_Test_Generator
             Random rndm = new Random();
             finishedTest += "~~~~~" + test_Name + "~~~~~\n";
             suggestedAnswerKey += (answers.Any()) ? "~~~~~ Suggested Answer Key ~~~~~\n" : string.Empty;
-            if (test_Type == "Multi-Choices")
-            {
-                string answerKey = "";
-                // converts the answers from the list to a string which will be used to generate an answer sheet
-                int i = 1; // the current exercise
-                foreach (var answer in answers)
-                {
-                    answerKey += i.ToString() + "-" + answer + "\n";
-                    i++;
-                }
-                GenerateAnswerSheet(test_Name, test_ExcerciseAmount, 1, 4, answerKey);
-            }
+            string answerKey = "";
             while (n <= test_ExcerciseAmount)
             {
                 int randomExercise = rndm.Next(0, exercises.Count);
                 finishedTest += "------------------[Ex. "+ n +"]------------------\n" + exercises[randomExercise] + "\n";
                 suggestedAnswerKey += (answers.Any()) ? "[Ex. " + n + "] - " + answers[randomExercise] + "\n" : string.Empty;
                 exercises.RemoveAt(randomExercise);
-                if (answers.Any()) answers.RemoveAt(randomExercise);               
+                if (answers.Any())
+                {
+                    if (test_Type == "Multi-Choices")
+                    {
+                        // converts the answers from the list to a string which will be used to generate an answer sheet
+                        answerKey += n.ToString() + "-" + answers[randomExercise] + "\n";
+                        GenerateAnswerSheet(test_Name, test_ExcerciseAmount, 1, 4, answerKey);
+                    }
+                    answers.RemoveAt(randomExercise);
+                }
                 n++;
             }           
             finishedTest += "\n" + suggestedAnswerKey;
