@@ -218,9 +218,8 @@ namespace English_Test_Generator
             using (Bitmap bmp = new Bitmap(720, 1280))
             {
                 Rectangle innerBorder = new Rectangle(70, 70, 580, 1140);
-                Rectangle outerBorder = new Rectangle(1, 1, 719, 1279);
+                Rectangle outerBorder = new Rectangle(0,0, 720, 1280);
                 Rectangle studentData = new Rectangle(70, 1, 580, 70);
-                Rectangle testID = new Rectangle(70, 1210, 580, 70);
                 Graphics g = Graphics.FromImage(bmp);
                 StringFormat sf = new StringFormat();
                 Font fn = new Font("Calibri", 20);
@@ -234,10 +233,8 @@ namespace English_Test_Generator
                 var barcodeWriter = new BarcodeWriter();
                 barcodeWriter.Format = BarcodeFormat.QR_CODE;
                 Bitmap qrcode = new Bitmap(barcodeWriter.Write(Utility.Encrypt($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}\n{test_AnswerKey}")));
-                g.DrawImage(qrcode, 360 - qrcode.Width / 2, 1195);
-                g.DrawRectangle(Pens.Gray, outerBorder);
-                g.DrawRectangle(Pens.Black, testID);
-                g.DrawRectangle(Pens.Black, innerBorder);
+                g.DrawImage(qrcode, bmp.Width - qrcode.Width, bmp.Height - qrcode.Height);
+                g.DrawRectangle(new Pen(Brushes.Gray,10), outerBorder);
                 g.DrawRectangle(Pens.Black, studentData);
                 g.DrawString($"{test_Name}; Test Group:", fn, br, studentData, sf);
                 sf.Alignment = StringAlignment.Near;
