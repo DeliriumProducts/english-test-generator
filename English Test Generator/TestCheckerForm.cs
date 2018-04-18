@@ -111,6 +111,7 @@ namespace English_Test_Generator
             Bx = (int)barcodeResult.ResultPoints[2].X;
             By = (int)barcodeResult.ResultPoints[2].Y;
             Graphics g = Graphics.FromImage(bmp);
+
             float k = bmp.Width/720.0f;
             //float k = bmp.Width/720.0f;
             bmp.Save("BeforeRotation.bmp");

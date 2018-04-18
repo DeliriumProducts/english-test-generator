@@ -12,6 +12,8 @@ using System.Net;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using ZXing;
+using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace English_Test_Generator
 {
@@ -119,7 +121,7 @@ namespace English_Test_Generator
             return result;
         }
         /// <summary>
-        /// Encrypts a given string to base64
+        /// Encrypts a given string to base64.
         /// </summary>
         public static string Encrypt(string input)
         {
@@ -129,7 +131,7 @@ namespace English_Test_Generator
             return output;
         }
         /// <summary>
-        ///  Decrypts a given string from base64
+        ///  Decrypts a given string from base64.
         /// </summary>
         public static string Decrypt(string input)
         {
@@ -145,6 +147,28 @@ namespace English_Test_Generator
                 output = "";               
             }
             return output;
+        }
+        /// <summary>
+        /// Checks whether a given word has an entry in the Oxford Dictionary's database.
+        /// </summary>
+        public static bool isValidEntry(KeyValuePair<string,string> entry, string test_Type)
+        {
+            switch (test_Type)
+            {
+                case "Definitions":
+                    string definition = Test.Read(GetAPIResponse.Definitions.get(entry.Value, entry.Key));
+                    return (definition.Contains("Couldn't find ") && definition.Contains("ERROR")) ? true:false;
+                case "Examples":
+                    string example = Regex.Replace(Test.Read(GetAPIResponse.Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase);
+                    return ((example.Contains("Couldn't find ") && example.Contains("ERROR"))) ? true : false;
+                case "Words":
+                    return true; // no need to check anything, becuase test type words doesn't request anything from Oxford
+                case "Multi-Choices":
+                    char answer = 'A'; // stores the correct answer for each exercise
+                    string multi_choices = Regex.Replace(Test.Read(GetAPIResponse.Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + GetAPIResponse.Synonyms.Request(entry.Key, out answer);
+                    return (multi_choices.Contains("Couldn't find ") && multi_choices.Contains("ERROR")) ? true : false;
+            }
+            return false;
         }
     }
 }

@@ -86,8 +86,27 @@ namespace English_Test_Generator
             TestGeneratorForm.fr.progressBar1.Visible = true;
             TestGeneratorForm.fr.progressBar1.Value = 0;
             TestGeneratorForm.fr.progressBar1.Maximum = TestGeneratorForm.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
+            Dictionary<string, string> buffer = new Dictionary<string, string>();
+            Random rndm = new Random();
             string finishedTest = "";
             string suggestedAnswerKey = "";
+            int n = 1;
+            while(n<=test_ExcerciseAmount && test_Words.Count>0) 
+            {
+                int randomExercise = rndm.Next(0, test_Words.Count-1);
+                string key = test_Words.ElementAt(randomExercise).Key;
+                string value = test_Words[key];
+                KeyValuePair<string, string> pair = new KeyValuePair<string, string>(key, value);
+                if (Utility.isValidEntry(pair, test_Type))
+                {
+                    test_Words.Remove(key);
+                    continue;
+                }
+                buffer.Add(key,test_Words[key]);
+                test_Words.Remove(key);
+                n++;
+            }
+            test_Words = buffer;
             switch (TestGeneratorForm.generatingSpeed)
             {
                 case "Normal":
@@ -108,7 +127,7 @@ namespace English_Test_Generator
                                 exercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
                                 break;
                             case "Multi-Choices":
-                                char answer = 'A';
+                                char answer = 'A'; // stores the correct answer for each exercise
                                 exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
                                 answers.Add(answer.ToString());
                                 break;
@@ -132,7 +151,7 @@ namespace English_Test_Generator
                                 bagOfExercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
                                 break;
                             case "Multi-Choices":
-                                char answer = 'A';
+                                char answer = 'A'; // stores the correct answer for each exercise
                                 bagOfExercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
                                 bagOfAnswers.Add(answer.ToString());
                                 break;
@@ -141,7 +160,7 @@ namespace English_Test_Generator
                     exercises = bagOfExercises.ToList(); // Converts the bagOfExercises variable to List and sets it to exercises variable
                     answers = bagOfAnswers.ToList();
                     break;
-            }                  
+            }
             foreach (var exercise in exercises.ToList()) 
             {
                 if (((exercise.Contains("Couldn't find ") && exercise.Contains("ERROR")) && answers.Any()) ||
@@ -156,11 +175,10 @@ namespace English_Test_Generator
             {
                 test_ExcerciseAmount -= (test_ExcerciseAmount - exercises.Count);
             }
-            int n = 1;
-            Random rndm = new Random();
             finishedTest += "~~~~~" + test_Name + "~~~~~\n";
             suggestedAnswerKey += (answers.Any()) ? "~~~~~ Suggested Answer Key ~~~~~\n" : string.Empty;
             string answerKey = "";
+            n = 1;
             while (n <= test_ExcerciseAmount)
             {
                 int randomExercise = rndm.Next(0, exercises.Count);
@@ -171,7 +189,6 @@ namespace English_Test_Generator
                 {
                     if (test_Type == "Multi-Choices")
                     {
-                        // converts the answers from the list to a string which will be used to generate an answer sheet
                         answerKey += n.ToString() + "-" + answers[randomExercise] + "\n";
                         GenerateAnswerSheet(test_Name, test_ExcerciseAmount, 1, 4, answerKey);
                     }

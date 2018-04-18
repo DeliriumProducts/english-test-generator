@@ -125,7 +125,7 @@ namespace GetAPIResponse
                     return Request("interjection", word);
 
                 default:
-                    return "Couldn't find the specified lexical category!";
+                    return "ERROR \nCouldn't find the specified lexical category!";
             }
         }
         public static string get(string category, string word)
