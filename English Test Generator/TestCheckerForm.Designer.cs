@@ -34,6 +34,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,8 +51,6 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -123,6 +123,25 @@
             this.panel1.Size = new System.Drawing.Size(484, 358);
             this.panel1.TabIndex = 7;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(335, 168);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(100, 114);
+            this.richTextBox1.TabIndex = 18;
+            this.richTextBox1.Text = "1-A\n2-A\n3-D\n4-C\n5-D\n6-B\n7-A\n8-A";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.label9.Location = new System.Drawing.Point(39, 168);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(85, 20);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Answer Key";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -139,7 +158,7 @@
             this.numericUpDown3.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.numericUpDown3.Location = new System.Drawing.Point(335, 135);
             this.numericUpDown3.Maximum = new decimal(new int[] {
-            10,
+            6,
             0,
             0,
             0});
@@ -152,7 +171,7 @@
             this.numericUpDown3.Size = new System.Drawing.Size(100, 27);
             this.numericUpDown3.TabIndex = 4;
             this.numericUpDown3.Value = new decimal(new int[] {
-            2,
+            4,
             0,
             0,
             0});
@@ -315,25 +334,6 @@
             this.label8.Size = new System.Drawing.Size(98, 20);
             this.label8.TabIndex = 11;
             this.label8.Text = "Answer Sheet";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(335, 168);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(100, 114);
-            this.richTextBox1.TabIndex = 18;
-            this.richTextBox1.Text = "1-A\n2-A\n3-D\n4-C\n5-D\n6-B\n7-A\n8-A";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.label9.Location = new System.Drawing.Point(39, 168);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 20);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Answer Key";
             // 
             // TestCheckerForm
             // 
