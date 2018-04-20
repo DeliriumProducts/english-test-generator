@@ -236,8 +236,8 @@ namespace English_Test_Generator
                 barcodeWriter.Format = BarcodeFormat.QR_CODE;
                 Bitmap qrcode = new Bitmap(barcodeWriter.Write(Utility.Encrypt($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}\n{test_AnswerKey}")));
                 g.DrawImage(qrcode, bmp.Width - qrcode.Width, bmp.Height - qrcode.Height);
+                g.DrawRectangle(Pens.Black, studentData);            
                 g.DrawRectangle(new Pen(Brushes.Gray,10), outerBorder);
-                g.DrawRectangle(Pens.Black, studentData);
                 g.DrawString($"{test_Name}; Test Group:", fn, br, studentData, sf);
                 sf.Alignment = StringAlignment.Near;
                 g.DrawString("\nName and Class Number: ", fn, br, studentData, sf);
@@ -316,26 +316,6 @@ namespace English_Test_Generator
             }
             bmp.Dispose();
             return correctAnswers;
-        }
-        public static Bitmap GrayScale(Bitmap original)
-        {
-            Bitmap newBitmap = new Bitmap(original.Width, original.Height);
-                Graphics g = Graphics.FromImage(newBitmap);
-                ColorMatrix colorMatrix = new ColorMatrix(
-                   new float[][]
-                   {
-                     new float[] {.3f, .3f, .3f, 0, 0},
-                     new float[] {.59f, .59f, .59f, 0, 0},
-                     new float[] {.11f, .11f, .11f, 0, 0},
-                     new float[] {0, 0, 0, 1, 0},
-                     new float[] {0, 0, 0, 0, 1}
-                   });
-                ImageAttributes attributes = new ImageAttributes();
-                attributes.SetColorMatrix(colorMatrix);
-                g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
-                   0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
-                g.Dispose();
-                return newBitmap;
         }
         public static bool searchForMarks(Bitmap box, Color pixel, float k)
         {
