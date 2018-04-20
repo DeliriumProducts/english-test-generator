@@ -241,16 +241,11 @@ namespace English_Test_Generator
                 g.DrawString($"{test_Name}; Test Group:", fn, br, studentData, sf);
                 sf.Alignment = StringAlignment.Near;
                 g.DrawString("\nName and Class Number: ", fn, br, studentData, sf);
-                g.DrawString(possibleAnswers, fn, br, 111, 75);
-                int offsetY = 0, offsetRecX = 0, offsetRecY = 0, baseX = 75, baseRecX = 110; // offsetY - the offset for drawing the current Exercise number, offsetRecX/Y - the offset for drawing the rectangles
+                int offsetY = 0, offsetRecX = 0, offsetRecY = 0, baseX = 0, baseRecX = (bmp.Width/2)-((22*test_possibleAnswersAmount+18*(test_possibleAnswersAmount-1))/2); // offsetY - the offset for drawing the current Exercise number, offsetRecX/Y - the offset for drawing the rectangles
+                baseX = baseRecX - 36;
+                g.DrawString(possibleAnswers, fn, br, baseRecX, 75);
                 for (int i = 1; i <= test_ExerciseAmount; i++)
                 {
-                    if (i > 44)
-                    {
-                        if (i == 45) g.DrawString(possibleAnswers, fn, br, 391, 75);
-                        baseX = 355;
-                        baseRecX = 390;
-                    }
                     g.DrawString(i.ToString(), fn, br, baseX, 100 + offsetY);
                     for (int j = 0; j < test_possibleAnswersAmount; j++)
                     {                        
@@ -258,8 +253,8 @@ namespace English_Test_Generator
                         offsetRecX += 39;
                     }
                     offsetRecX = 0;
-                    offsetY = (i == 44) ? 0 : offsetY + 25;
-                    offsetRecY = (i == 44) ? 0 : offsetRecY + 25;
+                    offsetY+= 25;
+                    offsetRecY += 25;
                 }
                 sf.Alignment = StringAlignment.Far;
                 // END DRAWING ANSWER SHEET
@@ -314,24 +309,6 @@ namespace English_Test_Generator
                 }
                 currentLetter++;
             }
-            //while (currentExercise<=test_ExerciseAmount)
-            //{
-            //    bool studentHasAnswered = false;
-            //    currentBlob++;
-            //    int currentLetter = (currentExercise*test_possibleAnswersAmount);
-            //    if (blobs[(currentBlob*currentExercise)+currentLetter].Fullness >= 0.30)
-            //    {
-            //        studentAnswers.Add(currentExercise, (char)(currentLetter + 65));
-            //        studentHasAnswered = true;
-            //        currentBlob += test_possibleAnswersAmount - currentLetter;
-            //        continue;
-            //    }
-            //    if (!studentHasAnswered)
-            //    {
-            //        studentAnswers.Add(currentExercise, '-');
-            //    }
-            //    currentExercise++;
-            //}
             int correctAnswers = 0;
             for (int i = 1; i <= answerKey.Count; i++)
             {
