@@ -317,26 +317,5 @@ namespace English_Test_Generator
             bmp.Dispose();
             return correctAnswers;
         }
-        public static bool searchForMarks(Bitmap box, Color pixel, float k)
-        {
-            int foundMarks = 0;
-            for (int x = 0; x < box.Width; x++)
-            {
-                for (int y = 0; y < box.Height; y++)
-                {
-                    pixel = box.GetPixel(x, y);
-                    if (pixel.R <= 100)
-                    {
-                        foundMarks++;
-                        if (foundMarks >= 20+(2*(34+17)*k))
-                        {
-                            foundMarks = 0;
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
     }
 }

@@ -233,6 +233,7 @@ namespace English_Test_Generator
                 }
             }
             k = (float) Math.Ceiling(Math.Sqrt(k));
+            shapeChecker.RelativeDistortionLimit = 0.05f;
             blobCounter.FilterBlobs = true;
             blobCounter.MinHeight = 21* (int) k;
             blobCounter.MinWidth = 21* (int) k;
@@ -243,7 +244,7 @@ namespace English_Test_Generator
             foreach (var blob in blobs)
             {
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);   
-                if (shapeChecker.IsCircle(edgePoints, out AForge.Point center, out float radius))
+                if (shapeChecker.IsCircle(edgePoints, out AForge.Point center, out float radius)|| (shapeChecker.CheckShapeType(edgePoints) == ShapeType.Circle))
                 {
                     g.DrawEllipse(new Pen(Color.FromArgb(255,i,i,i),3.0f),
                        (int)(center.X - radius),
@@ -256,9 +257,9 @@ namespace English_Test_Generator
                 {
                     i = 0;
                 }
-                i++;
+                i+=5;
             }
-            image.Save("HUIIIII.bmp");
+            image.Save("blobs.bmp");
             redPen.Dispose();
             g.Dispose();
             return circleBlobs.ToArray();

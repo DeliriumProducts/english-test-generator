@@ -60,11 +60,11 @@ namespace English_Test_Generator
             possibleAnswersAmount = Convert.ToInt32(numericUpDown3.Value);
             richTextBox1.Text.Trim();
             string answerKey = "";
-            string[] lines = richTextBox1.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            string[] lines = richTextBox1.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             char value;
             for (int i = 1; i <= lines.Length; i++)
             {
-                string[] keyPair = lines[i - 1].Trim().Split(new[] { "-" }, StringSplitOptions.None);
+                string[] keyPair = lines[i - 1].Trim().Split(new[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
                 value = keyPair[1][0];
                 answerKey += i.ToString() + "-" + value + "\n";
             }
