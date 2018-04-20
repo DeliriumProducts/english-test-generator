@@ -400,7 +400,6 @@ namespace English_Test_Generator
             blobCounter.FilterBlobs = true;
             blobCounter.MinHeight = 21 * (int)k;
             blobCounter.MinWidth = 21 * (int)k;
-            MessageBox.Show(blobCounter.ObjectsOrder.ToString());
             blobCounter.ObjectsOrder = ObjectsOrder.XY;
             blobCounter.ProcessImage(PreProcess(image));
             blobs = blobCounter.GetObjectsInformation();
@@ -427,7 +426,7 @@ namespace English_Test_Generator
             // sorting blobs by X
           //  circleBlobs = circleBlobs.OrderBy(p => p.Rectangle.X).ThenBy(p=>p.Rectangle.Y).ToList();
 
-            image.Save("blobs.bmp");
+            //image.Save("blobs.bmp");
             redPen.Dispose();
             g.Dispose();
             return circleBlobs.ToArray();
