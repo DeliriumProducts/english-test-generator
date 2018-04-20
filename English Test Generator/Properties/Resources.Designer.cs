@@ -193,6 +193,16 @@ namespace English_Test_Generator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap New_Project {
+            get {
+                object obj = ResourceManager.GetObject("New_Project", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap redPrinter {
             get {
                 object obj = ResourceManager.GetObject("redPrinter", resourceCulture);

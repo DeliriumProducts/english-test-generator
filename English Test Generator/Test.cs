@@ -38,6 +38,9 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using ZXing;
 using AForge.Imaging;
+using AForge.Math.Geometry;
+using AForge;
+using AForge.Imaging.Filters;
 
 namespace English_Test_Generator
 {
@@ -99,7 +102,7 @@ namespace English_Test_Generator
                 string key = test_Words.ElementAt(randomExercise).Key;
                 string value = test_Words[key];
                 KeyValuePair<string, string> pair = new KeyValuePair<string, string>(key, value);
-                if (Utility.isValidEntry(pair, test_Type))
+                if (Utility.IsValidEntry(pair, test_Type))
                 {
                     test_Words.Remove(key);
                     continue;
@@ -137,7 +140,7 @@ namespace English_Test_Generator
                     }
                     break;
                 case "Fast":
-                    Parallel.ForEach(test_Words, entry =>
+                    System.Threading.Tasks.Parallel.ForEach(test_Words, entry =>
                     {
                         switch (test_Type)
                         {
@@ -276,17 +279,17 @@ namespace English_Test_Generator
             }
             return possibleAnswers;
         }
-        public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey, float k)
+        public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey)
         {
             Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
             int test_ExerciseAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[0]);
             int test_possibleAnswersAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[1]);
             int currentExercise = 1;
             int currentLetter = 1;
-            Blob[] blobs = Utility.Blobs(bmp);
+            Blob[] blobs = Blobs(bmp);
             bool studentHasAnswered = false;
             for (int i = 0; i < blobs.Length; i++)
-            {
+            {               
                 if (blobs[i].Fullness>=0.30)
                 {
                     studentAnswers.Add(currentExercise,(char)(currentLetter+64));
@@ -304,18 +307,116 @@ namespace English_Test_Generator
                     currentLetter = 1;
                     continue;
                 }
+                studentHasAnswered = false;
                 currentLetter++;
             }
             int correctAnswers = 0;
             for (int i = 1; i <= answerKey.Count; i++)
             {
-                if (answerKey[i] == studentAnswers[i])
+                if (answerKey.Count == studentAnswers.Count && answerKey[i] == studentAnswers[i])
                 {
                     correctAnswers++;
                 }
             }
             bmp.Dispose();
             return correctAnswers;
+        }
+        public static Blob[] Blobs(Bitmap image)
+        {
+            const float baseArea = 921600.0f; // stores the base area of the answer sheet
+            BlobCounter blobCounter = new BlobCounter
+            {
+                FilterBlobs = true,
+                MinHeight = 1280,
+                MinWidth = 720
+            };
+            blobCounter.ProcessImage(PreProcess(image));
+            Blob[] blobs = blobCounter.GetObjectsInformation();
+            SimpleShapeChecker shapeChecker = new SimpleShapeChecker();
+            Graphics g = Graphics.FromImage(image);
+            Pen redPen = new Pen(Color.Red, 2);
+            float k = 1.0f;
+            foreach (var blob in blobs)
+            {
+                List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);
+                if (shapeChecker.IsQuadrilateral(edgePoints, out List<IntPoint> cornerPoints))
+                {
+                    if (shapeChecker.CheckPolygonSubType(cornerPoints) == PolygonSubType.Rectangle)
+                    {
+                        List<System.Drawing.Point> points = new List<System.Drawing.Point>();
+                        foreach (var point in cornerPoints)
+                        {
+                            points.Add(new System.Drawing.Point(point.X, point.Y));
+                        }
+                        System.Drawing.Point min = new System.Drawing.Point(image.Width, image.Height);
+                        System.Drawing.Point max = new System.Drawing.Point(0, 0);
+                        List<System.Drawing.Point> pl = new List<System.Drawing.Point>();
+                        pl = points.OrderBy(p => p.X).ToList();
+                        if (pl[0].Y <= pl[1].Y)
+                        {
+                            min = pl[0];
+                        }
+                        else if (pl[0].Y >= pl[1].Y)
+                        {
+                            min = pl[1];
+                        }
+                        if (pl[2].Y >= pl[3].Y)
+                        {
+                            max = pl[2];
+                        }
+                        else if (pl[2].Y <= pl[3].Y)
+                        {
+                            max = pl[3];
+                        }
+                        pl.Remove(min);
+                        pl.Remove(max);
+                        double width = Math.Sqrt(Math.Pow(pl[1].X - max.X, 2) + Math.Pow(pl[1].Y - max.Y, 2));
+                        double height = Math.Sqrt(Math.Pow(pl[0].X - max.X, 2) + Math.Pow(pl[0].Y - max.Y, 2));
+                        k = (float)(width * height) / baseArea;
+                    }
+                }
+            }
+            k = (float)Math.Ceiling(Math.Sqrt(k));
+            shapeChecker.RelativeDistortionLimit = 0.05f;
+            blobCounter.FilterBlobs = true;
+            blobCounter.MinHeight = 21 * (int)k;
+            blobCounter.MinWidth = 21 * (int)k;
+            blobCounter.ProcessImage(PreProcess(image));
+            blobs = blobCounter.GetObjectsInformation();
+            List<Blob> circleBlobs = new List<Blob>();
+            int i = 0;
+            foreach (var blob in blobs)
+            {
+                List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);
+                if (shapeChecker.IsCircle(edgePoints, out AForge.Point center, out float radius) || (shapeChecker.CheckShapeType(edgePoints) == ShapeType.Circle))
+                {
+                    g.DrawEllipse(new Pen(Color.FromArgb(255, i, i, i), 3.0f),
+                       (int)(center.X - radius),
+                       (int)(center.Y - radius),
+                       (int)(radius * 2),
+                       (int)(radius * 2));
+                    circleBlobs.Add(blob);
+                }
+                if (i + 5 > 255)
+                {
+                    i = 0;
+                }
+                i += 5;
+            }
+            image.Save("blobs.bmp");
+            redPen.Dispose();
+            g.Dispose();
+            return circleBlobs.ToArray();
+        }
+        public static Bitmap PreProcess(Bitmap bmp)
+        {
+            Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
+            Invert ifilter = new Invert();
+            BradleyLocalThresholding thfilter = new BradleyLocalThresholding();
+            bmp = gfilter.Apply(bmp);
+            thfilter.ApplyInPlace(bmp);
+            ifilter.ApplyInPlace(bmp);
+            return bmp;
         }
     }
 }

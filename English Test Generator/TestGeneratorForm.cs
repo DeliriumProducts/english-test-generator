@@ -98,7 +98,7 @@ namespace English_Test_Generator
             test_Words = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
             Pastebin.LoadUnits(test_Words);
             textBox2.Text = "[TEST]"; // Sets default test name
-			if (!Utility.hasRequestsLeft(app_Id, app_Key)) Utility.getNewCredentials();
+			if (!Utility.HasRequestsLeft(app_Id, app_Key)) Utility.GetNewCredentials();
             if (Properties.Settings.Default.autoUpdate)
             {                
                 new Thread(() => { Program.Update(); }).Start();

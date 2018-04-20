@@ -14,10 +14,9 @@ using System.Drawing.Drawing2D;
 using ZXing;
 using System.Threading;
 using System.Text.RegularExpressions;
-using AForge.Imaging;
-using AForge.Math.Geometry;
-using AForge;
-using AForge.Imaging.Filters;
+using Ghostscript.NET.Rasterizer;
+using System.IO;
+using System.Collections.Concurrent;
 
 namespace English_Test_Generator
 {
@@ -35,7 +34,7 @@ namespace English_Test_Generator
             }
             return shuffledList;
         }
-        public static bool hasRequestsLeft(string app_Id, string app_Key)
+        public static bool HasRequestsLeft(string app_Id, string app_Key)
         {
             string url = "https://od-api.oxforddictionaries.com:443/api/v1/filters"; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
@@ -48,7 +47,7 @@ namespace English_Test_Generator
             if (response.StatusCode.ToString() == "Forbidden") { return false; };
             return true;
         }
-        public static void getNewCredentials()
+        public static void GetNewCredentials()
         {
             string apiCredentialsList = "";
             using (WebClient wc = new WebClient())
@@ -62,7 +61,7 @@ namespace English_Test_Generator
                 {
                     app_Id = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[0];
                     app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
-                    if (hasRequestsLeft(app_Id, app_Key))
+                    if (HasRequestsLeft(app_Id, app_Key))
                     {
                         TestGeneratorForm.app_Id = app_Id;
                         TestGeneratorForm.app_Key = app_Key;
@@ -76,7 +75,6 @@ namespace English_Test_Generator
         }
         public static Bitmap RotateBMP(Bitmap bmp, float Ax, float Ay, float Bx, float By)
         {
-            
                 float angle = (float)Math.Atan2(Math.Abs(By - Ay), Math.Abs(Bx - Ax));
                 PointF centerOld = new PointF((float)bmp.Width / 2, (float)bmp.Height / 2);
                 Bitmap newBitmap = new Bitmap(bmp.Width, bmp.Height, bmp.PixelFormat);
@@ -93,6 +91,15 @@ namespace English_Test_Generator
                     newBitmap.Save("rotatedImage.bmp");
                     return newBitmap;
                 }
+        }
+        public static Bitmap ConvertPDFToPNG(string inputFile)
+        {
+            using (var rasterizer = new GhostscriptRasterizer()) //create an instance for GhostscriptRasterizer
+            {
+                rasterizer.Open(inputFile); //opens the PDF file for rasterizing
+                var pdf2png = rasterizer.GetPage(100, 100, 1);
+                return (Bitmap)pdf2png;
+            }
         }
         public static bool ReadQRCode(Bitmap bmp, out ZXing.Result result, int timesRotated)
         {
@@ -155,7 +162,7 @@ namespace English_Test_Generator
         /// <summary>
         /// Checks whether a given word has an entry in the Oxford Dictionary's database.
         /// </summary>
-        public static bool isValidEntry(KeyValuePair<string,string> entry, string test_Type)
+        public static bool IsValidEntry(KeyValuePair<string,string> entry, string test_Type)
         {
             switch (test_Type)
             {
@@ -176,103 +183,35 @@ namespace English_Test_Generator
         }
         /// <summary>
         /// Returns collection of blobs which contain all of the detected answers.
-        /// </summary>
-        public static Blob[] Blobs(Bitmap image)
+        /// </summary>       
+        public static void InitializeAnswerSheet (out ConcurrentBag<string> studentsResults, string filePath)
         {
-            const float baseArea = 921600.0f; // stores the base area of the answer sheet
-            BlobCounter blobCounter = new BlobCounter
+            Dictionary<int, char> answerKey = new Dictionary<int, char>();
+            string testID = "";
+            string studentName = Path.GetFileNameWithoutExtension(filePath);
+            int Ax, Ay, Bx, By;
+            Bitmap bmp = (Bitmap)Bitmap.FromFile(filePath);
+            studentsResults = new ConcurrentBag<string>();
+            if (!ReadQRCode(bmp, out ZXing.Result barcodeResult, 0))
             {
-                FilterBlobs = true,
-                MinHeight = 1280,
-                MinWidth = 720
-            };
-            blobCounter.ProcessImage(PreProcess(image));
-            Blob[] blobs = blobCounter.GetObjectsInformation();
-            SimpleShapeChecker shapeChecker = new SimpleShapeChecker();
-            Graphics g = Graphics.FromImage(image);
-            Pen redPen = new Pen(Color.Red, 2);
-            float k = 1.0f;
-            foreach (var blob in blobs)
-            {
-                List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);
-                if (shapeChecker.IsQuadrilateral(edgePoints, out List<IntPoint> cornerPoints))
-                {
-                    if (shapeChecker.CheckPolygonSubType(cornerPoints) == PolygonSubType.Rectangle)
-                    {
-                        List<System.Drawing.Point> points = new List<System.Drawing.Point>();
-                        foreach (var point in cornerPoints)
-                        {
-                            points.Add(new System.Drawing.Point(point.X, point.Y));
-                        }
-                        System.Drawing.Point min = new System.Drawing.Point(image.Width, image.Height);
-                        System.Drawing.Point max = new System.Drawing.Point(0, 0);
-                        List<System.Drawing.Point> pl = new List<System.Drawing.Point>();
-                        pl = points.OrderBy(p => p.X).ToList();
-                        if (pl[0].Y <= pl[1].Y)
-                        {
-                            min = pl[0];
-                        }
-                        else if (pl[0].Y >= pl[1].Y)
-                        {
-                            min = pl[1];
-                        }
-                        if (pl[2].Y >= pl[3].Y)
-                        {
-                            max = pl[2];
-                        }
-                        else if (pl[2].Y <= pl[3].Y)
-                        {
-                            max = pl[3];
-                        }
-                        pl.Remove(min);
-                        pl.Remove(max);
-                        double width = Math.Sqrt(Math.Pow(pl[1].X - max.X, 2) + Math.Pow(pl[1].Y - max.Y, 2));
-                        double height = Math.Sqrt(Math.Pow(pl[0].X - max.X, 2) + Math.Pow(pl[0].Y - max.Y, 2));
-                        k = (float)(width * height) / baseArea;
-                    }
-                }
+                studentsResults.Add("Couldn't check " + studentName +"'s Answer Sheet.");
+                return;
             }
-            k = (float) Math.Ceiling(Math.Sqrt(k));
-            shapeChecker.RelativeDistortionLimit = 0.05f;
-            blobCounter.FilterBlobs = true;
-            blobCounter.MinHeight = 21* (int) k;
-            blobCounter.MinWidth = 21* (int) k;
-            blobCounter.ProcessImage(PreProcess(image));
-            blobs = blobCounter.GetObjectsInformation();
-            List<Blob> circleBlobs = new List<Blob>();
-            int i = 0;
-            foreach (var blob in blobs)
+            Ax = (int)barcodeResult.ResultPoints[1].X;
+            Ay = (int)barcodeResult.ResultPoints[1].Y;
+            Bx = (int)barcodeResult.ResultPoints[2].X;
+            By = (int)barcodeResult.ResultPoints[2].Y;
+            Graphics g = Graphics.FromImage(bmp);
+            bmp = RotateBMP(bmp, Ax, Ay, Bx, By);
+            testID = Decrypt(barcodeResult?.Text);
+            testID.TrimEnd();
+            string[] lines = testID.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 1; i <= lines.Length - 1; i++)
             {
-                List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);   
-                if (shapeChecker.IsCircle(edgePoints, out AForge.Point center, out float radius)|| (shapeChecker.CheckShapeType(edgePoints) == ShapeType.Circle))
-                {
-                    g.DrawEllipse(new Pen(Color.FromArgb(255,i,i,i),3.0f),
-                       (int)(center.X - radius),
-                       (int)(center.Y - radius),
-                       (int)(radius * 2),
-                       (int)(radius * 2));
-                    circleBlobs.Add(blob);
-                }
-                if (i + 1 > 255)
-                {
-                    i = 0;
-                }
-                i+=5;
+                string[] currentLine = lines[i].Split(new[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
+                answerKey.Add(i, currentLine[1][0]);
             }
-            image.Save("blobs.bmp");
-            redPen.Dispose();
-            g.Dispose();
-            return circleBlobs.ToArray();
-        }
-        public static Bitmap PreProcess(Bitmap bmp)
-        {
-            Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
-            Invert ifilter = new Invert();
-            BradleyLocalThresholding thfilter = new BradleyLocalThresholding();
-            bmp = gfilter.Apply(bmp);
-            thfilter.ApplyInPlace(bmp);
-            ifilter.ApplyInPlace(bmp);
-            return bmp;
+            studentsResults.Add((studentName+" has scored: " + Test.Check(bmp, testID, answerKey).ToString() + "/" + answerKey.Count + " points"));
         }
     }
 }
