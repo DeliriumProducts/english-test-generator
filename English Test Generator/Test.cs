@@ -285,13 +285,13 @@ namespace English_Test_Generator
             int currentLetter = 1;
             Blob[] blobs = Utility.Blobs(bmp);
             bool studentHasAnswered = false;
-            for (int i = 0; i<blobs.Length; i++)
+            for (int i = 0; i < blobs.Length; i++)
             {
                 if (blobs[i].Fullness>=0.30)
                 {
                     studentAnswers.Add(currentExercise,(char)(currentLetter+64));
                     studentHasAnswered = true;
-                    i += test_possibleAnswersAmount - currentLetter;
+                    i += test_possibleAnswersAmount - currentLetter; // offset blobs to next exercise
                     currentExercise++;
                     currentLetter = 1;
                     continue;
@@ -300,9 +300,6 @@ namespace English_Test_Generator
                 {
                     studentAnswers.Add(currentExercise, '-');
                     studentHasAnswered = true;
-                }
-                if (currentLetter == test_possibleAnswersAmount)
-                {
                     currentExercise++;
                     currentLetter = 1;
                     continue;
