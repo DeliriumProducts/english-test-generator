@@ -98,7 +98,7 @@ namespace English_Test_Generator
 
         private void panel2_DragDrop(object sender, DragEventArgs e)
         {
-   string[] filePaths = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            string[] filePaths = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             ConcurrentBag<string> studentsResults = new ConcurrentBag<string>();
             Parallel.ForEach(filePaths, filePath =>
              {
@@ -107,6 +107,10 @@ namespace English_Test_Generator
                      answerSheet = Utility.ConvertPDFToPNG(filePath);
                  Utility.InitializeAnswerSheet(out studentsResults, filePath);
              });
+            foreach (var student in studentsResults)
+            {
+                MessageBox.Show(student);
+            }
         }
 
         private void panel2_DragEnter(object sender, DragEventArgs e)

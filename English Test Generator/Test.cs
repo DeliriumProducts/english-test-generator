@@ -41,6 +41,7 @@ using AForge.Imaging;
 using AForge.Math.Geometry;
 using AForge;
 using AForge.Imaging.Filters;
+using ZXing.QrCode;
 
 namespace English_Test_Generator
 {
@@ -235,8 +236,15 @@ namespace English_Test_Generator
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.PixelOffsetMode = PixelOffsetMode.HighQuality;
                 g.FillRectangle(Brushes.White, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                var barcodeWriter = new BarcodeWriter();
-                barcodeWriter.Format = BarcodeFormat.QR_CODE;
+                var barcodeWriter = new BarcodeWriter
+                {
+                    Format = BarcodeFormat.QR_CODE,
+                    Options = new QrCodeEncodingOptions
+                    {
+                        Width = 150,
+                        Height = 150
+                    }
+                };
                 Bitmap qrcode = new Bitmap(barcodeWriter.Write(Utility.Encrypt($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}\n{test_AnswerKey}")));
                 g.DrawImage(qrcode, bmp.Width - qrcode.Width, bmp.Height - qrcode.Height);
                 g.DrawRectangle(Pens.Black, studentData);            
@@ -288,15 +296,18 @@ namespace English_Test_Generator
             int currentLetter = 1;
             Blob[] blobs = Blobs(bmp);
             bool studentHasAnswered = false;
-            for (int i = 0; i < blobs.Length; i++)
-            {               
-                if (blobs[i].Fullness>=0.30)
+            int j = 0;
+            int formula = (test_possibleAnswersAmount - 1) * (test_ExerciseAmount) - 1;
+            while (j < blobs.Length)
+            {
+
+                if (blobs[j].Fullness >= 0.30)
                 {
-                    studentAnswers.Add(currentExercise,(char)(currentLetter+64));
+                    studentAnswers.Add(currentExercise, (char)(currentLetter + 64));
                     studentHasAnswered = true;
-                    i += test_possibleAnswersAmount - currentLetter; // offset blobs to next exercise
                     currentExercise++;
                     currentLetter = 1;
+                    j = currentExercise-1;
                     continue;
                 }
                 if (!studentHasAnswered && currentLetter == test_possibleAnswersAmount)
@@ -305,8 +316,16 @@ namespace English_Test_Generator
                     studentHasAnswered = true;
                     currentExercise++;
                     currentLetter = 1;
+                    j = currentExercise;
                     continue;
                 }
+                if (j - formula == currentExercise + 1)
+                {
+                    currentExercise++;
+                    currentLetter = 1;
+                    j -= formula;
+                }
+                j += test_ExerciseAmount;
                 studentHasAnswered = false;
                 currentLetter++;
             }
@@ -376,11 +395,13 @@ namespace English_Test_Generator
                     }
                 }
             }
-            k = (float)Math.Ceiling(Math.Sqrt(k));
+            k = (float)Math.Round(Math.Sqrt(k));
             shapeChecker.RelativeDistortionLimit = 0.05f;
             blobCounter.FilterBlobs = true;
             blobCounter.MinHeight = 21 * (int)k;
             blobCounter.MinWidth = 21 * (int)k;
+            MessageBox.Show(blobCounter.ObjectsOrder.ToString());
+            blobCounter.ObjectsOrder = ObjectsOrder.XY;
             blobCounter.ProcessImage(PreProcess(image));
             blobs = blobCounter.GetObjectsInformation();
             List<Blob> circleBlobs = new List<Blob>();
@@ -390,19 +411,22 @@ namespace English_Test_Generator
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);
                 if (shapeChecker.IsCircle(edgePoints, out AForge.Point center, out float radius) || (shapeChecker.CheckShapeType(edgePoints) == ShapeType.Circle))
                 {
-                    g.DrawEllipse(new Pen(Color.FromArgb(255, i, i, i), 3.0f),
+                    g.DrawEllipse(new Pen(Color.FromArgb(255, i, i, i), 2.0f),
                        (int)(center.X - radius),
                        (int)(center.Y - radius),
                        (int)(radius * 2),
                        (int)(radius * 2));
                     circleBlobs.Add(blob);
                 }
-                if (i + 5 > 255)
+                if (i + 10 > 255)
                 {
                     i = 0;
                 }
-                i += 5;
+                i += 10;
             }
+            // sorting blobs by X
+          //  circleBlobs = circleBlobs.OrderBy(p => p.Rectangle.X).ThenBy(p=>p.Rectangle.Y).ToList();
+
             image.Save("blobs.bmp");
             redPen.Dispose();
             g.Dispose();

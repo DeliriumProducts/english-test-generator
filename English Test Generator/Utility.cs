@@ -88,7 +88,7 @@ namespace English_Test_Generator
                     matrix.RotateAt(angleToRotate, centerOld);
                     g.Transform = matrix;
                     g.DrawImage(bmp, new System.Drawing.Point());
-                    newBitmap.Save("rotatedImage.bmp");
+                    //newBitmap.Save("rotatedImage.bmp");
                     return newBitmap;
                 }
         }
@@ -194,6 +194,7 @@ namespace English_Test_Generator
             studentsResults = new ConcurrentBag<string>();
             if (!ReadQRCode(bmp, out ZXing.Result barcodeResult, 0))
             {
+                MessageBox.Show("Please adjust " + studentName + "'s answer sheet!","Checking failed", MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 studentsResults.Add("Couldn't check " + studentName +"'s Answer Sheet.");
                 return;
             }
