@@ -14,6 +14,10 @@ using System.Drawing.Drawing2D;
 using ZXing;
 using System.Threading;
 using System.Text.RegularExpressions;
+using AForge.Imaging;
+using AForge.Math.Geometry;
+using AForge;
+using AForge.Imaging.Filters;
 
 namespace English_Test_Generator
 {
@@ -85,7 +89,7 @@ namespace English_Test_Generator
                     float toAdd = fractionalPortion;
                     matrix.RotateAt(angleToRotate, centerOld);
                     g.Transform = matrix;
-                    g.DrawImage(bmp, new Point());
+                    g.DrawImage(bmp, new System.Drawing.Point());
                     newBitmap.Save("rotatedImage.bmp");
                     return newBitmap;
                 }
@@ -169,6 +173,105 @@ namespace English_Test_Generator
                     return (multi_choices.Contains("Couldn't find ") && multi_choices.Contains("ERROR")) ? true : false;
             }
             return false;
+        }
+        /// <summary>
+        /// Returns collection of blobs which contain all of the detected answers.
+        /// </summary>
+        public static Blob[] Blobs(Bitmap image)
+        {
+            const float baseArea = 921600.0f; // stores the base area of the answer sheet
+            BlobCounter blobCounter = new BlobCounter
+            {
+                FilterBlobs = true,
+                MinHeight = 1280,
+                MinWidth = 720
+            };
+            blobCounter.ProcessImage(PreProcess(image));
+            Blob[] blobs = blobCounter.GetObjectsInformation();
+            SimpleShapeChecker shapeChecker = new SimpleShapeChecker();
+            Graphics g = Graphics.FromImage(image);
+            Pen redPen = new Pen(Color.Red, 2);
+            float k = 1.0f;
+            foreach (var blob in blobs)
+            {
+                List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);
+                if (shapeChecker.IsQuadrilateral(edgePoints, out List<IntPoint> cornerPoints))
+                {
+                    if (shapeChecker.CheckPolygonSubType(cornerPoints) == PolygonSubType.Rectangle)
+                    {
+                        List<System.Drawing.Point> points = new List<System.Drawing.Point>();
+                        foreach (var point in cornerPoints)
+                        {
+                            points.Add(new System.Drawing.Point(point.X, point.Y));
+                        }
+                        System.Drawing.Point min = new System.Drawing.Point(image.Width, image.Height);
+                        System.Drawing.Point max = new System.Drawing.Point(0, 0);
+                        List<System.Drawing.Point> pl = new List<System.Drawing.Point>();
+                        pl = points.OrderBy(p => p.X).ToList();
+                        if (pl[0].Y <= pl[1].Y)
+                        {
+                            min = pl[0];
+                        }
+                        else if (pl[0].Y >= pl[1].Y)
+                        {
+                            min = pl[1];
+                        }
+                        if (pl[2].Y >= pl[3].Y)
+                        {
+                            max = pl[2];
+                        }
+                        else if (pl[2].Y <= pl[3].Y)
+                        {
+                            max = pl[3];
+                        }
+                        pl.Remove(min);
+                        pl.Remove(max);
+                        double width = Math.Sqrt(Math.Pow(pl[1].X - max.X, 2) + Math.Pow(pl[1].Y - max.Y, 2));
+                        double height = Math.Sqrt(Math.Pow(pl[0].X - max.X, 2) + Math.Pow(pl[0].Y - max.Y, 2));
+                        k = (float)(width * height) / baseArea;
+                    }
+                }
+            }
+            k = (float) Math.Ceiling(Math.Sqrt(k));
+            blobCounter.FilterBlobs = true;
+            blobCounter.MinHeight = 21* (int) k;
+            blobCounter.MinWidth = 21* (int) k;
+            blobCounter.ProcessImage(PreProcess(image));
+            blobs = blobCounter.GetObjectsInformation();
+            List<Blob> circleBlobs = new List<Blob>();
+            int i = 0;
+            foreach (var blob in blobs)
+            {
+                List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);   
+                if (shapeChecker.IsCircle(edgePoints, out AForge.Point center, out float radius))
+                {
+                    g.DrawEllipse(new Pen(Color.FromArgb(255,i,i,i),3.0f),
+                       (int)(center.X - radius),
+                       (int)(center.Y - radius),
+                       (int)(radius * 2),
+                       (int)(radius * 2));
+                    circleBlobs.Add(blob);
+                }
+                if (i + 1 > 255)
+                {
+                    i = 0;
+                }
+                i++;
+            }
+            image.Save("HUIIIII.bmp");
+            redPen.Dispose();
+            g.Dispose();
+            return circleBlobs.ToArray();
+        }
+        public static Bitmap PreProcess(Bitmap bmp)
+        {
+            Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
+            Invert ifilter = new Invert();
+            BradleyLocalThresholding thfilter = new BradleyLocalThresholding();
+            bmp = gfilter.Apply(bmp);
+            thfilter.ApplyInPlace(bmp);
+            ifilter.ApplyInPlace(bmp);
+            return bmp;
         }
     }
 }

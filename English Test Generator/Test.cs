@@ -37,6 +37,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using ZXing;
+using AForge.Imaging;
+
 namespace English_Test_Generator
 {
     class Test
@@ -281,51 +283,55 @@ namespace English_Test_Generator
         }
         public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey, float k)
         {
-            bmp = GrayScale(bmp);
             Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
-            Bitmap box = new Bitmap(34, 17);
-            Graphics g = Graphics.FromImage(box);
-            Graphics g2 = Graphics.FromImage(bmp);
-            Color pixel = Color.White;
-            RectangleF[] rects = new RectangleF[1];
-            float offsetRecX = 0, offsetRecY = 0, baseRecX = 110;
-            int offsetBox = -6;
-            rects[0] = new RectangleF((baseRecX + offsetRecX+offsetBox/2)*k, (105 + offsetRecY + offsetBox/2) *k , (33-offsetBox) * k, (16- offsetBox) * k);
-            box = bmp.Clone(rects[0], box.PixelFormat);
             int test_ExerciseAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[0]);
             int test_possibleAnswersAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[1]);
-            for (int i = 1; i <= test_ExerciseAmount; i++)
+            int currentExercise = 1;
+            int currentLetter = 1;
+            Blob[] blobs = Utility.Blobs(bmp);
+            bool studentHasAnswered = false;
+            for (int i = 0; i<blobs.Length; i++)
             {
-                if (i > 44)
+                if (blobs[i].Fullness>=0.30)
                 {
-                    if (i == 45)
-                        baseRecX = 390*k;
+                    studentAnswers.Add(currentExercise,(char)(currentLetter+64));
+                    studentHasAnswered = true;
+                    i += test_possibleAnswersAmount - currentLetter;
+                    currentExercise++;
+                    currentLetter = 1;
+                    continue;
                 }
-                bool studentHasAnswered = false;
-                for (int j = 1; j <= test_possibleAnswersAmount; j++)
+                if (!studentHasAnswered && currentLetter == test_possibleAnswersAmount)
                 {
-                    rects[0] = new RectangleF((baseRecX + offsetRecX + offsetBox / 2) * k, (105 + offsetRecY + offsetBox / 2) * k, (33 - offsetBox) * k, (16 - offsetBox) * k);
-                    g2.DrawRectangles(Pens.Red, rects);
-                    if (searchForMarks(box, pixel,k))
-                    {   
-                        studentAnswers.Add(i, (char)(j + 64));
-                        offsetRecX = 0;
-                        studentHasAnswered = true;
-                        break;
-                    }
-                    offsetRecX += 39;
-                    rects[0] = new RectangleF((baseRecX + offsetRecX + offsetBox / 2) * k, (105 + offsetRecY + offsetBox / 2) * k, (33 - offsetBox) * k, (16 - offsetBox) * k);
-                    box = bmp.Clone(rects[0], box.PixelFormat);                  
+                    studentAnswers.Add(currentExercise, '-');
+                    studentHasAnswered = true;
                 }
-                if (!studentHasAnswered)
+                if (currentLetter == test_possibleAnswersAmount)
                 {
-                    studentAnswers.Add(i, '-');
+                    currentExercise++;
+                    currentLetter = 1;
+                    continue;
                 }
-                offsetRecX = 0;
-                offsetRecY = (i == 44) ? 0 : offsetRecY + 25;
-                rects[0] = new RectangleF((baseRecX + offsetRecX + offsetBox / 2) * k, (105 + offsetRecY + offsetBox / 2) * k, (33 - offsetBox) * k, (16 - offsetBox) * k);
-                box = bmp.Clone(rects[0], box.PixelFormat);
+                currentLetter++;
             }
+            //while (currentExercise<=test_ExerciseAmount)
+            //{
+            //    bool studentHasAnswered = false;
+            //    currentBlob++;
+            //    int currentLetter = (currentExercise*test_possibleAnswersAmount);
+            //    if (blobs[(currentBlob*currentExercise)+currentLetter].Fullness >= 0.30)
+            //    {
+            //        studentAnswers.Add(currentExercise, (char)(currentLetter + 65));
+            //        studentHasAnswered = true;
+            //        currentBlob += test_possibleAnswersAmount - currentLetter;
+            //        continue;
+            //    }
+            //    if (!studentHasAnswered)
+            //    {
+            //        studentAnswers.Add(currentExercise, '-');
+            //    }
+            //    currentExercise++;
+            //}
             int correctAnswers = 0;
             for (int i = 1; i <= answerKey.Count; i++)
             {
@@ -334,10 +340,7 @@ namespace English_Test_Generator
                     correctAnswers++;
                 }
             }
-            bmp.Save("asdf.bmp");
-            box.Dispose();
             bmp.Dispose();
-            g.Flush();
             return correctAnswers;
         }
         public static Bitmap GrayScale(Bitmap original)
