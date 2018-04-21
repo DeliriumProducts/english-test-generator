@@ -44,11 +44,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.monoFlat_Button1 = new MonoFlat.MonoFlat_Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.monoFlat_Button2 = new MonoFlat.MonoFlat_Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.monoFlat_Button1 = new MonoFlat.MonoFlat_Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -126,9 +125,9 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(335, 168);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(100, 114);
+            this.richTextBox1.Size = new System.Drawing.Size(100, 75);
             this.richTextBox1.TabIndex = 18;
-            this.richTextBox1.Text = "1-A\n2-A\n3-D\n4-C\n5-D\n6-B\n7-A\n8-A";
+            this.richTextBox1.Text = "1-A\n2-A\n3-D\n4-C\n5-D";
             // 
             // label9
             // 
@@ -253,32 +252,16 @@
             this.numericUpDown1.Size = new System.Drawing.Size(100, 27);
             this.numericUpDown1.TabIndex = 1;
             this.numericUpDown1.Value = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             0});
-            // 
-            // monoFlat_Button1
-            // 
-            this.monoFlat_Button1.BackColor = System.Drawing.Color.Transparent;
-            this.monoFlat_Button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.monoFlat_Button1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.monoFlat_Button1.Image = null;
-            this.monoFlat_Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.monoFlat_Button1.Location = new System.Drawing.Point(284, 294);
-            this.monoFlat_Button1.Name = "monoFlat_Button1";
-            this.monoFlat_Button1.Size = new System.Drawing.Size(175, 41);
-            this.monoFlat_Button1.TabIndex = 0;
-            this.monoFlat_Button1.Text = "Create Answer Sheet";
-            this.monoFlat_Button1.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.monoFlat_Button1.Click += new System.EventHandler(this.monoFlat_Button1_Click);
             // 
             // panel2
             // 
             this.panel2.AllowDrop = true;
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.monoFlat_Button2);
             this.panel2.Location = new System.Drawing.Point(0, 158);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(484, 358);
@@ -289,7 +272,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(48, 36);
+            this.pictureBox2.Location = new System.Drawing.Point(48, 58);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(387, 232);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -298,20 +281,20 @@
             this.pictureBox2.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox2_DragDrop);
             this.pictureBox2.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox2_DragEnter);
             // 
-            // monoFlat_Button2
+            // monoFlat_Button1
             // 
-            this.monoFlat_Button2.BackColor = System.Drawing.Color.Transparent;
-            this.monoFlat_Button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.monoFlat_Button2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.monoFlat_Button2.Image = null;
-            this.monoFlat_Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.monoFlat_Button2.Location = new System.Drawing.Point(284, 294);
-            this.monoFlat_Button2.Name = "monoFlat_Button2";
-            this.monoFlat_Button2.Size = new System.Drawing.Size(146, 41);
-            this.monoFlat_Button2.TabIndex = 14;
-            this.monoFlat_Button2.Text = "Check Test";
-            this.monoFlat_Button2.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.monoFlat_Button2.Click += new System.EventHandler(this.monoFlat_Button2_Click);
+            this.monoFlat_Button1.BackColor = System.Drawing.Color.Transparent;
+            this.monoFlat_Button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.monoFlat_Button1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.monoFlat_Button1.Image = null;
+            this.monoFlat_Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.monoFlat_Button1.Location = new System.Drawing.Point(163, 296);
+            this.monoFlat_Button1.Name = "monoFlat_Button1";
+            this.monoFlat_Button1.Size = new System.Drawing.Size(175, 41);
+            this.monoFlat_Button1.TabIndex = 0;
+            this.monoFlat_Button1.Text = "Create Answer Sheet";
+            this.monoFlat_Button1.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.monoFlat_Button1.Click += new System.EventHandler(this.monoFlat_Button1_Click);
             // 
             // TestCheckerForm
             // 
@@ -323,8 +306,8 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -362,7 +345,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.ToolTip toolTip1;
-        private MonoFlat.MonoFlat_Button monoFlat_Button2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox2;
