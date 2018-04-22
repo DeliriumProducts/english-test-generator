@@ -103,7 +103,7 @@ namespace English_Test_Generator
                 string key = test_Words.ElementAt(randomExercise).Key;
                 string value = test_Words[key];
                 KeyValuePair<string, string> pair = new KeyValuePair<string, string>(key, value);
-                if (Utility.IsValidEntry(pair, test_Type))
+                if (!Utility.IsValidEntry(pair, test_Type))
                 {
                     test_Words.Remove(key);
                     continue;
@@ -169,7 +169,7 @@ namespace English_Test_Generator
             }
             foreach (var exercise in exercises.ToList()) 
             {
-                if (((exercise.Contains("Couldn't find ") && exercise.Contains("ERROR")) && answers.Any()) ||
+                if ((exercise.Contains("Couldn't find ") && (exercise.Contains("NotFound")|| exercise.Contains("ERROR")) && answers.Any()) ||
                     (!(exercise.Contains("_")) && answers.Any() && (test_Type == "Examples" ||
                     test_Type == "Multi-Choices"))) // remove all of the words that were not found in the Oxford Dictionary
                 {
@@ -296,18 +296,15 @@ namespace English_Test_Generator
             int currentLetter = 1;
             Blob[] blobs = Blobs(bmp);
             bool studentHasAnswered = false;
-            int j = 0;
-            int formula = (test_possibleAnswersAmount - 1) * (test_ExerciseAmount) - 1;
-            while (j < blobs.Length)
+            for (int i = 0; i < blobs.Length; i++)
             {
-
-                if (blobs[j].Fullness >= 0.30)
+                if (blobs[i].Fullness >= 0.30)
                 {
                     studentAnswers.Add(currentExercise, (char)(currentLetter + 64));
                     studentHasAnswered = true;
+                    i += test_possibleAnswersAmount - currentLetter; // offset blobs to next exercise
                     currentExercise++;
                     currentLetter = 1;
-                    j = currentExercise-1;
                     continue;
                 }
                 if (!studentHasAnswered && currentLetter == test_possibleAnswersAmount)
@@ -316,19 +313,45 @@ namespace English_Test_Generator
                     studentHasAnswered = true;
                     currentExercise++;
                     currentLetter = 1;
-                    j = currentExercise;
                     continue;
                 }
-                if (j - formula == currentExercise + 1)
-                {
-                    currentExercise++;
-                    currentLetter = 1;
-                    j -= formula;
-                }
-                j += test_ExerciseAmount;
                 studentHasAnswered = false;
                 currentLetter++;
             }
+
+            //int j = 0;
+            //int formula = (test_possibleAnswersAmount - 1) * (test_ExerciseAmount) - 1;
+            //while (j < blobs.Length)
+            //{
+
+            //    if (blobs[j].Fullness >= 0.30)
+            //    {
+            //        studentAnswers.Add(currentExercise, (char)(currentLetter + 64));
+            //        studentHasAnswered = true;
+            //        currentExercise++;
+            //        currentLetter = 1;
+            //        j = currentExercise-1;
+            //        continue;
+            //    }
+            //    if (!studentHasAnswered && currentLetter == test_possibleAnswersAmount)
+            //    {
+            //        studentAnswers.Add(currentExercise, '-');
+            //        studentHasAnswered = true;
+            //        currentExercise++;
+            //        currentLetter = 1;
+            //        j = currentExercise;
+            //        continue;
+            //    }
+            //    if (j - formula == currentExercise + 1)
+            //    {
+            //        currentExercise++;
+            //        currentLetter = 1;
+            //        j -= formula;
+            //    }
+            //    j += test_ExerciseAmount;
+            //    studentHasAnswered = false;
+            //    currentLetter++;
+            //}
             int correctAnswers = 0;
             for (int i = 1; i <= answerKey.Count; i++)
             {
@@ -400,7 +423,7 @@ namespace English_Test_Generator
             blobCounter.FilterBlobs = true;
             blobCounter.MinHeight = 21 * (int)k;
             blobCounter.MinWidth = 21 * (int)k;
-            blobCounter.ObjectsOrder = ObjectsOrder.XY;
+            //blobCounter.ObjectsOrder = ObjectsOrder.XY;
             blobCounter.ProcessImage(PreProcess(image));
             blobs = blobCounter.GetObjectsInformation();
             List<Blob> circleBlobs = new List<Blob>();

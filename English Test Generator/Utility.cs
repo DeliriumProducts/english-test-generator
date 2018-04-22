@@ -168,16 +168,16 @@ namespace English_Test_Generator
             {
                 case "Definitions":
                     string definition = Test.Read(GetAPIResponse.Definitions.get(entry.Value, entry.Key));
-                    return (definition.Contains("Couldn't find ") && definition.Contains("ERROR")) ? true:false;
+                    return (definition.Contains("Couldn't find") && definition.Contains("ERROR")) ? false : true;
                 case "Examples":
                     string example = Regex.Replace(Test.Read(GetAPIResponse.Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase);
-                    return ((example.Contains("Couldn't find ") && example.Contains("ERROR"))) ? true : false;
+                    return ((example.Contains("Couldn't find") && example.Contains("ERROR"))) ? false : true;
                 case "Words":
                     return true; // no need to check anything, becuase test type words doesn't request anything from Oxford
                 case "Multi-Choices":
                     char answer = 'A'; // stores the correct answer for each exercise
                     string multi_choices = Regex.Replace(Test.Read(GetAPIResponse.Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + GetAPIResponse.Synonyms.Request(entry.Key, out answer);
-                    return (multi_choices.Contains("Couldn't find ") && multi_choices.Contains("ERROR")) ? true : false;
+                    return (multi_choices.Contains("Couldn't find") && multi_choices.Contains("ERROR")) ? false:true ;
             }
             return false;
         }
