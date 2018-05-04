@@ -68,7 +68,7 @@ namespace English_Test_Generator
                 value = keyPair[1][0];
                 answerKey += i.ToString() + "-" + value + "\n";
             }
-            Test.GenerateAnswerSheet(testName, exerciseAmount, testGroupsAmount, possibleAnswersAmount, answerKey); // make it a non-void method and return and save / open the finished bitmap
+            AnswerSheet.Generate(testName, exerciseAmount, testGroupsAmount, possibleAnswersAmount, answerKey); // make it a non-void method and return and save / open the finished bitmap
             if (MessageBox.Show("Answer sheet with name " + testName + " successfully generated! Would you like to open it?", "Answer Sheet", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
             {
                 Process.Start(Application.StartupPath + $@"\{testName}.bmp");
@@ -105,7 +105,7 @@ namespace English_Test_Generator
                  Bitmap answerSheet;
                  if (filePath.EndsWith(".pdf")) 
                      answerSheet = Utility.ConvertPDFToPNG(filePath);
-                 Utility.InitializeAnswerSheet(out studentsResults, filePath);
+                 AnswerSheet.Initialize(out studentsResults, filePath);
              });
             foreach (var student in studentsResults)
             {

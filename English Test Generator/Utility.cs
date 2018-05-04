@@ -88,7 +88,6 @@ namespace English_Test_Generator
                     matrix.RotateAt(angleToRotate, centerOld);
                     g.Transform = matrix;
                     g.DrawImage(bmp, new System.Drawing.Point());
-                    //newBitmap.Save("rotatedImage.bmp");
                     return newBitmap;
                 }
         }
@@ -114,22 +113,6 @@ namespace English_Test_Generator
                 ReadQRCode(bmp, out result, timesRotated);
             }
             return (result == null) ? false : true;
-        }
-        public static string GenerateChoices(List<string> choices, string word, out char answer)
-        {
-            string result = "";
-            answer = 'A';
-            foreach (var choice in choices)
-            {
-                if (choice==word)
-                {
-                    answer = (char)(choices.IndexOf(choice) + 65);
-                }
-                result +=
-                    (char)(choices.IndexOf(choice) + 65) + ") " +
-                    choice + "    ";
-            }
-            return result;
         }
         /// <summary>
         /// Encrypts a given string to base64.
@@ -180,39 +163,6 @@ namespace English_Test_Generator
                     return (multi_choices.Contains("Couldn't find") && multi_choices.Contains("ERROR")) ? false:true ;
             }
             return false;
-        }
-        /// <summary>
-        /// Returns collection of blobs which contain all of the detected answers.
-        /// </summary>       
-        public static void InitializeAnswerSheet (out ConcurrentBag<string> studentsResults, string filePath)
-        {
-            Dictionary<int, char> answerKey = new Dictionary<int, char>();
-            string testID = "";
-            string studentName = Path.GetFileNameWithoutExtension(filePath);
-            int Ax, Ay, Bx, By;
-            Bitmap bmp = (Bitmap)Bitmap.FromFile(filePath);
-            studentsResults = new ConcurrentBag<string>();
-            if (!ReadQRCode(bmp, out ZXing.Result barcodeResult, 0))
-            {
-                MessageBox.Show("Please adjust " + studentName + "'s answer sheet!","Checking failed", MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                studentsResults.Add("Couldn't check " + studentName +"'s Answer Sheet.");
-                return;
-            }
-            Ax = (int)barcodeResult.ResultPoints[1].X;
-            Ay = (int)barcodeResult.ResultPoints[1].Y;
-            Bx = (int)barcodeResult.ResultPoints[2].X;
-            By = (int)barcodeResult.ResultPoints[2].Y;
-            Graphics g = Graphics.FromImage(bmp);
-            bmp = RotateBMP(bmp, Ax, Ay, Bx, By);
-            testID = Decrypt(barcodeResult?.Text);
-            testID.TrimEnd();
-            string[] lines = testID.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-            for (int i = 1; i <= lines.Length - 1; i++)
-            {
-                string[] currentLine = lines[i].Split(new[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
-                answerKey.Add(i, currentLine[1][0]);
-            }
-            studentsResults.Add((studentName+" has scored: " + Test.Check(bmp, testID, answerKey).ToString() + "/" + answerKey.Count + " points"));
         }
     }
 }

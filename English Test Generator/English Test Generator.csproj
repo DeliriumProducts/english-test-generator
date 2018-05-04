@@ -152,6 +152,7 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AnswerSheet.cs" />
     <Compile Include="CacheWord.cs" />
     <Compile Include="FlatUI.cs" />
     <Compile Include="TestGeneratorForm.cs">
