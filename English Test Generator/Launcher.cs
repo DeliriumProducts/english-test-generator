@@ -30,7 +30,7 @@ namespace English_Test_Generator
 
         private void monoFlat_Button2_Click(object sender, EventArgs e)
         {
-           TestCheckerForm.tc.Show();                       
+           AnswerSheetForm.tc.Show();                       
         }
     }
 }

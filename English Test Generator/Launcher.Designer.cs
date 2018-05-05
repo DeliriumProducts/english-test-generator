@@ -77,7 +77,7 @@
             this.monoFlat_Button2.Name = "monoFlat_Button2";
             this.monoFlat_Button2.Size = new System.Drawing.Size(164, 50);
             this.monoFlat_Button2.TabIndex = 3;
-            this.monoFlat_Button2.Text = "Test Checker";
+            this.monoFlat_Button2.Text = "Answer Sheet Checker";
             this.monoFlat_Button2.TextAlignment = System.Drawing.StringAlignment.Center;
             this.toolTip1.SetToolTip(this.monoFlat_Button2, "Generate and Check Answer Sheets!");
             this.monoFlat_Button2.Click += new System.EventHandler(this.monoFlat_Button2_Click);

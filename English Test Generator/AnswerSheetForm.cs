@@ -14,9 +14,9 @@ using System.Windows.Forms;
 using ZXing;
 namespace English_Test_Generator
 {
-    public partial class TestCheckerForm : Form
+    public partial class AnswerSheetForm : Form
     {
-        public static TestCheckerForm tc = new TestCheckerForm();
+        public static AnswerSheetForm tc = new AnswerSheetForm();
         public static string testName;
         public static int exerciseAmount;
         public static int testGroupsAmount;
@@ -25,7 +25,7 @@ namespace English_Test_Generator
         public static string filePath;
         public static Bitmap bmp;
         public static OpenFileDialog newDialog;
-        public TestCheckerForm()
+        public AnswerSheetForm()
         {
             InitializeComponent();
             tc = this;

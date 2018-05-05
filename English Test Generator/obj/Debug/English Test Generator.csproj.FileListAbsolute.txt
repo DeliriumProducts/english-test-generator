@@ -138,4 +138,4 @@ C:\Users\любо\Desktop\EnglishTestGenerator\englishtestgenerator\English Test
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.TestGeneratorForm.resources
 C:\Users\Любо Любчев\Desktop\EnglishTestGenerator\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.TestCheckerForm.resources
 D:\Projects\Programming\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.TestGeneratorForm.resources
-D:\Projects\Programming\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.TestCheckerForm.resources
+D:\Projects\Programming\EnglishTestGenerator\English Test Generator\obj\Debug\English_Test_Generator.AnswerSheetForm.resources

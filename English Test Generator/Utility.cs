@@ -55,18 +55,18 @@ namespace English_Test_Generator
                 try { apiCredentialsList = wc.DownloadString("https://pastebin.com/raw/Pu4ki8eE"); }
                 catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 string[] apiCredentials = apiCredentialsList.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                string app_Id = "";
-                string app_Key = "";
+                string appId = "";
+                string appKey = "";
                 for (int i = 0; i < apiCredentials.Length; i++)
                 {
-                    app_Id = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[0];
-                    app_Key = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
-                    if (HasRequestsLeft(app_Id, app_Key))
+                    appId = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[0];
+                    appKey = apiCredentials[i].Split(new[] { ":" }, StringSplitOptions.None)[1];
+                    if (HasRequestsLeft(appId, appKey))
                     {
-                        TestGeneratorForm.app_Id = app_Id;
-                        TestGeneratorForm.app_Key = app_Key;
-                        English_Test_Generator.Properties.Settings.Default.app_Id = app_Id;
-                        English_Test_Generator.Properties.Settings.Default.app_Key = app_Key;
+                        TestGeneratorForm.appId = appId;
+                        TestGeneratorForm.appKey = appKey;
+                        English_Test_Generator.Properties.Settings.Default.app_Id = appId;
+                        English_Test_Generator.Properties.Settings.Default.app_Key = appKey;
                         English_Test_Generator.Properties.Settings.Default.Save();
                         return;
                     }
@@ -145,22 +145,22 @@ namespace English_Test_Generator
         /// <summary>
         /// Checks whether a given word has an entry in the Oxford Dictionary's database.
         /// </summary>
-        public static bool IsValidEntry(KeyValuePair<string,string> entry, string test_Type)
+        public static bool IsValidEntry(KeyValuePair<string,string> entry, string testType)
         {
-            switch (test_Type)
+            switch (testType)
             {
                 case "Definitions":
-                    string definition = Test.Read(GetAPIResponse.Definitions.get(entry.Value, entry.Key));
+                    string definition = Test.Read(GetAPIResponse.Definitions.Get(entry.Value, entry.Key));
                     return (definition.Contains("Couldn't find") && definition.Contains("ERROR")) ? false : true;
                 case "Examples":
-                    string example = Regex.Replace(Test.Read(GetAPIResponse.Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase);
+                    string example = Regex.Replace(Test.Read(GetAPIResponse.Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase);
                     return ((example.Contains("Couldn't find") && example.Contains("ERROR"))) ? false : true;
                 case "Words":
                     return true; // no need to check anything, becuase test type words doesn't request anything from Oxford
                 case "Multi-Choices":
                     char answer = 'A'; // stores the correct answer for each exercise
-                    string multi_choices = Regex.Replace(Test.Read(GetAPIResponse.Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + GetAPIResponse.Synonyms.Request(entry.Key, out answer);
-                    return (multi_choices.Contains("Couldn't find") && multi_choices.Contains("ERROR")) ? false:true ;
+                    string multiChoices = Regex.Replace(Test.Read(GetAPIResponse.Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + GetAPIResponse.Synonyms.Request(entry.Key, out answer);
+                    return (multiChoices.Contains("Couldn't find") && multiChoices.Contains("ERROR")) ? false:true ;
             }
             return false;
         }

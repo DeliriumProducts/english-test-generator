@@ -19,7 +19,7 @@ namespace English_Test_Generator
 {
     class AnswerSheet
     {
-        public static void Generate(string test_Name, int test_ExerciseAmount, int test_GroupsAmount, int test_possibleAnswersAmount, string test_AnswerKey)
+        public static void Generate(string testName, int testExerciseAmount, int testGroupsAmount, int testPossibleAnswersAmount, string testAnswerKey)
         {
             using (Bitmap bmp = new Bitmap(720, 1280))
             {
@@ -31,7 +31,7 @@ namespace English_Test_Generator
                 Font fn = new Font("Calibri", 20);
                 Brush br = Brushes.Black;
                 Pen pn = Pens.Black;
-                String possibleAnswers = GetPossibleAnswers(test_possibleAnswersAmount);
+                String possibleAnswers = GetPossibleAnswers(testPossibleAnswersAmount);
                 sf.Alignment = StringAlignment.Center;
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.PixelOffsetMode = PixelOffsetMode.HighQuality;
@@ -45,20 +45,20 @@ namespace English_Test_Generator
                         Height = 150
                     }
                 };
-                Bitmap qrcode = new Bitmap(barcodeWriter.Write(Utility.Encrypt($"{test_ExerciseAmount}/{test_possibleAnswersAmount}/{test_GroupsAmount}\n{test_AnswerKey}")));
+                Bitmap qrcode = new Bitmap(barcodeWriter.Write(Utility.Encrypt($"{testExerciseAmount}/{testPossibleAnswersAmount}/{testGroupsAmount}\n{testAnswerKey}")));
                 g.DrawImage(qrcode, bmp.Width - qrcode.Width, bmp.Height - qrcode.Height);
                 g.DrawRectangle(Pens.Black, studentData);
                 g.DrawRectangle(new Pen(Brushes.Gray, 10), outerBorder);
-                g.DrawString($"{test_Name}; Test Group:", fn, br, studentData, sf);
+                g.DrawString($"{testName}; Test Group:", fn, br, studentData, sf);
                 sf.Alignment = StringAlignment.Near;
                 g.DrawString("\nName and Class Number: ", fn, br, studentData, sf);
-                int offsetY = 0, offsetRecX = 0, offsetRecY = 0, baseX = 0, baseRecX = (bmp.Width / 2) - ((22 * test_possibleAnswersAmount + 18 * (test_possibleAnswersAmount - 1)) / 2); // offsetY - the offset for drawing the current Exercise number, offsetRecX/Y - the offset for drawing the rectangles
+                int offsetY = 0, offsetRecX = 0, offsetRecY = 0, baseX = 0, baseRecX = (bmp.Width / 2) - ((22 * testPossibleAnswersAmount + 18 * (testPossibleAnswersAmount - 1)) / 2); // offsetY - the offset for drawing the current Exercise number, offsetRecX/Y - the offset for drawing the rectangles
                 baseX = baseRecX - 36;
                 g.DrawString(possibleAnswers, fn, br, baseRecX, 75);
-                for (int i = 1; i <= test_ExerciseAmount; i++)
+                for (int i = 1; i <= testExerciseAmount; i++)
                 {
                     g.DrawString(i.ToString(), fn, br, baseX, 100 + offsetY);
-                    for (int j = 0; j < test_possibleAnswersAmount; j++)
+                    for (int j = 0; j < testPossibleAnswersAmount; j++)
                     {
                         g.DrawEllipse(pn, baseRecX + offsetRecX, 105 + offsetRecY, 22, 22);
                         offsetRecX += 39;
@@ -71,7 +71,7 @@ namespace English_Test_Generator
                 // END DRAWING ANSWER SHEET
                 g.RotateTransform(30);
                 g.Flush();
-                bmp.Save($"{test_Name}.bmp");
+                bmp.Save($"{testName}.bmp");
             }
         }
         private static string GetPossibleAnswers(int num)
@@ -90,8 +90,8 @@ namespace English_Test_Generator
         public static int Check(Bitmap bmp, string testID, Dictionary<int, char> answerKey)
         {
             Dictionary<int, char> studentAnswers = new Dictionary<int, char>();
-            int test_ExerciseAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[0]);
-            int test_possibleAnswersAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[1]);
+            int testExerciseAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[0]);
+            int testPossibleAnswersAmount = Convert.ToInt32(testID.Split(new[] { "/" }, StringSplitOptions.None)[1]);
             int currentExercise = 1;
             int currentLetter = 1;
             Blob[] blobs = Blobs(bmp);
@@ -102,12 +102,12 @@ namespace English_Test_Generator
                 {
                     studentAnswers.Add(currentExercise, (char)(currentLetter + 64));
                     studentHasAnswered = true;
-                    i += test_possibleAnswersAmount - currentLetter; // offset blobs to next exercise
+                    i += testPossibleAnswersAmount - currentLetter; // offset blobs to next exercise
                     currentExercise++;
                     currentLetter = 1;
                     continue;
                 }
-                if (!studentHasAnswered && currentLetter == test_possibleAnswersAmount)
+                if (!studentHasAnswered && currentLetter == testPossibleAnswersAmount)
                 {
                     studentAnswers.Add(currentExercise, '-');
                     studentHasAnswered = true;
@@ -166,19 +166,19 @@ namespace English_Test_Generator
         private static Blob[] Blobs(Bitmap image)
         {
             const float baseArea = 921600.0f; // stores the base area of the answer sheet
-            BlobCounter blobCounter = new BlobCounter
+            BlobCounter blobCounter = new BlobCounter 
             {
                 FilterBlobs = true,
                 MinHeight = 1280,
                 MinWidth = 720
             };
-            blobCounter.ProcessImage(PreProcess(image));
-            Blob[] blobs = blobCounter.GetObjectsInformation();
+            blobCounter.ProcessImage(PreProcess(image)); // prepares and processes the image for the blob scanning
+            Blob[] blobs = blobCounter.GetObjectsInformation(); // gets all the objects
             SimpleShapeChecker shapeChecker = new SimpleShapeChecker();
             Graphics g = Graphics.FromImage(image);
             Pen redPen = new Pen(Color.Red, 2);
             float k = 1.0f;
-            foreach (var blob in blobs)
+            foreach (var blob in blobs) // finds the answer sheet in the scanned image (largest scanned rectangle) and calculates the multiplier (k) for finding the answers
             {
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);
                 if (shapeChecker.IsQuadrilateral(edgePoints, out List<IntPoint> cornerPoints))
@@ -218,17 +218,16 @@ namespace English_Test_Generator
                     }
                 }
             }
-            k = (float)Math.Round(Math.Sqrt(k));
+            k = (float)Math.Round(Math.Sqrt(k)); 
             shapeChecker.RelativeDistortionLimit = 0.05f;
             blobCounter.FilterBlobs = true;
             blobCounter.MinHeight = 21 * (int)k;
             blobCounter.MinWidth = 21 * (int)k;
-            //blobCounter.ObjectsOrder = ObjectsOrder.XY;
             blobCounter.ProcessImage(PreProcess(image));
             blobs = blobCounter.GetObjectsInformation();
             List<Blob> circleBlobs = new List<Blob>();
             int i = 0;
-            foreach (var blob in blobs)
+            foreach (var blob in blobs) // finds the answers using the aforementioned multiplier (k)
             {
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blob);
                 if (shapeChecker.IsCircle(edgePoints, out AForge.Point center, out float radius) || (shapeChecker.CheckShapeType(edgePoints) == ShapeType.Circle))
@@ -246,15 +245,11 @@ namespace English_Test_Generator
                 }
                 i += 10;
             }
-            // sorting blobs by X
-            //  circleBlobs = circleBlobs.OrderBy(p => p.Rectangle.X).ThenBy(p=>p.Rectangle.Y).ToList();
-
-            //image.Save("blobs.bmp");
             redPen.Dispose();
             g.Dispose();
             return circleBlobs.ToArray();
         }
-        private static Bitmap PreProcess(Bitmap bmp)
+        private static Bitmap PreProcess(Bitmap bmp) 
         {
             Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
             Invert ifilter = new Invert();
@@ -308,7 +303,7 @@ namespace English_Test_Generator
                 string[] currentLine = lines[i].Split(new[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
                 answerKey.Add(i, currentLine[1][0]);
             }
-            studentsResults.Add((studentName + " has scored: " + AnswerSheet.Check(bmp, testID, answerKey).ToString() + "/" + answerKey.Count + " points"));
+            studentsResults.Add((studentName + " has scored: " + Check(bmp, testID, answerKey).ToString() + "/" + answerKey.Count + " points"));
         }
     }
 }

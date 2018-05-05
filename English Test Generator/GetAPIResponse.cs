@@ -54,8 +54,8 @@ namespace GetAPIResponse
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
-            client.DefaultRequestHeaders.Add("app_id", TestGeneratorForm.app_Id); // adds the id to the headers
-            client.DefaultRequestHeaders.Add("app_key", TestGeneratorForm.app_Key); // adds the key to the headers
+            client.DefaultRequestHeaders.Add("app_id", TestGeneratorForm.appId); // adds the id to the headers
+            client.DefaultRequestHeaders.Add("app_key", TestGeneratorForm.appKey); // adds the key to the headers
             try { response = client.GetAsync(url).Result; } // gets the respone headers   
             catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             if (response.IsSuccessStatusCode) // checks if the response code is equal to 200
@@ -99,11 +99,11 @@ namespace GetAPIResponse
             }
             else // if the response code is different than 200
             {
-                if (response.StatusCode.ToString() == "Forbidden") { Utility.GetNewCredentials(); get(lexicalCategory, word); }
+                if (response.StatusCode.ToString() == "Forbidden") { Utility.GetNewCredentials(); Get(lexicalCategory, word); }
                 return "ERROR \nCouldn't find " + word + " Status: " + response.StatusCode; // error while trying to access the API 
             }
         }
-        public static string get(LexicalCategory category, string word)
+        public static string Get(LexicalCategory category, string word)
         {
             switch (category) // requests the method for the corresponding category
             {
@@ -128,9 +128,9 @@ namespace GetAPIResponse
                     return "ERROR \nCouldn't find the specified lexical category!";
             }
         }
-        public static string get(string category, string word)
+        public static string Get(string category, string word)
         {
-            return get(map.FirstOrDefault(x => x.Value == category).Key, word); // uses the map to call the get method with the proper arguments
+            return Get(map.FirstOrDefault(x => x.Value == category).Key, word); // uses the map to call the get method with the proper arguments
         }
         public static Dictionary<LexicalCategory, string> map = // dictionary used as a "map" for each type
             new Dictionary<LexicalCategory, string>
@@ -159,8 +159,8 @@ namespace GetAPIResponse
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
-            client.DefaultRequestHeaders.Add("app_id", TestGeneratorForm.app_Id); // adds the id to the headers
-            client.DefaultRequestHeaders.Add("app_key", TestGeneratorForm.app_Key); // adds the key to the headers
+            client.DefaultRequestHeaders.Add("app_id", TestGeneratorForm.appId); // adds the id to the headers
+            client.DefaultRequestHeaders.Add("app_key", TestGeneratorForm.appKey); // adds the key to the headers
             try { response = client.GetAsync(url).Result; }// gets the respone headers   
             catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             if (response.IsSuccessStatusCode)
@@ -207,11 +207,11 @@ namespace GetAPIResponse
             }
             else // if the response code is different than 200
             {
-                if (response.StatusCode.ToString() == "Forbidden") { Utility.GetNewCredentials(); get(lexicalCategory, word); }
+                if (response.StatusCode.ToString() == "Forbidden") { Utility.GetNewCredentials(); Get(lexicalCategory, word); }
                 return "ERROR \nCouldn't find " + word + " Status: " + response.StatusCode; // error while trying to access the API 
             }
         }
-        public static string get(LexicalCategory category, string word)
+        public static string Get(LexicalCategory category, string word)
         {
             switch (category) // requests the method for the corresponding category
             {
@@ -235,9 +235,9 @@ namespace GetAPIResponse
                     return "Couldn't find the specified lexical category!";
             }
         }
-        public static string get(string category, string word)
+        public static string Get(string category, string word)
         {
-            return get(map.FirstOrDefault(x => x.Value == category).Key, word); // uses the map to call the get method with the proper arguments
+            return Get(map.FirstOrDefault(x => x.Value == category).Key, word); // uses the map to call the get method with the proper arguments
         }
         public static Dictionary<LexicalCategory, string> map = // dictionary used as a "map" for each type
             new Dictionary<LexicalCategory, string>
@@ -267,8 +267,8 @@ namespace GetAPIResponse
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
-            client.DefaultRequestHeaders.Add("app_id", TestGeneratorForm.app_Id); // adds the id to the headers
-            client.DefaultRequestHeaders.Add("app_key", TestGeneratorForm.app_Key); // adds the key to the headers
+            client.DefaultRequestHeaders.Add("app_id", TestGeneratorForm.appId); // adds the id to the headers
+            client.DefaultRequestHeaders.Add("app_key", TestGeneratorForm.appKey); // adds the key to the headers
             try { response = client.GetAsync(url).Result; }// gets the respone headers   
             catch (Exception) { MessageBox.Show("Unable to connect to the internet. Restart the program with internet connectivity at least once!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             if (response.IsSuccessStatusCode)

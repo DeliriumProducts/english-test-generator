@@ -182,11 +182,11 @@
     <Compile Include="SearchWord.cs" />
     <Compile Include="SpeechRecognition.cs" />
     <Compile Include="Test.cs" />
-    <Compile Include="TestCheckerForm.cs">
+    <Compile Include="AnswerSheetForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestCheckerForm.Designer.cs">
-      <DependentUpon>TestCheckerForm.cs</DependentUpon>
+    <Compile Include="AnswerSheetForm.Designer.cs">
+      <DependentUpon>AnswerSheetForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utility.cs" />
     <EmbeddedResource Include="AboutForm.resx">
@@ -212,8 +212,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TestCheckerForm.resx">
-      <DependentUpon>TestCheckerForm.cs</DependentUpon>
+    <EmbeddedResource Include="AnswerSheetForm.resx">
+      <DependentUpon>AnswerSheetForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="English Test Generator_TemporaryKey.pfx" />
     <None Include="packages.config" />

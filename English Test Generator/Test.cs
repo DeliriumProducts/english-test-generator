@@ -80,10 +80,10 @@ namespace English_Test_Generator
                     default:
                         break;
                 }
-                TestGeneratorForm.test_WordsAndTypes.Add(splitByAsterisk[0], splitByAsterisk[1]);
+                TestGeneratorForm.testWordsAndTypes.Add(splitByAsterisk[0], splitByAsterisk[1]);
             }
         }
-        public static string Generate(string test_Type, int test_ExcerciseAmount, string test_Name, Dictionary<string, string> test_Words, string region)
+        public static string Generate(string testType, int testExcerciseAmount, string testName, Dictionary<string, string> testWords, string region)
         {
             List<string> exercises = new List<string>();
             List<string> answers = new List<string>();
@@ -97,36 +97,36 @@ namespace English_Test_Generator
             string finishedTest = "";
             string suggestedAnswerKey = "";
             int n = 1;
-            while(n<=test_ExcerciseAmount && test_Words.Count>0) 
+            while(n<=testExcerciseAmount && testWords.Count>0) 
             {
-                int randomExercise = rndm.Next(0, test_Words.Count-1);
-                string key = test_Words.ElementAt(randomExercise).Key;
-                string value = test_Words[key];
+                int randomExercise = rndm.Next(0, testWords.Count-1);
+                string key = testWords.ElementAt(randomExercise).Key;
+                string value = testWords[key];
                 KeyValuePair<string, string> pair = new KeyValuePair<string, string>(key, value);
-                if (!Utility.IsValidEntry(pair, test_Type))
+                if (!Utility.IsValidEntry(pair, testType))
                 {
-                    test_Words.Remove(key);
+                    testWords.Remove(key);
                     continue;
                 }
-                buffer.Add(key,test_Words[key]);
-                test_Words.Remove(key);
+                buffer.Add(key,testWords[key]);
+                testWords.Remove(key);
                 n++;
             }
-            test_Words = buffer;
+            testWords = buffer;
             switch (TestGeneratorForm.generatingSpeed)
             {
                 case "Normal":
-                    foreach (KeyValuePair<string, string> entry in test_Words)
+                    foreach (KeyValuePair<string, string> entry in testWords)
                     {
                         TestGeneratorForm.fr.progressBar1.Value++;
-                        switch (test_Type)
+                        switch (testType)
                         {
                            case "Definitions":
-                                exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
+                                exercises.Add(Read(Definitions.Get(entry.Value, entry.Key)));
                                 answers.Add(entry.Key);
                                break;
                            case "Examples":
-                                exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
+                                exercises.Add(Regex.Replace(Read(Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
                                 answers.Add(entry.Key);
                                 break;
                             case "Words":
@@ -134,23 +134,23 @@ namespace English_Test_Generator
                                 break;
                             case "Multi-Choices":
                                 char answer = 'A'; // stores the correct answer for each exercise
-                                exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
+                                exercises.Add(Regex.Replace(Read(Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
                                 answers.Add(answer.ToString());
                                 break;
                         }
                     }
                     break;
                 case "Fast":
-                    System.Threading.Tasks.Parallel.ForEach(test_Words, entry =>
+                    System.Threading.Tasks.Parallel.ForEach(testWords, entry =>
                     {
-                        switch (test_Type)
+                        switch (testType)
                         {
                             case "Definitions":
-                                bagOfExercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
+                                bagOfExercises.Add(Read(Definitions.Get(entry.Value, entry.Key)));
                                 bagOfAnswers.Add(entry.Key);
                                 break;
                             case "Examples":
-                                bagOfExercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
+                                bagOfExercises.Add(Regex.Replace(Read(Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
                                 bagOfAnswers.Add(entry.Key);
                                 break;
                             case "Words":
@@ -158,7 +158,7 @@ namespace English_Test_Generator
                                 break;
                             case "Multi-Choices":
                                 char answer = 'A'; // stores the correct answer for each exercise
-                                bagOfExercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
+                                bagOfExercises.Add(Regex.Replace(Read(Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
                                 bagOfAnswers.Add(answer.ToString());
                                 break;
                         }
@@ -170,22 +170,22 @@ namespace English_Test_Generator
             foreach (var exercise in exercises.ToList()) 
             {
                 if ((exercise.Contains("Couldn't find ") && (exercise.Contains("NotFound")|| exercise.Contains("ERROR")) && answers.Any()) ||
-                    (!(exercise.Contains("_")) && answers.Any() && (test_Type == "Examples" ||
-                    test_Type == "Multi-Choices"))) // remove all of the words that were not found in the Oxford Dictionary
+                    (!(exercise.Contains("_")) && answers.Any() && (testType == "Examples" ||
+                    testType == "Multi-Choices"))) // remove all of the words that were not found in the Oxford Dictionary
                 {
                     answers.RemoveAt(exercises.IndexOf(exercise));
                     exercises.Remove(exercise);
                 }
             }    
-            if (exercises.Count - test_ExcerciseAmount < 0) // if there are not enough words to make a test, lower the exercise amount
+            if (exercises.Count - testExcerciseAmount < 0) // if there are not enough words to make a test, lower the exercise amount
             {
-                test_ExcerciseAmount -= (test_ExcerciseAmount - exercises.Count);
+                testExcerciseAmount -= (testExcerciseAmount - exercises.Count);
             }
-            finishedTest += "~~~~~" + test_Name + "~~~~~\n";
+            finishedTest += "~~~~~" + testName + "~~~~~\n";
             suggestedAnswerKey += (answers.Any()) ? "~~~~~ Suggested Answer Key ~~~~~\n" : string.Empty;
             string answerKey = "";
             n = 1;
-            while (n <= test_ExcerciseAmount)
+            while (n <= testExcerciseAmount)
             {
                 int randomExercise = rndm.Next(0, exercises.Count);
                 finishedTest += "------------------[Ex. "+ n +"]------------------\n" + exercises[randomExercise] + "\n";
@@ -193,10 +193,10 @@ namespace English_Test_Generator
                 exercises.RemoveAt(randomExercise);
                 if (answers.Any())
                 {
-                    if (test_Type == "Multi-Choices")
+                    if (testType == "Multi-Choices")
                     {
                         answerKey += n.ToString() + "-" + answers[randomExercise] + "\n";
-                        AnswerSheet.Generate(test_Name, test_ExcerciseAmount, 1, 4, answerKey);
+                        AnswerSheet.Generate(testName, testExcerciseAmount, 1, 4, answerKey);
                     }
                     answers.RemoveAt(randomExercise);
                 }
