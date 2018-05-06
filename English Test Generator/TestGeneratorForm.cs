@@ -61,7 +61,7 @@ namespace English_Test_Generator
         public static string userTheme = Properties.Settings.Default.userTheme;
         public static string userEditor = Properties.Settings.Default.userEditor;
         //-----TEST VARIABLES-----
-        public static Test GeneratedTest = new Test();
+        public static Test test = new Test();
         public static string units = "";
         //-----FORM CONSTRUCTOR-----
         public TestGeneratorForm()
@@ -94,7 +94,7 @@ namespace English_Test_Generator
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Pastebin")); // creates directory in MyDocuments for cache
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Synonyms")); // creates directory in MyDocuments for cache
             units = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
-            Pastebin.LoadUnits(units);
+            comboBox2 = Utility.LoadUnits(units, comboBox2);
 			if (!Utility.HasRequestsLeft(appId, appKey)) Utility.GetNewCredentials();
             if (Properties.Settings.Default.autoUpdate)
             {                
@@ -292,6 +292,7 @@ namespace English_Test_Generator
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             comboBox2.Enabled = true;
+            richTextBox2.Text = Utility.GetSpecificUnit(comboBox2.GetItemText(comboBox2.SelectedItem));
             richTextBox2.Visible = false;
             richTextBox3.Location = new Point(228, 29);
             richTextBox3.Size = new Size(444, 274);
@@ -300,41 +301,18 @@ namespace English_Test_Generator
         }
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e) // gets the words only for the specified unit
         {
-            units = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
-            using (StringReader sr = new StringReader(units)) 
-            {
-                units = "";
-                string s = "";
-                while ((s = sr.ReadLine()) != null)
-                {
-                    if (s.Contains("%%%" + comboBox2.GetItemText(comboBox2.SelectedItem)))
-                    {
-                        while(!(s = sr.ReadLine()).Contains("%%%") && s != null)
-                        {
-                            if (s == "--- END OF UNITS ---")
-                            {
-                                break;
-                            }
-                            units = units + s + "\n";
-                        }
-                    }
-                }
-            }     
-           richTextBox2.Text = units;            
+            richTextBox2.Text = Utility.GetSpecificUnit(comboBox2.GetItemText(comboBox2.SelectedItem));     
         }
         private void button6_Click(object sender, EventArgs e)
         {
             button7.BackgroundImage = Properties.Resources.greyPrinter;
             button7.Enabled = false;
-            Test test = new Test
-            {
-                Name = textBox2.Text, // sets the name of the test
-                Type = comboBox4.Text, // sets the type of the test
-                ExcerciseAmount = int.Parse(numericUpDown1.Text), // sets the excercise amount for the test
-                WordsAndTypes = Test.FillDictionary(units) // makes the words and types into a dictionary
-            };
-            GeneratedTest.Result = test.Generate(test);
-            richTextBox3.Text = GeneratedTest.Result;
+            test.Name = textBox2.Text; // sets the name of the test
+            test.Type = comboBox4.Text; // sets the type of the test
+            test.ExcerciseAmount = int.Parse(numericUpDown1.Text);// sets the excercise amount for the test
+            test.WordsAndTypes = test.FillDictionary(richTextBox2.Text); // makes the words and types into a dictionary
+            test.Result = test.Generate(test); // generates the test
+            richTextBox3.Text = test.Result;
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
         }
@@ -342,12 +320,12 @@ namespace English_Test_Generator
         {
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
-            if (GeneratedTest.Result != "")
+            if (test.Result != "")
             {                
-                string path = GeneratedTest.Name + ".txt";
+                string path = test.Name + ".txt";
                 using (StreamWriter sw = new StreamWriter(path))
                 {
-                    sw.Write(GeneratedTest.Result);
+                    sw.Write(test.Result);
                 }
                 if (userEditor == "MS Word")
                 {

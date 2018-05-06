@@ -50,12 +50,11 @@ namespace English_Test_Generator
         public string Type { get; set; } = "Definitons";
         public int ExcerciseAmount { get; set; } = 5;
         public string Name { get; set; } = "[TEST]";
-        public string Words { get; set;}
         public Dictionary<string,string> WordsAndTypes { get; set; }
         public string Region { get; set; } = TestGeneratorForm.region;
         public string Result { get; set; } = "";
 
-        public static Dictionary<string, string> FillDictionary(string test_Words)
+        public Dictionary<string, string> FillDictionary(string test_Words)
         {
             Dictionary<string, string> buffer = new Dictionary<string, string>();
             string[] splitByNewLine = test_Words.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -104,7 +103,7 @@ namespace English_Test_Generator
             TestGeneratorForm.fr.progressBar1.Maximum = TestGeneratorForm.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
             Dictionary<string, string> buffer = new Dictionary<string, string>();
             Random rndm = new Random();
-            string finishedTest = "";
+            test.Result = ""; // reset the result property to prevent "stacking" of tests
             string suggestedAnswerKey = "";
             int n = 1;
             while(n<=test.ExcerciseAmount && test.WordsAndTypes.Count>0) 
@@ -191,14 +190,14 @@ namespace English_Test_Generator
             {
                 test.ExcerciseAmount -= (test.ExcerciseAmount - exercises.Count);
             }
-            finishedTest += "~~~~~" + test.Name + "~~~~~\n";
+            test.Result += "~~~~~" + test.Name + "~~~~~\n";
             suggestedAnswerKey += (answers.Any()) ? "~~~~~ Suggested Answer Key ~~~~~\n" : string.Empty;
             string answerKey = "";
             n = 1;
             while (n <= test.ExcerciseAmount)
             {
                 int randomExercise = rndm.Next(0, exercises.Count);
-                finishedTest += "------------------[Ex. "+ n +"]------------------\n" + exercises[randomExercise] + "\n";
+                test.Result += "------------------[Ex. "+ n +"]------------------\n" + exercises[randomExercise] + "\n";
                 suggestedAnswerKey += (answers.Any()) ? "[Ex. " + n + "] - " + answers[randomExercise] + "\n" : string.Empty;
                 exercises.RemoveAt(randomExercise);
                 if (answers.Any())
@@ -211,10 +210,10 @@ namespace English_Test_Generator
                     answers.RemoveAt(randomExercise);
                 }
                 n++;
-            }           
-            finishedTest += "\n" + suggestedAnswerKey;
+            }
+            test.Result += "\n" + suggestedAnswerKey;
             TestGeneratorForm.fr.progressBar1.Visible = false;
-            return finishedTest;          
+            return test.Result;
         }
         public static string Read(string source) // algorithm for reading the returned string from GetAPIResponse
         {

@@ -23,12 +23,10 @@ namespace English_Test_Generator
     class Utility
     {
         private static Random rng = new Random();
-
         private Utility()
         {
             // since this is a utility class it doesn't need a constructor, therefore this makes it private
         }
-
         public static List<T> ShuffleElements<T> (List<T> list)
         {
             List<T> shuffledList = new List<T>(); 
@@ -169,6 +167,45 @@ namespace English_Test_Generator
                     return (multiChoices.Contains("Couldn't find") && multiChoices.Contains("ERROR")) ? false:true ;
             }
             return false;
+        }
+        public static ComboBox LoadUnits(string units, ComboBox cb)
+        {
+            string currentLine = "";
+            using (StringReader sr = new StringReader(units))
+            {
+                while ((currentLine = sr.ReadLine()) != null) // loop to add all of the units to comboBox2
+                {
+                    if (currentLine.Contains("%%%")) // if the current line contains "%%%"
+                    {
+                        cb.Items.Add(currentLine.Substring(3)); // remove the "%%%" and add what's left of the string as a comboBox2 item
+                    }
+                }
+            }
+            return cb;
+        }
+        public static string GetSpecificUnit(string unitName)
+        {
+            string unitWords = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
+            using (StringReader sr = new StringReader(unitWords))
+            {
+                unitWords = "";
+                string s = "";
+                while ((s = sr.ReadLine()) != null)
+                {
+                    if (s.Contains("%%%" + unitWords))
+                    {
+                        while (!(s = sr.ReadLine()).Contains("%%%") && s != null)
+                        {
+                            if (s == "--- END OF UNITS ---")
+                            {
+                                break;
+                            }
+                            unitWords = unitWords + s + "\n";
+                        }
+                    }
+                }
+            }
+            return unitWords;
         }
     }
 }

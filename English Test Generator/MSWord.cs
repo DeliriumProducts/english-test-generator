@@ -43,7 +43,7 @@ namespace English_Test_Generator
 
         private void MSWord_Load(object sender, EventArgs e)
         {
-            radRichTextEditor1.Text = TestGeneratorForm.GeneratedTest.Result;
+            radRichTextEditor1.Text = TestGeneratorForm.test.Result;
         }
     }
 }

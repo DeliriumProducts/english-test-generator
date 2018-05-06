@@ -83,20 +83,6 @@ namespace English_Test_Generator
             }
             return pastebin;
         }
-        public static void LoadUnits(string units)
-        {
-            string currentLine = "";
-            using (StringReader sr = new StringReader(units))
-            {
-                while ((currentLine = sr.ReadLine()) != null) // loop to add all of the units to comboBox2
-                {
-                    if (currentLine.Contains("%%%")) // if the current line contains "%%%"
-                    {
-                        TestGeneratorForm.fr.comboBox2.Items.Add(currentLine.Substring(3)); // remove the "%%%" and add what's left of the string as a comboBox2 item
-                    }
-                }
-            }
-        }
         public static bool CheckForUpdate()
         {
             return Get("https://pastebin.com/raw/6aupTvgs", "version") != Properties.Settings.Default.userVersion;
