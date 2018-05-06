@@ -23,6 +23,12 @@ namespace English_Test_Generator
     class Utility
     {
         private static Random rng = new Random();
+
+        private Utility()
+        {
+            // since this is a utility class it doesn't need a constructor, therefore this makes it private
+        }
+
         public static List<T> ShuffleElements<T> (List<T> list)
         {
             List<T> shuffledList = new List<T>(); 

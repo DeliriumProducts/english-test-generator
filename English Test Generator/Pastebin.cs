@@ -99,8 +99,7 @@ namespace English_Test_Generator
         }
         public static bool CheckForUpdate()
         {
-            if (Get("https://pastebin.com/raw/6aupTvgs", "version") != Properties.Settings.Default.userVersion) return true;
-            return false;
+            return Get("https://pastebin.com/raw/6aupTvgs", "version") != Properties.Settings.Default.userVersion;
         }
     }
 }

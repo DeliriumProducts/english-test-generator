@@ -61,12 +61,8 @@ namespace English_Test_Generator
         public static string userTheme = Properties.Settings.Default.userTheme;
         public static string userEditor = Properties.Settings.Default.userEditor;
         //-----TEST VARIABLES-----
-        public static string testResult = ""; // result from the test maker 
-        public static string testType = "Definitions"; // type of the test (example based / definition based)
-        public static string testName = ""; // name of the test
-        public static string testWords; // words and lexicalCategories that are going to be used in the making of the test
-        public static int testExcerciseAmount = 0; // amount of excercises for the test
-        public static Dictionary<string, string> testWordsAndTypes = new Dictionary<string, string>();
+        public static Test GeneratedTest = new Test();
+        public static string units = "";
         //-----FORM CONSTRUCTOR-----
         public TestGeneratorForm()
         {
@@ -97,9 +93,8 @@ namespace English_Test_Generator
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Definitions")); // creates directory in MyDocuments for cache
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Pastebin")); // creates directory in MyDocuments for cache
             Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"ETGCachedData/Synonyms")); // creates directory in MyDocuments for cache
-            testWords = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
-            Pastebin.LoadUnits(testWords);
-            textBox2.Text = "[TEST]"; // Sets default test name
+            units = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits");
+            Pastebin.LoadUnits(units);
 			if (!Utility.HasRequestsLeft(appId, appKey)) Utility.GetNewCredentials();
             if (Properties.Settings.Default.autoUpdate)
             {                
@@ -305,10 +300,10 @@ namespace English_Test_Generator
         }
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e) // gets the words only for the specified unit
         {
-            testWords = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
-            using (StringReader sr = new StringReader(testWords)) 
+            units = Pastebin.Get("https://pastebin.com/raw/szdPcs2Q", "pastebinWordsAndUnits"); // resets the words for the test
+            using (StringReader sr = new StringReader(units)) 
             {
-                testWords = "";
+                units = "";
                 string s = "";
                 while ((s = sr.ReadLine()) != null)
                 {
@@ -320,25 +315,26 @@ namespace English_Test_Generator
                             {
                                 break;
                             }
-                            testWords = testWords + s + "\n";
+                            units = units + s + "\n";
                         }
                     }
                 }
             }     
-           richTextBox2.Text = testWords;            
+           richTextBox2.Text = units;            
         }
         private void button6_Click(object sender, EventArgs e)
         {
             button7.BackgroundImage = Properties.Resources.greyPrinter;
             button7.Enabled = false;
-            testName = textBox2.Text; // sets the name of the test
-            testType = comboBox4.Text;
-            testExcerciseAmount = int.Parse(numericUpDown1.Text); // sets the excercise amount for the test
-            testWords = richTextBox2.Text.Trim(); // gets the words and types of the test from richTextBox2
-            testWordsAndTypes.Clear();
-            Test.FillDictionary(testWords); // makes the words and types into a dictionary
-            testResult = Test.Generate(testType, testExcerciseAmount, testName, testWordsAndTypes, region);
-            richTextBox3.Text = testResult;
+            Test test = new Test
+            {
+                Name = textBox2.Text, // sets the name of the test
+                Type = comboBox4.Text, // sets the type of the test
+                ExcerciseAmount = int.Parse(numericUpDown1.Text), // sets the excercise amount for the test
+                WordsAndTypes = Test.FillDictionary(units) // makes the words and types into a dictionary
+            };
+            GeneratedTest.Result = test.Generate(test);
+            richTextBox3.Text = GeneratedTest.Result;
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
         }
@@ -346,12 +342,12 @@ namespace English_Test_Generator
         {
             button7.BackgroundImage = Properties.Resources.redPrinter;
             button7.Enabled = true;
-            if (testResult != "")
+            if (GeneratedTest.Result != "")
             {                
-                string path = testName + ".txt";
+                string path = GeneratedTest.Name + ".txt";
                 using (StreamWriter sw = new StreamWriter(path))
                 {
-                    sw.Write(testResult);
+                    sw.Write(GeneratedTest.Result);
                 }
                 if (userEditor == "MS Word")
                 {
