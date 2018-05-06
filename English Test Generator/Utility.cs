@@ -38,14 +38,14 @@ namespace English_Test_Generator
             }
             return shuffledList;
         }
-        public static bool HasRequestsLeft(string app_Id, string app_Key)
+        public static bool HasRequestsLeft(string appId, string appKey)
         {
             string url = "https://od-api.oxforddictionaries.com:443/api/v1/filters"; // URL for the request 
             HttpClient client = new HttpClient(); // creates an HTTP Client
             HttpResponseMessage response = new HttpResponseMessage(); // used to get the API Response            
             client.BaseAddress = new Uri(url); // sets the client address to the specified url
-            client.DefaultRequestHeaders.Add("app_id", app_Id); // adds the id to the headers
-            client.DefaultRequestHeaders.Add("app_key", app_Key); // adds the key to the headers
+            client.DefaultRequestHeaders.Add("app_id", appId); // adds the id to the headers
+            client.DefaultRequestHeaders.Add("app_key", appKey); // adds the key to the headers
             try { response = client.GetAsync(url).Result; } // gets the respone headers   
             catch (Exception) { }
             if (response.StatusCode.ToString() == "Forbidden") { return false; };
