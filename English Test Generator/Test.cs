@@ -33,13 +33,30 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GetAPIResponse;
 using System.Text.RegularExpressions;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using ZXing;
+using AForge.Imaging;
+using AForge.Math.Geometry;
+using AForge;
+using AForge.Imaging.Filters;
+using ZXing.QrCode;
 
 namespace English_Test_Generator
 {
-    class Test
+    public class Test
     {
-        public static void FillDictionary(string test_Words)
+        public string Type { get; set; } = "Definitons";
+        public int ExcerciseAmount { get; set; } = 5;
+        public string Name { get; set; } = "[TEST]";
+        public Dictionary<string,string> WordsAndTypes { get; set; }
+        public string Region { get; set; } = TestGeneratorForm.region;
+        public string Result { get; set; } = "";
+
+        public Dictionary<string, string> FillDictionary(string test_Words)
         {
+            Dictionary<string, string> buffer = new Dictionary<string, string>();
             string[] splitByNewLine = test_Words.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < splitByNewLine.Length; i++)
             {
@@ -71,92 +88,132 @@ namespace English_Test_Generator
                     default:
                         break;
                 }
-                Form1.test_WordsAndTypes.Add(splitByAsterisk[0], splitByAsterisk[1]);
+                buffer.Add(splitByAsterisk[0], splitByAsterisk[1]);
             }
+            return buffer;
         }
-        public static string Generate(string test_Type, int test_ExcerciseAmount, string test_Name, Dictionary<string, string> test_Words, string region)
+        public string Generate(Test test)
         {
             List<string> exercises = new List<string>();
             List<string> answers = new List<string>();
             ConcurrentBag<string> bagOfAnswers = new ConcurrentBag<string>();
             ConcurrentBag<string> bagOfExercises = new ConcurrentBag<string>(); // used when using multiple threads
-            Form1.fr.progressBar1.Visible = true;
-            Form1.fr.progressBar1.Value = 0;
-            Form1.fr.progressBar1.Maximum = Form1.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
-            string finishedTest = "";
+            TestGeneratorForm.fr.progressBar1.Visible = true;
+            TestGeneratorForm.fr.progressBar1.Value = 0;
+            TestGeneratorForm.fr.progressBar1.Maximum = TestGeneratorForm.fr.richTextBox2.Text.Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Length;
+            Dictionary<string, string> buffer = new Dictionary<string, string>();
+            Random rndm = new Random();
+            test.Result = ""; // reset the result property to prevent "stacking" of tests
             string suggestedAnswerKey = "";
-            switch (Form1.generatingSpeed)
+            int n = 1;
+            while(n<=test.ExcerciseAmount && test.WordsAndTypes.Count>0) 
+            {
+                int randomExercise = rndm.Next(0, test.WordsAndTypes.Count-1);
+                string key = test.WordsAndTypes.ElementAt(randomExercise).Key;
+                string value = test.WordsAndTypes[key];
+                KeyValuePair<string, string> pair = new KeyValuePair<string, string>(key, value);
+                if (!Utility.IsValidEntry(pair, test.Type))
+                {
+                    test.WordsAndTypes.Remove(key);
+                    continue;
+                }
+                buffer.Add(key,test.WordsAndTypes[key]);
+                test.WordsAndTypes.Remove(key);
+                n++;
+            }
+            test.WordsAndTypes = buffer;
+            switch (TestGeneratorForm.generatingSpeed)
             {
                 case "Normal":
-                    foreach (KeyValuePair<string, string> entry in test_Words)
+                    foreach (KeyValuePair<string, string> entry in test.WordsAndTypes)
                     {
-                        Form1.fr.progressBar1.Value++;
-                        switch (test_Type)
+                        TestGeneratorForm.fr.progressBar1.Value++;
+                        switch (test.Type)
                         {
                            case "Definitions":
-                                exercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
+                                exercises.Add(Read(Definitions.Get(entry.Value, entry.Key)));
                                 answers.Add(entry.Key);
                                break;
                            case "Examples":
-                                exercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
+                                exercises.Add(Regex.Replace(Read(Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
                                 answers.Add(entry.Key);
                                 break;
                             case "Words":
                                 exercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
                                 break;
+                            case "Multi-Choices":
+                                char answer = 'A'; // stores the correct answer for each exercise
+                                exercises.Add(Regex.Replace(Read(Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
+                                answers.Add(answer.ToString());
+                                break;
                         }
                     }
                     break;
                 case "Fast":
-                    Parallel.ForEach(test_Words, entry =>
+                    System.Threading.Tasks.Parallel.ForEach(test.WordsAndTypes, entry =>
                     {
-                        switch (test_Type)
+                        switch (test.Type)
                         {
                             case "Definitions":
-                                bagOfExercises.Add(Read(Definitions.get(entry.Value, entry.Key)));
+                                bagOfExercises.Add(Read(Definitions.Get(entry.Value, entry.Key)));
                                 bagOfAnswers.Add(entry.Key);
                                 break;
                             case "Examples":
-                                bagOfExercises.Add(Regex.Replace(Read(Examples.get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
+                                bagOfExercises.Add(Regex.Replace(Read(Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase));
                                 bagOfAnswers.Add(entry.Key);
                                 break;
                             case "Words":
                                 bagOfExercises.Add(entry.Key + new string('.', 50) + " (" + entry.Value.TrimEnd() + ")");
+                                break;
+                            case "Multi-Choices":
+                                char answer = 'A'; // stores the correct answer for each exercise
+                                bagOfExercises.Add(Regex.Replace(Read(Examples.Get(entry.Value, entry.Key)), entry.Key, new string('_', entry.Key.Length), RegexOptions.IgnoreCase) + "\n" + Synonyms.Request(entry.Key, out answer));
+                                bagOfAnswers.Add(answer.ToString());
                                 break;
                         }
                     });
                     exercises = bagOfExercises.ToList(); // Converts the bagOfExercises variable to List and sets it to exercises variable
                     answers = bagOfAnswers.ToList();
                     break;
-            }                  
-            foreach (var exercise in exercises.ToList()) // remove all of the words that were not found in the Oxford Dictionary
+            }
+            foreach (var exercise in exercises.ToList()) 
             {
-                if (exercise.StartsWith("Couldn't find ") && answers.Any())
+                if ((exercise.Contains("Couldn't find ") && (exercise.Contains("NotFound")|| exercise.Contains("ERROR")) && answers.Any()) ||
+                    (!(exercise.Contains("_")) && answers.Any() && (test.Type == "Examples" ||
+                    test.Type == "Multi-Choices"))) // remove all of the words that were not found in the Oxford Dictionary
                 {
                     answers.RemoveAt(exercises.IndexOf(exercise));
                     exercises.Remove(exercise);
                 }
             }    
-            if (exercises.Count - test_ExcerciseAmount < 0) // if there are not enough words to make a test, lower the exercise amount
+            if (exercises.Count - test.ExcerciseAmount < 0) // if there are not enough words to make a test, lower the exercise amount
             {
-                test_ExcerciseAmount -= (test_ExcerciseAmount - exercises.Count);
+                test.ExcerciseAmount -= (test.ExcerciseAmount - exercises.Count);
             }
-            int n = 1;
-            Random rndm = new Random();
-            finishedTest += "~~~~~" + test_Name + "~~~~~\n";
+            test.Result += "~~~~~" + test.Name + "~~~~~\n";
             suggestedAnswerKey += (answers.Any()) ? "~~~~~ Suggested Answer Key ~~~~~\n" : string.Empty;
-            while (n <= test_ExcerciseAmount)
+            string answerKey = "";
+            n = 1;
+            while (n <= test.ExcerciseAmount)
             {
                 int randomExercise = rndm.Next(0, exercises.Count);
-                finishedTest += "------------------[Ex. "+ n +"]------------------\n" + exercises[randomExercise] + "\n";
+                test.Result += "------------------[Ex. "+ n +"]------------------\n" + exercises[randomExercise] + "\n";
                 suggestedAnswerKey += (answers.Any()) ? "[Ex. " + n + "] - " + answers[randomExercise] + "\n" : string.Empty;
                 exercises.RemoveAt(randomExercise);
-                if (answers.Any()) answers.RemoveAt(randomExercise);               
+                if (answers.Any())
+                {
+                    if (test.Type == "Multi-Choices")
+                    {
+                        answerKey += n.ToString() + "-" + answers[randomExercise] + "\n";
+                        AnswerSheet.Generate(test.Name, test.ExcerciseAmount, 1, 4, answerKey);
+                    }
+                    answers.RemoveAt(randomExercise);
+                }
                 n++;
             }
-            finishedTest += "\n" + suggestedAnswerKey;
-            Form1.fr.progressBar1.Visible = false;
-            return finishedTest;          
+            test.Result += "\n" + suggestedAnswerKey;
+            TestGeneratorForm.fr.progressBar1.Visible = false;
+            return test.Result;
         }
         public static string Read(string source) // algorithm for reading the returned string from GetAPIResponse
         {

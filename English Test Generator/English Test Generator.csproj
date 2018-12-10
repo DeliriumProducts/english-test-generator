@@ -14,6 +14,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>C:\Users\Любо Любчев\Desktop\etg\</PublishUrl>
     <Install>false</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -31,8 +33,6 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -79,9 +79,21 @@
     <ApplicationIcon>Resources\Dtafalonso-Android-Lollipop-Dictionary.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+    </Reference>
     <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.1.6.2\lib\dotnet\Costura.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Ghostscript.NET, Version=1.2.1.0, Culture=neutral, PublicKeyToken=f85051de34525b59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ghostscript.NET.1.2.1\lib\net40\Ghostscript.NET.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -124,6 +136,14 @@
       <HintPath>libs\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="zxing, Version=0.16.2.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.2\lib\net45\zxing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.2.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.2\lib\net45\zxing.presentation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutForm.cs">
@@ -132,17 +152,24 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AnswerSheet.cs" />
     <Compile Include="CacheWord.cs" />
     <Compile Include="FlatUI.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="TestGeneratorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TestGeneratorForm.Designer.cs">
+      <DependentUpon>TestGeneratorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GetAPIResponse.cs" />
     <Compile Include="IsApplicationInstalled.cs" />
     <Compile Include="JSON_lib.cs" />
+    <Compile Include="Launcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Launcher.Designer.cs">
+      <DependentUpon>Launcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="MSWord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,11 +182,21 @@
     <Compile Include="SearchWord.cs" />
     <Compile Include="SpeechRecognition.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="AnswerSheetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnswerSheetForm.Designer.cs">
+      <DependentUpon>AnswerSheetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="TestGeneratorForm.resx">
+      <DependentUpon>TestGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Launcher.resx">
+      <DependentUpon>Launcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MSWord.resx">
       <DependentUpon>MSWord.cs</DependentUpon>
@@ -175,6 +212,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="AnswerSheetForm.resx">
+      <DependentUpon>AnswerSheetForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="English Test Generator_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
@@ -247,6 +287,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\ProgressBarEx.dll" />
+    <None Include="Resources\New Project %282%29.png" />
+    <None Include="Resources\New Project.png" />
+    <None Include="Resources\New Project %281%29.png" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\checked %281%29.png" />
+    <None Include="Resources\success %281%29.png" />
+    <None Include="Resources\checked.png" />
+    <None Include="Resources\success.png" />
+    <None Include="Resources\tick.png" />
+    <None Include="Resources\englishtestsbannera.png" />
+    <None Include="Resources\englishtestsbanner.png" />
+    <None Include="Resources\dplogo.png" />
+    <None Include="Resources\dplogoasdf.png" />
     <None Include="Resources\info.png" />
     <None Include="Resources\Dtafalonso-Android-Lollipop-Dictionary.ico" />
     <None Include="Resources\Icon.ico" />
@@ -262,4 +315,8 @@
   </Target>
   <Import Project="..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" />
   <Import Project="..\packages\Fody.2.4.4\build\Fody.targets" Condition="Exists('..\packages\Fody.2.4.4\build\Fody.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

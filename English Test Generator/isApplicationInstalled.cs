@@ -80,7 +80,7 @@ namespace English_Test_Generator
             // For 64 bit Programs
             object displayName64;
             string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (var baseKey = Microsoft.Win32.RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
+            using (var baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
             {
                 using (var keys = baseKey.OpenSubKey(registry_key))
                 {

@@ -40,7 +40,7 @@ namespace English_Test_Generator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Launcher());
         }
         public static void Update()
         {

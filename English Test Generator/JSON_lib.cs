@@ -223,6 +223,9 @@ namespace JSON_lib
 
         [JsonProperty("variantForms")]
         public VariantForm[] VariantForms { get; set; }
+
+        [JsonProperty("synonyms")]
+        public Synonym[] Synonyms { get; set; }
     }
 
     public partial class Subsense
@@ -232,6 +235,9 @@ namespace JSON_lib
 
         [JsonProperty("examples")]
         public Example[] Examples { get; set; }
+
+        [JsonProperty("synonyms")]
+        public Synonym[] Synonyms { get; set; }
     }
 
     public partial class Example
@@ -259,6 +265,12 @@ namespace JSON_lib
 
         [JsonProperty("translations")]
         public Translation[] Translations { get; set; }
+    }
+
+    public partial class Synonym
+    {
+        [JsonProperty("text")]
+        public string Text { get; set; }
     }
 
     public partial class Translation
