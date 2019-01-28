@@ -29,7 +29,7 @@
 - Clone the repository using git bash
 
 ```shell
-git clone https://github.com/simo3003/EnglishTestGenerator
+git clone https://github.com/DeliriumProducts/english-test-generator
 ```
 
  - Run the .sln file from the main folder of the repository using Visual Studio 2015 / 2017. 
@@ -42,7 +42,7 @@ If you have any ideas for helping / supporting and or improving the project, you
 # Contact us 
 
 - Lyubo Lyubchev - [Facebook](https://www.facebook.com/lyubo.ivailov.3) [GitHub](https://github.com/IMPZERO) E-mail - lyubo_2317@abv.bg
-- Simo Aleksandrov - [Facebook](https://www.facebook.com/simo.aleksandrov) [GitHub](https://github.com/simo3003) [YouTube](https://www.youtube.com/channel/UCXudfqkZnDPm8Kg8gijrAlA) E-mail - simo3003@me.com	
+- Simo Aleksandrov - [Facebook](https://www.facebook.com/simo.aleksandrov) [GitHub](https://github.com/fr3fou) [YouTube](https://www.youtube.com/channel/UCXudfqkZnDPm8Kg8gijrAlA) E-mail - simo3003@me.com	
 - [Website](http://etgproject.tk/)
 
 # License 
