@@ -26,7 +26,7 @@
 - [Visual Studio 2015 / 2017](https://www.visualstudio.com/downloads/) (2017 is recommended) for editing and compiling the code
 
 # Getting started
-- Clone the repository using git bash
+- Clone the repository using git
 
 ```shell
 git clone https://github.com/DeliriumProducts/english-test-generator
