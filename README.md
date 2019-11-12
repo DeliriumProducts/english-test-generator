@@ -23,7 +23,7 @@
 - [.NET Framework 4.5](https://www.microsoft.com/net/download/dotnet-framework-runtime) - Download the latest version here
 - Microphone for Speech Recognition functionality
 - Headphones / Speakers for Text-To-Speech functionality
-- [Visual Studio 2015 / 2017](https://www.visualstudio.com/downloads/) (2017 is recommended) for editing and compiling the code
+- [Visual Studio 2015 / 2017 / 2019](https://www.visualstudio.com/downloads/) (2017 is recommended) for editing and compiling the code
 
 # Getting started
 - Clone the repository using git
