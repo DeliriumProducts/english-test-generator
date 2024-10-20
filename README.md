@@ -39,12 +39,6 @@ git clone https://github.com/DeliriumProducts/english-test-generator
 
 If you have any ideas for helping / supporting and or improving the project, you can contribute via the Pull Requests to this repository. We'd gladly take a look at each and every one and reply to them.
 
-# Contact us 
-
-- Lyubo Lyubchev - [Facebook](https://www.facebook.com/lyubo.ivailov.3) [GitHub](https://github.com/IMPZERO) E-mail - lyubo_2317@abv.bg
-- Simo Aleksandrov - [Facebook](https://www.facebook.com/simo.aleksandrov) [GitHub](https://github.com/fr3fou) [YouTube](https://www.youtube.com/channel/UCXudfqkZnDPm8Kg8gijrAlA) E-mail - simo3003@me.com	
-- [Website](http://etgproject.tk/)
-
 # License 
 
 English Test Generator is licensed under the [GNU General Public License v3.0](https://opensource.org/licenses/GPL-3.0). Please see [the license file](LICENSE) for more information.
